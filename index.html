@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camilo Vergara Salas — Data Analyst | Business Intelligence</title>
+  <meta name="description" content="Data Analyst & Business Intelligence specialist. SQL, Python, Power BI, Tableau. Turning raw data into decisions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
+</head>
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a href="#top" class="nav__logo">CV<span class="accent">.</span></a>
+      <nav class="nav__links" id="navLinks">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#experience" data-i18n="nav.experience">Experience</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="nav__actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button id="btnEn" class="lang-btn active" onclick="setLang('en')">EN</button>
+          <button id="btnEs" class="lang-btn" onclick="setLang('es')">ES</button>
+        </div>
+        <button class="nav__burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="hero__glow hero__glow--1"></div>
+    <div class="hero__glow hero__glow--2"></div>
+    <div class="container hero__inner">
+      <p class="hero__eyebrow"><span class="dot"></span> <span data-i18n="hero.eyebrow">Data Analyst · Business Intelligence</span></p>
+      <h1 class="hero__title">Camilo Vergara<span class="accent"> Salas</span></h1>
+      <p class="hero__tagline" data-i18n="hero.tagline">I turn raw data into dashboards, automation and decisions that move the business.</p>
+      <p class="hero__summary" data-i18n="hero.summary">Data Analyst with 4+ years of experience delivering measurable impact across the full data lifecycle — SQL, Python, Power BI and Tableau — with a Full Stack background that lets me build and deploy the tools behind the analysis, not just the analysis itself.</p>
+
+      <div class="hero__cta">
+        <a id="cvDownload" class="btn btn--primary" href="assets/Camilo_Vergara_Resume_EN.pdf" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-i18n="hero.download">Download Resume (EN)</span>
+        </a>
+        <a class="btn btn--ghost" href="mailto:camilovergarasalas.cvs@gmail.com?subject=Contact%20from%20your%20portfolio">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span data-i18n="hero.email">Email me</span>
+        </a>
+        <a id="cvDownloadAlt" class="link-alt" href="assets/Camilo_Vergara_CV_ES.pdf" download data-i18n="hero.downloadAlt">Also available in Spanish (PDF)</a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="stat"><span class="stat__num">4+</span><span class="stat__label" data-i18n="stats.years">years of experience</span></div>
+        <div class="stat"><span class="stat__num">40%</span><span class="stat__label" data-i18n="stats.reporting">faster compliance reporting</span></div>
+        <div class="stat"><span class="stat__num">90%+</span><span class="stat__label" data-i18n="stats.accuracy">automated verification accuracy</span></div>
+        <div class="stat"><span class="stat__num">70+</span><span class="stat__label" data-i18n="stats.companies">companies served by my dashboards</span></div>
+      </div>
+
+      <div class="hero__social">
+        <a href="https://github.com/Chrov" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/camilo-evs" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- ===== About ===== -->
+    <section id="about" class="section">
+      <div class="container">
+        <p class="section__kicker" data-i18n="about.kicker">01 — About</p>
+        <h2 class="section__title" data-i18n="about.title">From raw data to business impact</h2>
+        <div class="about__grid">
+          <div class="about__text">
+            <p data-i18n="about.p1">I'm a Data Analyst based in Chile with 4+ years of experience across the full data lifecycle: designing SQL pipelines, automating verification workflows, detecting anomalies with Python, and building KPI dashboards in Power BI and Tableau used by 70+ companies and 100+ users.</p>
+            <p data-i18n="about.p2">My work has cut compliance reporting time by ~40%, raised automated document-verification accuracy above 90%, and — in an end-to-end business modernization project — helped increase sales by 10–15% while reducing supply costs by 15–20%.</p>
+            <p data-i18n="about.p3">What makes me different: a Full Stack background (React, Node.js, FastAPI, Firebase) that lets me build and deploy the tools behind the analysis — from web platforms to a WhatsApp voice-note bot that turns audio into inventory data.</p>
+          </div>
+          <div class="about__facts">
+            <div class="fact"><span class="fact__label" data-i18n="about.location">Location</span><span class="fact__value">Olivar, O'Higgins, Chile 🇨🇱</span></div>
+            <div class="fact"><span class="fact__label" data-i18n="about.langs">Languages</span><span class="fact__value" data-i18n="about.langsValue">Spanish (native) · English (B2, certified)</span></div>
+            <div class="fact"><span class="fact__label" data-i18n="about.focus">Focus</span><span class="fact__value" data-i18n="about.focusValue">Data Analytics · BI · Automation</span></div>
+            <div class="fact"><span class="fact__label" data-i18n="about.education">Education</span><span class="fact__value" data-i18n="about.educationValue">Systems Analyst — IES, Córdoba (AR)</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Experience ===== -->
+    <section id="experience" class="section section--alt">
+      <div class="container">
+        <p class="section__kicker" data-i18n="exp.kicker">02 — Experience</p>
+        <h2 class="section__title" data-i18n="exp.title">Where I've made an impact</h2>
+
+        <div class="timeline">
+          <article class="timeline__item">
+            <div class="timeline__marker"></div>
+            <div class="timeline__card">
+              <div class="timeline__head">
+                <h3 data-i18n="exp.job2.role">Independent Consultant — Business & Data Modernization</h3>
+                <span class="timeline__period" data-i18n="exp.job2.period">Apr – Jul 2026</span>
+              </div>
+              <p class="timeline__company" data-i18n="exp.job2.company">Feria Business Modernization · Independent Project</p>
+              <ul>
+                <li data-i18n="exp.job2.b1">Led an end-to-end operations and data modernization project for an artisanal-products market business, from diagnosis to full implementation.</li>
+                <li data-i18n="exp.job2.b2">Cut supply costs by 15–20% by diversifying suppliers and building an emergency supply chain.</li>
+                <li data-i18n="exp.job2.b3">Contributed to a 10–15% sales increase through standardized pricing and daily data-informed decisions.</li>
+                <li data-i18n="exp.job2.b4">Built a full BI stack (Excel, Power BI, Tableau, SQL) plus a WhatsApp voice-note bot with automated transcription — reducing stockouts to near zero.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline__item">
+            <div class="timeline__marker"></div>
+            <div class="timeline__card">
+              <div class="timeline__head">
+                <h3 data-i18n="exp.job1.role">Analyst Programmer</h3>
+                <span class="timeline__period" data-i18n="exp.job1.period">Dec 2021 – Jan 2026</span>
+              </div>
+              <p class="timeline__company">Top Partners S.A. · SubContrataLey</p>
+              <ul>
+                <li data-i18n="exp.job1.b1">Designed and automated SQL data pipelines (stored procedures, triggers) that significantly cut report processing time.</li>
+                <li data-i18n="exp.job1.b2">Built Power BI and Tableau dashboards serving 70+ contractor companies and 100+ users, including reports processing 10,000+ columns.</li>
+                <li data-i18n="exp.job1.b3">Automated SQL-based document-verification workflows, raising accuracy above 90% and helping the platform scale.</li>
+                <li data-i18n="exp.job1.b4">Accelerated compliance reporting (Law 20.123) by ~40% with SQL automation and Python anomaly detection (Pandas, Seaborn).</li>
+                <li data-i18n="exp.job1.b5">Developed HR & People Analytics dashboards: turnover, absenteeism, headcount, payroll automation and cohort analyses.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Projects ===== -->
+    <section id="projects" class="section">
+      <div class="container">
+        <p class="section__kicker" data-i18n="proj.kicker">03 — Projects</p>
+        <h2 class="section__title" data-i18n="proj.title">Featured work</h2>
+
+        <div class="projects__grid">
+          <article class="card">
+            <div class="card__icon">🏪</div>
+            <h3 data-i18n="proj.p1.title">Feria Business Modernization</h3>
+            <p data-i18n="proj.p1.desc">End-to-end modernization of a street-market business: supply chain redesign, standardized pricing, and a full BI stack with a WhatsApp voice-to-data bot for daily inventory and sales tracking.</p>
+            <div class="card__tags"><span>Power BI</span><span>Tableau</span><span>SQL</span><span>Excel</span><span>Automation</span></div>
+            <div class="card__result" data-i18n="proj.p1.result">▲ 10–15% sales · ▼ 15–20% supply costs · ~0 stockouts</div>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">🗄️</div>
+            <h3>datbase.cl</h3>
+            <p data-i18n="proj.p2.desc">Data management & consulting web platform for automated report visualization, with AI integration (OpenAI Assistants) to enhance large-scale data analysis.</p>
+            <div class="card__tags"><span>React</span><span>Firebase</span><span>OpenAI API</span><span>Data Viz</span></div>
+            <a class="card__link" href="https://datbase.cl" target="_blank" rel="noopener" data-i18n="proj.visit">Visit site →</a>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">✅</div>
+            <h3 data-i18n="proj.p3.title">Compliance Verification Automation</h3>
+            <p data-i18n="proj.p3.desc">Automated SQL verification workflows for contractor compliance documents on the SubContrataLey platform — standardized formats and validation checks at scale.</p>
+            <div class="card__tags"><span>SQL</span><span>Stored Procedures</span><span>Python</span><span>Pandas</span></div>
+            <div class="card__result" data-i18n="proj.p3.result">90%+ automated verification accuracy · ~40% faster reporting</div>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">👥</div>
+            <h3 data-i18n="proj.p4.title">HR & People Analytics Dashboards</h3>
+            <p data-i18n="proj.p4.desc">Power BI dashboards tracking turnover, absenteeism, headcount and staffing evolution, plus automated payroll reporting integrating ERP and control-sheet data.</p>
+            <div class="card__tags"><span>Power BI</span><span>KPIs</span><span>ERP Integration</span><span>Cohort Analysis</span></div>
+            <div class="card__result" data-i18n="proj.p4.result">Manual consolidation time cut for the whole People team</div>
+          </article>
+        </div>
+
+        <!-- Dashboard portfolios -->
+        <div class="platforms">
+          <p class="platforms__label" data-i18n="proj.platformsLabel">Find more of my work on:</p>
+          <div class="platforms__row">
+            <a class="platform" href="https://github.com/Chrov" target="_blank" rel="noopener">
+              <span class="platform__name">GitHub</span><span class="platform__handle">@Chrov</span>
+            </a>
+            <a class="platform" href="https://www.linkedin.com/in/camilo-evs" target="_blank" rel="noopener">
+              <span class="platform__name">LinkedIn</span><span class="platform__handle">camilo-evs</span>
+            </a>
+            <a class="platform" href="https://public.tableau.com/app/profile/" target="_blank" rel="noopener" id="tableauLink">
+              <span class="platform__name">Tableau Public</span><span class="platform__handle" data-i18n="proj.dashboards">dashboards</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- GitHub repos (dynamic) -->
+        <div class="gh">
+          <h3 class="gh__title" data-i18n="proj.ghTitle">Latest on GitHub</h3>
+          <div class="gh__grid" id="ghGrid">
+            <p class="gh__loading" data-i18n="proj.ghLoading">Loading repositories…</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Skills ===== -->
+    <section id="skills" class="section section--alt">
+      <div class="container">
+        <p class="section__kicker" data-i18n="skills.kicker">04 — Skills</p>
+        <h2 class="section__title" data-i18n="skills.title">Tools I work with</h2>
+        <div class="skills__grid">
+          <div class="skillgroup">
+            <h3 data-i18n="skills.g1">Data & BI</h3>
+            <div class="chips">
+              <span>SQL</span><span>PostgreSQL</span><span>Power BI</span><span>Tableau</span><span data-i18n="skills.excel">Advanced Excel</span><span data-i18n="skills.modeling">Data Modeling</span><span>KPIs</span><span data-i18n="skills.storedproc">Stored Procedures</span><span>Supply Chain Analytics</span>
+            </div>
+          </div>
+          <div class="skillgroup">
+            <h3 data-i18n="skills.g2">Programming</h3>
+            <div class="chips">
+              <span>Python</span><span>Pandas</span><span>NumPy</span><span>scikit-learn</span><span>Matplotlib</span><span>Seaborn</span><span>JavaScript (ES6+)</span><span>PHP</span><span>C#</span>
+            </div>
+          </div>
+          <div class="skillgroup">
+            <h3 data-i18n="skills.g3">Web & Cloud</h3>
+            <div class="chips">
+              <span>React.js</span><span>Node.js</span><span>FastAPI</span><span>Firebase</span><span>CSS</span><span>Bootstrap</span>
+            </div>
+          </div>
+          <div class="skillgroup">
+            <h3 data-i18n="skills.g4">Tools & Methods</h3>
+            <div class="chips">
+              <span>Git</span><span>Docker</span><span>DBeaver</span><span>Postman</span><span>Scrum</span><span data-i18n="skills.api">API Integration</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="certs">
+          <h3 data-i18n="skills.certsTitle">Education & Certifications</h3>
+          <ul class="certs__list">
+            <li><strong data-i18n="cert.c1t">Systems Analyst</strong> — Colegio Universitario IES, Córdoba (AR) · 2021–2023</li>
+            <li><strong>Google Data Analytics Professional Certificate</strong> — Google / Coursera · 2026</li>
+            <li><strong>Google AI Fundamentals Professional Certificate</strong> — Coursera · 2026</li>
+            <li><strong data-i18n="cert.c4t">Full Stack Web Developer (Bootcamp)</strong> — soyHenry · 2021</li>
+            <li><strong data-i18n="cert.c5t">JavaScript Certificate</strong> — Coderhouse · 2021</li>
+            <li><strong data-i18n="cert.c6t">English B2 (Certified)</strong> — Universidad de Viña del Mar</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section id="contact" class="section section--contact">
+      <div class="container contact__inner">
+        <p class="section__kicker" data-i18n="contact.kicker">05 — Contact</p>
+        <h2 class="section__title" data-i18n="contact.title">Let's work together</h2>
+        <p class="contact__text" data-i18n="contact.text">Looking for someone who can turn your data into decisions — and build the tools to do it? I'd love to hear from you.</p>
+        <div class="contact__cta">
+          <a class="btn btn--primary btn--lg" href="mailto:camilovergarasalas.cvs@gmail.com?subject=Contact%20from%20your%20portfolio">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            camilovergarasalas.cvs@gmail.com
+          </a>
+        </div>
+        <div class="contact__meta">
+          <span>📍 Olivar, O'Higgins, Chile</span>
+          <span>📞 +56 9 9751 3084</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© 2026 Camilo Vergara Salas</span>
+      <span data-i18n="footer.built">Built with vanilla HTML, CSS & JS — no frameworks needed.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
