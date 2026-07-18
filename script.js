@@ -21,6 +21,7 @@ const I18N = {
     "hero.download": "Download Resume (EN)",
     "hero.downloadAlt": "Also available in Spanish (PDF)",
     "hero.email": "Email me",
+    "hero.call": "Call me",
 
     "stats.years": "years of experience",
     "stats.reporting": "faster compliance reporting",
@@ -95,6 +96,7 @@ const I18N = {
     "contact.kicker": "05 — Contact",
     "contact.title": "Let's work together",
     "contact.text": "Looking for someone who can turn your data into decisions — and build the tools to do it? I'd love to hear from you.",
+    "contact.call": "Call me",
 
     "footer.built": "Built with vanilla HTML, CSS & JS — no frameworks needed.",
   },
@@ -112,6 +114,7 @@ const I18N = {
     "hero.download": "Descargar CV (ES)",
     "hero.downloadAlt": "También disponible en inglés (PDF)",
     "hero.email": "Escríbeme",
+    "hero.call": "Llámame",
 
     "stats.years": "años de experiencia",
     "stats.reporting": "reportes de cumplimiento más rápidos",
@@ -186,6 +189,7 @@ const I18N = {
     "contact.kicker": "05 — Contacto",
     "contact.title": "Trabajemos juntos",
     "contact.text": "¿Buscas a alguien que convierta tus datos en decisiones — y que construya las herramientas para lograrlo? Me encantaría saber de ti.",
+    "contact.call": "Llámame",
 
     "footer.built": "Hecho con HTML, CSS y JS puro — sin frameworks.",
   },
@@ -259,6 +263,26 @@ async function loadRepos() {
     grid.appendChild(p);
   }
 }
+
+/* ===== Theme (light default, dark via toggle; respects system preference) ===== */
+function setTheme(theme) {
+  if (theme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+  }
+  localStorage.setItem("theme", theme);
+}
+
+document.getElementById("themeToggle").addEventListener("click", () => {
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  setTheme(isDark ? "light" : "dark");
+});
+
+setTheme(
+  localStorage.getItem("theme") ||
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+);
 
 /* ===== Mobile menu ===== */
 const burger = document.getElementById("burger");
