@@ -18,6 +18,7 @@ const I18N = {
     "hero.eyebrow": "Data Analyst · Business Intelligence",
     "hero.tagline": "I turn raw data into dashboards, automation and decisions that move the business.",
     "hero.summary": "Data Analyst with 4+ years of experience delivering measurable impact across the full data lifecycle — SQL, Python, Power BI and Tableau. I own the data end to end, from the pipeline that cleans and models it to the dashboard that drives the decision.",
+    "hero.seeWork": "See my work",
     "hero.download": "Download Resume (EN)",
     "hero.downloadAlt": "Also available in Spanish (PDF)",
     "hero.email": "Email me",
@@ -28,18 +29,42 @@ const I18N = {
     "stats.accuracy": "automated verification accuracy",
     "stats.companies": "companies served by my dashboards",
 
-    "about.kicker": "01 — About",
-    "about.title": "From raw data to business impact",
-    "about.p1": "I'm a Data Analyst based in Chile with 4+ years of experience across the full data lifecycle: designing SQL pipelines, automating verification workflows, detecting anomalies with Python, and building KPI dashboards in Power BI and Tableau used by 70+ companies and 100+ users.",
-    "about.p2": "My work has cut compliance reporting time by ~40%, raised automated document-verification accuracy above 90%, and — in an end-to-end business modernization project — helped increase sales by 10–15% while reducing supply costs by 15–20%.",
-    "about.p3": "What makes me different: I own the data lifecycle end to end. I don't just read the dashboard — I design the pipeline that feeds it, automate the validation that keeps it trustworthy, and translate the result into a decision the business can act on.",
-    "about.location": "Location",
-    "about.langs": "Languages",
-    "about.langsValue": "Spanish (native) · English (B2, certified)",
-    "about.focus": "Focus",
-    "about.focusValue": "Data Analytics · BI · Automation",
-    "about.education": "Education",
-    "about.educationValue": "Systems Analyst — IES, Córdoba (AR)",
+    "proj.kicker": "01 — Projects",
+    "proj.title": "Featured work",
+    "proj.lead": "Three case studies, each with the same structure: the problem, what I built, and the number it moved.",
+    "proj.caseLabel": "Case study",
+    "proj.lblContext": "Context",
+    "proj.lblAction": "What I did",
+    "proj.lblImpact": "Impact",
+
+    "proj.p1.title": "Feria Business Modernization",
+    "proj.p1.context": "An artisanal-products market business ran with no data: improvised pricing, weekly stockouts and a single supplier.",
+    "proj.p1.action": "Operations diagnosis, supply-chain redesign and a standardized pricing policy, plus a BI stack (SQL, Power BI, Tableau) fed by a WhatsApp bot that turns voice notes into inventory and sales data.",
+    "proj.p1.m1": "stockouts",
+    "proj.p1.m2": "supply costs",
+    "proj.p1.m3": "sales",
+
+    "proj.p3.title": "Compliance Verification Automation",
+    "proj.p3.context": "Verifying compliance documents (Law 20.123) for 70+ client companies was manual and didn't scale.",
+    "proj.p3.action": "Automated the whole workflow in SQL (stored procedures and triggers) with format validation and business rules, plus anomaly detection in Python (Pandas, Seaborn).",
+    "proj.p3.m1": "verification accuracy",
+    "proj.p3.m2": "faster reporting",
+
+    "proj.p4.title": "HR & People Analytics Dashboards",
+    "proj.p4.context": "The People team consolidated turnover, absenteeism and headcount by hand, from the ERP and control spreadsheets.",
+    "proj.p4.action": "Modeled the data and integrated ERP and spreadsheets into Power BI: turnover, absenteeism, headcount and staffing evolution, plus cohort analysis and automated payroll reporting.",
+    "proj.p4.m1": "manual consolidation",
+    "proj.p4.m2": "users reached",
+
+    "proj.platformsLabel": "Find more of my work on:",
+    "proj.dashboards": "dashboards",
+    "proj.ghTitle": "Latest on GitHub",
+    "proj.ghLoading": "Loading repositories…",
+    "proj.ghError": "Couldn't load repositories right now — visit github.com/Chrov instead.",
+
+    "tag.automation": "Automation",
+    "tag.erp": "ERP Integration",
+    "tag.cohort": "Cohort Analysis",
 
     "exp.kicker": "02 — Experience",
     "exp.title": "Where I've made an impact",
@@ -58,24 +83,7 @@ const I18N = {
     "exp.job1.b4": "Accelerated compliance reporting (Law 20.123) by ~40% with SQL automation and Python anomaly detection (Pandas, Seaborn).",
     "exp.job1.b5": "Developed HR & People Analytics dashboards: turnover, absenteeism, headcount, payroll automation and cohort analyses.",
 
-    "proj.kicker": "03 — Projects",
-    "proj.title": "Featured work",
-    "proj.p1.title": "Feria Business Modernization",
-    "proj.p1.desc": "End-to-end modernization of a street-market business: supply chain redesign, standardized pricing, and a full BI stack with a WhatsApp voice-to-data bot for daily inventory and sales tracking.",
-    "proj.p1.result": "~0 stockouts",
-    "proj.p3.title": "Compliance Verification Automation",
-    "proj.p3.desc": "Automated SQL verification workflows for contractor compliance documents on the SubContrataLey platform — standardized formats and validation checks at scale.",
-    "proj.p3.result": "90%+ automated verification accuracy · ~40% faster reporting",
-    "proj.p4.title": "HR & People Analytics Dashboards",
-    "proj.p4.desc": "Power BI dashboards tracking turnover, absenteeism, headcount and staffing evolution, plus automated payroll reporting integrating ERP and control-sheet data.",
-    "proj.p4.result": "Manual consolidation time cut for the whole People team",
-    "proj.platformsLabel": "Find more of my work on:",
-    "proj.dashboards": "dashboards",
-    "proj.ghTitle": "Latest on GitHub",
-    "proj.ghLoading": "Loading repositories…",
-    "proj.ghError": "Couldn't load repositories right now — visit github.com/Chrov instead.",
-
-    "skills.kicker": "04 — Skills",
+    "skills.kicker": "03 — Skills",
     "skills.title": "Tools I work with",
     "skills.g1": "Data & BI",
     "skills.g2": "Programming",
@@ -83,12 +91,26 @@ const I18N = {
     "skills.excel": "Advanced Excel",
     "skills.modeling": "Data Modeling",
     "skills.storedproc": "Stored Procedures",
+    "skills.supply": "Supply Chain Analytics",
     "skills.api": "API Integration",
     "skills.certsTitle": "Education & Certifications",
     "cert.c1t": "Systems Analyst",
     "cert.c4t": "Full Stack Web Developer (Bootcamp)",
     "cert.c5t": "JavaScript Certificate",
     "cert.c6t": "English B2 (Certified)",
+
+    "about.kicker": "04 — About",
+    "about.title": "From raw data to business impact",
+    "about.p1": "I'm a Data Analyst based in Chile with 4+ years of experience across the full data lifecycle: designing SQL pipelines, automating verification workflows, detecting anomalies with Python, and building KPI dashboards in Power BI and Tableau used by 70+ companies and 100+ users.",
+    "about.p2": "My work has cut compliance reporting time by ~40%, raised automated document-verification accuracy above 90%, and — in an end-to-end business modernization project — helped increase sales by 10–15% while reducing supply costs by 15–20%.",
+    "about.p3": "What makes me different: I own the data lifecycle end to end. I don't just read the dashboard — I design the pipeline that feeds it, automate the validation that keeps it trustworthy, and translate the result into a decision the business can act on.",
+    "about.location": "Location",
+    "about.langs": "Languages",
+    "about.langsValue": "Spanish (native) · English (B2, certified)",
+    "about.focus": "Focus",
+    "about.focusValue": "Data Analytics · BI · Automation",
+    "about.education": "Education",
+    "about.educationValue": "Systems Analyst — IES, Córdoba (AR)",
 
     "contact.kicker": "05 — Contact",
     "contact.title": "Let's work together",
@@ -108,6 +130,7 @@ const I18N = {
     "hero.eyebrow": "Analista de Datos · Business Intelligence",
     "hero.tagline": "Convierto datos crudos en dashboards, automatización y decisiones que mueven el negocio.",
     "hero.summary": "Analista de Datos con más de 4 años de experiencia generando impacto medible en todo el ciclo de vida del dato — SQL, Python, Power BI y Tableau. Manejo el dato de punta a punta, desde el pipeline que lo limpia y modela hasta el dashboard que impulsa la decisión.",
+    "hero.seeWork": "Ver mi trabajo",
     "hero.download": "Descargar CV (ES)",
     "hero.downloadAlt": "También disponible en inglés (PDF)",
     "hero.email": "Escríbeme",
@@ -118,18 +141,42 @@ const I18N = {
     "stats.accuracy": "precisión en verificación automática",
     "stats.companies": "empresas usan mis dashboards",
 
-    "about.kicker": "01 — Sobre mí",
-    "about.title": "De datos crudos a impacto en el negocio",
-    "about.p1": "Soy Analista de Datos en Chile con más de 4 años de experiencia en todo el ciclo de vida del dato: diseño de pipelines SQL, automatización de flujos de verificación, detección de anomalías con Python y dashboards de KPIs en Power BI y Tableau usados por más de 70 empresas y 100 usuarios.",
-    "about.p2": "Mi trabajo ha reducido el tiempo de reportes de cumplimiento en ~40%, elevado la precisión de verificación automática de documentos sobre el 90%, y — en un proyecto integral de modernización de negocio — ayudó a aumentar las ventas un 10–15% reduciendo costos de abastecimiento un 15–20%.",
-    "about.p3": "Lo que me diferencia: manejo el ciclo de vida del dato de punta a punta. No solo leo el dashboard — diseño el pipeline que lo alimenta, automatizo la validación que lo mantiene confiable y traduzco el resultado en una decisión que el negocio puede ejecutar.",
-    "about.location": "Ubicación",
-    "about.langs": "Idiomas",
-    "about.langsValue": "Español (nativo) · Inglés (B2, certificado)",
-    "about.focus": "Enfoque",
-    "about.focusValue": "Análisis de Datos · BI · Automatización",
-    "about.education": "Educación",
-    "about.educationValue": "Analista de Sistemas — IES, Córdoba (AR)",
+    "proj.kicker": "01 — Proyectos",
+    "proj.title": "Trabajo destacado",
+    "proj.lead": "Tres casos de estudio, todos con la misma estructura: el problema, qué construí y el número que moví.",
+    "proj.caseLabel": "Caso",
+    "proj.lblContext": "Contexto",
+    "proj.lblAction": "Qué hice",
+    "proj.lblImpact": "Impacto",
+
+    "proj.p1.title": "Modernización de Negocio de Feria",
+    "proj.p1.context": "Un negocio de feria de productos artesanales operaba sin datos: precios improvisados, quiebres de stock semanales y un solo proveedor.",
+    "proj.p1.action": "Diagnóstico de la operación, rediseño de la cadena de suministro y política de precios estandarizada, más un stack de BI (SQL, Power BI, Tableau) alimentado por un bot de WhatsApp que convierte notas de voz en datos de inventario y ventas.",
+    "proj.p1.m1": "quiebres de stock",
+    "proj.p1.m2": "costos de abastecimiento",
+    "proj.p1.m3": "ventas",
+
+    "proj.p3.title": "Automatización de Verificación de Cumplimiento",
+    "proj.p3.context": "Verificar los documentos de cumplimiento (Ley 20.123) de más de 70 empresas mandantes era manual y no escalaba.",
+    "proj.p3.action": "Automaticé el flujo completo en SQL (procedimientos almacenados y triggers) con validaciones de formato y reglas de negocio, más detección de anomalías en Python (Pandas, Seaborn).",
+    "proj.p3.m1": "precisión de verificación",
+    "proj.p3.m2": "más rápido el reporte",
+
+    "proj.p4.title": "Dashboards de RR.HH. y People Analytics",
+    "proj.p4.context": "El equipo de personas consolidaba a mano rotación, ausentismo y dotación desde el ERP y planillas de control.",
+    "proj.p4.action": "Modelé los datos e integré ERP y planillas en Power BI: rotación, ausentismo, headcount y evolución de dotación, más análisis de cohortes y reporte de nómina automatizado.",
+    "proj.p4.m1": "consolidación manual",
+    "proj.p4.m2": "usuarios alcanzados",
+
+    "proj.platformsLabel": "Encuentra más de mi trabajo en:",
+    "proj.dashboards": "dashboards",
+    "proj.ghTitle": "Lo último en GitHub",
+    "proj.ghLoading": "Cargando repositorios…",
+    "proj.ghError": "No se pudieron cargar los repositorios — visita github.com/Chrov.",
+
+    "tag.automation": "Automatización",
+    "tag.erp": "Integración ERP",
+    "tag.cohort": "Análisis de Cohortes",
 
     "exp.kicker": "02 — Experiencia",
     "exp.title": "Dónde he generado impacto",
@@ -148,24 +195,7 @@ const I18N = {
     "exp.job1.b4": "Aceleré los reportes de cumplimiento (Ley 20.123) en ~40% con automatización SQL y detección de anomalías en Python (Pandas, Seaborn).",
     "exp.job1.b5": "Desarrollé dashboards de RR.HH. y People Analytics: rotación, ausentismo, headcount, automatización de nómina y análisis de cohortes.",
 
-    "proj.kicker": "03 — Proyectos",
-    "proj.title": "Trabajo destacado",
-    "proj.p1.title": "Modernización de Negocio de Feria",
-    "proj.p1.desc": "Modernización integral de un negocio de feria: rediseño de cadena de suministro, precios estandarizados y un stack completo de BI con un bot de WhatsApp de voz a datos para inventario y ventas diarias.",
-    "proj.p1.result": "~0 quiebres de stock",
-    "proj.p3.title": "Automatización de Verificación de Cumplimiento",
-    "proj.p3.desc": "Flujos automatizados de verificación en SQL para documentos de cumplimiento de contratistas en la plataforma SubContrataLey — formatos estandarizados y validaciones a escala.",
-    "proj.p3.result": "90%+ precisión de verificación automática · ~40% reportes más rápidos",
-    "proj.p4.title": "Dashboards de RR.HH. y People Analytics",
-    "proj.p4.desc": "Dashboards en Power BI de rotación, ausentismo, headcount y evolución de dotación, más reportes de nómina automatizados integrando ERP y planillas de control.",
-    "proj.p4.result": "Menos tiempo de consolidación manual para todo el equipo de personas",
-    "proj.platformsLabel": "Encuentra más de mi trabajo en:",
-    "proj.dashboards": "dashboards",
-    "proj.ghTitle": "Lo último en GitHub",
-    "proj.ghLoading": "Cargando repositorios…",
-    "proj.ghError": "No se pudieron cargar los repositorios — visita github.com/Chrov.",
-
-    "skills.kicker": "04 — Habilidades",
+    "skills.kicker": "03 — Habilidades",
     "skills.title": "Herramientas con las que trabajo",
     "skills.g1": "Datos y BI",
     "skills.g2": "Programación",
@@ -173,12 +203,26 @@ const I18N = {
     "skills.excel": "Excel Avanzado",
     "skills.modeling": "Modelado de Datos",
     "skills.storedproc": "Procedimientos Almacenados",
+    "skills.supply": "Analítica de Cadena de Suministro",
     "skills.api": "Integración de APIs",
     "skills.certsTitle": "Educación y Certificaciones",
     "cert.c1t": "Analista de Sistemas",
     "cert.c4t": "Full Stack Web Developer (Bootcamp)",
     "cert.c5t": "Certificado JavaScript",
     "cert.c6t": "Inglés B2 (Certificado)",
+
+    "about.kicker": "04 — Sobre mí",
+    "about.title": "De datos crudos a impacto en el negocio",
+    "about.p1": "Soy Analista de Datos en Chile con más de 4 años de experiencia en todo el ciclo de vida del dato: diseño de pipelines SQL, automatización de flujos de verificación, detección de anomalías con Python y dashboards de KPIs en Power BI y Tableau usados por más de 70 empresas y 100 usuarios.",
+    "about.p2": "Mi trabajo ha reducido el tiempo de reportes de cumplimiento en ~40%, elevado la precisión de verificación automática de documentos sobre el 90%, y — en un proyecto integral de modernización de negocio — ayudó a aumentar las ventas un 10–15% reduciendo costos de abastecimiento un 15–20%.",
+    "about.p3": "Lo que me diferencia: manejo el ciclo de vida del dato de punta a punta. No solo leo el dashboard — diseño el pipeline que lo alimenta, automatizo la validación que lo mantiene confiable y traduzco el resultado en una decisión que el negocio puede ejecutar.",
+    "about.location": "Ubicación",
+    "about.langs": "Idiomas",
+    "about.langsValue": "Español (nativo) · Inglés (B2, certificado)",
+    "about.focus": "Enfoque",
+    "about.focusValue": "Análisis de Datos · BI · Automatización",
+    "about.education": "Educación",
+    "about.educationValue": "Analista de Sistemas — IES, Córdoba (AR)",
 
     "contact.kicker": "05 — Contacto",
     "contact.title": "Trabajemos juntos",
@@ -286,6 +330,56 @@ navLinks.querySelectorAll("a").forEach((a) =>
   a.addEventListener("click", () => navLinks.classList.remove("open"))
 );
 
+/* ===== Motion preference ===== */
+const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ===== Scroll progress bar ===== */
+const progressBar = document.getElementById("progress");
+function updateProgress() {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  progressBar.style.width = `${Math.min(pct, 100)}%`;
+}
+window.addEventListener("scroll", updateProgress, { passive: true });
+window.addEventListener("resize", updateProgress);
+updateProgress();
+
+/* ===== Animated stat counters ===== */
+function countUp(el) {
+  const target = Number(el.dataset.count);
+  const suffix = el.dataset.suffix || "";
+  if (!Number.isFinite(target)) return;
+  if (REDUCED_MOTION) {
+    el.textContent = target + suffix;
+    return;
+  }
+  const duration = 1100;
+  const start = performance.now();
+  function frame(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+    el.textContent = Math.round(target * eased) + suffix;
+    if (t < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+const counterObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        countUp(e.target);
+        counterObserver.unobserve(e.target);
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+document.querySelectorAll(".stat__num[data-count]").forEach((el) => {
+  el.textContent = "0" + (el.dataset.suffix || "");
+  counterObserver.observe(el);
+});
+
 /* ===== Scroll reveal ===== */
 const observer = new IntersectionObserver(
   (entries) => {
@@ -299,11 +393,33 @@ const observer = new IntersectionObserver(
   { threshold: 0.12 }
 );
 document
-  .querySelectorAll(".section .container > *, .card, .timeline__item")
+  .querySelectorAll(".section .container > *, .case, .timeline__item")
   .forEach((el) => {
     el.classList.add("reveal");
     observer.observe(el);
   });
+
+/* ===== Scrollspy — highlight the section you're reading ===== */
+const spyLinks = new Map();
+navLinks.querySelectorAll("a[href^='#']").forEach((a) => {
+  const section = document.querySelector(a.getAttribute("href"));
+  if (section) spyLinks.set(section, a);
+});
+
+const spyObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      const link = spyLinks.get(e.target);
+      if (!link) return;
+      if (e.isIntersecting) {
+        spyLinks.forEach((l) => l.classList.remove("active"));
+        link.classList.add("active");
+      }
+    });
+  },
+  { rootMargin: "-45% 0px -50% 0px" }
+);
+spyLinks.forEach((_, section) => spyObserver.observe(section));
 
 /* ===== Init ===== */
 setLang(localStorage.getItem("lang") || "en");

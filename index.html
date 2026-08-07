@@ -13,15 +13,18 @@
 </head>
 <body>
 
+  <!-- Scroll progress -->
+  <div class="progress" id="progress"></div>
+
   <!-- ===== Navbar ===== -->
   <header class="nav" id="top">
     <div class="container nav__inner">
       <a href="#top" class="nav__logo">CV<span class="accent">.</span></a>
       <nav class="nav__links" id="navLinks">
-        <a href="#about" data-i18n="nav.about">About</a>
-        <a href="#experience" data-i18n="nav.experience">Experience</a>
         <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#experience" data-i18n="nav.experience">Experience</a>
         <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#about" data-i18n="nav.about">About</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
       <div class="nav__actions">
@@ -42,6 +45,7 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero">
+    <div class="hero__grid-bg" aria-hidden="true"></div>
     <div class="hero__glow hero__glow--1"></div>
     <div class="hero__glow hero__glow--2"></div>
     <div class="container hero__inner">
@@ -51,7 +55,11 @@
       <p class="hero__summary" data-i18n="hero.summary">Data Analyst with 4+ years of experience delivering measurable impact across the full data lifecycle — SQL, Python, Power BI and Tableau. I own the data end to end, from the pipeline that cleans and models it to the dashboard that drives the decision.</p>
 
       <div class="hero__cta">
-        <a id="cvDownload" class="btn btn--primary" href="assets/Camilo_Vergara_Resume_EN.pdf" download>
+        <a class="btn btn--primary" href="#projects">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span data-i18n="hero.seeWork">See my work</span>
+        </a>
+        <a id="cvDownload" class="btn btn--ghost" href="assets/Camilo_Vergara_Resume_EN.pdf" download>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span data-i18n="hero.download">Download Resume (EN)</span>
         </a>
@@ -67,10 +75,22 @@
       </div>
 
       <div class="hero__stats">
-        <div class="stat"><span class="stat__num">4+</span><span class="stat__label" data-i18n="stats.years">years of experience</span></div>
-        <div class="stat"><span class="stat__num">40%</span><span class="stat__label" data-i18n="stats.reporting">faster compliance reporting</span></div>
-        <div class="stat"><span class="stat__num">90%+</span><span class="stat__label" data-i18n="stats.accuracy">automated verification accuracy</span></div>
-        <div class="stat"><span class="stat__num">70+</span><span class="stat__label" data-i18n="stats.companies">companies served by my dashboards</span></div>
+        <div class="stat">
+          <span class="stat__num" data-count="4" data-suffix="+">4+</span>
+          <span class="stat__label" data-i18n="stats.years">years of experience</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num" data-count="40" data-suffix="%">40%</span>
+          <span class="stat__label" data-i18n="stats.reporting">faster compliance reporting</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num" data-count="90" data-suffix="%+">90%+</span>
+          <span class="stat__label" data-i18n="stats.accuracy">automated verification accuracy</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num" data-count="70" data-suffix="+">70+</span>
+          <span class="stat__label" data-i18n="stats.companies">companies served by my dashboards</span>
+        </div>
       </div>
 
       <div class="hero__social">
@@ -94,22 +114,199 @@
   </section>
 
   <main>
-    <!-- ===== About ===== -->
-    <section id="about" class="section">
+    <!-- ===== Projects (moved to first position — show the work before talking about it) ===== -->
+    <section id="projects" class="section">
       <div class="container">
-        <p class="section__kicker" data-i18n="about.kicker">01 — About</p>
-        <h2 class="section__title" data-i18n="about.title">From raw data to business impact</h2>
-        <div class="about__grid">
-          <div class="about__text">
-            <p data-i18n="about.p1">I'm a Data Analyst based in Chile with 4+ years of experience across the full data lifecycle: designing SQL pipelines, automating verification workflows, detecting anomalies with Python, and building KPI dashboards in Power BI and Tableau used by 70+ companies and 100+ users.</p>
-            <p data-i18n="about.p2">My work has cut compliance reporting time by ~40%, raised automated document-verification accuracy above 90%, and — in an end-to-end business modernization project — helped increase sales by 10–15% while reducing supply costs by 15–20%.</p>
-            <p data-i18n="about.p3">What makes me different: I own the data lifecycle end to end. I don't just read the dashboard — I design the pipeline that feeds it, automate the validation that keeps it trustworthy, and translate the result into a decision the business can act on.</p>
+        <p class="section__kicker" data-i18n="proj.kicker">01 — Projects</p>
+        <h2 class="section__title" data-i18n="proj.title">Featured work</h2>
+        <p class="section__lead" data-i18n="proj.lead">Three case studies, each with the same structure: the problem, what I built, and the number it moved.</p>
+
+        <!-- ── Featured case study ──
+             To use a real screenshot instead of the abstract graphic, replace the
+             <svg> inside .case__visual with:  <img src="assets/your-dashboard.png" alt="…"> -->
+        <article class="case case--featured">
+          <div class="case__visual">
+            <span class="case__badge">Power BI · Tableau · SQL</span>
+            <svg viewBox="0 0 320 180" role="img" aria-labelledby="viz1Title" preserveAspectRatio="xMidYMid meet">
+              <title id="viz1Title">Abstract sales and inventory chart</title>
+              <g class="viz-grid">
+                <line x1="16" y1="150" x2="304" y2="150"/>
+                <line x1="16" y1="114" x2="304" y2="114"/>
+                <line x1="16" y1="78"  x2="304" y2="78"/>
+                <line x1="16" y1="42"  x2="304" y2="42"/>
+              </g>
+              <g class="viz-bars">
+                <rect x="24"  y="105" width="24" height="45"  rx="3"/>
+                <rect x="62"  y="88"  width="24" height="62"  rx="3"/>
+                <rect x="100" y="95"  width="24" height="55"  rx="3"/>
+                <rect x="138" y="70"  width="24" height="80"  rx="3"/>
+                <rect x="176" y="78"  width="24" height="72"  rx="3"/>
+                <rect x="214" y="55"  width="24" height="95"  rx="3"/>
+                <rect x="252" y="40"  width="24" height="110" rx="3"/>
+              </g>
+              <polyline class="viz-line" points="36,112 74,98 112,102 150,84 188,88 226,68 264,54"/>
+              <g class="viz-dots">
+                <circle cx="36"  cy="112" r="3.5"/><circle cx="74"  cy="98"  r="3.5"/>
+                <circle cx="112" cy="102" r="3.5"/><circle cx="150" cy="84"  r="3.5"/>
+                <circle cx="188" cy="88"  r="3.5"/><circle cx="226" cy="68"  r="3.5"/>
+                <circle cx="264" cy="54"  r="4.5"/>
+              </g>
+            </svg>
           </div>
-          <div class="about__facts">
-            <div class="fact"><span class="fact__label" data-i18n="about.location">Location</span><span class="fact__value">Santiago, Chile 🇨🇱</span></div>
-            <div class="fact"><span class="fact__label" data-i18n="about.langs">Languages</span><span class="fact__value" data-i18n="about.langsValue">Spanish (native) · English (B2, certified)</span></div>
-            <div class="fact"><span class="fact__label" data-i18n="about.focus">Focus</span><span class="fact__value" data-i18n="about.focusValue">Data Analytics · BI · Automation</span></div>
-            <div class="fact"><span class="fact__label" data-i18n="about.education">Education</span><span class="fact__value" data-i18n="about.educationValue">Systems Analyst — IES, Córdoba (AR)</span></div>
+
+          <div class="case__body">
+            <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 01</p>
+            <h3 data-i18n="proj.p1.title">Feria Business Modernization</h3>
+
+            <dl class="case__rows">
+              <div class="case__row">
+                <dt data-i18n="proj.lblContext">Context</dt>
+                <dd data-i18n="proj.p1.context">An artisanal-products market business ran with no data: improvised pricing, weekly stockouts and a single supplier.</dd>
+              </div>
+              <div class="case__row">
+                <dt data-i18n="proj.lblAction">What I did</dt>
+                <dd data-i18n="proj.p1.action">Operations diagnosis, supply-chain redesign and a standardized pricing policy, plus a BI stack (SQL, Power BI, Tableau) fed by a WhatsApp bot that turns voice notes into inventory and sales data.</dd>
+              </div>
+            </dl>
+
+            <div class="case__impact">
+              <p class="case__impactLabel" data-i18n="proj.lblImpact">Impact</p>
+              <div class="metrics">
+                <div class="metric"><span class="metric__num">~0</span><span class="metric__label" data-i18n="proj.p1.m1">stockouts</span></div>
+                <div class="metric"><span class="metric__num">−15–20%</span><span class="metric__label" data-i18n="proj.p1.m2">supply costs</span></div>
+                <div class="metric"><span class="metric__num">+10–15%</span><span class="metric__label" data-i18n="proj.p1.m3">sales</span></div>
+              </div>
+            </div>
+
+            <div class="card__tags"><span>Power BI</span><span>Tableau</span><span>SQL</span><span>Excel</span><span data-i18n="tag.automation">Automation</span></div>
+          </div>
+        </article>
+
+        <!-- ── Secondary case studies ── -->
+        <div class="projects__grid">
+          <article class="case">
+            <div class="case__visual case__visual--sm">
+              <span class="case__badge">SQL · Python</span>
+              <svg viewBox="0 0 320 180" role="img" aria-labelledby="viz2Title" preserveAspectRatio="xMidYMid meet">
+                <title id="viz2Title">Abstract accuracy gauge</title>
+                <circle class="viz-track" cx="104" cy="90" r="52"/>
+                <circle class="viz-arc" cx="104" cy="90" r="52" transform="rotate(-90 104 90)"/>
+                <g class="viz-bars">
+                  <rect x="196" y="118" width="26" height="32" rx="3"/>
+                  <rect x="232" y="92"  width="26" height="58" rx="3"/>
+                  <rect x="268" y="58"  width="26" height="92" rx="3"/>
+                </g>
+                <line class="viz-baseline" x1="188" y1="150" x2="304" y2="150"/>
+              </svg>
+            </div>
+            <div class="case__body">
+              <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 02</p>
+              <h3 data-i18n="proj.p3.title">Compliance Verification Automation</h3>
+              <dl class="case__rows">
+                <div class="case__row">
+                  <dt data-i18n="proj.lblContext">Context</dt>
+                  <dd data-i18n="proj.p3.context">Verifying compliance documents (Law 20.123) for 70+ client companies was manual and didn't scale.</dd>
+                </div>
+                <div class="case__row">
+                  <dt data-i18n="proj.lblAction">What I did</dt>
+                  <dd data-i18n="proj.p3.action">Automated the whole workflow in SQL (stored procedures and triggers) with format validation and business rules, plus anomaly detection in Python (Pandas, Seaborn).</dd>
+                </div>
+              </dl>
+              <div class="case__impact">
+                <p class="case__impactLabel" data-i18n="proj.lblImpact">Impact</p>
+                <div class="metrics">
+                  <div class="metric"><span class="metric__num">90%+</span><span class="metric__label" data-i18n="proj.p3.m1">verification accuracy</span></div>
+                  <div class="metric"><span class="metric__num">~40%</span><span class="metric__label" data-i18n="proj.p3.m2">faster reporting</span></div>
+                </div>
+              </div>
+              <div class="card__tags"><span>SQL</span><span data-i18n="skills.storedproc">Stored Procedures</span><span>Python</span><span>Pandas</span></div>
+            </div>
+          </article>
+
+          <article class="case">
+            <div class="case__visual case__visual--sm">
+              <span class="case__badge">Power BI</span>
+              <svg viewBox="0 0 320 180" role="img" aria-labelledby="viz3Title" preserveAspectRatio="xMidYMid meet">
+                <title id="viz3Title">Abstract cohort heatmap with trend</title>
+                <g class="viz-cells">
+                  <rect x="20"  y="34" width="30" height="22" rx="3" opacity=".9"/>
+                  <rect x="56"  y="34" width="30" height="22" rx="3" opacity=".65"/>
+                  <rect x="92"  y="34" width="30" height="22" rx="3" opacity=".45"/>
+                  <rect x="128" y="34" width="30" height="22" rx="3" opacity=".3"/>
+                  <rect x="164" y="34" width="30" height="22" rx="3" opacity=".2"/>
+                  <rect x="20"  y="62" width="30" height="22" rx="3" opacity=".85"/>
+                  <rect x="56"  y="62" width="30" height="22" rx="3" opacity=".7"/>
+                  <rect x="92"  y="62" width="30" height="22" rx="3" opacity=".55"/>
+                  <rect x="128" y="62" width="30" height="22" rx="3" opacity=".35"/>
+                  <rect x="164" y="62" width="30" height="22" rx="3" opacity=".22"/>
+                  <rect x="20"  y="90" width="30" height="22" rx="3" opacity=".8"/>
+                  <rect x="56"  y="90" width="30" height="22" rx="3" opacity=".6"/>
+                  <rect x="92"  y="90" width="30" height="22" rx="3" opacity=".42"/>
+                  <rect x="128" y="90" width="30" height="22" rx="3" opacity=".28"/>
+                  <rect x="164" y="90" width="30" height="22" rx="3" opacity=".16"/>
+                </g>
+                <polyline class="viz-line" points="24,150 64,142 104,146 144,132 184,126 224,118 268,104"/>
+                <g class="viz-dots">
+                  <circle cx="24"  cy="150" r="3"/><circle cx="104" cy="146" r="3"/>
+                  <circle cx="184" cy="126" r="3"/><circle cx="268" cy="104" r="4"/>
+                </g>
+                <g class="viz-cells">
+                  <rect x="214" y="34" width="82" height="10" rx="5" opacity=".55"/>
+                  <rect x="214" y="52" width="60" height="10" rx="5" opacity=".38"/>
+                  <rect x="214" y="70" width="72" height="10" rx="5" opacity=".26"/>
+                  <rect x="214" y="88" width="44" height="10" rx="5" opacity=".18"/>
+                </g>
+              </svg>
+            </div>
+            <div class="case__body">
+              <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 03</p>
+              <h3 data-i18n="proj.p4.title">HR &amp; People Analytics Dashboards</h3>
+              <dl class="case__rows">
+                <div class="case__row">
+                  <dt data-i18n="proj.lblContext">Context</dt>
+                  <dd data-i18n="proj.p4.context">The People team consolidated turnover, absenteeism and headcount by hand, from the ERP and control spreadsheets.</dd>
+                </div>
+                <div class="case__row">
+                  <dt data-i18n="proj.lblAction">What I did</dt>
+                  <dd data-i18n="proj.p4.action">Modeled the data and integrated ERP and spreadsheets into Power BI: turnover, absenteeism, headcount and staffing evolution, plus cohort analysis and automated payroll reporting.</dd>
+                </div>
+              </dl>
+              <div class="case__impact">
+                <p class="case__impactLabel" data-i18n="proj.lblImpact">Impact</p>
+                <div class="metrics">
+                  <div class="metric"><span class="metric__num">0</span><span class="metric__label" data-i18n="proj.p4.m1">manual consolidation</span></div>
+                  <div class="metric"><span class="metric__num">100+</span><span class="metric__label" data-i18n="proj.p4.m2">users reached</span></div>
+                </div>
+              </div>
+              <div class="card__tags"><span>Power BI</span><span>KPIs</span><span data-i18n="tag.erp">ERP Integration</span><span data-i18n="tag.cohort">Cohort Analysis</span></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Dashboard portfolios -->
+        <div class="platforms">
+          <p class="platforms__label" data-i18n="proj.platformsLabel">Find more of my work on:</p>
+          <div class="platforms__row">
+            <a class="platform" href="https://github.com/Chrov" target="_blank" rel="noopener">
+              <svg class="platform__icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+              <span class="platform__text"><span class="platform__name">GitHub</span><span class="platform__handle">@Chrov</span></span>
+            </a>
+            <a class="platform" href="https://www.linkedin.com/in/camilo-evs" target="_blank" rel="noopener">
+              <svg class="platform__icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>
+              <span class="platform__text"><span class="platform__name">LinkedIn</span><span class="platform__handle">camilo-evs</span></span>
+            </a>
+            <a class="platform" href="https://public.tableau.com/app/profile/camilo.vergara3198/vizzes" target="_blank" rel="noopener" id="tableauLink">
+              <svg class="platform__icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.332 0v2.091h1.336V0h-1.336zm-5.748 3.39v1.898h1.222V3.39H5.584zm11.516 0v1.898h1.222V3.39h-1.222zM11.332 3.39v4.208h1.336V3.39h-1.336zM3.468 5.612v1.222h1.898V5.612H3.468zm15.166 0v1.222h1.898V5.612h-1.898zM0 11.332v1.336h2.091v-1.336H0zm3.39 5.748h1.898v-1.222H3.39v1.222zm15.332 0h1.898v-1.222h-1.898v1.222zM11.332 16.4v4.209h1.336V16.4h-1.336zm-5.748 4.21v1.898h1.222v-1.898H5.584zm11.516 0v1.898h1.222v-1.898h-1.222zM11.332 21.909V24h1.336v-2.091h-1.336zM5.612 3.468h1.222v1.898H5.612V3.468zm11.554 0h1.222v1.898h-1.222V3.468zM3.39 11.332v1.336h4.208v-1.336H3.39zm13.014 0v1.336h4.208v-1.336h-4.208zM7.598 7.598v8.804h8.804V7.598H7.598zm1.336 1.336h6.132v6.132H8.934V8.934z"/></svg>
+              <span class="platform__text"><span class="platform__name">Tableau Public</span><span class="platform__handle" data-i18n="proj.dashboards">dashboards</span></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- GitHub repos (dynamic) -->
+        <div class="gh">
+          <h3 class="gh__title" data-i18n="proj.ghTitle">Latest on GitHub</h3>
+          <div class="gh__grid" id="ghGrid">
+            <p class="gh__loading" data-i18n="proj.ghLoading">Loading repositories…</p>
           </div>
         </div>
       </div>
@@ -160,74 +357,16 @@
       </div>
     </section>
 
-    <!-- ===== Projects ===== -->
-    <section id="projects" class="section">
-      <div class="container">
-        <p class="section__kicker" data-i18n="proj.kicker">03 — Projects</p>
-        <h2 class="section__title" data-i18n="proj.title">Featured work</h2>
-
-        <div class="projects__grid">
-          <article class="card">
-            <div class="card__icon">🏪</div>
-            <h3 data-i18n="proj.p1.title">Feria Business Modernization</h3>
-            <p data-i18n="proj.p1.desc">End-to-end modernization of a street-market business: supply chain redesign, standardized pricing, and a full BI stack with a WhatsApp voice-to-data bot for daily inventory and sales tracking.</p>
-            <div class="card__tags"><span>Power BI</span><span>Tableau</span><span>SQL</span><span>Excel</span><span>Automation</span></div>
-            <div class="card__result" data-i18n="proj.p1.result">~0 stockouts</div>
-          </article>
-
-          <article class="card">
-            <div class="card__icon">✅</div>
-            <h3 data-i18n="proj.p3.title">Compliance Verification Automation</h3>
-            <p data-i18n="proj.p3.desc">Automated SQL verification workflows for contractor compliance documents on the SubContrataLey platform — standardized formats and validation checks at scale.</p>
-            <div class="card__tags"><span>SQL</span><span>Stored Procedures</span><span>Python</span><span>Pandas</span></div>
-            <div class="card__result" data-i18n="proj.p3.result">90%+ automated verification accuracy · ~40% faster reporting</div>
-          </article>
-
-          <article class="card">
-            <div class="card__icon">👥</div>
-            <h3 data-i18n="proj.p4.title">HR & People Analytics Dashboards</h3>
-            <p data-i18n="proj.p4.desc">Power BI dashboards tracking turnover, absenteeism, headcount and staffing evolution, plus automated payroll reporting integrating ERP and control-sheet data.</p>
-            <div class="card__tags"><span>Power BI</span><span>KPIs</span><span>ERP Integration</span><span>Cohort Analysis</span></div>
-            <div class="card__result" data-i18n="proj.p4.result">Manual consolidation time cut for the whole People team</div>
-          </article>
-        </div>
-
-        <!-- Dashboard portfolios -->
-        <div class="platforms">
-          <p class="platforms__label" data-i18n="proj.platformsLabel">Find more of my work on:</p>
-          <div class="platforms__row">
-            <a class="platform" href="https://github.com/Chrov" target="_blank" rel="noopener">
-              <span class="platform__name">GitHub</span><span class="platform__handle">@Chrov</span>
-            </a>
-            <a class="platform" href="https://www.linkedin.com/in/camilo-evs" target="_blank" rel="noopener">
-              <span class="platform__name">LinkedIn</span><span class="platform__handle">camilo-evs</span>
-            </a>
-            <a class="platform" href="https://public.tableau.com/app/profile/camilo.vergara3198/vizzes" target="_blank" rel="noopener" id="tableauLink">
-              <span class="platform__name">Tableau Public</span><span class="platform__handle" data-i18n="proj.dashboards">dashboards</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- GitHub repos (dynamic) -->
-        <div class="gh">
-          <h3 class="gh__title" data-i18n="proj.ghTitle">Latest on GitHub</h3>
-          <div class="gh__grid" id="ghGrid">
-            <p class="gh__loading" data-i18n="proj.ghLoading">Loading repositories…</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ===== Skills ===== -->
-    <section id="skills" class="section section--alt">
+    <section id="skills" class="section">
       <div class="container">
-        <p class="section__kicker" data-i18n="skills.kicker">04 — Skills</p>
+        <p class="section__kicker" data-i18n="skills.kicker">03 — Skills</p>
         <h2 class="section__title" data-i18n="skills.title">Tools I work with</h2>
         <div class="skills__grid">
           <div class="skillgroup">
-            <h3 data-i18n="skills.g1">Data & BI</h3>
+            <h3 data-i18n="skills.g1">Data &amp; BI</h3>
             <div class="chips">
-              <span>SQL</span><span>PostgreSQL</span><span>Power BI</span><span>Tableau</span><span data-i18n="skills.excel">Advanced Excel</span><span data-i18n="skills.modeling">Data Modeling</span><span>KPIs</span><span data-i18n="skills.storedproc">Stored Procedures</span><span>Supply Chain Analytics</span>
+              <span>SQL</span><span>PostgreSQL</span><span>Power BI</span><span>Tableau</span><span data-i18n="skills.excel">Advanced Excel</span><span data-i18n="skills.modeling">Data Modeling</span><span>KPIs</span><span data-i18n="skills.storedproc">Stored Procedures</span><span data-i18n="skills.supply">Supply Chain Analytics</span>
             </div>
           </div>
           <div class="skillgroup">
@@ -237,7 +376,7 @@
             </div>
           </div>
           <div class="skillgroup">
-            <h3 data-i18n="skills.g4">Tools & Methods</h3>
+            <h3 data-i18n="skills.g4">Tools &amp; Methods</h3>
             <div class="chips">
               <span>Git</span><span>Docker</span><span>DBeaver</span><span>Postman</span><span>Scrum</span><span data-i18n="skills.api">API Integration</span>
             </div>
@@ -245,7 +384,7 @@
         </div>
 
         <div class="certs">
-          <h3 data-i18n="skills.certsTitle">Education & Certifications</h3>
+          <h3 data-i18n="skills.certsTitle">Education &amp; Certifications</h3>
           <ul class="certs__list">
             <li><strong data-i18n="cert.c1t">Systems Analyst</strong> — Colegio Universitario IES, Córdoba (AR) · 2021–2023</li>
             <li><strong>Google Data Analytics Professional Certificate</strong> — Google / Coursera · 2026</li>
@@ -254,6 +393,27 @@
             <li><strong data-i18n="cert.c5t">JavaScript Certificate</strong> — Coderhouse · 2021</li>
             <li><strong data-i18n="cert.c6t">English B2 (Certified)</strong> — Universidad de Viña del Mar</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section id="about" class="section section--alt">
+      <div class="container">
+        <p class="section__kicker" data-i18n="about.kicker">04 — About</p>
+        <h2 class="section__title" data-i18n="about.title">From raw data to business impact</h2>
+        <div class="about__grid">
+          <div class="about__text">
+            <p data-i18n="about.p1">I'm a Data Analyst based in Chile with 4+ years of experience across the full data lifecycle: designing SQL pipelines, automating verification workflows, detecting anomalies with Python, and building KPI dashboards in Power BI and Tableau used by 70+ companies and 100+ users.</p>
+            <p data-i18n="about.p2">My work has cut compliance reporting time by ~40%, raised automated document-verification accuracy above 90%, and — in an end-to-end business modernization project — helped increase sales by 10–15% while reducing supply costs by 15–20%.</p>
+            <p class="about__pull" data-i18n="about.p3">What makes me different: I own the data lifecycle end to end. I don't just read the dashboard — I design the pipeline that feeds it, automate the validation that keeps it trustworthy, and translate the result into a decision the business can act on.</p>
+          </div>
+          <div class="about__facts">
+            <div class="fact"><span class="fact__label" data-i18n="about.location">Location</span><span class="fact__value">Santiago, Chile 🇨🇱</span></div>
+            <div class="fact"><span class="fact__label" data-i18n="about.langs">Languages</span><span class="fact__value" data-i18n="about.langsValue">Spanish (native) · English (B2, certified)</span></div>
+            <div class="fact"><span class="fact__label" data-i18n="about.focus">Focus</span><span class="fact__value" data-i18n="about.focusValue">Data Analytics · BI · Automation</span></div>
+            <div class="fact"><span class="fact__label" data-i18n="about.education">Education</span><span class="fact__value" data-i18n="about.educationValue">Systems Analyst — IES, Córdoba (AR)</span></div>
+          </div>
         </div>
       </div>
     </section>
