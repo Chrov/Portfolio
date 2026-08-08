@@ -7,6 +7,25 @@ const CV_FILES = {
   es: "assets/Camilo_Vergara_CV_ES.pdf",
 };
 
+/* Curated, in display order. Sorting by "recently pushed" surfaced a config
+   repo, a congratulations page and a 2024 parking system — noise on a data
+   analyst portfolio. */
+const CURATED_REPOS = ["favorita-demand-forecasting", "market-stall-analytics"];
+
+/* Curated blurbs, preferred over the repo's GitHub description: favorita has
+   none set (would render as an em dash) and market-stall's undersells it.
+   Drop an entry here once the description on GitHub says it better. */
+const REPO_BLURBS = {
+  "favorita-demand-forecasting": {
+    en: "dbt star schema (11 models, 21 tests) feeding a LightGBM/SARIMAX/Prophet forecast benchmark, turned into safety stock and reorder points.",
+    es: "Star schema en dbt (11 modelos, 21 tests) que alimenta un benchmark de forecasting LightGBM/SARIMAX/Prophet, convertido en stock de seguridad y puntos de reorden.",
+  },
+  "market-stall-analytics": {
+    en: "End-to-end analytics for a real market-stall business across three layers — Excel, Python and SQL — with ABC/Pareto, EOQ and demand forecasting.",
+    es: "Analítica integral de un negocio de feria real en tres capas — Excel, Python y SQL — con ABC/Pareto, EOQ y pronóstico de demanda.",
+  },
+};
+
 const I18N = {
   en: {
     "nav.about": "About",
@@ -31,13 +50,24 @@ const I18N = {
 
     "proj.kicker": "01 — Projects",
     "proj.title": "Featured work",
-    "proj.lead": "Three case studies, each with the same structure: the problem, what I built, and the number it moved.",
+    "proj.lead": "Four case studies, each with the same structure: the problem, what I built, and the number it moved. The first two are open source — code and notebooks included.",
     "proj.caseLabel": "Case study",
     "proj.lblContext": "Context",
     "proj.lblAction": "What I did",
     "proj.lblImpact": "Impact",
+    "proj.viewRepo": "View code & notebooks",
+    "proj.workNote": "Built at Top Partners S.A. Code and data are proprietary, so no repository.",
+
+    "proj.p0.title": "Demand Forecasting & Inventory Optimization",
+    "proj.p0.context": "A grocery retailer has to answer one question every day, for every item, in every store: how much do we order? Too little and shelves go empty; too much and perishables rot with capital frozen in the warehouse.",
+    "proj.p0.action": "Modeled the raw data into a star schema with dbt (11 models, 21 data-quality tests), then benchmarked a seasonal-naive baseline against Prophet, SARIMAX and LightGBM with time-based walk-forward backtesting — never random k-fold. Turned the winning forecast into safety stock, reorder points and an ABC-differentiated service-level policy.",
+    "proj.p0.m1": "forecast error vs baseline",
+    "proj.p0.m2": "WMAPE (baseline 0.45)",
+    "proj.p0.m3": "safety stock freed (modeled)",
+    "proj.p0.note": "Personal project on the Corporación Favorita dataset. Ships a synthetic data generator so the repo runs end to end without the gated Kaggle download; the pipeline is identical for the real data.",
 
     "proj.p1.title": "Feria Business Modernization",
+    "proj.p1.note": "Impact figures come from the real engagement. The public repo is an anonymized English adaptation: supplier names are fictitious and amounts approximate, grounded in Chilean wholesale reference ranges.",
     "proj.p1.context": "An artisanal-products market business ran with no data: improvised pricing, weekly stockouts and a single supplier.",
     "proj.p1.action": "Operations diagnosis, supply-chain redesign and a standardized pricing policy, plus a BI stack (SQL, Power BI, Tableau) fed by a WhatsApp bot that turns voice notes into inventory and sales data.",
     "proj.p1.m1": "stockouts",
@@ -58,7 +88,7 @@ const I18N = {
 
     "proj.platformsLabel": "Find more of my work on:",
     "proj.dashboards": "dashboards",
-    "proj.ghTitle": "Latest on GitHub",
+    "proj.ghTitle": "Code & notebooks",
     "proj.ghLoading": "Loading repositories…",
     "proj.ghError": "Couldn't load repositories right now — visit github.com/Chrov instead.",
 
@@ -143,13 +173,24 @@ const I18N = {
 
     "proj.kicker": "01 — Proyectos",
     "proj.title": "Trabajo destacado",
-    "proj.lead": "Tres casos de estudio, todos con la misma estructura: el problema, qué construí y el número que moví.",
+    "proj.lead": "Cuatro casos de estudio, todos con la misma estructura: el problema, qué construí y el número que moví. Los dos primeros son de código abierto — incluyen código y notebooks.",
     "proj.caseLabel": "Caso",
     "proj.lblContext": "Contexto",
     "proj.lblAction": "Qué hice",
     "proj.lblImpact": "Impacto",
+    "proj.viewRepo": "Ver código y notebooks",
+    "proj.workNote": "Desarrollado en Top Partners S.A. El código y los datos son propietarios, por eso no hay repositorio.",
+
+    "proj.p0.title": "Pronóstico de Demanda y Optimización de Inventario",
+    "proj.p0.context": "Un retail de supermercados debe responder una pregunta cada día, para cada producto, en cada tienda: ¿cuánto pedimos? Si pide poco, las góndolas se vacían; si pide mucho, los perecibles se pierden y el capital queda congelado en bodega.",
+    "proj.p0.action": "Modelé los datos crudos en un star schema con dbt (11 modelos, 21 tests de calidad) y comparé un baseline naive estacional contra Prophet, SARIMAX y LightGBM con backtesting walk-forward por tiempo — nunca k-fold aleatorio. Convertí el pronóstico ganador en stock de seguridad, puntos de reorden y una política de nivel de servicio diferenciada por ABC.",
+    "proj.p0.m1": "error de pronóstico vs baseline",
+    "proj.p0.m2": "WMAPE (baseline 0,45)",
+    "proj.p0.m3": "stock de seguridad liberado (modelado)",
+    "proj.p0.note": "Proyecto personal sobre el dataset de Corporación Favorita. Incluye un generador de datos sintéticos para que el repo corra de punta a punta sin la descarga restringida de Kaggle; el pipeline es idéntico con los datos reales.",
 
     "proj.p1.title": "Modernización de Negocio de Feria",
+    "proj.p1.note": "Las cifras de impacto vienen del trabajo real. El repo público es una adaptación anonimizada al inglés: los nombres de proveedores son ficticios y los montos aproximados, anclados en rangos de referencia mayoristas chilenos.",
     "proj.p1.context": "Un negocio de feria de productos artesanales operaba sin datos: precios improvisados, quiebres de stock semanales y un solo proveedor.",
     "proj.p1.action": "Diagnóstico de la operación, rediseño de la cadena de suministro y política de precios estandarizada, más un stack de BI (SQL, Power BI, Tableau) alimentado por un bot de WhatsApp que convierte notas de voz en datos de inventario y ventas.",
     "proj.p1.m1": "quiebres de stock",
@@ -170,7 +211,7 @@ const I18N = {
 
     "proj.platformsLabel": "Encuentra más de mi trabajo en:",
     "proj.dashboards": "dashboards",
-    "proj.ghTitle": "Lo último en GitHub",
+    "proj.ghTitle": "Código y notebooks",
     "proj.ghLoading": "Cargando repositorios…",
     "proj.ghError": "No se pudieron cargar los repositorios — visita github.com/Chrov.",
 
@@ -253,16 +294,22 @@ function setLang(lang) {
   localStorage.setItem("lang", lang);
 }
 
-/* ===== GitHub repos ===== */
+/* ===== GitHub repos (curated) ===== */
 async function loadRepos() {
   const grid = document.getElementById("ghGrid");
+  const lang = localStorage.getItem("lang") || "en";
   try {
-    const res = await fetch("https://api.github.com/users/Chrov/repos?sort=updated&per_page=6");
-    if (!res.ok) throw new Error(res.status);
-    const repos = (await res.json()).filter((r) => !r.fork);
+    const settled = await Promise.all(
+      CURATED_REPOS.map((name) =>
+        fetch(`https://api.github.com/repos/Chrov/${name}`)
+          .then((r) => (r.ok ? r.json() : null))
+          .catch(() => null)
+      )
+    );
+    const repos = settled.filter(Boolean);
     if (!repos.length) throw new Error("empty");
     grid.innerHTML = "";
-    repos.slice(0, 6).forEach((r) => {
+    repos.forEach((r) => {
       const a = document.createElement("a");
       a.className = "repo";
       a.href = r.html_url;
@@ -275,7 +322,8 @@ async function loadRepos() {
 
       const desc = document.createElement("span");
       desc.className = "repo__desc";
-      desc.textContent = r.description || "—";
+      const blurb = REPO_BLURBS[r.name];
+      desc.textContent = (blurb && (blurb[lang] || blurb.en)) || r.description || "—";
 
       const meta = document.createElement("span");
       meta.className = "repo__meta";

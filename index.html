@@ -119,43 +119,63 @@
       <div class="container">
         <p class="section__kicker" data-i18n="proj.kicker">01 — Projects</p>
         <h2 class="section__title" data-i18n="proj.title">Featured work</h2>
-        <p class="section__lead" data-i18n="proj.lead">Three case studies, each with the same structure: the problem, what I built, and the number it moved.</p>
+        <p class="section__lead" data-i18n="proj.lead">Four case studies, each with the same structure: the problem, what I built, and the number it moved. The first two are open source — code and notebooks included.</p>
 
-        <!-- ── Featured case study ──
-             To use a real screenshot instead of the abstract graphic, replace the
-             <svg> inside .case__visual with:  <img src="assets/your-dashboard.png" alt="…"> -->
+        <!-- ── Featured case study 01 — favorita-demand-forecasting ── -->
         <article class="case case--featured">
-          <div class="case__visual">
-            <span class="case__badge">Power BI · Tableau · SQL</span>
-            <svg viewBox="0 0 320 180" role="img" aria-labelledby="viz1Title" preserveAspectRatio="xMidYMid meet">
-              <title id="viz1Title">Abstract sales and inventory chart</title>
-              <g class="viz-grid">
-                <line x1="16" y1="150" x2="304" y2="150"/>
-                <line x1="16" y1="114" x2="304" y2="114"/>
-                <line x1="16" y1="78"  x2="304" y2="78"/>
-                <line x1="16" y1="42"  x2="304" y2="42"/>
-              </g>
-              <g class="viz-bars">
-                <rect x="24"  y="105" width="24" height="45"  rx="3"/>
-                <rect x="62"  y="88"  width="24" height="62"  rx="3"/>
-                <rect x="100" y="95"  width="24" height="55"  rx="3"/>
-                <rect x="138" y="70"  width="24" height="80"  rx="3"/>
-                <rect x="176" y="78"  width="24" height="72"  rx="3"/>
-                <rect x="214" y="55"  width="24" height="95"  rx="3"/>
-                <rect x="252" y="40"  width="24" height="110" rx="3"/>
-              </g>
-              <polyline class="viz-line" points="36,112 74,98 112,102 150,84 188,88 226,68 264,54"/>
-              <g class="viz-dots">
-                <circle cx="36"  cy="112" r="3.5"/><circle cx="74"  cy="98"  r="3.5"/>
-                <circle cx="112" cy="102" r="3.5"/><circle cx="150" cy="84"  r="3.5"/>
-                <circle cx="188" cy="88"  r="3.5"/><circle cx="226" cy="68"  r="3.5"/>
-                <circle cx="264" cy="54"  r="4.5"/>
-              </g>
-            </svg>
+          <div class="case__visual case__visual--shot">
+            <span class="case__badge">dbt · BigQuery · Python</span>
+            <img src="assets/img/favorita-forecast-vs-actual.png"
+                 alt="Forecast vs actual daily units for the BEVERAGES family over a 15-day horizon, comparing seasonal-naive, Prophet, SARIMAX and LightGBM against the actual series."
+                 width="1185" height="487" />
           </div>
 
           <div class="case__body">
             <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 01</p>
+            <h3 data-i18n="proj.p0.title">Demand Forecasting &amp; Inventory Optimization</h3>
+
+            <dl class="case__rows">
+              <div class="case__row">
+                <dt data-i18n="proj.lblContext">Context</dt>
+                <dd data-i18n="proj.p0.context">A grocery retailer has to answer one question every day, for every item, in every store: how much do we order? Too little and shelves go empty; too much and perishables rot with capital frozen in the warehouse.</dd>
+              </div>
+              <div class="case__row">
+                <dt data-i18n="proj.lblAction">What I did</dt>
+                <dd data-i18n="proj.p0.action">Modeled the raw data into a star schema with dbt (11 models, 21 data-quality tests), then benchmarked a seasonal-naive baseline against Prophet, SARIMAX and LightGBM with time-based walk-forward backtesting — never random k-fold. Turned the winning forecast into safety stock, reorder points and an ABC-differentiated service-level policy.</dd>
+              </div>
+            </dl>
+
+            <div class="case__impact">
+              <p class="case__impactLabel" data-i18n="proj.lblImpact">Impact</p>
+              <div class="metrics">
+                <div class="metric"><span class="metric__num">−65%</span><span class="metric__label" data-i18n="proj.p0.m1">forecast error vs baseline</span></div>
+                <div class="metric"><span class="metric__num">0.16</span><span class="metric__label" data-i18n="proj.p0.m2">WMAPE (baseline 0.45)</span></div>
+                <div class="metric"><span class="metric__num">~20%</span><span class="metric__label" data-i18n="proj.p0.m3">safety stock freed (modeled)</span></div>
+              </div>
+            </div>
+
+            <div class="card__tags"><span>dbt</span><span>BigQuery</span><span>DuckDB</span><span>LightGBM</span><span>SARIMAX</span><span>Prophet</span><span>SQL</span></div>
+
+            <p class="case__note" data-i18n="proj.p0.note">Personal project on the Corporación Favorita dataset. Ships a synthetic data generator so the repo runs end to end without the gated Kaggle download; the pipeline is identical for the real data.</p>
+
+            <a class="case__link" href="https://github.com/Chrov/favorita-demand-forecasting" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+              <span data-i18n="proj.viewRepo">View code &amp; notebooks</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- ── Featured case study 02 — market-stall-analytics / Feria ── -->
+        <article class="case case--featured">
+          <div class="case__visual case__visual--shot">
+            <span class="case__badge">Python · SQL · Excel</span>
+            <img src="assets/img/market-stall-revenue-waste.png"
+                 alt="Monthly revenue in USD as bars against waste percentage as a line, across two years of market-stall operation."
+                 loading="lazy" width="1290" height="490" />
+          </div>
+
+          <div class="case__body">
+            <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 02</p>
             <h3 data-i18n="proj.p1.title">Feria Business Modernization</h3>
 
             <dl class="case__rows">
@@ -165,7 +185,7 @@
               </div>
               <div class="case__row">
                 <dt data-i18n="proj.lblAction">What I did</dt>
-                <dd data-i18n="proj.p1.action">Operations diagnosis, supply-chain redesign and a standardized pricing policy, plus a BI stack (SQL, Power BI, Tableau) fed by a WhatsApp bot that turns voice notes into inventory and sales data.</dd>
+                <dd data-i18n="proj.p1.action">Operations diagnosis, supply-chain redesign and a standardized pricing policy, plus a BI stack (SQL, Power BI, Tableau) fed by a WhatsApp bot that turns voice notes into inventory and sales data. The analysis layer covers ABC/Pareto, supplier concentration (HHI), hypothesis testing, freezer ROI and EOQ with reorder points.</dd>
               </div>
             </dl>
 
@@ -178,7 +198,14 @@
               </div>
             </div>
 
-            <div class="card__tags"><span>Power BI</span><span>Tableau</span><span>SQL</span><span>Excel</span><span data-i18n="tag.automation">Automation</span></div>
+            <div class="card__tags"><span>Power BI</span><span>Tableau</span><span>SQL</span><span>DuckDB</span><span>Excel</span><span data-i18n="tag.automation">Automation</span></div>
+
+            <p class="case__note" data-i18n="proj.p1.note">Impact figures come from the real engagement. The public repo is an anonymized English adaptation: supplier names are fictitious and amounts approximate, grounded in Chilean wholesale reference ranges.</p>
+
+            <a class="case__link" href="https://github.com/Chrov/market-stall-analytics" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+              <span data-i18n="proj.viewRepo">View code &amp; notebooks</span>
+            </a>
           </div>
         </article>
 
@@ -200,7 +227,7 @@
               </svg>
             </div>
             <div class="case__body">
-              <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 02</p>
+              <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 03</p>
               <h3 data-i18n="proj.p3.title">Compliance Verification Automation</h3>
               <dl class="case__rows">
                 <div class="case__row">
@@ -220,6 +247,7 @@
                 </div>
               </div>
               <div class="card__tags"><span>SQL</span><span data-i18n="skills.storedproc">Stored Procedures</span><span>Python</span><span>Pandas</span></div>
+              <p class="case__note" data-i18n="proj.workNote">Built at Top Partners S.A. Code and data are proprietary, so no repository.</p>
             </div>
           </article>
 
@@ -259,7 +287,7 @@
               </svg>
             </div>
             <div class="case__body">
-              <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 03</p>
+              <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 04</p>
               <h3 data-i18n="proj.p4.title">HR &amp; People Analytics Dashboards</h3>
               <dl class="case__rows">
                 <div class="case__row">
@@ -279,6 +307,7 @@
                 </div>
               </div>
               <div class="card__tags"><span>Power BI</span><span>KPIs</span><span data-i18n="tag.erp">ERP Integration</span><span data-i18n="tag.cohort">Cohort Analysis</span></div>
+              <p class="case__note" data-i18n="proj.workNote">Built at Top Partners S.A. Code and data are proprietary, so no repository.</p>
             </div>
           </article>
         </div>
@@ -302,9 +331,9 @@
           </div>
         </div>
 
-        <!-- GitHub repos (dynamic) -->
+        <!-- GitHub repos — curated allowlist in script.js (CURATED_REPOS), not "most recently pushed" -->
         <div class="gh">
-          <h3 class="gh__title" data-i18n="proj.ghTitle">Latest on GitHub</h3>
+          <h3 class="gh__title" data-i18n="proj.ghTitle">Code &amp; notebooks</h3>
           <div class="gh__grid" id="ghGrid">
             <p class="gh__loading" data-i18n="proj.ghLoading">Loading repositories…</p>
           </div>
