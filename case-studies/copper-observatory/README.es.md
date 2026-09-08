@@ -47,4 +47,4 @@ The source workbooks and UCI archive are included; the generator has a fixed see
 
 ## Power BI
 
-[PBIP project](powerbi/Copper.pbip), two language pages, six bound visuals, DAX measures and a portable Power Query snapshot. The official report-authoring validator reports zero errors/warnings. Desktop has not confirmed opening the report: native rendering and refresh remain unverified. This is not a published Power BI Service report. Regenerate the snapshot with `python tools/build_powerbi.py` after updating the sources.
+[PBIP project](powerbi/Copper.pbip), two language pages, six bound visuals, DAX measures and a portable Power Query snapshot. The official report-authoring validator reports zero errors/warnings. Opened, refreshed and visually checked in Power BI Desktop on 2026-09-08. This is not a published Power BI Service report. Regenerate the snapshot with `python tools/build_powerbi.py` after updating the sources.

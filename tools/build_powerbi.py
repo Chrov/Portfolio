@@ -14,7 +14,7 @@ write(report/'definition.pbir',{'$schema':S+'item/report/definitionProperties/2.
 write(model/'definition.pbism',{'$schema':S+'item/semanticModel/definitionProperties/1.0.0/schema.json','version':'4.2','settings':{'qnaEnabled':False}})
 definition=model/'definition';(definition/'tables').mkdir(parents=True,exist_ok=True)
 (definition/'database.tmdl').write_text('database\n\tcompatibilityLevel: 1600\n')
-(definition/'model.tmdl').write_text('model Model\n\tculture: en-US\n\tdefaultPowerBIDataSourceVersion: powerBI_V3\n\tsourceQueryCulture: en-US\n\tref table Annual\n')
+(definition/'model.tmdl').write_text('model Model\n\tculture: en-US\n\tdefaultPowerBIDataSourceVersion: powerBI_V3\n\tsourceQueryCulture: en-US\n\nref table Annual\n')
 cols=['year','production_kt','price_us_cent_lb','exports_usd_m']
 import pandas as pd
 df=pd.read_csv(R/'case-studies/copper-observatory/annual.csv')[cols]
@@ -44,5 +44,11 @@ for lang,p in zip(['ES','EN'],pages):
         projection={'field':{'Measure':{'Expression':{'SourceRef':{'Entity':'Annual'}},'Property':measure}},'queryRef':f'Annual.{measure}','nativeQueryRef':title}
         cat={'field':{'Column':{'Expression':{'SourceRef':{'Entity':'Annual'}},'Property':'year'}},'queryRef':'Annual.year','nativeQueryRef':'Year'}
         visual={'$schema':S+'item/report/definition/visualContainer/2.9.0/schema.json','name':name,'position':{'x':x,'y':y,'width':w,'height':h,'z':i*1000,'tabOrder':i*1000},'visual':{'visualType':'lineChart','query':{'queryState':{'Category':{'projections':[cat]},'Y':{'projections':[projection]}}}}}
+        def literal(value): return {'expr':{'Literal':{'Value':value}}}
+        visual['visual']['visualContainerObjects']={'title':[{'properties':{
+            'show':literal('true'),'text':literal("'"+title+"'"),
+            'fontSize':literal('14D'),
+            'fontColor':{'solid':{'color':literal("'#1C2D42'")}}
+        }}]}
         write(page/'visuals'/name/'visual.json',visual)
 print(out/'Copper.pbip')

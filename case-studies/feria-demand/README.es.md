@@ -47,4 +47,4 @@ The source workbooks and UCI archive are included; the generator has a fixed see
 
 ## Tableau
 
-[Packaged workbook](dashboard.twbx) contains three Hyper extracts, four worksheets and one bilingual dashboard. Extract contents and XML are validated; desktop rendering and Tableau Public publication are pending. This is a generated workbook, not a claim of a live published dashboard.
+[Packaged workbook](dashboard.twbx) contains three Hyper extracts, four worksheets and one bilingual dashboard. Extract contents and XML are validated. Opened and visually checked in Tableau Public Desktop on 2026-09-08. Tableau Public publication still requires sign-in. This is a generated workbook, not a claim of a live published dashboard.

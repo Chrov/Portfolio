@@ -18,109 +18,7 @@
   </preferences>
   <datasources>
     <datasource caption="folds" inline="true" name="federated.aa5090053702fb0b0d36f91fb7" version="18.1">
-      <connection class="federated">
-        <named-connections>
-          <named-connection caption="folds" name="textscan.9c3027ce01c9b84fdb64ec3576">
-            <connection class="textscan" directory="Data" filename="folds.csv" password="" server="" />
-          </named-connection>
-        </named-connections>
-        <relation connection="textscan.9c3027ce01c9b84fdb64ec3576" name="folds.csv" table="[folds#csv]" type="table">
-          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
-            <column datatype="date" name="date" ordinal="0" />
-            <column datatype="string" name="model" ordinal="1" />
-            <column datatype="integer" name="actual_units" ordinal="2" />
-            <column datatype="real" name="absolute_error" ordinal="3" />
-            <column datatype="real" name="signed_error" ordinal="4" />
-            <column datatype="real" name="wmape" ordinal="5" />
-          </columns>
-        </relation>
-        <metadata-records>
-          <metadata-record class="column">
-            <remote-name>date</remote-name>
-            <remote-type>133</remote-type>
-            <local-name>[date]</local-name>
-            <parent-name>[folds.csv]</parent-name>
-            <remote-alias>date</remote-alias>
-            <ordinal>0</ordinal>
-            <local-type>date</local-type>
-            <aggregation>Year</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[folds.csv_AA5090053702FB0B0D36F91FB7BA103C]</object-id>
-          </metadata-record>
-          <metadata-record class="column">
-            <remote-name>model</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[model]</local-name>
-            <parent-name>[folds.csv]</parent-name>
-            <remote-alias>model</remote-alias>
-            <ordinal>1</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag="0" name="LEN_RUS" />
-            <object-id>[folds.csv_AA5090053702FB0B0D36F91FB7BA103C]</object-id>
-          </metadata-record>
-          <metadata-record class="column">
-            <remote-name>actual_units</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[actual_units]</local-name>
-            <parent-name>[folds.csv]</parent-name>
-            <remote-alias>actual_units</remote-alias>
-            <ordinal>2</ordinal>
-            <local-type>integer</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[folds.csv_AA5090053702FB0B0D36F91FB7BA103C]</object-id>
-          </metadata-record>
-          <metadata-record class="column">
-            <remote-name>absolute_error</remote-name>
-            <remote-type>5</remote-type>
-            <local-name>[absolute_error]</local-name>
-            <parent-name>[folds.csv]</parent-name>
-            <remote-alias>absolute_error</remote-alias>
-            <ordinal>3</ordinal>
-            <local-type>real</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[folds.csv_AA5090053702FB0B0D36F91FB7BA103C]</object-id>
-          </metadata-record>
-          <metadata-record class="column">
-            <remote-name>signed_error</remote-name>
-            <remote-type>5</remote-type>
-            <local-name>[signed_error]</local-name>
-            <parent-name>[folds.csv]</parent-name>
-            <remote-alias>signed_error</remote-alias>
-            <ordinal>4</ordinal>
-            <local-type>real</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[folds.csv_AA5090053702FB0B0D36F91FB7BA103C]</object-id>
-          </metadata-record>
-          <metadata-record class="column">
-            <remote-name>wmape</remote-name>
-            <remote-type>5</remote-type>
-            <local-name>[wmape]</local-name>
-            <parent-name>[folds.csv]</parent-name>
-            <remote-alias>wmape</remote-alias>
-            <ordinal>5</ordinal>
-            <local-type>real</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[folds.csv_AA5090053702FB0B0D36F91FB7BA103C]</object-id>
-          </metadata-record>
-        </metadata-records>
-      </connection>
-      <aliases enabled="yes" />
-      <column caption="Date" datatype="date" name="[date]" role="dimension" type="ordinal" />
-      <column caption="Model" datatype="string" name="[model]" role="dimension" type="nominal" />
-      <column caption="Actual Units" datatype="integer" name="[actual_units]" role="measure" type="quantitative" />
-      <column caption="Absolute Error" datatype="real" name="[absolute_error]" role="measure" type="quantitative" />
-      <column caption="Signed Error" datatype="real" name="[signed_error]" role="measure" type="quantitative" />
-      <column caption="Wmape" datatype="real" name="[wmape]" role="measure" type="quantitative" />
-      <extract count="-1" enabled="true" object-id="" units="records" user-specific="false">
-        <connection access_mode="readonly" author-locale="en_GB" class="hyper" dbname="Data/folds.hyper" default-settings="hyper" schema="Extract" sslmode="" tablename="Extract" update-time="09/07/2026 09:43:58 PM" username="tableau_internal_user">
+      <connection access_mode="readonly" author-locale="en_GB" class="hyper" dbname="Data/folds.hyper" default-settings="hyper" schema="Extract" sslmode="" tablename="Extract" update-time="09/08/2026 07:30:52 AM" username="tableau_internal_user">
           <relation name="Extract" table="[Extract].[Extract]" type="table" />
           <metadata-records>
             <metadata-record class="column">
@@ -212,75 +110,20 @@
             </metadata-record>
           </metadata-records>
         </connection>
-      </extract>
+      <aliases enabled="yes" />
+      <column caption="Date" datatype="date" name="[date]" role="dimension" type="ordinal" />
+      <column caption="Model" datatype="string" name="[model]" role="dimension" type="nominal" />
+      <column caption="Actual Units" datatype="integer" name="[actual_units]" role="measure" type="quantitative" />
+      <column caption="Absolute Error" datatype="real" name="[absolute_error]" role="measure" type="quantitative" />
+      <column caption="Signed Error" datatype="real" name="[signed_error]" role="measure" type="quantitative" />
+      <column caption="Wmape" datatype="real" name="[wmape]" role="measure" type="quantitative" />
       <layout dim-ordering="alphabetic" measure-ordering="alphabetic" show-structure="true" />
       <semantic-values>
         <semantic-value key="[Country].[Name]" value="&quot;Chile&quot;" />
       </semantic-values>
-      <object-graph>
-        <objects>
-          <object caption="folds" id="folds.csv_AA5090053702FB0B0D36F91FB7BA103C">
-            <properties context="">
-              <relation connection="textscan.9c3027ce01c9b84fdb64ec3576" name="folds.csv" table="[folds#csv]" type="table">
-                <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
-                  <column datatype="date" name="date" ordinal="0" />
-                  <column datatype="string" name="model" ordinal="1" />
-                  <column datatype="integer" name="actual_units" ordinal="2" />
-                  <column datatype="real" name="absolute_error" ordinal="3" />
-                  <column datatype="real" name="signed_error" ordinal="4" />
-                  <column datatype="real" name="wmape" ordinal="5" />
-                </columns>
-              </relation>
-            </properties>
-          </object>
-        </objects>
-      </object-graph>
-    </datasource>
+      </datasource>
     <datasource caption="monthly" inline="true" name="federated.e36899a0a754a292fd4bbf9e9e" version="18.1">
-      <connection class="federated">
-        <named-connections>
-          <named-connection caption="monthly" name="textscan.acad180f3c09f641eaff4e81c8">
-            <connection class="textscan" directory="Data" filename="monthly.csv" password="" server="" />
-          </named-connection>
-        </named-connections>
-        <relation connection="textscan.acad180f3c09f641eaff4e81c8" name="monthly.csv" table="[monthly#csv]" type="table">
-          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
-            <column datatype="date" name="date" ordinal="0" />
-            <column datatype="integer" name="demand_units" ordinal="1" />
-          </columns>
-        </relation>
-        <metadata-records>
-          <metadata-record class="column">
-            <remote-name>date</remote-name>
-            <remote-type>133</remote-type>
-            <local-name>[date]</local-name>
-            <parent-name>[monthly.csv]</parent-name>
-            <remote-alias>date</remote-alias>
-            <ordinal>0</ordinal>
-            <local-type>date</local-type>
-            <aggregation>Year</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[monthly.csv_E36899A0A754A292FD4BBF9E9EA91B2A]</object-id>
-          </metadata-record>
-          <metadata-record class="column">
-            <remote-name>demand_units</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[demand_units]</local-name>
-            <parent-name>[monthly.csv]</parent-name>
-            <remote-alias>demand_units</remote-alias>
-            <ordinal>1</ordinal>
-            <local-type>integer</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[monthly.csv_E36899A0A754A292FD4BBF9E9EA91B2A]</object-id>
-          </metadata-record>
-        </metadata-records>
-      </connection>
-      <aliases enabled="yes" />
-      <column caption="Date" datatype="date" name="[date]" role="dimension" type="ordinal" />
-      <column caption="Demand Units" datatype="integer" name="[demand_units]" role="measure" type="quantitative" />
-      <extract count="-1" enabled="true" object-id="" units="records" user-specific="false">
-        <connection access_mode="readonly" author-locale="en_GB" class="hyper" dbname="Data/monthly.hyper" default-settings="hyper" schema="Extract" sslmode="" tablename="Extract" update-time="09/07/2026 09:43:58 PM" username="tableau_internal_user">
+      <connection access_mode="readonly" author-locale="en_GB" class="hyper" dbname="Data/monthly.hyper" default-settings="hyper" schema="Extract" sslmode="" tablename="Extract" update-time="09/08/2026 07:30:52 AM" username="tableau_internal_user">
           <relation name="Extract" table="[Extract].[Extract]" type="table" />
           <metadata-records>
             <metadata-record class="column">
@@ -313,105 +156,16 @@
             </metadata-record>
           </metadata-records>
         </connection>
-      </extract>
+      <aliases enabled="yes" />
+      <column caption="Date" datatype="date" name="[date]" role="dimension" type="ordinal" />
+      <column caption="Demand Units" datatype="integer" name="[demand_units]" role="measure" type="quantitative" />
       <layout dim-ordering="alphabetic" measure-ordering="alphabetic" show-structure="true" />
       <semantic-values>
         <semantic-value key="[Country].[Name]" value="&quot;Chile&quot;" />
       </semantic-values>
-      <object-graph>
-        <objects>
-          <object caption="monthly" id="monthly.csv_E36899A0A754A292FD4BBF9E9EA91B2A">
-            <properties context="">
-              <relation connection="textscan.acad180f3c09f641eaff4e81c8" name="monthly.csv" table="[monthly#csv]" type="table">
-                <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
-                  <column datatype="date" name="date" ordinal="0" />
-                  <column datatype="integer" name="demand_units" ordinal="1" />
-                </columns>
-              </relation>
-            </properties>
-          </object>
-        </objects>
-      </object-graph>
-    </datasource>
+      </datasource>
     <datasource caption="priority" inline="true" name="federated.d76c67bd863722047e0a0b15fe" version="18.1">
-      <connection class="federated">
-        <named-connections>
-          <named-connection caption="priority" name="textscan.65bdfebe719a5df54078077294">
-            <connection class="textscan" directory="Data" filename="priority.csv" password="" server="" />
-          </named-connection>
-        </named-connections>
-        <relation connection="textscan.65bdfebe719a5df54078077294" name="priority.csv" table="[priority#csv]" type="table">
-          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
-            <column datatype="string" name="product_id" ordinal="0" />
-            <column datatype="integer" name="demand_units" ordinal="1" />
-            <column datatype="real" name="cumulative_share" ordinal="2" />
-            <column datatype="string" name="volume_class" ordinal="3" />
-          </columns>
-        </relation>
-        <metadata-records>
-          <metadata-record class="column">
-            <remote-name>product_id</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[product_id]</local-name>
-            <parent-name>[priority.csv]</parent-name>
-            <remote-alias>product_id</remote-alias>
-            <ordinal>0</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag="0" name="LEN_RUS" />
-            <object-id>[priority.csv_D76C67BD863722047E0A0B15FE91EEA0]</object-id>
-          </metadata-record>
-          <metadata-record class="column">
-            <remote-name>demand_units</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[demand_units]</local-name>
-            <parent-name>[priority.csv]</parent-name>
-            <remote-alias>demand_units</remote-alias>
-            <ordinal>1</ordinal>
-            <local-type>integer</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[priority.csv_D76C67BD863722047E0A0B15FE91EEA0]</object-id>
-          </metadata-record>
-          <metadata-record class="column">
-            <remote-name>cumulative_share</remote-name>
-            <remote-type>5</remote-type>
-            <local-name>[cumulative_share]</local-name>
-            <parent-name>[priority.csv]</parent-name>
-            <remote-alias>cumulative_share</remote-alias>
-            <ordinal>2</ordinal>
-            <local-type>real</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-            <object-id>[priority.csv_D76C67BD863722047E0A0B15FE91EEA0]</object-id>
-          </metadata-record>
-          <metadata-record class="column">
-            <remote-name>volume_class</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[volume_class]</local-name>
-            <parent-name>[priority.csv]</parent-name>
-            <remote-alias>volume_class</remote-alias>
-            <ordinal>3</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag="0" name="LEN_RUS" />
-            <object-id>[priority.csv_D76C67BD863722047E0A0B15FE91EEA0]</object-id>
-          </metadata-record>
-        </metadata-records>
-      </connection>
-      <aliases enabled="yes" />
-      <column caption="Product Id" datatype="string" name="[product_id]" role="dimension" type="nominal" />
-      <column caption="Demand Units" datatype="integer" name="[demand_units]" role="measure" type="quantitative" />
-      <column caption="Cumulative Share" datatype="real" name="[cumulative_share]" role="measure" type="quantitative" />
-      <column caption="Volume Class" datatype="string" name="[volume_class]" role="dimension" type="nominal" />
-      <extract count="-1" enabled="true" object-id="" units="records" user-specific="false">
-        <connection access_mode="readonly" author-locale="en_GB" class="hyper" dbname="Data/priority.hyper" default-settings="hyper" schema="Extract" sslmode="" tablename="Extract" update-time="09/07/2026 09:43:58 PM" username="tableau_internal_user">
+      <connection access_mode="readonly" author-locale="en_GB" class="hyper" dbname="Data/priority.hyper" default-settings="hyper" schema="Extract" sslmode="" tablename="Extract" update-time="09/08/2026 07:30:52 AM" username="tableau_internal_user">
           <relation name="Extract" table="[Extract].[Extract]" type="table" />
           <metadata-records>
             <metadata-record class="column">
@@ -478,28 +232,16 @@
             </metadata-record>
           </metadata-records>
         </connection>
-      </extract>
+      <aliases enabled="yes" />
+      <column caption="Product Id" datatype="string" name="[product_id]" role="dimension" type="nominal" />
+      <column caption="Demand Units" datatype="integer" name="[demand_units]" role="measure" type="quantitative" />
+      <column caption="Cumulative Share" datatype="real" name="[cumulative_share]" role="measure" type="quantitative" />
+      <column caption="Volume Class" datatype="string" name="[volume_class]" role="dimension" type="nominal" />
       <layout dim-ordering="alphabetic" measure-ordering="alphabetic" show-structure="true" />
       <semantic-values>
         <semantic-value key="[Country].[Name]" value="&quot;Chile&quot;" />
       </semantic-values>
-      <object-graph>
-        <objects>
-          <object caption="priority" id="priority.csv_D76C67BD863722047E0A0B15FE91EEA0">
-            <properties context="">
-              <relation connection="textscan.65bdfebe719a5df54078077294" name="priority.csv" table="[priority#csv]" type="table">
-                <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
-                  <column datatype="string" name="product_id" ordinal="0" />
-                  <column datatype="integer" name="demand_units" ordinal="1" />
-                  <column datatype="real" name="cumulative_share" ordinal="2" />
-                  <column datatype="string" name="volume_class" ordinal="3" />
-                </columns>
-              </relation>
-            </properties>
-          </object>
-        </objects>
-      </object-graph>
-    </datasource>
+      </datasource>
   </datasources>
   <worksheets>
     <worksheet name="Demand / Demanda">
@@ -541,7 +283,7 @@
       <layout-options>
         <title>
           <formatted-text>
-            <run bold="true">28-day WMAPE / Error a 28 días</run>
+            <run bold="true">WMAPE %: naive (blue/azul), 8w mean (orange/naranja)</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -649,7 +391,7 @@
     </worksheet>
   </worksheets>
   <dashboards>
-    <dashboard enable-sort-zone-taborder="true" name="Demanda simulada / Synthetic demand">
+    <dashboard name="Demanda simulada / Synthetic demand">
       <style />
       <size maxheight="900" maxwidth="1300" minheight="900" minwidth="1300" />
       <datasources>
@@ -657,45 +399,7 @@
         <datasource caption="monthly" name="federated.e36899a0a754a292fd4bbf9e9e" />
         <datasource caption="priority" name="federated.d76c67bd863722047e0a0b15fe" />
       </datasources>
-      <zones>
-        <zone h="100000" id="3" type-v2="layout-basic" w="100000" x="0" y="0">
-          <zone h="98000" id="4" param="vert" type-v2="layout-flow" w="100000" x="0" y="1000">
-            <zone h="49000" id="13" param="horz" type-v2="layout-flow" w="100000" x="0" y="1000">
-              <zone h="49000" id="11" name="Demand / Demanda" w="50000" x="0" y="1000">
-                <zone-style>
-                  <format attr="border-style" value="none" />
-                  <format attr="border-width" value="0" />
-                  <format attr="margin" value="4" />
-                </zone-style>
-              </zone>
-              <zone h="49000" id="12" name="Forecast / Pronóstico" w="50000" x="50000" y="1000">
-                <zone-style>
-                  <format attr="border-style" value="none" />
-                  <format attr="border-width" value="0" />
-                  <format attr="margin" value="4" />
-                </zone-style>
-              </zone>
-            </zone>
-            <zone h="49000" id="16" param="horz" type-v2="layout-flow" w="100000" x="0" y="50000">
-              <zone h="49000" id="14" name="Priority / Prioridad" w="50000" x="0" y="50000">
-                <zone-style>
-                  <format attr="border-style" value="none" />
-                  <format attr="border-width" value="0" />
-                  <format attr="margin" value="4" />
-                </zone-style>
-              </zone>
-              <zone h="49000" id="15" name="Products / Productos" w="50000" x="50000" y="50000">
-                <zone-style>
-                  <format attr="border-style" value="none" />
-                  <format attr="border-width" value="0" />
-                  <format attr="margin" value="4" />
-                </zone-style>
-              </zone>
-            </zone>
-          </zone>
-        </zone>
-      </zones>
-      <simple-id uuid="{DC7161BE-3DBF-2250-C895-4E560CC35060}" />
+      <zones><zone id="1" name="Demand / Demanda" x="1000" y="1000" w="48000" h="48000" /><zone id="2" name="Forecast / Pronóstico" x="51000" y="1000" w="48000" h="48000" /><zone id="3" name="Priority / Prioridad" x="1000" y="51000" w="48000" h="48000" /><zone id="4" name="Products / Productos" x="51000" y="51000" w="48000" h="48000" /></zones><simple-id uuid="{DC7161BE-3DBF-2250-C895-4E560CC35060}" />
     </dashboard>
   </dashboards>
   <windows>

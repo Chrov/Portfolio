@@ -6,3 +6,4 @@ __pycache__/
 hyperd.log
 **/.pbi/
 case-studies/*/excel-data.json
+*.twbr
