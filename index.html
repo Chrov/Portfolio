@@ -51,8 +51,8 @@
     <div class="container hero__inner">
       <p class="hero__eyebrow"><span class="dot"></span> <span data-i18n="hero.eyebrow">Data Analyst · Business Intelligence</span></p>
       <h1 class="hero__title">Camilo Vergara<span class="accent"> Salas</span></h1>
-      <p class="hero__tagline" data-i18n="hero.tagline">I turn raw data into dashboards, automation and decisions that move the business.</p>
-      <p class="hero__summary" data-i18n="hero.summary">Data Analyst with 4+ years of experience delivering measurable impact across the full data lifecycle — SQL, Python, Power BI and Tableau. I own the data end to end, from the pipeline that cleans and models it to the dashboard that drives the decision.</p>
+      <p class="hero__tagline" data-i18n="hero.tagline">From business questions to decisions you can audit.</p>
+      <p class="hero__summary" data-i18n="hero.summary">Data Analyst focused on SQL, Python, Excel and business intelligence. Explore public-data studies and clearly identified simulations: the method, the result and the limits behind each recommendation.</p>
 
       <div class="hero__cta">
         <a class="btn btn--primary" href="#projects">
@@ -72,25 +72,6 @@
           <span data-i18n="hero.call">Call me</span>
         </a>
         <a id="cvDownloadAlt" class="link-alt" href="assets/Camilo_Vergara_CV_ES.pdf" download data-i18n="hero.downloadAlt">Also available in Spanish (PDF)</a>
-      </div>
-
-      <div class="hero__stats">
-        <div class="stat">
-          <span class="stat__num" data-count="4" data-suffix="+">4+</span>
-          <span class="stat__label" data-i18n="stats.years">years of experience</span>
-        </div>
-        <div class="stat">
-          <span class="stat__num" data-count="40" data-suffix="%">40%</span>
-          <span class="stat__label" data-i18n="stats.reporting">faster compliance reporting</span>
-        </div>
-        <div class="stat">
-          <span class="stat__num" data-count="90" data-suffix="%+">90%+</span>
-          <span class="stat__label" data-i18n="stats.accuracy">automated verification accuracy</span>
-        </div>
-        <div class="stat">
-          <span class="stat__num" data-count="70" data-suffix="+">70+</span>
-          <span class="stat__label" data-i18n="stats.companies">companies served by my dashboards</span>
-        </div>
       </div>
 
       <div class="hero__social">
@@ -115,231 +96,7 @@
 
   <main>
     <!-- ===== Projects (moved to first position — show the work before talking about it) ===== -->
-    <section id="projects" class="section">
-      <div class="container">
-        <p class="section__kicker" data-i18n="proj.kicker">01 — Projects</p>
-        <h2 class="section__title" data-i18n="proj.title">Featured work</h2>
-        <p class="section__lead" data-i18n="proj.lead">Four case studies, each with the same structure: the problem, what I built, and the number it moved. The first two are open source — code and notebooks included.</p>
-
-        <!-- ── Featured case study 01 — favorita-demand-forecasting ── -->
-        <article class="case case--featured">
-          <div class="case__visual case__visual--shot">
-            <span class="case__badge">dbt · BigQuery · Python</span>
-            <img src="assets/img/favorita-forecast-vs-actual.png"
-                 alt="Forecast vs actual daily units for the BEVERAGES family over a 15-day horizon, comparing seasonal-naive, Prophet, SARIMAX and LightGBM against the actual series."
-                 width="1185" height="487" />
-          </div>
-
-          <div class="case__body">
-            <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 01</p>
-            <h3 data-i18n="proj.p0.title">Demand Forecasting &amp; Inventory Optimization</h3>
-
-            <dl class="case__rows">
-              <div class="case__row">
-                <dt data-i18n="proj.lblContext">Context</dt>
-                <dd data-i18n="proj.p0.context">A grocery retailer has to answer one question every day, for every item, in every store: how much do we order? Too little and shelves go empty; too much and perishables rot with capital frozen in the warehouse.</dd>
-              </div>
-              <div class="case__row">
-                <dt data-i18n="proj.lblAction">What I did</dt>
-                <dd data-i18n="proj.p0.action">Modeled the raw data into a star schema with dbt (11 models, 21 data-quality tests), then benchmarked a seasonal-naive baseline against Prophet, SARIMAX and LightGBM with time-based walk-forward backtesting — never random k-fold. Turned the winning forecast into safety stock, reorder points and an ABC-differentiated service-level policy.</dd>
-              </div>
-            </dl>
-
-            <div class="case__impact">
-              <p class="case__impactLabel" data-i18n="proj.lblImpact">Impact</p>
-              <div class="metrics">
-                <div class="metric"><span class="metric__num">−65%</span><span class="metric__label" data-i18n="proj.p0.m1">forecast error vs baseline</span></div>
-                <div class="metric"><span class="metric__num">0.16</span><span class="metric__label" data-i18n="proj.p0.m2">WMAPE (baseline 0.45)</span></div>
-                <div class="metric"><span class="metric__num">~20%</span><span class="metric__label" data-i18n="proj.p0.m3">safety stock freed (modeled)</span></div>
-              </div>
-            </div>
-
-            <div class="card__tags"><span>dbt</span><span>BigQuery</span><span>DuckDB</span><span>LightGBM</span><span>SARIMAX</span><span>Prophet</span><span>SQL</span></div>
-
-            <p class="case__note" data-i18n="proj.p0.note">Personal project on the Corporación Favorita dataset. Ships a synthetic data generator so the repo runs end to end without the gated Kaggle download; the pipeline is identical for the real data.</p>
-
-            <a class="case__link" href="https://github.com/Chrov/favorita-demand-forecasting" target="_blank" rel="noopener">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              <span data-i18n="proj.viewRepo">View code &amp; notebooks</span>
-            </a>
-          </div>
-        </article>
-
-        <!-- ── Featured case study 02 — market-stall-analytics / Feria ── -->
-        <article class="case case--featured">
-          <div class="case__visual case__visual--shot">
-            <span class="case__badge">Python · SQL · Excel</span>
-            <img src="assets/img/market-stall-revenue-waste.png"
-                 alt="Monthly revenue in USD as bars against waste percentage as a line, across two years of market-stall operation."
-                 loading="lazy" width="1290" height="490" />
-          </div>
-
-          <div class="case__body">
-            <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 02</p>
-            <h3 data-i18n="proj.p1.title">Feria Business Modernization</h3>
-
-            <dl class="case__rows">
-              <div class="case__row">
-                <dt data-i18n="proj.lblContext">Context</dt>
-                <dd data-i18n="proj.p1.context">An artisanal-products market business ran with no data: improvised pricing, weekly stockouts and a single supplier.</dd>
-              </div>
-              <div class="case__row">
-                <dt data-i18n="proj.lblAction">What I did</dt>
-                <dd data-i18n="proj.p1.action">Operations diagnosis, supply-chain redesign and a standardized pricing policy, plus a BI stack (SQL, Power BI, Tableau) fed by a WhatsApp bot that turns voice notes into inventory and sales data. The analysis layer covers ABC/Pareto, supplier concentration (HHI), hypothesis testing, freezer ROI and EOQ with reorder points.</dd>
-              </div>
-            </dl>
-
-            <div class="case__impact">
-              <p class="case__impactLabel" data-i18n="proj.lblImpact">Impact</p>
-              <div class="metrics">
-                <div class="metric"><span class="metric__num">~0</span><span class="metric__label" data-i18n="proj.p1.m1">stockouts</span></div>
-                <div class="metric"><span class="metric__num">−15–20%</span><span class="metric__label" data-i18n="proj.p1.m2">supply costs</span></div>
-                <div class="metric"><span class="metric__num">+10–15%</span><span class="metric__label" data-i18n="proj.p1.m3">sales</span></div>
-              </div>
-            </div>
-
-            <div class="card__tags"><span>Power BI</span><span>Tableau</span><span>SQL</span><span>DuckDB</span><span>Excel</span><span data-i18n="tag.automation">Automation</span></div>
-
-            <p class="case__note" data-i18n="proj.p1.note">Impact figures come from the real engagement. The public repo is an anonymized English adaptation: supplier names are fictitious and amounts approximate, grounded in Chilean wholesale reference ranges.</p>
-
-            <a class="case__link" href="https://github.com/Chrov/market-stall-analytics" target="_blank" rel="noopener">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              <span data-i18n="proj.viewRepo">View code &amp; notebooks</span>
-            </a>
-          </div>
-        </article>
-
-        <!-- ── Secondary case studies ── -->
-        <div class="projects__grid">
-          <article class="case">
-            <div class="case__visual case__visual--sm">
-              <span class="case__badge">SQL · Python</span>
-              <svg viewBox="0 0 320 180" role="img" aria-labelledby="viz2Title" preserveAspectRatio="xMidYMid meet">
-                <title id="viz2Title">Abstract accuracy gauge</title>
-                <circle class="viz-track" cx="104" cy="90" r="52"/>
-                <circle class="viz-arc" cx="104" cy="90" r="52" transform="rotate(-90 104 90)"/>
-                <g class="viz-bars">
-                  <rect x="196" y="118" width="26" height="32" rx="3"/>
-                  <rect x="232" y="92"  width="26" height="58" rx="3"/>
-                  <rect x="268" y="58"  width="26" height="92" rx="3"/>
-                </g>
-                <line class="viz-baseline" x1="188" y1="150" x2="304" y2="150"/>
-              </svg>
-            </div>
-            <div class="case__body">
-              <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 03</p>
-              <h3 data-i18n="proj.p3.title">Compliance Verification Automation</h3>
-              <dl class="case__rows">
-                <div class="case__row">
-                  <dt data-i18n="proj.lblContext">Context</dt>
-                  <dd data-i18n="proj.p3.context">Verifying compliance documents (Law 20.123) for 70+ client companies was manual and didn't scale.</dd>
-                </div>
-                <div class="case__row">
-                  <dt data-i18n="proj.lblAction">What I did</dt>
-                  <dd data-i18n="proj.p3.action">Automated the whole workflow in SQL (stored procedures and triggers) with format validation and business rules, plus anomaly detection in Python (Pandas, Seaborn).</dd>
-                </div>
-              </dl>
-              <div class="case__impact">
-                <p class="case__impactLabel" data-i18n="proj.lblImpact">Impact</p>
-                <div class="metrics">
-                  <div class="metric"><span class="metric__num">90%+</span><span class="metric__label" data-i18n="proj.p3.m1">verification accuracy</span></div>
-                  <div class="metric"><span class="metric__num">~40%</span><span class="metric__label" data-i18n="proj.p3.m2">faster reporting</span></div>
-                </div>
-              </div>
-              <div class="card__tags"><span>SQL</span><span data-i18n="skills.storedproc">Stored Procedures</span><span>Python</span><span>Pandas</span></div>
-              <p class="case__note" data-i18n="proj.workNote">Built at Top Partners S.A. Code and data are proprietary, so no repository.</p>
-            </div>
-          </article>
-
-          <article class="case">
-            <div class="case__visual case__visual--sm">
-              <span class="case__badge">Power BI</span>
-              <svg viewBox="0 0 320 180" role="img" aria-labelledby="viz3Title" preserveAspectRatio="xMidYMid meet">
-                <title id="viz3Title">Abstract cohort heatmap with trend</title>
-                <g class="viz-cells">
-                  <rect x="20"  y="34" width="30" height="22" rx="3" opacity=".9"/>
-                  <rect x="56"  y="34" width="30" height="22" rx="3" opacity=".65"/>
-                  <rect x="92"  y="34" width="30" height="22" rx="3" opacity=".45"/>
-                  <rect x="128" y="34" width="30" height="22" rx="3" opacity=".3"/>
-                  <rect x="164" y="34" width="30" height="22" rx="3" opacity=".2"/>
-                  <rect x="20"  y="62" width="30" height="22" rx="3" opacity=".85"/>
-                  <rect x="56"  y="62" width="30" height="22" rx="3" opacity=".7"/>
-                  <rect x="92"  y="62" width="30" height="22" rx="3" opacity=".55"/>
-                  <rect x="128" y="62" width="30" height="22" rx="3" opacity=".35"/>
-                  <rect x="164" y="62" width="30" height="22" rx="3" opacity=".22"/>
-                  <rect x="20"  y="90" width="30" height="22" rx="3" opacity=".8"/>
-                  <rect x="56"  y="90" width="30" height="22" rx="3" opacity=".6"/>
-                  <rect x="92"  y="90" width="30" height="22" rx="3" opacity=".42"/>
-                  <rect x="128" y="90" width="30" height="22" rx="3" opacity=".28"/>
-                  <rect x="164" y="90" width="30" height="22" rx="3" opacity=".16"/>
-                </g>
-                <polyline class="viz-line" points="24,150 64,142 104,146 144,132 184,126 224,118 268,104"/>
-                <g class="viz-dots">
-                  <circle cx="24"  cy="150" r="3"/><circle cx="104" cy="146" r="3"/>
-                  <circle cx="184" cy="126" r="3"/><circle cx="268" cy="104" r="4"/>
-                </g>
-                <g class="viz-cells">
-                  <rect x="214" y="34" width="82" height="10" rx="5" opacity=".55"/>
-                  <rect x="214" y="52" width="60" height="10" rx="5" opacity=".38"/>
-                  <rect x="214" y="70" width="72" height="10" rx="5" opacity=".26"/>
-                  <rect x="214" y="88" width="44" height="10" rx="5" opacity=".18"/>
-                </g>
-              </svg>
-            </div>
-            <div class="case__body">
-              <p class="case__eyebrow"><span data-i18n="proj.caseLabel">Case study</span> 04</p>
-              <h3 data-i18n="proj.p4.title">HR &amp; People Analytics Dashboards</h3>
-              <dl class="case__rows">
-                <div class="case__row">
-                  <dt data-i18n="proj.lblContext">Context</dt>
-                  <dd data-i18n="proj.p4.context">The People team consolidated turnover, absenteeism and headcount by hand, from the ERP and control spreadsheets.</dd>
-                </div>
-                <div class="case__row">
-                  <dt data-i18n="proj.lblAction">What I did</dt>
-                  <dd data-i18n="proj.p4.action">Modeled the data and integrated ERP and spreadsheets into Power BI: turnover, absenteeism, headcount and staffing evolution, plus cohort analysis and automated payroll reporting.</dd>
-                </div>
-              </dl>
-              <div class="case__impact">
-                <p class="case__impactLabel" data-i18n="proj.lblImpact">Impact</p>
-                <div class="metrics">
-                  <div class="metric"><span class="metric__num">0</span><span class="metric__label" data-i18n="proj.p4.m1">manual consolidation</span></div>
-                  <div class="metric"><span class="metric__num">100+</span><span class="metric__label" data-i18n="proj.p4.m2">users reached</span></div>
-                </div>
-              </div>
-              <div class="card__tags"><span>Power BI</span><span>KPIs</span><span data-i18n="tag.erp">ERP Integration</span><span data-i18n="tag.cohort">Cohort Analysis</span></div>
-              <p class="case__note" data-i18n="proj.workNote">Built at Top Partners S.A. Code and data are proprietary, so no repository.</p>
-            </div>
-          </article>
-        </div>
-
-        <!-- Dashboard portfolios -->
-        <div class="platforms">
-          <p class="platforms__label" data-i18n="proj.platformsLabel">Find more of my work on:</p>
-          <div class="platforms__row">
-            <a class="platform" href="https://github.com/Chrov" target="_blank" rel="noopener">
-              <svg class="platform__icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-              <span class="platform__text"><span class="platform__name">GitHub</span><span class="platform__handle">@Chrov</span></span>
-            </a>
-            <a class="platform" href="https://www.linkedin.com/in/camilo-evs" target="_blank" rel="noopener">
-              <svg class="platform__icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>
-              <span class="platform__text"><span class="platform__name">LinkedIn</span><span class="platform__handle">camilo-evs</span></span>
-            </a>
-            <a class="platform" href="https://public.tableau.com/app/profile/camilo.vergara3198/vizzes" target="_blank" rel="noopener" id="tableauLink">
-              <svg class="platform__icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.332 0v2.091h1.336V0h-1.336zm-5.748 3.39v1.898h1.222V3.39H5.584zm11.516 0v1.898h1.222V3.39h-1.222zM11.332 3.39v4.208h1.336V3.39h-1.336zM3.468 5.612v1.222h1.898V5.612H3.468zm15.166 0v1.222h1.898V5.612h-1.898zM0 11.332v1.336h2.091v-1.336H0zm3.39 5.748h1.898v-1.222H3.39v1.222zm15.332 0h1.898v-1.222h-1.898v1.222zM11.332 16.4v4.209h1.336V16.4h-1.336zm-5.748 4.21v1.898h1.222v-1.898H5.584zm11.516 0v1.898h1.222v-1.898h-1.222zM11.332 21.909V24h1.336v-2.091h-1.336zM5.612 3.468h1.222v1.898H5.612V3.468zm11.554 0h1.222v1.898h-1.222V3.468zM3.39 11.332v1.336h4.208v-1.336H3.39zm13.014 0v1.336h4.208v-1.336h-4.208zM7.598 7.598v8.804h8.804V7.598H7.598zm1.336 1.336h6.132v6.132H8.934V8.934z"/></svg>
-              <span class="platform__text"><span class="platform__name">Tableau Public</span><span class="platform__handle" data-i18n="proj.dashboards">dashboards</span></span>
-            </a>
-          </div>
-        </div>
-
-        <!-- GitHub repos — curated allowlist in script.js (CURATED_REPOS), not "most recently pushed" -->
-        <div class="gh">
-          <h3 class="gh__title" data-i18n="proj.ghTitle">Code &amp; notebooks</h3>
-          <div class="gh__grid" id="ghGrid">
-            <p class="gh__loading" data-i18n="proj.ghLoading">Loading repositories…</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section id="projects" class="section"><div class="container"><h2 class="section__title" data-i18n="proj.title">The evidence behind the decision</h2><p class="section__lead" data-i18n="proj.lead">Three business questions. Reproducible data, transparent validation and downloadable workbooks.</p><article class="evidence-case"><div class="evidence-case__copy"><p class="evidence-domain" data-i18n="copper-observatory.domain">Mining · Official public data</p><h3 data-i18n="copper-observatory.title">Chile’s copper: volume versus value</h3><p data-i18n="copper-observatory.question">What should management monitor when export value grows faster than production?</p><p class="evidence-result" data-i18n="copper-observatory.result">In 2024 production rose 4.9%, nominal export value 16.7% and nominal LME price 7.9%. Export growth is not a production-growth metric.</p><p class="evidence-decision" data-i18n="copper-observatory.decision">Maintain separate physical-volume, price and export-value indicators. Investigate their divergence before revising operating capacity assumptions.</p><p class="evidence-stack">SQL · Python · Excel · Power BI</p><div class="evidence-links"><a class="btn btn--primary" href="case-studies/copper-observatory/index.html" data-i18n="evidence.read">Read case study</a><a href="case-studies/copper-observatory/dashboard.xlsx" download>Excel + PivotTable</a><a href="https://github.com/Chrov/Portfolio/tree/main/case-studies/copper-observatory">GitHub</a></div></div><a class="evidence-image" href="case-studies/copper-observatory/index.html"><img src="case-studies/copper-observatory/evidence.png" alt="Chile’s copper: volume versus value: analytical results" width="1950" height="720" loading="lazy"></a></article><article class="evidence-case"><div class="evidence-case__copy"><p class="evidence-domain" data-i18n="feria-demand.domain">Demand planning · Synthetic simulation</p><h3 data-i18n="feria-demand.title">A forecast a small business can operate</h3><p data-i18n="feria-demand.question">With only date, product and demand, can a transparent forecast improve on repeating last week?</p><p class="evidence-result" data-i18n="feria-demand.result">The weekday mean reduces held-out WMAPE from 44.6% to 35.9%: a 19.4% relative reduction. 69 products enter volume class A, including the item crossing the 80% threshold.</p><p class="evidence-decision" data-i18n="feria-demand.decision">Start with the weekday mean as a planning input. Collect stock availability, lead times and actual transactions before recommending reorder quantities or monetizing savings.</p><p class="evidence-stack">SQL · Python · Excel · Tableau</p><div class="evidence-links"><a class="btn btn--primary" href="case-studies/feria-demand/index.html" data-i18n="evidence.read">Read case study</a><a href="case-studies/feria-demand/dashboard.xlsx" download>Excel + PivotTable</a><a href="https://github.com/Chrov/Portfolio/tree/main/case-studies/feria-demand">GitHub</a></div></div><a class="evidence-image" href="case-studies/feria-demand/index.html"><img src="case-studies/feria-demand/evidence.png" alt="A forecast a small business can operate: analytical results" width="1950" height="720" loading="lazy"></a></article><article class="evidence-case"><div class="evidence-case__copy"><p class="evidence-domain" data-i18n="bank-campaign.domain">Banking · Historical academic dataset</p><h3 data-i18n="bank-campaign.title">When a banking model should not ship</h3><p data-i18n="bank-campaign.question">Can contact capacity be prioritized using information available before a call—and does that ranking survive a later cohort?</p><p class="evidence-result" data-i18n="bank-campaign.result">Held-out AUC is 0.458. At 20% capacity the model captures 26.7% of observed subscribers, but the response rate shifts from 4.8% in training to 30.8% in hold-out. The positive top-capacity lift does not rescue overall ranking or calibration.</p><p class="evidence-decision" data-i18n="bank-campaign.decision">Do not deploy this model. Investigate cohort construction and macroeconomic drift, obtain recent pre-contact data and validate a new policy before an experiment. No campaign ROI or causal uplift is claimed.</p><p class="evidence-stack">SQL · Python · Logistic regression · Excel</p><div class="evidence-links"><a class="btn btn--primary" href="case-studies/bank-campaign/index.html" data-i18n="evidence.read">Read case study</a><a href="case-studies/bank-campaign/dashboard.xlsx" download>Excel + PivotTable</a><a href="https://github.com/Chrov/Portfolio/tree/main/case-studies/bank-campaign">GitHub</a></div></div><a class="evidence-image" href="case-studies/bank-campaign/index.html"><img src="case-studies/bank-campaign/evidence.png" alt="When a banking model should not ship: analytical results" width="1950" height="720" loading="lazy"></a></article></div></section>
 
     <!-- ===== Experience ===== -->
     <section id="experience" class="section section--alt">
@@ -352,15 +109,15 @@
             <div class="timeline__marker"></div>
             <div class="timeline__card">
               <div class="timeline__head">
-                <h3 data-i18n="exp.job2.role">Independent Consultant — Business & Data Modernization</h3>
-                <span class="timeline__period" data-i18n="exp.job2.period">Apr – Jul 2026</span>
+                <h3 data-i18n="exp.job2.role">Independent project — Market demand analytics</h3>
+                <span class="timeline__period" data-i18n="exp.job2.period">Sep 2026</span>
               </div>
-              <p class="timeline__company" data-i18n="exp.job2.company">Feria Business Modernization · Independent Project</p>
+              <p class="timeline__company" data-i18n="exp.job2.company">Market demand simulation · Independent project</p>
               <ul>
-                <li data-i18n="exp.job2.b1">Led an end-to-end operations and data modernization project for an artisanal-products market business, from diagnosis to full implementation.</li>
-                <li data-i18n="exp.job2.b2">Cut supply costs by 15–20% by diversifying suppliers and building an emergency supply chain.</li>
-                <li data-i18n="exp.job2.b3">Contributed to a 10–15% sales increase through standardized pricing and daily data-informed decisions.</li>
-                <li data-i18n="exp.job2.b4">Built a full BI stack (Excel, Power BI, Tableau, SQL) plus a WhatsApp voice-note bot with automated transcription — reducing stockouts to near zero.</li>
+                <li data-i18n="exp.job2.b1">Developed a reproducible simulation inspired by a small market business.</li>
+                <li data-i18n="exp.job2.b2">Structured product demand and compared transparent forecast baselines.</li>
+                <li data-i18n="exp.job2.b3">Separated observed data, assumptions and simulated outcomes in project documentation.</li>
+                <li data-i18n="exp.job2.b4">Prepared SQL analysis and downloadable workbooks for review.</li>
               </ul>
             </div>
           </article>
@@ -434,7 +191,7 @@
         <div class="about__grid">
           <div class="about__text">
             <p data-i18n="about.p1">I'm a Data Analyst based in Chile with 4+ years of experience across the full data lifecycle: designing SQL pipelines, automating verification workflows, detecting anomalies with Python, and building KPI dashboards in Power BI and Tableau used by 70+ companies and 100+ users.</p>
-            <p data-i18n="about.p2">My work has cut compliance reporting time by ~40%, raised automated document-verification accuracy above 90%, and — in an end-to-end business modernization project — helped increase sales by 10–15% while reducing supply costs by 15–20%.</p>
+            <p data-i18n="about.p2">My professional background is in compliance reporting, SQL automation and BI. The public studies above are separate analytical demonstrations; they do not recreate confidential employment records.</p>
             <p class="about__pull" data-i18n="about.p3">What makes me different: I own the data lifecycle end to end. I don't just read the dashboard — I design the pipeline that feeds it, automate the validation that keeps it trustworthy, and translate the result into a decision the business can act on.</p>
           </div>
           <div class="about__facts">
@@ -478,6 +235,7 @@
     </div>
   </footer>
 
+  <script src="case-content.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

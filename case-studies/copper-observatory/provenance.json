@@ -1,0 +1,9 @@
+{
+  "source": "https://www.cochilco.cl/web/50-anios-de-la-mineria-en-cifras/",
+  "sha256": {
+    "exports-source.xlsx": "a609453c58898f156eea1928af95f41c917a6117cb8a5ae1453b77552c4c85e6",
+    "price-source.xlsx": "682c82f50fd6c515c9f9098084905075380646f59fc948eea290c17e7d8217b6",
+    "production-source.xlsx": "b2f7e9a1351f9f95871fa2d4e33b2e250acd2e5d890f54dd4b64895f8c3ce5b6"
+  },
+  "built_utc": "2026-09-08T00:42:50.780319+00:00"
+}

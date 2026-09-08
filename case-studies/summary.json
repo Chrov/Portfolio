@@ -1,0 +1,42 @@
+{
+  "copper-observatory": {
+    "years": 49,
+    "latest_year": 2024,
+    "production_kt": 5505.9,
+    "exports_usd_m": 49708.3692202,
+    "price_us_cent_lb": 414.891,
+    "production_yoy_pct": 4.866295901264661,
+    "exports_yoy_pct": 16.67601094326723,
+    "price_yoy_pct": 7.891404126955237,
+    "change_correlation": 0.9227732849217617
+  },
+  "feria-demand": {
+    "rows": 140288,
+    "products": 128,
+    "days": 1096,
+    "selected_model": "weekday_mean_8w",
+    "holdout_wmape": 0.3593643664080577,
+    "baseline_wmape": 0.44576017422077036,
+    "relative_error_reduction_pct": 19.38167938931298,
+    "class_a_products": 69,
+    "seed": 20260907
+  },
+  "bank-campaign": {
+    "records": 41188,
+    "train_records": 24712,
+    "validation_records": 8238,
+    "holdout_records": 8238,
+    "train_rate": 0.04807381029459372,
+    "validation_rate": 0.11070648215586307,
+    "holdout_rate": 0.3083272638990046,
+    "validation_ap": 0.10035108027814002,
+    "holdout_ap": 0.3333395392683541,
+    "holdout_auc": 0.45798131959549276,
+    "brier": 0.30832105539115817,
+    "contacts_top20": 1648,
+    "subscriptions_top20": 677,
+    "precision_top20": 0.4108009708737864,
+    "lift_top20": 1.332353700022934,
+    "recall_top20": 0.26653543307086613
+  }
+}

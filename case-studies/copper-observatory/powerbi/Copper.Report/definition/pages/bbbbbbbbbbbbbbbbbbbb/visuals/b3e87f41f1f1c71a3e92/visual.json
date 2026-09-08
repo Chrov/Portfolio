@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "b3e87f41f1f1c71a3e92",
+  "position": {
+    "x": 25,
+    "y": 355,
+    "width": 590,
+    "height": 330,
+    "z": 1000,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Annual"
+                    }
+                  },
+                  "Property": "year"
+                }
+              },
+              "queryRef": "Annual.year",
+              "nativeQueryRef": "Year"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Annual"
+                    }
+                  },
+                  "Property": "Production kt"
+                }
+              },
+              "queryRef": "Annual.Production kt",
+              "nativeQueryRef": "Production (thousand tonnes)"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

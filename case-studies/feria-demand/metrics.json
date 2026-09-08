@@ -1,0 +1,11 @@
+{
+  "rows": 140288,
+  "products": 128,
+  "days": 1096,
+  "selected_model": "weekday_mean_8w",
+  "holdout_wmape": 0.3593643664080577,
+  "baseline_wmape": 0.44576017422077036,
+  "relative_error_reduction_pct": 19.38167938931298,
+  "class_a_products": 69,
+  "seed": 20260907
+}

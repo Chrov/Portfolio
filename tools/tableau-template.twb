@@ -1,0 +1,337 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20262.26.0819.2015                               -->
+<workbook _.fcp.WorkbookFingerprinting.true...author-id='8bc5424b9b47d1c26d1d55c64f3b12825da28f3152daac31fbac36dfb7fba9e3' _.fcp.WorkbookFingerprinting.true...creator-author-id='8bc5424b9b47d1c26d1d55c64f3b12825da28f3152daac31fbac36dfb7fba9e3' _.fcp.WorkbookFingerprinting.true...creator-license-type='public' _.fcp.WorkbookFingerprinting.true...creator-machine-id='8bc5424b9b47d1c26d1d55c64f3b12825da28f3152daac31fbac36dfb7fba9e3' _.fcp.WorkbookFingerprinting.true...license-type='public' _.fcp.WorkbookFingerprinting.true...machine-id='8bc5424b9b47d1c26d1d55c64f3b12825da28f3152daac31fbac36dfb7fba9e3' original-version='18.1' source-build='2026.2.2 (20262.26.0819.2015)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AnimationOnByDefault />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelExtractV2 />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+    <_.fcp.WorkbookFingerprinting.true...WorkbookFingerprinting />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='service_level_curve' inline='true' name='federated.07egqm61xeh9ye12r8qve00fh6jq' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='service_level_curve' name='textscan.0mpguw00ogruz814nks7p0ixvhao'>
+            <connection class='textscan' directory='Data' filename='service_level_curve.csv' password='' server='' />
+          </named-connection>
+          <named-connection caption='demand_daily' name='textscan.1nxexet1268nf11g76tk80xcuf6u'>
+            <connection class='textscan' directory='Data' filename='demand_daily.csv' password='' server='' />
+          </named-connection>
+          <named-connection caption='forecast_vs_actual' name='textscan.09lzyeg1h3raj71e8ygey1n34lum'>
+            <connection class='textscan' directory='Data' filename='forecast_vs_actual.csv' password='' server='' />
+          </named-connection>
+          <named-connection caption='forecast_wmape_summary' name='textscan.0rbnh1w1hug2q21cvi2vz1q0qu8w'>
+            <connection class='textscan' directory='Data' filename='forecast_wmape_summary.csv' password='' server='' />
+          </named-connection>
+          <named-connection caption='abc_items' name='textscan.07do1hi0j9eoty1bim74r0mmzhz6'>
+            <connection class='textscan' directory='Data' filename='abc_items.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.0mpguw00ogruz814nks7p0ixvhao' name='service_level_curve.csv' table='[service_level_curve#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='real' name='service_level' ordinal='0' />
+            <column datatype='real' name='safety_stock' ordinal='1' />
+            <column datatype='real' name='holding_cost' ordinal='2' />
+            <column datatype='real' name='expected_lost_sales' ordinal='3' />
+            <column datatype='real' name='total_cost' ordinal='4' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[service_level_curve.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>service_level</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[service_level]</local-name>
+            <parent-name>[service_level_curve.csv]</parent-name>
+            <remote-alias>service_level</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[service_level_curve.csv_2B8E2F08CFC0462CB8E5D2240A4A161A]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>safety_stock</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[safety_stock]</local-name>
+            <parent-name>[service_level_curve.csv]</parent-name>
+            <remote-alias>safety_stock</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[service_level_curve.csv_2B8E2F08CFC0462CB8E5D2240A4A161A]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>holding_cost</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[holding_cost]</local-name>
+            <parent-name>[service_level_curve.csv]</parent-name>
+            <remote-alias>holding_cost</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[service_level_curve.csv_2B8E2F08CFC0462CB8E5D2240A4A161A]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>expected_lost_sales</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[expected_lost_sales]</local-name>
+            <parent-name>[service_level_curve.csv]</parent-name>
+            <remote-alias>expected_lost_sales</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[service_level_curve.csv_2B8E2F08CFC0462CB8E5D2240A4A161A]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>total_cost</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[total_cost]</local-name>
+            <parent-name>[service_level_curve.csv]</parent-name>
+            <remote-alias>total_cost</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[service_level_curve.csv_2B8E2F08CFC0462CB8E5D2240A4A161A]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='service_level_curve.csv' datatype='table' name='[__tableau_internal_object_id__].[service_level_curve.csv_2B8E2F08CFC0462CB8E5D2240A4A161A]' role='measure' type='quantitative' />
+      <column caption='Expected Lost Sales' datatype='real' name='[expected_lost_sales]' role='measure' type='quantitative' />
+      <column caption='Holding Cost' datatype='real' name='[holding_cost]' role='measure' type='quantitative' />
+      <column caption='Safety Stock' datatype='real' name='[safety_stock]' role='measure' type='quantitative' />
+      <column caption='Service Level' datatype='real' name='[service_level]' role='measure' type='quantitative' />
+      <column caption='Total Cost' datatype='real' name='[total_cost]' role='measure' type='quantitative' />
+      <extract count='-1' enabled='true' object-id='' units='records' user-specific='false'>
+        <connection access_mode='readonly' author-locale='en_GB' class='hyper' dbname='Data/template.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='08/29/2026 01:11:00 AM' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>service_level</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[service_level]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>service_level</remote-alias>
+              <ordinal>0</ordinal>
+              <family>service_level_curve.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[service_level_curve.csv_2B8E2F08CFC0462CB8E5D2240A4A161A]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>safety_stock</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[safety_stock]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>safety_stock</remote-alias>
+              <ordinal>1</ordinal>
+              <family>service_level_curve.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[service_level_curve.csv_2B8E2F08CFC0462CB8E5D2240A4A161A]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>holding_cost</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[holding_cost]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>holding_cost</remote-alias>
+              <ordinal>2</ordinal>
+              <family>service_level_curve.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[service_level_curve.csv_2B8E2F08CFC0462CB8E5D2240A4A161A]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>expected_lost_sales</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[expected_lost_sales]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>expected_lost_sales</remote-alias>
+              <ordinal>3</ordinal>
+              <family>service_level_curve.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[service_level_curve.csv_2B8E2F08CFC0462CB8E5D2240A4A161A]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>total_cost</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[total_cost]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>total_cost</remote-alias>
+              <ordinal>4</ordinal>
+              <family>service_level_curve.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[service_level_curve.csv_2B8E2F08CFC0462CB8E5D2240A4A161A]</object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Chile&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='service_level_curve.csv' id='service_level_curve.csv_2B8E2F08CFC0462CB8E5D2240A4A161A'>
+            <properties context=''>
+              <relation connection='textscan.0mpguw00ogruz814nks7p0ixvhao' name='service_level_curve.csv' table='[service_level_curve#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='real' name='service_level' ordinal='0' />
+                  <column datatype='real' name='safety_stock' ordinal='1' />
+                  <column datatype='real' name='holding_cost' ordinal='2' />
+                  <column datatype='real' name='expected_lost_sales' ordinal='3' />
+                  <column datatype='real' name='total_cost' ordinal='4' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='service_level_curve' name='federated.07egqm61xeh9ye12r8qve00fh6jq' />
+          </datasources>
+          <datasource-dependencies datasource='federated.07egqm61xeh9ye12r8qve00fh6jq'>
+            <column-instance column='[total_cost]' derivation='Sum' name='[sum:total_cost:qk]' pivot='key' type='quantitative' />
+            <column caption='Total Cost' datatype='real' name='[total_cost]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.07egqm61xeh9ye12r8qve00fh6jq].[sum:total_cost:qk]</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{DD70D38B-BB23-4474-8892-A38CD4215B12}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{99A22E76-3DAF-4720-B9EE-A3F5AB777EE2}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Sheet 1' width='123'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>

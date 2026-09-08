@@ -470,5 +470,6 @@ const spyObserver = new IntersectionObserver(
 spyLinks.forEach((_, section) => spyObserver.observe(section));
 
 /* ===== Init ===== */
+for (const lang of ["en", "es"]) Object.assign(I18N[lang], window.PORTFOLIO_I18N?.[lang] || {});
 setLang(localStorage.getItem("lang") || "en");
-loadRepos();
+if (document.getElementById("repoGrid")) loadRepos();

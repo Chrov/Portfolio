@@ -1,0 +1,18 @@
+{
+  "records": 41188,
+  "train_records": 24712,
+  "validation_records": 8238,
+  "holdout_records": 8238,
+  "train_rate": 0.04807381029459372,
+  "validation_rate": 0.11070648215586307,
+  "holdout_rate": 0.3083272638990046,
+  "validation_ap": 0.10035108027814002,
+  "holdout_ap": 0.3333395392683541,
+  "holdout_auc": 0.45798131959549276,
+  "brier": 0.30832105539115817,
+  "contacts_top20": 1648,
+  "subscriptions_top20": 677,
+  "precision_top20": 0.4108009708737864,
+  "lift_top20": 1.332353700022934,
+  "recall_top20": 0.26653543307086613
+}

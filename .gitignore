@@ -1,1 +1,8 @@
 .claude/
+tools/node_modules/
+outputs/
+__pycache__/
+*.pyc
+hyperd.log
+**/.pbi/
+case-studies/*/excel-data.json

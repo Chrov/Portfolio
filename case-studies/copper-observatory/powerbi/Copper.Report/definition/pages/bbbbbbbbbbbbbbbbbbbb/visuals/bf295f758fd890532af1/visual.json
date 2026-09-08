@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "bf295f758fd890532af1",
+  "position": {
+    "x": 25,
+    "y": 20,
+    "width": 1230,
+    "height": 300,
+    "z": 0,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Annual"
+                    }
+                  },
+                  "Property": "year"
+                }
+              },
+              "queryRef": "Annual.year",
+              "nativeQueryRef": "Year"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Annual"
+                    }
+                  },
+                  "Property": "Exports USD m"
+                }
+              },
+              "queryRef": "Annual.Exports USD m",
+              "nativeQueryRef": "Nominal exports (USD million)"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
