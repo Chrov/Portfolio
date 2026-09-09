@@ -10,19 +10,19 @@ const CV_FILES = {
 /* Curated, in display order. Sorting by "recently pushed" surfaced a config
    repo, a congratulations page and a 2024 parking system — noise on a data
    analyst portfolio. */
-const CURATED_REPOS = ["favorita-demand-forecasting", "market-stall-analytics"];
+const CURATED_REPOS = ["grocery-replenishment-policy", "market-stall-analytics"];
 
 /* Curated blurbs, preferred over the repo's GitHub description: favorita has
    none set (would render as an em dash) and market-stall's undersells it.
    Drop an entry here once the description on GitHub says it better. */
 const REPO_BLURBS = {
-  "favorita-demand-forecasting": {
-    en: "dbt star schema (11 models, 21 tests) feeding a LightGBM/SARIMAX/Prophet forecast benchmark, turned into safety stock and reorder points.",
-    es: "Star schema en dbt (11 modelos, 21 tests) que alimenta un benchmark de forecasting LightGBM/SARIMAX/Prophet, convertido en stock de seguridad y puntos de reorden.",
+  "grocery-replenishment-policy": {
+    en: "SQL/dbt and recursive LightGBM validation supporting a shadow replenishment pilot on synthetic data.",
+    es: "SQL/dbt y LightGBM recursivo para evaluar un piloto de reposición en sombra con datos sintéticos.",
   },
   "market-stall-analytics": {
-    en: "End-to-end analytics for a real market-stall business across three layers — Excel, Python and SQL — with ABC/Pareto, EOQ and demand forecasting.",
-    es: "Analítica integral de un negocio de feria real en tres capas — Excel, Python y SQL — con ABC/Pareto, EOQ y pronóstico de demanda.",
+    en: "Synthetic market-stall analysis with a reviewed Excel workbook, waste-cost priorities and Power BI.",
+    es: "Análisis de feria simulado con Excel revisado, prioridades de merma al costo y Power BI.",
   },
 };
 
@@ -50,7 +50,7 @@ const I18N = {
 
     "proj.kicker": "01 — Projects",
     "proj.title": "Featured work",
-    "proj.lead": "Four case studies, each with the same structure: the problem, what I built, and the number it moved. The first two are open source — code and notebooks included.",
+    "proj.lead": "Explore three complete cases: the decision, reproducible analysis, executive report and native BI files.",
     "proj.caseLabel": "Case study",
     "proj.lblContext": "Context",
     "proj.lblAction": "What I did",
@@ -108,9 +108,9 @@ const I18N = {
     "exp.job1.role": "Analyst Programmer",
     "exp.job1.period": "Dec 2021 – Jan 2026",
     "exp.job1.b1": "Designed and automated SQL data pipelines (stored procedures, triggers) that significantly cut report processing time.",
-    "exp.job1.b2": "Built Power BI and Tableau dashboards serving 70+ contractor companies and 100+ users, including reports processing 10,000+ columns.",
-    "exp.job1.b3": "Automated SQL-based document-verification workflows, raising accuracy above 90% and helping the platform scale.",
-    "exp.job1.b4": "Accelerated compliance reporting (Law 20.123) by ~40% with SQL automation and Python anomaly detection (Pandas, Seaborn).",
+    "exp.job1.b2": "Developed Power BI and Tableau dashboards for contractor reporting and operational monitoring.",
+    "exp.job1.b3": "Automated document-verification workflows using SQL and structured data checks.",
+    "exp.job1.b4": "Worked on compliance reporting and anomaly analysis with SQL and Python.",
     "exp.job1.b5": "Developed HR & People Analytics dashboards: turnover, absenteeism, headcount, payroll automation and cohort analyses.",
 
     "skills.kicker": "03 — Skills",
@@ -131,7 +131,7 @@ const I18N = {
 
     "about.kicker": "04 — About",
     "about.title": "From raw data to business impact",
-    "about.p1": "I'm a Data Analyst based in Chile with 4+ years of experience across the full data lifecycle: designing SQL pipelines, automating verification workflows, detecting anomalies with Python, and building KPI dashboards in Power BI and Tableau used by 70+ companies and 100+ users.",
+    "about.p1": "I am a Data Analyst based in Chile with experience in SQL automation, compliance reporting, Python analysis and KPI dashboards in Power BI and Tableau.",
     "about.p2": "My work has cut compliance reporting time by ~40%, raised automated document-verification accuracy above 90%, and — in an end-to-end business modernization project — helped increase sales by 10–15% while reducing supply costs by 15–20%.",
     "about.p3": "What makes me different: I own the data lifecycle end to end. I don't just read the dashboard — I design the pipeline that feeds it, automate the validation that keeps it trustworthy, and translate the result into a decision the business can act on.",
     "about.location": "Location",
@@ -173,7 +173,7 @@ const I18N = {
 
     "proj.kicker": "01 — Proyectos",
     "proj.title": "Trabajo destacado",
-    "proj.lead": "Cuatro casos de estudio, todos con la misma estructura: el problema, qué construí y el número que moví. Los dos primeros son de código abierto — incluyen código y notebooks.",
+    "proj.lead": "Explora tres casos completos: decisión, análisis reproducible, informe ejecutivo y archivos nativos de BI.",
     "proj.caseLabel": "Caso",
     "proj.lblContext": "Contexto",
     "proj.lblAction": "Qué hice",
@@ -231,9 +231,9 @@ const I18N = {
     "exp.job1.role": "Analista Programador",
     "exp.job1.period": "Dic 2021 – Ene 2026",
     "exp.job1.b1": "Diseñé y automaticé pipelines de datos en SQL (procedimientos almacenados, triggers) que redujeron significativamente el tiempo de procesamiento de reportes.",
-    "exp.job1.b2": "Construí dashboards en Power BI y Tableau para más de 70 empresas mandantes y 100 usuarios, incluyendo reportes con más de 10.000 columnas.",
-    "exp.job1.b3": "Automaticé flujos de verificación de documentos en SQL, elevando la precisión sobre el 90% e impulsando el escalamiento de la plataforma.",
-    "exp.job1.b4": "Aceleré los reportes de cumplimiento (Ley 20.123) en ~40% con automatización SQL y detección de anomalías en Python (Pandas, Seaborn).",
+    "exp.job1.b2": "Desarrollé dashboards en Power BI y Tableau para reportes de contratistas y seguimiento operacional.",
+    "exp.job1.b3": "Automaticé flujos de verificación documental con SQL y controles de datos estructurados.",
+    "exp.job1.b4": "Trabajé en reportes de cumplimiento y análisis de anomalías con SQL y Python.",
     "exp.job1.b5": "Desarrollé dashboards de RR.HH. y People Analytics: rotación, ausentismo, headcount, automatización de nómina y análisis de cohortes.",
 
     "skills.kicker": "03 — Habilidades",
@@ -254,7 +254,7 @@ const I18N = {
 
     "about.kicker": "04 — Sobre mí",
     "about.title": "De datos crudos a impacto en el negocio",
-    "about.p1": "Soy Analista de Datos en Chile con más de 4 años de experiencia en todo el ciclo de vida del dato: diseño de pipelines SQL, automatización de flujos de verificación, detección de anomalías con Python y dashboards de KPIs en Power BI y Tableau usados por más de 70 empresas y 100 usuarios.",
+    "about.p1": "Soy Analista de Datos en Chile con experiencia en automatización SQL, reportes de cumplimiento, análisis Python y dashboards de KPIs en Power BI y Tableau.",
     "about.p2": "Mi trabajo ha reducido el tiempo de reportes de cumplimiento en ~40%, elevado la precisión de verificación automática de documentos sobre el 90%, y — en un proyecto integral de modernización de negocio — ayudó a aumentar las ventas un 10–15% reduciendo costos de abastecimiento un 15–20%.",
     "about.p3": "Lo que me diferencia: manejo el ciclo de vida del dato de punta a punta. No solo leo el dashboard — diseño el pipeline que lo alimenta, automatizo la validación que lo mantiene confiable y traduzco el resultado en una decisión que el negocio puede ejecutar.",
     "about.location": "Ubicación",
