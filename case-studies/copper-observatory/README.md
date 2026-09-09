@@ -47,4 +47,7 @@ The source workbooks and UCI archive are included; the generator has a fixed see
 
 ## Power BI
 
-[PBIP project](powerbi/Copper.pbip), two language pages, six bound visuals, DAX measures and a portable Power Query snapshot. The official report-authoring validator reports zero errors/warnings. Opened, refreshed and visually checked in Power BI Desktop on 2026-09-08. This is not a published Power BI Service report. Regenerate the snapshot with `python tools/build_powerbi.py` after updating the sources.
+[Complete Power BI ZIP](PowerBI.zip), two language pages, six bound visuals, DAX measures and a portable Power Query snapshot. The official report-authoring validator reports zero errors/warnings. Opened, refreshed and visually checked in Power BI Desktop on 2026-09-08. This is not a published Power BI Service report. Regenerate the snapshot with `python tools/build_powerbi.py` after updating the sources.
+
+
+Power BI: download the complete ZIP, extract all files, open the .pbip and Refresh. Keep both model and report folders. See START_HERE.txt inside the package. [Preview ES](powerbi-es.png) · [Preview EN](powerbi-en.png).

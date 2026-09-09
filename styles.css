@@ -565,4 +565,4 @@ a { color: var(--accent); text-decoration: none; }
 #projects .reveal { opacity: 1; transform: none; transition: none; }
 .evidence-image { align-self: center; }
 
-.supporting-cases{margin-top:40px}.supporting-cases>summary{cursor:pointer;padding:18px 0;font-weight:600;font-size:1.1rem}.supporting-cases>summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.supporting-cases{margin-top:40px}.supporting-cases>h3{padding:18px 0;font-weight:600;font-size:1.1rem}
