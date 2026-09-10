@@ -127,7 +127,6 @@ const I18N = {
     "cert.c1t": "Systems Analyst",
     "cert.c4t": "Full Stack Web Developer (Bootcamp)",
     "cert.c5t": "JavaScript Certificate",
-    "cert.c6t": "English B2 (Certified)",
 
     "about.kicker": "04 — About",
     "about.title": "From raw data to business impact",
@@ -136,7 +135,7 @@ const I18N = {
     "about.p3": "What makes me different: I own the data lifecycle end to end. I don't just read the dashboard — I design the pipeline that feeds it, automate the validation that keeps it trustworthy, and translate the result into a decision the business can act on.",
     "about.location": "Location",
     "about.langs": "Languages",
-    "about.langsValue": "Spanish (native) · English (B2, certified)",
+    "about.langsValue": "Spanish (native) · English (B2, self-assessed)",
     "about.focus": "Focus",
     "about.focusValue": "Data Analytics · BI · Automation",
     "about.education": "Education",
@@ -250,7 +249,6 @@ const I18N = {
     "cert.c1t": "Analista de Sistemas",
     "cert.c4t": "Full Stack Web Developer (Bootcamp)",
     "cert.c5t": "Certificado JavaScript",
-    "cert.c6t": "Inglés B2 (Certificado)",
 
     "about.kicker": "04 — Sobre mí",
     "about.title": "De datos crudos a impacto en el negocio",
@@ -259,7 +257,7 @@ const I18N = {
     "about.p3": "Lo que me diferencia: manejo el ciclo de vida del dato de punta a punta. No solo leo el dashboard — diseño el pipeline que lo alimenta, automatizo la validación que lo mantiene confiable y traduzco el resultado en una decisión que el negocio puede ejecutar.",
     "about.location": "Ubicación",
     "about.langs": "Idiomas",
-    "about.langsValue": "Español (nativo) · Inglés (B2, certificado)",
+    "about.langsValue": "Español (nativo) · Inglés (B2, nivel actual autoevaluado)",
     "about.focus": "Enfoque",
     "about.focusValue": "Análisis de Datos · BI · Automatización",
     "about.education": "Educación",
