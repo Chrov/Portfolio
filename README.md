@@ -25,4 +25,9 @@ Power BI: descarga el ZIP de cada caso, extrae todos los archivos, abre el .pbip
 
 The website is static: `python -m http.server 8765`. Each reviewed project links its own reproducibility guide. The three original studies use `tools/requirements-analysis.txt` and `tools/build_analysis.py`. Workbook formatting uses the documented artifact runtime plus native Excel; ready-to-use workbooks are provided. Legacy publishing scripts recreate older layouts, so do not run them to update the current website.
 
-All six cases are published in GitHub. The Power BI packages include their models and embedded snapshots. The market-demand TWBX is downloadable; consult its case page for current Tableau Public publication status.
+All six cases are published in GitHub. The Power BI packages include their models and embedded snapshots. Both Tableau studies are published and linked from their case pages; the complete TWBX files remain downloadable.
+
+
+[Market demand / Demanda de feria · Tableau Public](https://public.tableau.com/app/profile/camilo.vergara3198/viz/dashboard_17889881761000/DemandasimuladaSyntheticdemand)
+
+Published dashboard: synthetic demand, forecast validation, volume priority and product counts. / Dashboard publicado: demanda simulada, validación, prioridad por volumen y cantidad de productos.
