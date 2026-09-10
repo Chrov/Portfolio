@@ -11,3 +11,5 @@ English and Spanish. Free resources only. User authorizes public GitHub publicat
 
 ## Evidence
 SQL, Python, Excel and Power BI capabilities are self-reported by the user. Existing projects are available locally. The user has no underlying employment or feria records available. Reconstructed data must be explicitly synthetic; estimated business effects must not be described as achieved client results.
+
+English proficiency is B2, self-assessed/current level, not certified. The user explicitly requested removal of the UVM English certificate from LinkedIn. Do not reintroduce a B2 certification claim.
