@@ -1,33 +1,43 @@
-# Camilo Vergara · Data Analyst
+# Camilo Vergara Salas · Data Analyst & Business Intelligence
 
-[Explore the bilingual portfolio / Explorar portafolio bilingüe](https://chrov.github.io/Portfolio/)
+**[Explore the bilingual portfolio / Explorar portafolio bilingüe →](https://chrov.github.io/Portfolio/)**
 
-SQL, Python, Excel and BI for practical operational decisions. Professional background in B2B SaaS and compliance reporting; independent projects demonstrate reproducible analysis and transparent validation.
+Data Analyst and Business Intelligence specialist with 4+ years of experience turning complex operational, clinical, and commercial datasets into clear dashboards, automated workflows, and evidence-backed decisions.
 
-| Case / Caso | Evidence / Evidencia | BI |
+- **Experience**: Digital Health & Clinical Operations Analytics at **Airmed** · B2B SaaS Compliance & People Analytics at **Top Partners S.A. (SubContrataLey · 70+ client companies)** · Independent BI & Retail Operations Consulting.
+- **Higher Education**: **Associate Degree in Data Analysis (Analista de Datos)** *(graduating 2027)* & **B.Eng. in Data Science Engineering (Ingeniería en Ciencia de Datos)** *(graduating 2028)* at Instituto Profesional AIEP.
+- **Core Stack**: SQL (PostgreSQL, BigQuery, dbt, Star Schema), Python (Pandas, scikit-learn, LightGBM), Power BI (DAX, Power Query, `.pbip`), Tableau, and Advanced Excel.
+
+---
+
+## Featured Case Studies / Casos de Estudio
+
+| Case / Caso | Evidence & Scope / Evidencia y Alcance | BI & Artifacts / Entregables |
 |---|---|---|
-| [Retail waste / Merma](case-studies/market-stall-analytics/) | 3,825 synthetic batches; monetary waste and cohort reconciliation | Excel; complete Power BI ZIP and preview |
-| [Replenishment / Reposición](case-studies/grocery-replenishment-policy/) | 360 synthetic series; recursive LightGBM; dbt quality tests | Published Tableau Public; TWBX download |
-| [Airline reliability / Confiabilidad aérea](case-studies/airline-reliability/) | 577,262 official BTS flights, June 2023 | Complete Power BI ZIP and preview |
-| [Chilean copper / Cobre](case-studies/copper-observatory/) | 49 annual COCHILCO observations | Excel + PivotTable; complete Power BI ZIP and preview |
-| [Market demand / Demanda](case-studies/feria-demand/) | 128 synthetic products; forecast baselines | Excel + PivotTable; Tableau TWBX |
-| [Bank campaign / Campaña bancaria](case-studies/bank-campaign/) | UCI historical data; chronological model evaluation | Excel + PivotTable |
+| **[Retail Waste & Replenishment / Control de Merma](case-studies/market-stall-analytics/)** | 3,825 batches reconciled in CLP; cohort closure cutoff validation | Excel (`.xlsx`), Power BI (`.pbip` ZIP & browser preview), PDF report |
+| **[Replenishment Forecast / Pronóstico de Reposición](case-studies/grocery-replenishment-policy/)** | 213,480 rows across 360 SKU-store series; dbt star schema (21 QA tests) + recursive LightGBM | [Tableau Public](https://public.tableau.com/app/profile/camilo.vergara3198/viz/Replenishment_17889686809270/SyntheticreplenishmentReposicionsimulada), `.twbx` download, PDF report |
+| **[Air Route Reliability / Confiabilidad Aérea](case-studies/airline-reliability/)** | 577,262 official US BTS flights across 5,808 directional routes (June 2023); denominator separation & Wilson intervals | Power BI (`.pbip` ZIP & browser preview), PDF report |
+| **[Chilean Copper Observatory / Cobre Chileno](case-studies/copper-observatory/)** | 49 annual COCHILCO observations (1976–2024); physical output vs. nominal export value reconciliation | Excel + PivotTable, Power BI (`.pbip` ZIP & preview), SQL & data pack |
+| **[Operational Demand Forecast / Pronóstico Operativo](case-studies/feria-demand/)** | 140,288 daily records across 128 products; 4-origin walk-forward backtesting & ABC volume priority | [Tableau Public](https://public.tableau.com/app/profile/camilo.vergara3198/viz/dashboard_17889881761000/DemandasimuladaSyntheticdemand), `.twbx`, Excel + PivotTable |
+| **[Banking Campaign Audit / Auditoría de Modelo Bancario](case-studies/bank-campaign/)** | 41,188 chronological records (UCI); 60/20/20 temporal split without call-duration leakage & drift evaluation | Excel + PivotTable, SQL & Python evaluation pack |
 
-## Open dashboards / Abrir dashboards
+---
 
-[Replenishment on Tableau Public](https://public.tableau.com/app/profile/camilo.vergara3198/viz/Replenishment_17889686809270/SyntheticreplenishmentReposicionsimulada)
+## Resumes / Currículum Vitae (PDF)
 
-Power BI: use the ZIP on each case page. Extract every file, open the .pbip in Power BI Desktop and select Refresh. The .Report and .SemanticModel folders must stay together. Browser previews are static captures of the desktop report; interactive exploration requires Desktop. No Power BI Service publication is claimed.
+- **Español**: [`assets/Camilo_Vergara_CV_ES.pdf`](assets/Camilo_Vergara_CV_ES.pdf)
+- **English**: [`assets/Camilo_Vergara_Resume_EN.pdf`](assets/Camilo_Vergara_Resume_EN.pdf)
 
-Power BI: descarga el ZIP de cada caso, extrae todos los archivos, abre el .pbip y pulsa Actualizar. Las vistas previas se pueden consultar sin instalar Power BI. Los casos distinguen fuentes oficiales de simulaciones y no presentan mejoras predictivas como ahorros realizados.
+---
 
-## Reproduce / Reproducir
+## Local Preview / Ejecución Local
 
-The website is static: `python -m http.server 8765`. Each reviewed project links its own reproducibility guide. The three original studies use `tools/requirements-analysis.txt` and `tools/build_analysis.py`. Workbook formatting uses the documented artifact runtime plus native Excel; ready-to-use workbooks are provided. Legacy publishing scripts recreate older layouts, so do not run them to update the current website.
+The portfolio works both as a zero-build static site (GitHub Pages compatible) and with the included local server:
 
-All six cases are published in GitHub. The Power BI packages include their models and embedded snapshots. Both Tableau studies are published and linked from their case pages; the complete TWBX files remain downloadable.
+```bash
+# Option 1: Node.js static server (port 3000)
+npm start
 
-
-[Market demand / Demanda de feria · Tableau Public](https://public.tableau.com/app/profile/camilo.vergara3198/viz/dashboard_17889881761000/DemandasimuladaSyntheticdemand)
-
-Published dashboard: synthetic demand, forecast validation, volume priority and product counts. / Dashboard publicado: demanda simulada, validación, prioridad por volumen y cantidad de productos.
+# Option 2: Python static HTTP server
+python3 -m http.server 8765
+```

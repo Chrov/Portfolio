@@ -1,1 +1,202 @@
-html[lang=en] [lang=es],html[lang=es] [lang=en]{display:none}main{max-width:1050px;margin:auto;padding:40px 24px}section{margin:40px 0}p{max-width:75ch}h1{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);line-height:1.15;margin:40px 0 24px;text-wrap:balance}h2{font-size:1.3rem;margin-bottom:14px}figure{margin:36px 0}figure img{width:100%;height:auto;background:white}figcaption{font-size:.9rem;margin-top:10px}.downloads{display:flex;gap:18px;flex-wrap:wrap;align-items:center}button{font:inherit;color:var(--text);padding:8px 14px;background:var(--surface);border:1px solid var(--border);cursor:pointer}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:12px 8px;border-bottom:1px solid var(--border)}td:last-child{font-weight:600}a{text-underline-offset:.2em}button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}@media(max-width:520px){main{padding:24px 18px}td,th{font-size:.86rem}.downloads{gap:14px}}
+/* ==========================================================================
+   Reviewed Case Study Monograph Stylesheet (Shared across all 6 studies)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+html[lang="en"] [lang="es"],
+html[lang="es"] [lang="en"] {
+  display: none !important;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+main {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 40px 28px 80px;
+}
+
+nav.downloads {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 20px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+
+nav.downloads a:first-child {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+nav.downloads a:first-child:hover {
+  color: var(--accent);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  margin: 16px 0 20px;
+  text-wrap: balance;
+}
+
+.case-decision {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 24px;
+  max-width: 82ch;
+}
+
+section {
+  margin: 36px 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+p {
+  max-width: 75ch;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+
+figure {
+  margin: 32px 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+figure img,
+main > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+main > img {
+  padding: 14px;
+  margin: 28px 0;
+}
+
+figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+
+.downloads {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.downloads a:not(.btn) {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.downloads a:not(.btn):hover {
+  border-color: var(--accent);
+}
+
+button {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+  padding: 7px 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin: 24px 0;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+th {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  background: var(--bg-alt);
+}
+
+td:last-child {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text);
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 24px 18px 60px;
+  }
+  th,
+  td {
+    padding: 10px 12px;
+    font-size: 0.84rem;
+  }
+}

@@ -1,42 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Camilo Vergara Salas — Data Analyst | Business Intelligence</title>
   <meta name="description" content="Data Analyst & Business Intelligence specialist. SQL, Python, Power BI, Tableau. Turning raw data into decisions." />
+  <meta property="og:title" content="Camilo Vergara Salas — Data Analyst | Business Intelligence" />
+  <meta property="og:description" content="Data Analyst & Business Intelligence specialist. SQL, Python, Power BI, Tableau. Turning raw data into decisions." />
+  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232b5440'/><text x='50' y='66' font-family='sans-serif' font-weight='700' font-size='44' text-anchor='middle' fill='%23fbfaf7'>CV</text></svg>" />
 </head>
 <body>
 
   <!-- Scroll progress -->
   <div class="progress" id="progress"></div>
 
-  <!-- ===== Navbar ===== -->
+  <!-- ===== Navigation ===== -->
   <header class="nav" id="top">
     <div class="container nav__inner">
-      <a href="#top" class="nav__logo">CV<span class="accent">.</span></a>
-      <nav class="nav__links" id="navLinks">
-        <a href="#projects" data-i18n="nav.projects">Projects</a>
-        <a href="#experience" data-i18n="nav.experience">Experience</a>
-        <a href="#skills" data-i18n="nav.skills">Skills</a>
-        <a href="#about" data-i18n="nav.about">About</a>
-        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <a href="#top" class="nav__logo">Camilo Vergara<span class="accent">.</span></a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Primary navigation">
+        <a href="#projects" data-i18n="nav.projects">Proyectos</a>
+        <a href="#experience" data-i18n="nav.experience">Experiencia y Formación</a>
+        <a href="#skills" data-i18n="nav.skills">Habilidades</a>
+        <a href="#about" data-i18n="nav.about">Sobre mí</a>
+        <a href="#contact" data-i18n="nav.contact">Contacto</a>
       </nav>
+
       <div class="nav__actions">
-        <button id="themeToggle" class="theme-btn" aria-label="Toggle dark mode">
-          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        </button>
-        <div class="lang-toggle" role="group" aria-label="Language">
-          <button id="btnEn" class="lang-btn active" onclick="setLang('en')">EN</button>
-          <button id="btnEs" class="lang-btn" onclick="setLang('es')">ES</button>
+        <div class="lang-toggle" role="group" aria-label="Language selector">
+          <button id="btnEs" class="lang-btn active" type="button" onclick="setLang('es')">ES</button>
+          <button id="btnEn" class="lang-btn" type="button" onclick="setLang('en')">EN</button>
         </div>
-        <button class="nav__burger" id="burger" aria-label="Menu">
+        <button id="themeToggle" class="theme-btn" type="button" aria-label="Toggle color theme">
+          <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <a id="navCvBtn" class="nav__cta" href="assets/Camilo_Vergara_CV_ES.pdf" download data-i18n="nav.cta">Descargar CV</a>
+        <button class="nav__burger" id="burger" type="button" aria-label="Toggle menu">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -45,100 +51,623 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero">
-    <div class="hero__grid-bg" aria-hidden="true"></div>
-    <div class="hero__glow hero__glow--1"></div>
-    <div class="hero__glow hero__glow--2"></div>
-    <div class="container hero__inner">
-      <p class="hero__eyebrow"><span class="dot"></span> <span data-i18n="hero.eyebrow">Data Analyst · Business Intelligence</span></p>
-      <h1 class="hero__title">Camilo Vergara<span class="accent"> Salas</span></h1>
-      <p class="hero__tagline" data-i18n="hero.tagline">SQL, Python and BI for better operational decisions.</p>
-      <p class="hero__summary" data-i18n="hero.summary">Data Analyst with a background in B2B SaaS and compliance reporting. I build reliable datasets, evaluate forecasts and translate findings into practical recommendations. Explore six documented projects in retail, logistics, mining and banking.</p>
+    <div class="container">
+      <div class="hero__split">
+        <!-- Left Column -->
+        <div class="hero__left reveal">
+          <p class="hero__kicker" data-i18n="hero.eyebrow">Analista de Datos · Business Intelligence · Ciencia de Datos</p>
+          <h1 class="hero__title">Camilo Vergara<span class="accent"> Salas</span></h1>
+          <p class="hero__tagline" data-i18n="hero.tagline">Transformo datos complejos en tableros claros, procesos automatizados y decisiones de negocio respaldadas por evidencia.</p>
+          <p class="hero__summary" data-i18n="hero.summary">Con más de 4 años de experiencia en SQL, Python, Power BI y Tableau dentro de entornos SaaS B2B (Top Partners S.A.) y salud digital (Airmed). Actualmente cursando el último tramo de Analista de Datos (2027) e Ingeniería en Ciencia de Datos (2028).</p>
 
-      <div class="hero__cta">
-        <a class="btn btn--primary" href="#projects">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          <span data-i18n="hero.seeWork">See my work</span>
-        </a>
-        <a id="cvDownload" class="btn btn--ghost" href="assets/Camilo_Vergara_Resume_EN.pdf" download>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span data-i18n="hero.download">Download Resume (EN)</span>
-        </a>
-        <a class="btn btn--ghost" href="mailto:camilovergarasalas.cvs@gmail.com?subject=Contact%20from%20your%20portfolio">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <span data-i18n="hero.email">Email me</span>
-        </a>
-        <a class="btn btn--ghost btn--call" href="tel:+56997513084">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span data-i18n="hero.call">Call me</span>
-        </a>
-        <a id="cvDownloadAlt" class="link-alt" href="assets/Camilo_Vergara_CV_ES.pdf" download data-i18n="hero.downloadAlt">Also available in Spanish (PDF)</a>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#projects">
+              <span data-i18n="hero.seeWork">Ver proyectos y casos</span>
+            </a>
+            <a id="cvDownload" class="btn btn--ghost" href="assets/Camilo_Vergara_CV_ES.pdf" download>
+              <span data-i18n="hero.download">Descargar CV (ES)</span>
+            </a>
+            <a class="btn btn--ghost" href="mailto:camilovergarasalas.cvs@gmail.com?subject=Contacto%20desde%20tu%20portafolio">
+              <span data-i18n="hero.email">Escríbeme</span>
+            </a>
+            <a id="cvDownloadAlt" class="link-alt" href="assets/Camilo_Vergara_Resume_EN.pdf" download data-i18n="hero.downloadAlt">English Resume (PDF)</a>
+          </div>
+
+          <div class="hero__meta-bar">
+            <span>Santiago, Chile</span>
+            <span aria-hidden="true">·</span>
+            <div class="hero__social">
+              <a href="https://github.com/Chrov" target="_blank" rel="noopener">GitHub</a>
+              <span aria-hidden="true">·</span>
+              <a href="https://www.linkedin.com/in/camilo-evs" target="_blank" rel="noopener">LinkedIn</a>
+              <span aria-hidden="true">·</span>
+              <a href="https://public.tableau.com/app/profile/camilo.vergara3198/vizzes" target="_blank" rel="noopener">Tableau Public</a>
+              <span aria-hidden="true">·</span>
+              <a href="mailto:camilovergarasalas.cvs@gmail.com">camilovergarasalas.cvs@gmail.com</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Professional Snapshot -->
+        <aside class="hero__dossier reveal" aria-label="Resumen de trayectoria">
+          <div class="dossier__header">
+            <span class="dossier__title" data-i18n="dossier.header">Trayectoria y Formación Actual</span>
+            <span class="dossier__loc">Santiago, CL</span>
+          </div>
+
+          <div class="dossier__rows">
+            <div class="dossier__item">
+              <span class="dossier__label" data-i18n="dossier.expLabel">Experiencia Profesional</span>
+              <span class="dossier__value" data-i18n="dossier.expVal">Airmed (Salud Digital) · Top Partners S.A. (SaaS B2B)</span>
+              <span class="dossier__sub" data-i18n="dossier.expSub">Pipelines SQL, automatización de reportes, Power BI, Tableau y analítica operativa</span>
+            </div>
+
+            <div class="dossier__item">
+              <span class="dossier__label" data-i18n="dossier.edu1Label">Titulación 2027 (Próximo año)</span>
+              <span class="dossier__value" data-i18n="dossier.edu1Val">Analista de Datos (Técnico de Nivel Superior)</span>
+              <span class="dossier__sub" data-i18n="dossier.edu1Sub">Instituto Profesional AIEP · Modelado de datos, BI y estadística aplicada</span>
+            </div>
+
+            <div class="dossier__item">
+              <span class="dossier__label" data-i18n="dossier.edu2Label">Titulación 2028</span>
+              <span class="dossier__value" data-i18n="dossier.edu2Val">Ingeniería en Ciencia de Datos</span>
+              <span class="dossier__sub" data-i18n="dossier.edu2Sub">Instituto Profesional AIEP · Machine Learning, BigQuery y validación predictiva</span>
+            </div>
+
+            <div class="dossier__item">
+              <span class="dossier__label" data-i18n="dossier.diffLabel">Sello de Trabajo</span>
+              <span class="dossier__value" data-i18n="dossier.diffVal">De la base de datos a la recomendación ejecutiva</span>
+              <span class="dossier__sub" data-i18n="dossier.diffSub">Gobernanza de datos, validación temporal rigurosa y comunicación clara</span>
+            </div>
+          </div>
+
+          <div class="dossier__footer">
+            <span data-i18n="dossier.status">Disponible para modalidad híbrida, remota o presencial</span>
+            <span>ES / EN (B2)</span>
+          </div>
+        </aside>
       </div>
 
-      <div class="hero__social">
-        <a href="https://github.com/Chrov" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
-          </svg>
-        </a>
-        <a href="https://www.linkedin.com/in/camilo-evs" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/>
-          </svg>
-        </a>
-        <a href="https://public.tableau.com/app/profile/camilo.vergara3198/vizzes" target="_blank" rel="noopener" aria-label="Tableau">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M11.332 0v2.091h1.336V0h-1.336zm-5.748 3.39v1.898h1.222V3.39H5.584zm11.516 0v1.898h1.222V3.39h-1.222zM11.332 3.39v4.208h1.336V3.39h-1.336zM3.468 5.612v1.222h1.898V5.612H3.468zm15.166 0v1.222h1.898V5.612h-1.898zM0 11.332v1.336h2.091v-1.336H0zm3.39 5.748h1.898v-1.222H3.39v1.222zm15.332 0h1.898v-1.222h-1.898v1.222zM11.332 16.4v4.209h1.336V16.4h-1.336zm-5.748 4.21v1.898h1.222v-1.898H5.584zm11.516 0v1.898h1.222v-1.898h-1.222zM11.332 21.909V24h1.336v-2.091h-1.336zM5.612 3.468h1.222v1.898H5.612V3.468zm11.554 0h1.222v1.898h-1.222V3.468zM3.39 11.332v1.336h4.208v-1.336H3.39zm13.014 0v1.336h4.208v-1.336h-4.208zM7.598 7.598v8.804h8.804V7.598H7.598zm1.336 1.336h6.132v6.132H8.934V8.934z"/>
-          </svg>
-        </a>
+      <!-- Full-Width 4-Column Quantitative Proof Row -->
+      <div class="hero__proof-strip">
+        <div class="proof-cell reveal">
+          <span class="proof-cell__num"><span class="stat-counter" data-target="4">4</span><span class="accent">+</span></span>
+          <span class="proof-cell__label" data-i18n="proof.p1Label">Años de experiencia</span>
+          <span class="proof-cell__context" data-i18n="proof.p1Ctx">Airmed · Top Partners S.A. · Consultoría BI</span>
+        </div>
+        <div class="proof-cell reveal">
+          <span class="proof-cell__num">-<span class="stat-counter" data-target="40">40</span><span class="accent">%</span></span>
+          <span class="proof-cell__label" data-i18n="proof.p2Label">Tiempo de entrega de reportes</span>
+          <span class="proof-cell__context" data-i18n="proof.p2Ctx">Automatización SQL y ETL en producción</span>
+        </div>
+        <div class="proof-cell reveal">
+          <span class="proof-cell__num"><span class="stat-counter" data-target="90">90</span><span class="accent">%+</span></span>
+          <span class="proof-cell__label" data-i18n="proof.p3Label">Precisión en validación automática</span>
+          <span class="proof-cell__context" data-i18n="proof.p3Ctx">Reglas de calidad SQL y detección en Python</span>
+        </div>
+        <div class="proof-cell reveal">
+          <span class="proof-cell__num"><span class="stat-counter" data-target="70">70</span><span class="accent">+</span></span>
+          <span class="proof-cell__label" data-i18n="proof.p4Label">Empresas usuarias de mis tableros</span>
+          <span class="proof-cell__context" data-i18n="proof.p4Ctx">Modelos estrella en Power BI y Tableau</span>
+        </div>
       </div>
     </div>
   </section>
 
   <main>
-    <!-- ===== Projects (moved to first position — show the work before talking about it) ===== -->
-    <section id="projects" class="section"><div class="container"><h2 class="section__title" data-i18n="proj.title">The evidence behind the decision</h2><p class="section__lead" data-i18n="proj.lead">Six cases, from business question to evidence. Open the analysis, explore a dashboard or download the complete files.</p><article class="evidence-case"><div class="evidence-case__copy"><h3 data-i18n="market-stall-analytics.title">Waste and replenishment control</h3><p class="evidence-result" data-i18n="market-stall-analytics.decision">Prioritize an olives waste pilot before approving cold-storage investment or automated orders. The category accounts for CLP 2,984,432 in simulated cohort waste at acquisition cost.</p><p data-i18n="market-stall-analytics.scope">128 products, 22 suppliers and 3,825 synthetic batches. Purchases span July 2023 to June 2025. Closures extend to 2035; full cohort results are not two-year realized sales.</p><p class="evidence-stack">Excel · SQL · Python · Power BI</p><div class="evidence-links"><a class="btn btn--primary" href="case-studies/market-stall-analytics/index.html" data-i18n="evidence.read">Read case study</a><a href="case-studies/market-stall-analytics/index.html#powerbi-preview">Power BI</a><a href="case-studies/market-stall-analytics/Executive_Report.pdf">PDF · ES / EN</a><a href="https://github.com/Chrov/market-stall-analytics">GitHub</a></div></div><a class="evidence-image" href="case-studies/market-stall-analytics/index.html"><img src="case-studies/market-stall-analytics/waste_priority.png" alt="Waste and replenishment control: analytical results" width="1400" height="540" loading="lazy"></a></article><article class="evidence-case"><div class="evidence-case__copy"><h3 data-i18n="grocery-replenishment-policy.title">Forecasting for a replenishment pilot</h3><p class="evidence-result" data-i18n="grocery-replenishment-policy.decision">Recursive LightGBM was selected through temporal validation. Use it in a shadow pilot: aggregate performance improves, but intermittent demand leaves substantial SKU-store error.</p><p data-i18n="grocery-replenishment-policy.scope">Synthetic data, seed 42. 110,624 source records, 60 products, six stores and 360 series. The completed calendar contains 213,480 rows from January 2015 to August 2016.</p><p class="evidence-stack">SQL/dbt · Python · LightGBM · Tableau</p><div class="evidence-links"><a class="btn btn--primary" href="case-studies/grocery-replenishment-policy/index.html" data-i18n="evidence.read">Read case study</a><a href="case-studies/grocery-replenishment-policy/Executive_Report.pdf">PDF · ES / EN</a><a href="https://public.tableau.com/app/profile/camilo.vergara3198/viz/Replenishment_17889686809270/SyntheticreplenishmentReposicionsimulada">Tableau Public</a><a href="https://github.com/Chrov/grocery-replenishment-policy">GitHub</a></div></div><a class="evidence-image" href="case-studies/grocery-replenishment-policy/index.html"><img src="case-studies/grocery-replenishment-policy/forecast_comparison.png" alt="Forecasting for a replenishment pilot: analytical results" width="1400" height="540" loading="lazy"></a></article><article class="evidence-case"><div class="evidence-case__copy"><h3 data-i18n="airline-reliability.title">Air route reliability</h3><p class="evidence-result" data-i18n="airline-reliability.decision">Review Atlanta-Orlando connections first by disrupted-flight volume in June 2023. Investigate scheduling and contingency handling without attributing causes or recommending capacity reductions from one month.</p><p data-i18n="airline-reliability.scope">577,262 BTS-reported flights in June 2023 across 5,808 directional routes. Cancellations and diversions are retained. The source is public and official; the period is historical.</p><p class="evidence-stack">Python · Power BI · BTS open data</p><div class="evidence-links"><a class="btn btn--primary" href="case-studies/airline-reliability/index.html" data-i18n="evidence.read">Read case study</a><a href="case-studies/airline-reliability/index.html#powerbi-preview">Power BI</a><a href="case-studies/airline-reliability/Executive_Report.pdf">PDF · ES / EN</a><a href="https://github.com/Chrov/airline-reliability">GitHub</a></div></div><a class="evidence-image" href="case-studies/airline-reliability/index.html"><img src="case-studies/airline-reliability/route_priority.png" alt="Air route reliability: analytical results" width="1400" height="540" loading="lazy"></a></article><div class="supporting-cases"><h3 data-i18n="proj.more">Mining, banking and forecast fundamentals</h3><article class="evidence-case"><div class="evidence-case__copy"><p class="evidence-domain" data-i18n="copper-observatory.domain">Mining · Official public data</p><h3 data-i18n="copper-observatory.title">Chile’s copper: volume versus value</h3><p data-i18n="copper-observatory.question">What should management monitor when export value grows faster than production?</p><p class="evidence-result" data-i18n="copper-observatory.result">In 2024 production rose 4.9%, nominal export value 16.7% and nominal LME price 7.9%. Export growth is not a production-growth metric.</p><p class="evidence-decision" data-i18n="copper-observatory.decision">Maintain separate physical-volume, price and export-value indicators. Investigate their divergence before revising operating capacity assumptions.</p><p class="evidence-stack">SQL · Python · Excel · Power BI</p><div class="evidence-links"><a class="btn btn--primary" href="case-studies/copper-observatory/index.html" data-i18n="evidence.read">Read case study</a><a href="case-studies/copper-observatory/index.html#powerbi-preview">Power BI</a><a href="case-studies/copper-observatory/dashboard.xlsx" download>Excel + PivotTable</a><a href="https://github.com/Chrov/Portfolio/tree/main/case-studies/copper-observatory">GitHub</a></div></div><a class="evidence-image" href="case-studies/copper-observatory/index.html"><img src="case-studies/copper-observatory/evidence.png" alt="Chile’s copper: volume versus value: analytical results" width="1950" height="720" loading="lazy"></a></article><article class="evidence-case"><div class="evidence-case__copy"><p class="evidence-domain" data-i18n="feria-demand.domain">Demand planning · Synthetic simulation</p><h3 data-i18n="feria-demand.title">A forecast a small business can operate</h3><p data-i18n="feria-demand.question">With only date, product and demand, can a transparent forecast improve on repeating last week?</p><p class="evidence-result" data-i18n="feria-demand.result">The weekday mean reduces held-out WMAPE from 44.6% to 35.9%: a 19.4% relative reduction. 69 products enter volume class A, including the item crossing the 80% threshold.</p><p class="evidence-decision" data-i18n="feria-demand.decision">Start with the weekday mean as a planning input. Collect stock availability, lead times and actual transactions before recommending reorder quantities or monetizing savings.</p><p class="evidence-stack">SQL · Python · Excel · Tableau</p><div class="evidence-links"><a class="btn btn--primary" href="case-studies/feria-demand/index.html" data-i18n="evidence.read">Read case study</a><a href="case-studies/feria-demand/dashboard.xlsx" download>Excel + PivotTable</a><a href="https://public.tableau.com/app/profile/camilo.vergara3198/viz/dashboard_17889881761000/DemandasimuladaSyntheticdemand">Tableau Public</a><a href="https://github.com/Chrov/Portfolio/tree/main/case-studies/feria-demand">GitHub</a></div></div><a class="evidence-image" href="case-studies/feria-demand/index.html"><img src="case-studies/feria-demand/evidence.png" alt="A forecast a small business can operate: analytical results" width="1950" height="720" loading="lazy"></a></article><article class="evidence-case"><div class="evidence-case__copy"><p class="evidence-domain" data-i18n="bank-campaign.domain">Banking · Historical academic dataset</p><h3 data-i18n="bank-campaign.title">When a banking model should not ship</h3><p data-i18n="bank-campaign.question">Can contact capacity be prioritized using information available before a call—and does that ranking survive a later cohort?</p><p class="evidence-result" data-i18n="bank-campaign.result">Held-out AUC is 0.458. At 20% capacity the model captures 26.7% of observed subscribers, but the response rate shifts from 4.8% in training to 30.8% in hold-out. The positive top-capacity lift does not rescue overall ranking or calibration.</p><p class="evidence-decision" data-i18n="bank-campaign.decision">Do not deploy this model. Investigate cohort construction and macroeconomic drift, obtain recent pre-contact data and validate a new policy before an experiment. No campaign ROI or causal uplift is claimed.</p><p class="evidence-stack">SQL · Python · Logistic regression · Excel</p><div class="evidence-links"><a class="btn btn--primary" href="case-studies/bank-campaign/index.html" data-i18n="evidence.read">Read case study</a><a href="case-studies/bank-campaign/dashboard.xlsx" download>Excel + PivotTable</a><a href="https://github.com/Chrov/Portfolio/tree/main/case-studies/bank-campaign">GitHub</a></div></div><a class="evidence-image" href="case-studies/bank-campaign/index.html"><img src="case-studies/bank-campaign/evidence.png" alt="When a banking model should not ship: analytical results" width="1950" height="720" loading="lazy"></a></article></div></div></section>
+    <!-- ===== Projects / Case Studies ===== -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section__header reveal">
+          <div>
+            <p class="section__kicker" data-i18n="proj.kicker">Proyectos Destacados</p>
+            <h2 class="section__title" data-i18n="proj.title">La evidencia detrás de cada decisión</h2>
+            <p class="section__lead" data-i18n="proj.lead">Seis estudios analíticos completos en retail, cadena de suministro, logística aérea, minería y banca. Explora el análisis, revisa las consultas SQL o descarga los proyectos nativos de Power BI, Tableau y Excel.</p>
+          </div>
+        </div>
 
-    <!-- ===== Experience ===== -->
+        <!-- Interactive Filter & View Mode Toolbar -->
+        <div class="cases-toolbar reveal">
+          <div class="filter-group" role="group" aria-label="Filtrar proyectos por área">
+            <button type="button" class="filter-btn active" data-filter="all" data-i18n="filter.all">Todos (6)</button>
+            <button type="button" class="filter-btn" data-filter="retail" data-i18n="filter.retail">Retail e Inventario (3)</button>
+            <button type="button" class="filter-btn" data-filter="forecast" data-i18n="filter.forecast">Pronóstico y Modelos (3)</button>
+            <button type="button" class="filter-btn" data-filter="official" data-i18n="filter.official">Datos Públicos y Oficiales (3)</button>
+          </div>
+
+          <div class="view-toggle" role="group" aria-label="Cambiar vista">
+            <button type="button" id="viewCardsBtn" class="view-btn active" data-i18n="view.cards">Tarjetas Detalladas</button>
+            <button type="button" id="viewMatrixBtn" class="view-btn" data-i18n="view.matrix">Vista Comparativa</button>
+          </div>
+        </div>
+
+        <!-- Executive Comparison Matrix Table -->
+        <div id="matrixView" class="matrix-view" aria-label="Tabla comparativa de proyectos">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th data-i18n="matrix.colCase">Proyecto y Dominio</th>
+                <th data-i18n="matrix.colData">Alcance de Datos</th>
+                <th data-i18n="matrix.colMethod">Metodología</th>
+                <th data-i18n="matrix.colKpi">Hallazgo Principal</th>
+                <th data-i18n="matrix.colDec">Recomendación</th>
+                <th data-i18n="matrix.colAction">Estudio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="matrix-case-title" data-i18n="market-stall-analytics.title">Control de merma y reposición</span>
+                  <span class="matrix-case-domain">Retail · Simulación de Cohortes</span>
+                </td>
+                <td>3,825 lotes · 128 productos · 22 proveedores</td>
+                <td>Conciliación SQL por lote y merma en CLP</td>
+                <td class="matrix-kpi">CLP 2.98M merma en aceitunas (2.90%)</td>
+                <td data-i18n="matrix.d1">Piloto de control en aceitunas antes de invertir en frío</td>
+                <td><a href="case-studies/market-stall-analytics/index.html" data-i18n="evidence.read">Abrir caso →</a></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="matrix-case-title" data-i18n="grocery-replenishment-policy.title">Pronóstico para piloto de reposición</span>
+                  <span class="matrix-case-domain">Supply Chain · LightGBM &amp; dbt</span>
+                </td>
+                <td>213,480 filas · 360 series tienda-SKU</td>
+                <td>Esquema estrella dbt (21 tests) + walk-forward</td>
+                <td class="matrix-kpi">WMAPE 30.28% (vs 44.89% baseline)</td>
+                <td data-i18n="matrix.d2">Operar en piloto en sombra; separar demanda intermitente</td>
+                <td><a href="case-studies/grocery-replenishment-policy/index.html" data-i18n="evidence.read">Abrir caso →</a></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="matrix-case-title" data-i18n="airline-reliability.title">Confiabilidad de rutas aéreas</span>
+                  <span class="matrix-case-domain">Logística Aérea · Datos Oficiales BTS</span>
+                </td>
+                <td>577,262 vuelos reportados · 5,808 rutas</td>
+                <td>Separación de denominadores + intervalos Wilson</td>
+                <td class="matrix-kpi">336 / 738 vuelos afectados ATL→MCO</td>
+                <td data-i18n="matrix.d3">Revisar programación y contingencias en conexión ATL–MCO</td>
+                <td><a href="case-studies/airline-reliability/index.html" data-i18n="evidence.read">Abrir caso →</a></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="matrix-case-title" data-i18n="copper-observatory.title">Cobre chileno: volumen frente a valor</span>
+                  <span class="matrix-case-domain">Minería · Datos Oficiales COCHILCO</span>
+                </td>
+                <td>49 observaciones anuales (1976–2024)</td>
+                <td>Conciliación de 3 anuarios + funciones ventana SQL</td>
+                <td class="matrix-kpi">+16.7% valor vs +4.9% volumen (2024)</td>
+                <td data-i18n="matrix.d4">Monitorear volumen físico separado del valor nominal exportado</td>
+                <td><a href="case-studies/copper-observatory/index.html" data-i18n="evidence.read">Abrir caso →</a></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="matrix-case-title" data-i18n="feria-demand.title">Un pronóstico que una feria puede operar</span>
+                  <span class="matrix-case-domain">Planificación de Demanda · Baseline</span>
+                </td>
+                <td>140,288 registros diarios · 128 productos</td>
+                <td>Validación en 4 orígenes + hold-out de 28 días</td>
+                <td class="matrix-kpi">WMAPE 35.9% (-19.4% error relativo)</td>
+                <td data-i18n="matrix.d5">Planificar con media móvil de 8 semanas por día de semana</td>
+                <td><a href="case-studies/feria-demand/index.html" data-i18n="evidence.read">Abrir caso →</a></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="matrix-case-title" data-i18n="bank-campaign.title">Cuándo no desplegar un modelo bancario</span>
+                  <span class="matrix-case-domain">Banca · Evaluación Cronológica UCI</span>
+                </td>
+                <td>41,188 registros ordenados cronológicamente</td>
+                <td>Partición 60/20/20 sin fuga de duración de llamada</td>
+                <td class="matrix-kpi">AUC 0.458 · Deriva 4.8% → 30.8%</td>
+                <td data-i18n="matrix.d6">No desplegar el modelo; investigar deriva entre cohortes</td>
+                <td><a href="case-studies/bank-campaign/index.html" data-i18n="evidence.read">Abrir caso →</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Detailed Project Cards -->
+        <div id="casesList" class="cases-list">
+          <!-- Project 1: Market Stall Analytics -->
+          <article class="evidence-case reveal" data-categories="retail">
+            <div class="evidence-case__copy">
+              <div class="evidence-meta">
+                <span data-i18n="market-stall-analytics.domain">Retail e Inventario · Análisis de Cohortes</span>
+              </div>
+              <h3 data-i18n="market-stall-analytics.title">Control de merma y reposición por lotes</h3>
+
+              <div class="case-kpis">
+                <div class="case-kpi">
+                  <span class="case-kpi__val">CLP 2,984,432</span>
+                  <span class="case-kpi__lbl" data-i18n="c1.k1">Merma al costo en aceitunas</span>
+                </div>
+                <div class="case-kpi">
+                  <span class="case-kpi__val">3,825 lotes</span>
+                  <span class="case-kpi__lbl" data-i18n="c1.k2">128 productos · 22 proveedores</span>
+                </div>
+                <div class="case-kpi">
+                  <span class="case-kpi__val">25.03% / 2.90%</span>
+                  <span class="case-kpi__lbl" data-i18n="c1.k3">Margen bruto / Tasa de merma</span>
+                </div>
+              </div>
+
+              <div class="case-narrative">
+                <p class="evidence-result" data-i18n="market-stall-analytics.decision">Priorizar un piloto de control de merma en aceitunas antes de aprobar inversión en equipos de frío o automatizar pedidos. La categoría concentra CLP 2.984.432 de pérdida valorizada al costo.</p>
+                <p data-i18n="market-stall-analytics.scope">Se conciliaron 3.825 lotes en pesos chilenos para evitar sumar unidades físicas distintas (kilos, frascos y paquetes), separando los lotes cerrados al corte de junio de 2025 de las cohortes posteriores.</p>
+              </div>
+
+              <p class="evidence-stack">SQL · Python · Excel + Tabla Dinámica · Power BI</p>
+
+              <div class="evidence-links">
+                <a class="btn btn--primary btn--sm" href="case-studies/market-stall-analytics/index.html" data-i18n="evidence.read">Explorar caso completo</a>
+                <button type="button" class="audit-trigger-btn" onclick="openAuditModal('market-stall-analytics')" data-i18n="audit.btn">Ver SQL y metodología</button>
+                <a href="case-studies/market-stall-analytics/index.html#powerbi-preview">Power BI</a>
+                <a href="case-studies/market-stall-analytics/Dashboard.xlsx" download>Excel (.xlsx)</a>
+                <a href="case-studies/market-stall-analytics/Executive_Report.pdf">Informe PDF</a>
+                <a href="https://github.com/Chrov/market-stall-analytics" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+
+            <div class="evidence-visual-col">
+              <a class="evidence-image" href="case-studies/market-stall-analytics/index.html">
+                <img src="case-studies/market-stall-analytics/waste_priority.png" alt="Control de merma y reposición: resultados analíticos" width="1400" height="540" loading="lazy" />
+              </a>
+              <div class="evidence-visual-caption">
+                <span data-i18n="c1.cap">Priorización monetaria de merma al costo por categoría</span>
+                <span>Power BI · Excel</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Grocery Replenishment Policy -->
+          <article class="evidence-case reveal" data-categories="retail forecast">
+            <div class="evidence-case__copy">
+              <div class="evidence-meta">
+                <span data-i18n="grocery-replenishment-policy.domain">Cadena de Suministro · Pronóstico con dbt y LightGBM</span>
+              </div>
+              <h3 data-i18n="grocery-replenishment-policy.title">Pronóstico para un piloto de reposición</h3>
+
+              <div class="case-kpis">
+                <div class="case-kpi">
+                  <span class="case-kpi__val">30.28% WMAPE</span>
+                  <span class="case-kpi__lbl" data-i18n="c2.k1">Bebidas tienda 1 (vs 44.89% base)</span>
+                </div>
+                <div class="case-kpi">
+                  <span class="case-kpi__val">213,480 filas</span>
+                  <span class="case-kpi__lbl" data-i18n="c2.k2">360 series · 60 productos × 6 tiendas</span>
+                </div>
+                <div class="case-kpi">
+                  <span class="case-kpi__val">21 tests dbt</span>
+                  <span class="case-kpi__lbl" data-i18n="c2.k3">4 cortes temporales + 15 días finales</span>
+                </div>
+              </div>
+
+              <div class="case-narrative">
+                <p class="evidence-result" data-i18n="grocery-replenishment-policy.decision">Utilizar LightGBM recursivo en un piloto en sombra: reduce el error agregado frente al baseline estacional, pero la demanda intermitente requiere separar reglas por rotación antes de automatizar compras.</p>
+                <p data-i18n="grocery-replenishment-policy.scope">Modelado en esquema estrella con 21 pruebas de calidad en dbt y validación temporal estricta donde cada pronóstico retroalimenta sus propias salidas sin usar datos futuros de precios o promociones.</p>
+              </div>
+
+              <p class="evidence-stack">SQL / dbt · Python · LightGBM · Tableau Public</p>
+
+              <div class="evidence-links">
+                <a class="btn btn--primary btn--sm" href="case-studies/grocery-replenishment-policy/index.html" data-i18n="evidence.read">Explorar caso completo</a>
+                <button type="button" class="audit-trigger-btn" onclick="openAuditModal('grocery-replenishment-policy')" data-i18n="audit.btn">Ver SQL y metodología</button>
+                <a href="https://public.tableau.com/app/profile/camilo.vergara3198/viz/Replenishment_17889686809270/SyntheticreplenishmentReposicionsimulada" target="_blank" rel="noopener">Tableau Public</a>
+                <a href="case-studies/grocery-replenishment-policy/Dashboard.twbx" download>Tableau (.twbx)</a>
+                <a href="case-studies/grocery-replenishment-policy/Executive_Report.pdf">Informe PDF</a>
+                <a href="https://github.com/Chrov/grocery-replenishment-policy" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+
+            <div class="evidence-visual-col">
+              <a class="evidence-image" href="case-studies/grocery-replenishment-policy/index.html">
+                <img src="case-studies/grocery-replenishment-policy/forecast_comparison.png" alt="Pronóstico para piloto de reposición: comparación de modelos" width="1400" height="540" loading="lazy" />
+              </a>
+              <div class="evidence-visual-caption">
+                <span data-i18n="c2.cap">Validación walk-forward en 4 orígenes temporales</span>
+                <span>dbt · LightGBM · Tableau</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Airline Route Reliability -->
+          <article class="evidence-case reveal" data-categories="official">
+            <div class="evidence-case__copy">
+              <div class="evidence-meta">
+                <span data-i18n="airline-reliability.domain">Logística Aérea · Datos Oficiales BTS (EE.UU.)</span>
+              </div>
+              <h3 data-i18n="airline-reliability.title">Confiabilidad de rutas aéreas y puntualidad</h3>
+
+              <div class="case-kpis">
+                <div class="case-kpi">
+                  <span class="case-kpi__val">577,262 vuelos</span>
+                  <span class="case-kpi__lbl" data-i18n="c3.k1">5,808 rutas direccionales analizadas</span>
+                </div>
+                <div class="case-kpi">
+                  <span class="case-kpi__val">152,268 retrasos</span>
+                  <span class="case-kpi__lbl" data-i18n="c3.k2">Sobre 562,804 arribos + 12,219 cancelados</span>
+                </div>
+                <div class="case-kpi">
+                  <span class="case-kpi__val">336 / 738</span>
+                  <span class="case-kpi__lbl" data-i18n="c3.k3">Vuelos afectados en ruta ATL → MCO</span>
+                </div>
+              </div>
+
+              <div class="case-narrative">
+                <p class="evidence-result" data-i18n="airline-reliability.decision">Priorizar la revisión de las conexiones entre Atlanta y Orlando por volumen total de vuelos afectados en junio de 2023, evaluando holguras de itinerario y contingencias operativas.</p>
+                <p data-i18n="airline-reliability.scope">Se verificó la integridad de estados y se separaron los denominadores entre vuelos programados, cancelados, desviados y arribos con retraso (≥ 15 min), aplicando un filtro mínimo de 100 vuelos e intervalos de Wilson.</p>
+              </div>
+
+              <p class="evidence-stack">Python · Calidad de Datos · Estadística · Power BI</p>
+
+              <div class="evidence-links">
+                <a class="btn btn--primary btn--sm" href="case-studies/airline-reliability/index.html" data-i18n="evidence.read">Explorar caso completo</a>
+                <button type="button" class="audit-trigger-btn" onclick="openAuditModal('airline-reliability')" data-i18n="audit.btn">Ver SQL y metodología</button>
+                <a href="case-studies/airline-reliability/index.html#powerbi-preview">Power BI</a>
+                <a href="case-studies/airline-reliability/PowerBI.zip" download>Power BI (.zip)</a>
+                <a href="case-studies/airline-reliability/Executive_Report.pdf">Informe PDF</a>
+                <a href="https://github.com/Chrov/airline-reliability" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+
+            <div class="evidence-visual-col">
+              <a class="evidence-image" href="case-studies/airline-reliability/index.html">
+                <img src="case-studies/airline-reliability/route_priority.png" alt="Confiabilidad de rutas aéreas: ranking de disrupción" width="1400" height="540" loading="lazy" />
+              </a>
+              <div class="evidence-visual-caption">
+                <span data-i18n="c3.cap">Rutas priorizadas por volumen de vuelos afectados e intervalos de confianza</span>
+                <span>BTS Data · Power BI</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: Chile's Copper Observatory -->
+          <article class="evidence-case reveal" data-categories="official">
+            <div class="evidence-case__copy">
+              <div class="evidence-meta">
+                <span data-i18n="copper-observatory.domain">Minería y Economía · Datos Oficiales COCHILCO</span>
+              </div>
+              <h3 data-i18n="copper-observatory.title">Cobre chileno: producción física frente a valor exportado</h3>
+
+              <div class="case-kpis">
+                <div class="case-kpi">
+                  <span class="case-kpi__val">49 años</span>
+                  <span class="case-kpi__lbl" data-i18n="c4.k1">Serie histórica conciliada (1976–2024)</span>
+                </div>
+                <div class="case-kpi">
+                  <span class="case-kpi__val">+16.7% vs +4.9%</span>
+                  <span class="case-kpi__lbl" data-i18n="c4.k2">Valor exportado vs Producción física 2024</span>
+                </div>
+                <div class="case-kpi">
+                  <span class="case-kpi__val">r = 0.923</span>
+                  <span class="case-kpi__lbl" data-i18n="c4.k3">Correlación entre precio LME y exportaciones</span>
+                </div>
+              </div>
+
+              <div class="case-narrative">
+                <p class="evidence-result" data-i18n="copper-observatory.result">En 2024 la producción física subió 4,9%, mientras el valor exportado creció 16,7% impulsado por el precio LME (+7,9%). Mantener tableros separados de tonelaje físico y valor nominal evita sobrestimar el crecimiento productivo.</p>
+                <p data-i18n="copper-observatory.decision">Conciliación uno a uno de tres anuarios oficiales de COCHILCO con funciones de ventana SQL e índice base 1976=100.</p>
+              </div>
+
+              <p class="evidence-stack">SQL · Python · Excel + Tabla Dinámica · Power BI</p>
+
+              <div class="evidence-links">
+                <a class="btn btn--primary btn--sm" href="case-studies/copper-observatory/index.html" data-i18n="evidence.read">Explorar caso completo</a>
+                <button type="button" class="audit-trigger-btn" onclick="openAuditModal('copper-observatory')" data-i18n="audit.btn">Ver SQL y metodología</button>
+                <a href="case-studies/copper-observatory/index.html#powerbi-preview">Power BI</a>
+                <a href="case-studies/copper-observatory/dashboard.xlsx" download>Excel (.xlsx)</a>
+                <a href="case-studies/copper-observatory/evidence-pack.zip" download>Paquete de Datos</a>
+                <a href="https://github.com/Chrov/Portfolio/tree/main/case-studies/copper-observatory" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+
+            <div class="evidence-visual-col">
+              <a class="evidence-image" href="case-studies/copper-observatory/index.html">
+                <img src="case-studies/copper-observatory/evidence.png" alt="Cobre chileno: volumen físico frente a valor nominal" width="1950" height="720" loading="lazy" />
+              </a>
+              <div class="evidence-visual-caption">
+                <span data-i18n="c4.cap">Evolución indexada (1976=100) y variaciones anuales conciliadas</span>
+                <span>COCHILCO · SQL · Power BI</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5: Feria Demand Planning -->
+          <article class="evidence-case reveal" data-categories="retail forecast">
+            <div class="evidence-case__copy">
+              <div class="evidence-meta">
+                <span data-i18n="feria-demand.domain">Planificación Comercial · Pronóstico Operativo</span>
+              </div>
+              <h3 data-i18n="feria-demand.title">Un pronóstico simple que un comercio puede operar</h3>
+
+              <div class="case-kpis">
+                <div class="case-kpi">
+                  <span class="case-kpi__val">-19.4% Error</span>
+                  <span class="case-kpi__lbl" data-i18n="c5.k1">WMAPE baja de 44.6% a 35.9%</span>
+                </div>
+                <div class="case-kpi">
+                  <span class="case-kpi__val">140,288 filas</span>
+                  <span class="case-kpi__lbl" data-i18n="c5.k2">128 productos · 1,096 días</span>
+                </div>
+                <div class="case-kpi">
+                  <span class="case-kpi__val">69 productos</span>
+                  <span class="case-kpi__lbl" data-i18n="c5.k3">Clase A por volumen (80% de demanda)</span>
+                </div>
+              </div>
+
+              <div class="case-narrative">
+                <p class="evidence-result" data-i18n="feria-demand.result">Con solo fecha, producto y unidades vendidas, el promedio móvil de ocho semanas por día de la semana supera de forma consistente la regla de repetir la semana anterior.</p>
+                <p data-i18n="feria-demand.decision">Adoptar el promedio por día como base de compra inmediata mientras se comienza a registrar stock disponible, plazos de entrega y ventas perdidas.</p>
+              </div>
+
+              <p class="evidence-stack">SQL · Python · Excel + Tabla Dinámica · Tableau Public</p>
+
+              <div class="evidence-links">
+                <a class="btn btn--primary btn--sm" href="case-studies/feria-demand/index.html" data-i18n="evidence.read">Explorar caso completo</a>
+                <button type="button" class="audit-trigger-btn" onclick="openAuditModal('feria-demand')" data-i18n="audit.btn">Ver SQL y metodología</button>
+                <a href="https://public.tableau.com/app/profile/camilo.vergara3198/viz/dashboard_17889881761000/DemandasimuladaSyntheticdemand" target="_blank" rel="noopener">Tableau Public</a>
+                <a href="case-studies/feria-demand/dashboard.twbx" download>Tableau (.twbx)</a>
+                <a href="case-studies/feria-demand/dashboard.xlsx" download>Excel (.xlsx)</a>
+                <a href="https://github.com/Chrov/Portfolio/tree/main/case-studies/feria-demand" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+
+            <div class="evidence-visual-col">
+              <a class="evidence-image" href="case-studies/feria-demand/index.html">
+                <img src="case-studies/feria-demand/evidence.png" alt="Pronóstico operativo para comercio: backtesting y Pareto" width="1950" height="720" loading="lazy" />
+              </a>
+              <div class="evidence-visual-caption">
+                <span data-i18n="c5.cap">Comparación en cuatro cortes de validación y curva de volumen</span>
+                <span>Tableau · Excel · SQL</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 6: Banking Campaign Model Audit -->
+          <article class="evidence-case reveal" data-categories="forecast official">
+            <div class="evidence-case__copy">
+              <div class="evidence-meta">
+                <span data-i18n="bank-campaign.domain">Banca y Modelos Predictivos · Evaluación Cronológica (UCI)</span>
+              </div>
+              <h3 data-i18n="bank-campaign.title">Cuándo un modelo bancario no debe salir a producción</h3>
+
+              <div class="case-kpis">
+                <div class="case-kpi">
+                  <span class="case-kpi__val">0.458 AUC</span>
+                  <span class="case-kpi__lbl" data-i18n="c6.k1">Desempeño en cohorte futura</span>
+                </div>
+                <div class="case-kpi">
+                  <span class="case-kpi__val">4.8% → 30.8%</span>
+                  <span class="case-kpi__lbl" data-i18n="c6.k2">Cambio en tasa de conversión base</span>
+                </div>
+                <div class="case-kpi">
+                  <span class="case-kpi__val">41,188 registros</span>
+                  <span class="case-kpi__lbl" data-i18n="c6.k3">Partición temporal 60/20/20 sin fuga</span>
+                </div>
+              </div>
+
+              <div class="case-narrative">
+                <p class="evidence-result" data-i18n="bank-campaign.result">Al evaluar el modelo respetando el orden cronológico real y excluyendo la duración de llamada (que no se conoce antes de llamar), el ranking global cae a un AUC de 0,458 por cambio en el contexto económico.</p>
+                <p data-i18n="bank-campaign.decision">Recomendación: no desplegar el modelo. Investigar el cambio entre cohortes y reentrenar con variables previas al contacto sobre datos recientes.</p>
+              </div>
+
+              <p class="evidence-stack">SQL · Python (scikit-learn) · Calibración · Excel</p>
+
+              <div class="evidence-links">
+                <a class="btn btn--primary btn--sm" href="case-studies/bank-campaign/index.html" data-i18n="evidence.read">Explorar caso completo</a>
+                <button type="button" class="audit-trigger-btn" onclick="openAuditModal('bank-campaign')" data-i18n="audit.btn">Ver SQL y metodología</button>
+                <a href="case-studies/bank-campaign/dashboard.xlsx" download>Excel (.xlsx)</a>
+                <a href="case-studies/bank-campaign/evidence-pack.zip" download>Paquete de Datos</a>
+                <a href="https://github.com/Chrov/Portfolio/tree/main/case-studies/bank-campaign" target="_blank" rel="noopener">GitHub</a>
+              </div>
+            </div>
+
+            <div class="evidence-visual-col">
+              <a class="evidence-image" href="case-studies/bank-campaign/index.html">
+                <img src="case-studies/bank-campaign/evidence.png" alt="Auditoría de modelo bancario: curva de capacidad y deriva temporal" width="1950" height="720" loading="lazy" />
+              </a>
+              <div class="evidence-visual-caption">
+                <span data-i18n="c6.cap">Curva de captura por capacidad de llamadas y deriva temporal</span>
+                <span>Python · SQL · Excel</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Experience & Education ===== -->
     <section id="experience" class="section section--alt">
       <div class="container">
+        <div class="section__header reveal">
+          <div>
+            <p class="section__kicker" data-i18n="exp.kicker">Experiencia y Estudios</p>
+            <h2 class="section__title" data-i18n="exp.title">Dónde he generado impacto y hacia dónde avanzo</h2>
+            <p class="section__lead" data-i18n="exp.lead">Más de cuatro años resolviendo problemas de datos en salud digital, cumplimiento corporativo B2B y operaciones comerciales, complementados con estudios superiores en Análisis de Datos (2027) e Ingeniería en Ciencia de Datos (2028).</p>
+          </div>
+        </div>
 
-        <h2 class="section__title" data-i18n="exp.title">Where I've made an impact</h2>
-
-        <div class="timeline">
-          <article class="timeline__item">
-            <div class="timeline__marker"></div>
-            <div class="timeline__card">
+        <div class="exp-edu-grid">
+          <!-- Left Column: Professional Experience -->
+          <div class="timeline">
+            <!-- Airmed -->
+            <article class="timeline__card reveal">
+              <p class="timeline__meta" data-i18n="exp.airmed.domain">Salud Digital y Operaciones Clínicas</p>
               <div class="timeline__head">
-                <h3 data-i18n="exp.job2.role">Independent project — Market demand analytics</h3>
-                <span class="timeline__period" data-i18n="exp.job2.period">Sep 2026</span>
+                <h3 data-i18n="exp.airmed.role">Analista de Datos &amp; Business Intelligence</h3>
+                <span class="timeline__period" data-i18n="exp.airmed.period">Airmed · Chile</span>
               </div>
-              <p class="timeline__company" data-i18n="exp.job2.company">Market demand simulation · Independent project</p>
+              <p class="timeline__company" data-i18n="exp.airmed.company">Airmed — Gestión Clínica, Salud y Operaciones de Servicio</p>
               <ul>
-                <li data-i18n="exp.job2.b1">Developed a reproducible simulation inspired by a small market business.</li>
-                <li data-i18n="exp.job2.b2">Structured product demand and compared transparent forecast baselines.</li>
-                <li data-i18n="exp.job2.b3">Separated observed data, assumptions and simulated outcomes in project documentation.</li>
-                <li data-i18n="exp.job2.b4">Prepared SQL analysis and downloadable workbooks for review.</li>
+                <li data-i18n="exp.airmed.b1">Modelé y automaticé indicadores clave (KPIs) de operación clínica, agendamiento, niveles de servicio (SLA) y trazabilidad de atenciones mediante consultas SQL avanzadas (CTEs, window functions) y flujos estructurados de datos.</li>
+                <li data-i18n="exp.airmed.b2">Desarrollé tableros ejecutivos y operativos en Power BI (DAX, Power Query) y Excel avanzado para el seguimiento de utilización de agenda, tiempos de respuesta, retención de pacientes y control de ingresos.</li>
+                <li data-i18n="exp.airmed.b3">Implementé controles de calidad de datos y análisis exploratorio en Python (Pandas) para detectar cuellos de botella operativos y estandarizar registros entre áreas clínicas y administrativas.</li>
+                <li data-i18n="exp.airmed.b4">Traduje requerimientos de coordinación médica y gestión en reportería automatizada, reduciendo tiempos de consolidación manual y facilitando decisiones diarias basadas en datos.</li>
               </ul>
-            </div>
-          </article>
+            </article>
 
-          <article class="timeline__item">
-            <div class="timeline__marker"></div>
-            <div class="timeline__card">
+            <!-- Top Partners S.A. -->
+            <article class="timeline__card reveal">
+              <p class="timeline__meta" data-i18n="exp.job1.domain">Plataforma SaaS B2B · Cumplimiento Laboral</p>
               <div class="timeline__head">
-                <h3 data-i18n="exp.job1.role">Analyst Programmer</h3>
-                <span class="timeline__period" data-i18n="exp.job1.period">Dec 2021 – Jan 2026</span>
+                <h3 data-i18n="exp.job1.role">Analista de Datos / Analista Programador</h3>
+                <span class="timeline__period" data-i18n="exp.job1.period">Dic 2021 – Ene 2026</span>
               </div>
-              <p class="timeline__company">Top Partners S.A. · SubContrataLey</p>
+              <p class="timeline__company">Top Partners S.A. · SubContrataLey (+70 Empresas Cliente)</p>
               <ul>
-                <li data-i18n="exp.job1.b1">Designed and automated SQL data pipelines (stored procedures, triggers) that significantly cut report processing time.</li>
-                <li data-i18n="exp.job1.b2">Developed Power BI and Tableau dashboards for contractor reporting and operational monitoring.</li>
-                <li data-i18n="exp.job1.b3">Automated document-verification workflows using SQL and structured data checks.</li>
-                <li data-i18n="exp.job1.b4">Worked on compliance reporting and anomaly analysis with SQL and Python.</li>
-                <li data-i18n="exp.job1.b5">Developed HR & People Analytics dashboards: turnover, absenteeism, headcount, payroll automation and cohort analyses.</li>
+                <li data-i18n="exp.job1.b1">Aceleré en un 40% la entrega de reportes de cumplimiento de la Ley 20.123 automatizando pipelines ETL en SQL (procedimientos almacenados, triggers, CTEs y window functions) sobre PostgreSQL.</li>
+                <li data-i18n="exp.job1.b2">Construí y mantuve dashboards en Power BI y Tableau sobre un modelo dimensional en esquema estrella con medidas DAX, utilizados a diario por más de 70 empresas mandantes y más de 100 usuarios.</li>
+                <li data-i18n="exp.job1.b3">Elevé sobre el 90% la precisión de la verificación automática de documentos implementando reglas de calidad y gobernanza de datos junto con detección de anomalías en Python (Pandas, Seaborn).</li>
+                <li data-i18n="exp.job1.b4">Desarrollé la suite de People Analytics (RR.HH.): tableros de rotación, ausentismo, dotación, cohortes de permanencia y automatización de nómina integrando datos de ERP con Power Query.</li>
               </ul>
+            </article>
+
+            <!-- Freelance Consulting -->
+            <article class="timeline__card reveal">
+              <p class="timeline__meta" data-i18n="exp.job2.domain">Consultoría Independiente · Operaciones y BI</p>
+              <div class="timeline__head">
+                <h3 data-i18n="exp.job2.role">Consultor de Business Intelligence y Operaciones</h3>
+                <span class="timeline__period" data-i18n="exp.job2.period">Abr 2026 – Jul 2026</span>
+              </div>
+              <p class="timeline__company" data-i18n="exp.job2.company">Modernización de Negocio Comercial · Retail de Productos Artesanales</p>
+              <ul>
+                <li data-i18n="exp.job2.b1">Lideré la modernización operativa y analítica del negocio durante 4 meses, definiendo desde cero los indicadores de inventario, margen diario, merma y abastecimiento.</li>
+                <li data-i18n="exp.job2.b2">Reduje los quiebres de stock a casi cero y contribuí a un aumento de 10–15% en ventas integrando modelos en Excel avanzado, tableros en Power BI y Tableau sobre SQL, y captura diaria automatizada por WhatsApp.</li>
+                <li data-i18n="exp.job2.b3">Disminuí los costos de compra entre 15% y 20% diversificando proveedores, creando una ruta de abastecimiento de emergencia y estandarizando formatos y precios en todo el catálogo.</li>
+              </ul>
+            </article>
+          </div>
+
+          <!-- Right Column: Academic Progression -->
+          <aside class="academic-panel reveal" aria-label="Formación académica y certificaciones">
+            <h3 class="academic-panel__title" data-i18n="edu.panelTitle">Formación Académica y Certificaciones</h3>
+
+            <div class="degree-item">
+              <span class="degree-year" data-i18n="edu.d1Year">En curso · Titulación el próximo año (2027)</span>
+              <span class="degree-name" data-i18n="edu.d1Name">Analista de Datos (Técnico de Nivel Superior)</span>
+              <span class="degree-inst">Instituto Profesional AIEP · Chile</span>
+              <p class="degree-desc" data-i18n="edu.d1Desc">Modelado relacional y dimensional, consultas SQL avanzadas, diseño de indicadores de gestión (KPIs), visualización ejecutiva y gobernanza de datos.</p>
             </div>
-          </article>
+
+            <div class="degree-item">
+              <span class="degree-year" data-i18n="edu.d2Year">En curso · Culminación en 2028</span>
+              <span class="degree-name" data-i18n="edu.d2Name">Ingeniería en Ciencia de Datos</span>
+              <span class="degree-inst">Instituto Profesional AIEP · Chile</span>
+              <p class="degree-desc" data-i18n="edu.d2Desc">Machine Learning, modelado estadístico y predictivo, arquitectura de datos en la nube (BigQuery / GCP), series de tiempo y validación experimental.</p>
+            </div>
+
+            <div class="degree-item">
+              <span class="degree-year" data-i18n="edu.d3Year">2021 – 2023 · 3 años cursados</span>
+              <span class="degree-name" data-i18n="edu.d3Name">Analista de Sistemas</span>
+              <span class="degree-inst">Colegio Universitario IES · Córdoba, Argentina</span>
+              <p class="degree-desc" data-i18n="edu.d3Desc">Ingeniería de software, estructuras de datos, bases de datos relacionales, lógica algorítmica y levantamiento de requerimientos.</p>
+            </div>
+
+            <div class="degree-item">
+              <span class="degree-year" data-i18n="edu.certYear">Certificaciones Profesionales · 2021 – 2026</span>
+              <span class="degree-name" data-i18n="edu.certTitle">Google &amp; Especializaciones Técnicas</span>
+              <p class="degree-desc" data-i18n="edu.certList">Google Data Analytics Professional Certificate (Coursera, 2026) · Google AI Fundamentals Professional Certificate (2026) · Supply Chain Management &amp; Analytics (Coursera) · Full Stack Web Developer Bootcamp (Soy Henry, 2021).</p>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -146,38 +675,66 @@
     <!-- ===== Skills ===== -->
     <section id="skills" class="section">
       <div class="container">
-
-        <h2 class="section__title" data-i18n="skills.title">Tools I work with</h2>
-        <div class="skills__grid">
-          <div class="skillgroup">
-            <h3 data-i18n="skills.g1">Data &amp; BI</h3>
-            <div class="chips">
-              <span>SQL</span><span>PostgreSQL</span><span>Power BI</span><span>Tableau</span><span data-i18n="skills.excel">Advanced Excel</span><span data-i18n="skills.modeling">Data Modeling</span><span>KPIs</span><span data-i18n="skills.storedproc">Stored Procedures</span><span data-i18n="skills.supply">Supply Chain Analytics</span>
-            </div>
-          </div>
-          <div class="skillgroup">
-            <h3 data-i18n="skills.g2">Programming</h3>
-            <div class="chips">
-              <span>Python</span><span>Pandas</span><span>NumPy</span><span>scikit-learn</span><span>Matplotlib</span><span>Seaborn</span>
-            </div>
-          </div>
-          <div class="skillgroup">
-            <h3 data-i18n="skills.g4">Tools &amp; Methods</h3>
-            <div class="chips">
-              <span>Git</span><span>Docker</span><span>DBeaver</span><span>Postman</span><span>Scrum</span><span data-i18n="skills.api">API Integration</span>
-            </div>
+        <div class="section__header reveal">
+          <div>
+            <p class="section__kicker" data-i18n="skills.kicker">Habilidades Técnicas</p>
+            <h2 class="section__title" data-i18n="skills.title">Herramientas y áreas de especialidad</h2>
+            <p class="section__lead" data-i18n="skills.lead">Tecnologías que utilizo a diario para limpiar, modelar, validar y visualizar datos con foco en decisiones operativas.</p>
           </div>
         </div>
 
-        <div class="certs">
-          <h3 data-i18n="skills.certsTitle">Education &amp; Certifications</h3>
-          <ul class="certs__list">
-            <li><strong data-i18n="cert.c1t">Systems Analyst</strong> — Colegio Universitario IES, Córdoba (AR) · 2021–2023</li>
-            <li><strong>Google Data Analytics Professional Certificate</strong> — Google / Coursera · 2026</li>
-            <li><strong>Google AI Fundamentals Professional Certificate</strong> — Coursera · 2026</li>
-            <li><strong data-i18n="cert.c4t">Full Stack Web Developer (Bootcamp)</strong> — soyHenry · 2021</li>
-            <li><strong data-i18n="cert.c5t">JavaScript Certificate</strong> — Coderhouse · 2021</li>
-          </ul>
+        <div class="skills__grid">
+          <div class="skillgroup reveal">
+            <span class="skillgroup__index" data-i18n="skills.idx1">Ingeniería de Datos y SQL</span>
+            <h3 data-i18n="skills.g1">SQL y Modelado</h3>
+            <ul class="skill-list">
+              <li><span>SQL Avanzado (CTEs, Window)</span><span class="mono-level">Producción</span></li>
+              <li><span>PostgreSQL &amp; Stored Procs</span><span class="mono-level">+4 años</span></li>
+              <li><span>Google BigQuery &amp; dbt</span><span class="mono-level">21 tests QA</span></li>
+              <li><span>Modelado Star Schema</span><span class="mono-level">Dimensional</span></li>
+              <li><span>Pipelines ETL / ELT &amp; Triggers</span><span class="mono-level">Automatizado</span></li>
+              <li><span>Calidad y Gobernanza de Datos</span><span class="mono-level">Regulado</span></li>
+            </ul>
+          </div>
+
+          <div class="skillgroup reveal">
+            <span class="skillgroup__index" data-i18n="skills.idx2">Business Intelligence</span>
+            <h3 data-i18n="skills.g2">Visualización y BI</h3>
+            <ul class="skill-list">
+              <li><span>Power BI (DAX, Power Query)</span><span class="mono-level">Avanzado</span></li>
+              <li><span>Modelos Semánticos (.pbip)</span><span class="mono-level">Auditado</span></li>
+              <li><span>Tableau Desktop &amp; Public</span><span class="mono-level">Publicado</span></li>
+              <li><span>Excel Avanzado &amp; PivotTables</span><span class="mono-level">Operativo</span></li>
+              <li><span>Diseño de KPIs &amp; SLAs</span><span class="mono-level">Ejecutivo</span></li>
+              <li><span>Automatización de Reportes</span><span class="mono-level">-40% tiempo</span></li>
+            </ul>
+          </div>
+
+          <div class="skillgroup reveal">
+            <span class="skillgroup__index" data-i18n="skills.idx3">Ciencia de Datos y Python</span>
+            <h3 data-i18n="skills.g3">Python y Pronóstico</h3>
+            <ul class="skill-list">
+              <li><span>Python (Pandas, NumPy)</span><span class="mono-level">EDA / Pipelines</span></li>
+              <li><span>LightGBM, Prophet, SARIMAX</span><span class="mono-level">Series Tiempo</span></li>
+              <li><span>scikit-learn &amp; Regresión</span><span class="mono-level">Clasificación</span></li>
+              <li><span>Validación Walk-Forward</span><span class="mono-level">Temporal</span></li>
+              <li><span>Evaluación de Drift y Calibración</span><span class="mono-level">Diagnóstico</span></li>
+              <li><span>Matplotlib &amp; Seaborn</span><span class="mono-level">Visualización</span></li>
+            </ul>
+          </div>
+
+          <div class="skillgroup reveal">
+            <span class="skillgroup__index" data-i18n="skills.idx4">Áreas de Negocio</span>
+            <h3 data-i18n="skills.g4">Dominios Aplicados</h3>
+            <ul class="skill-list">
+              <li><span data-i18n="dom.d1">Salud y Operaciones Clínicas</span><span class="mono-level">Airmed</span></li>
+              <li><span data-i18n="dom.d2">Cumplimiento Laboral B2B</span><span class="mono-level">Ley 20.123</span></li>
+              <li><span data-i18n="dom.d3">People Analytics (RR.HH.)</span><span class="mono-level">Cohortes</span></li>
+              <li><span data-i18n="dom.d4">Supply Chain y Reposición</span><span class="mono-level">ABC / WMAPE</span></li>
+              <li><span data-i18n="dom.d5">Control de Merma en Retail</span><span class="mono-level">Lotes CLP</span></li>
+              <li><span data-i18n="dom.d6">Logística y Minería</span><span class="mono-level">BTS / COCHILCO</span></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -185,19 +742,37 @@
     <!-- ===== About ===== -->
     <section id="about" class="section section--alt">
       <div class="container">
-
-        <h2 class="section__title" data-i18n="about.title">From raw data to business impact</h2>
-        <div class="about__grid">
-          <div class="about__text">
-            <p data-i18n="about.p1">I am a Data Analyst based in Chile with experience in SQL automation, compliance reporting, Python analysis and KPI dashboards in Power BI and Tableau.</p>
-            <p data-i18n="about.p2">My professional background is in compliance reporting, SQL automation and BI. The public studies above are separate analytical demonstrations; they do not recreate confidential employment records.</p>
-            <p class="about__pull" data-i18n="about.p3">What makes me different: I own the data lifecycle end to end. I don't just read the dashboard — I design the pipeline that feeds it, automate the validation that keeps it trustworthy, and translate the result into a decision the business can act on.</p>
+        <div class="section__header reveal">
+          <div>
+            <p class="section__kicker" data-i18n="about.kicker">Sobre mí</p>
+            <h2 class="section__title" data-i18n="about.title">Del dato crudo a una recomendación clara y defendible</h2>
           </div>
-          <div class="about__facts">
-            <div class="fact"><span class="fact__label" data-i18n="about.location">Location</span><span class="fact__value">Santiago, Chile 🇨🇱</span></div>
-            <div class="fact"><span class="fact__label" data-i18n="about.langs">Languages</span><span class="fact__value" data-i18n="about.langsValue">Spanish (native) · English (B2, self-assessed)</span></div>
-            <div class="fact"><span class="fact__label" data-i18n="about.focus">Focus</span><span class="fact__value" data-i18n="about.focusValue">Data Analytics · BI · Automation</span></div>
-            <div class="fact"><span class="fact__label" data-i18n="about.education">Education</span><span class="fact__value" data-i18n="about.educationValue">Systems Analyst — IES, Córdoba (AR)</span></div>
+        </div>
+
+        <div class="about__grid">
+          <div class="about__text reveal">
+            <p data-i18n="about.p1">Soy Analista de Datos y especialista en Business Intelligence en Santiago, Chile, con más de 4 años de experiencia automatizando flujos en SQL, desarrollando analítica clínica y operativa en Airmed, liderando reportería de cumplimiento en Top Partners S.A., y construyendo modelos y tableros en Python, Power BI y Tableau.</p>
+            <p data-i18n="about.p2">Actualmente curso el último año de Analista de Datos (titulación en 2027) y avanzo en Ingeniería en Ciencia de Datos (culminación en 2028) en AIEP, uniendo experiencia práctica en producción con una base sólida en estadística, series de tiempo y aprendizaje automático.</p>
+            <p class="about__pull" data-i18n="about.p3">Lo que me diferencia: me hago cargo de todo el ciclo de vida del dato. No solo construyo el dashboard; diseño el pipeline que lo alimenta, programo las validaciones que garantizan su consistencia y traduzco el análisis en una recomendación concreta que el equipo puede ejecutar con confianza.</p>
+          </div>
+
+          <div class="about__facts reveal">
+            <div class="fact">
+              <span class="fact__label" data-i18n="about.location">Ubicación y Modalidad</span>
+              <span class="fact__value" data-i18n="about.locationVal">Santiago, Chile · Híbrido, Remoto o Reubicación</span>
+            </div>
+            <div class="fact">
+              <span class="fact__label" data-i18n="about.eduFact">Estudios Actuales</span>
+              <span class="fact__value" data-i18n="about.eduFactVal">Analista de Datos (2027) · Ing. en Ciencia de Datos (2028)</span>
+            </div>
+            <div class="fact">
+              <span class="fact__label" data-i18n="about.indFact">Experiencia en Industria</span>
+              <span class="fact__value" data-i18n="about.indFactVal">Airmed (Salud) · Top Partners S.A. (SaaS B2B) · Retail</span>
+            </div>
+            <div class="fact">
+              <span class="fact__label" data-i18n="about.langs">Idiomas</span>
+              <span class="fact__value" data-i18n="about.langsValue">Español (Nativo) · Inglés (B2 profesional funcional)</span>
+            </div>
           </div>
         </div>
       </div>
@@ -205,23 +780,30 @@
 
     <!-- ===== Contact ===== -->
     <section id="contact" class="section section--contact">
-      <div class="container contact__inner">
-
-        <h2 class="section__title" data-i18n="contact.title">Let's work together</h2>
-        <p class="contact__text" data-i18n="contact.text">Looking for someone who can turn your data into decisions — and build the tools to do it? I'd love to hear from you.</p>
+      <div class="container contact__inner reveal">
+        <p class="section__kicker" data-i18n="contact.kicker">Contacto</p>
+        <h2 class="section__title" data-i18n="contact.title">¿Conversamos sobre tu próximo desafío de datos?</h2>
+        <p class="contact__text" data-i18n="contact.text">Si buscas a alguien que conecte ingeniería de datos en SQL, análisis en Python y visualización ejecutiva en Power BI o Tableau para tomar mejores decisiones, conversemos.</p>
         <div class="contact__cta">
-          <a class="btn btn--primary btn--lg" href="mailto:camilovergarasalas.cvs@gmail.com?subject=Contact%20from%20your%20portfolio">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            camilovergarasalas.cvs@gmail.com
+          <a class="btn btn--primary" href="mailto:camilovergarasalas.cvs@gmail.com?subject=Contacto%20desde%20portafolio%20-%20Camilo%20Vergara">
+            <span>camilovergarasalas.cvs@gmail.com</span>
           </a>
-          <a class="btn btn--ghost btn--lg btn--call" href="tel:+56997513084">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span data-i18n="contact.call">Call me</span>
+          <a id="contactCvBtn" class="btn btn--ghost" href="assets/Camilo_Vergara_CV_ES.pdf" download>
+            <span data-i18n="hero.download">Descargar CV (ES)</span>
+          </a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/camilo-evs" target="_blank" rel="noopener">
+            <span>LinkedIn · /in/camilo-evs</span>
+          </a>
+          <a class="btn btn--ghost btn--call" href="tel:+56997513084">
+            <span data-i18n="contact.call">Llamar: +56 9 9751 3084</span>
           </a>
         </div>
         <div class="contact__meta">
-          <span>📍 Santiago, Chile</span>
-          <span>📞 <a href="tel:+56997513084">+56 9 9751 3084</a></span>
+          <span>Santiago, Chile</span>
+          <span aria-hidden="true">·</span>
+          <span>+56 9 9751 3084</span>
+          <span aria-hidden="true">·</span>
+          <span>github.com/Chrov</span>
         </div>
       </div>
     </section>
@@ -230,11 +812,25 @@
   <footer class="footer">
     <div class="container footer__inner">
       <span>© 2026 Camilo Vergara Salas</span>
-      <span data-i18n="footer.built">Built with vanilla HTML, CSS & JS — no frameworks needed.</span>
+      <span data-i18n="footer.built">Portafolio bilingüe · SQL, Python, Power BI y Tableau</span>
     </div>
   </footer>
 
-  <script src="case-content.js?v=delivery-2"></script>
-  <script src="script.js?v=delivery-2"></script>
+  <!-- ===== Interactive Modal (SQL & Methodology Preview) ===== -->
+  <div id="auditModalBackdrop" class="audit-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="auditModalTitle">
+    <div class="audit-modal">
+      <div class="audit-modal__header">
+        <div>
+          <p id="auditModalMeta" class="section__kicker" style="margin-bottom: 4px;"></p>
+          <h3 id="auditModalTitle" class="section__title" style="font-size: 1.4rem;"></h3>
+        </div>
+        <button type="button" class="audit-modal__close" onclick="closeAuditModal()" aria-label="Close modal">✕</button>
+      </div>
+      <div id="auditModalBody"></div>
+    </div>
+  </div>
+
+  <script src="case-content.js?v=delivery-4"></script>
+  <script src="script.js?v=delivery-4"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 .claude/
+node_modules/
 tools/node_modules/
 outputs/
 __pycache__/
@@ -7,3 +8,6 @@ hyperd.log
 **/.pbi/
 case-studies/*/excel-data.json
 *.twbr
+.env
+.env.*
+!.env.example

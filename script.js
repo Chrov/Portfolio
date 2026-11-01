@@ -1,354 +1,441 @@
-/* ============================================================
-   Portfolio — i18n (EN default / ES), GitHub repos, UI helpers
-   ============================================================ */
+/* ==========================================================================
+   Camilo Vergara Salas — Portfolio Interactive Controller
+   Features: Bilingual i18n (ES/EN), Natural Scroll-Reveal Choreography,
+   Animated Stat Counters, Interactive Card Spotlight, Case Filters & SQL Modal
+   ========================================================================== */
 
 const CV_FILES = {
   en: "assets/Camilo_Vergara_Resume_EN.pdf",
   es: "assets/Camilo_Vergara_CV_ES.pdf",
 };
 
-/* Curated, in display order. Sorting by "recently pushed" surfaced a config
-   repo, a congratulations page and a 2024 parking system — noise on a data
-   analyst portfolio. */
-const CURATED_REPOS = ["grocery-replenishment-policy", "market-stall-analytics"];
-
-/* Curated blurbs, preferred over the repo's GitHub description: favorita has
-   none set (would render as an em dash) and market-stall's undersells it.
-   Drop an entry here once the description on GitHub says it better. */
-const REPO_BLURBS = {
-  "grocery-replenishment-policy": {
-    en: "SQL/dbt and recursive LightGBM validation supporting a shadow replenishment pilot on synthetic data.",
-    es: "SQL/dbt y LightGBM recursivo para evaluar un piloto de reposición en sombra con datos sintéticos.",
-  },
+const CASE_AUDIT_DATA = {
   "market-stall-analytics": {
-    en: "Synthetic market-stall analysis with a reviewed Excel workbook, waste-cost priorities and Power BI.",
-    es: "Análisis de feria simulado con Excel revisado, prioridades de merma al costo y Power BI.",
+    meta: "Retail e Inventario · SQL / Excel / Power BI",
+    title: {
+      es: "Metodología y SQL: Control de merma y reposición",
+      en: "Methodology & SQL: Batch waste and replenishment control",
+    },
+    question: {
+      es: "¿Dónde concentrar el primer piloto operativo de control de merma sin mezclar unidades físicas incompatibles ni confundir lotes abiertos con ventas cerradas?",
+      en: "Where should the first operational waste-control pilot focus without mixing incompatible physical units or conflating open batches with closed sales?",
+    },
+    sql: `-- Conciliación de lotes por clave única y priorización monetaria de merma al costo (CLP)
+WITH batch_reconciliation AS (
+  SELECT
+    b.batch_id,
+    p.category_name,
+    p.unit_type,
+    b.purchase_date,
+    b.closure_date,
+    CASE WHEN b.closure_date <= DATE '2025-06-30' THEN 'CLOSED_IN_WINDOW'
+         ELSE 'LATER_CLOSURE' END AS cohort_status,
+    b.purchased_qty * b.unit_cost_clp AS purchase_cost_clp,
+    b.wasted_qty * b.unit_cost_clp AS waste_cost_clp,
+    b.sold_qty * (b.unit_price_clp - b.unit_cost_clp) AS gross_profit_clp
+  FROM batches b
+  INNER JOIN products p ON b.product_id = p.product_id
+)
+SELECT
+  category_name,
+  COUNT(*) AS total_batches,
+  SUM(CASE WHEN cohort_status = 'LATER_CLOSURE' THEN 1 ELSE 0 END) AS later_closures,
+  ROUND(SUM(waste_cost_clp), 0) AS total_waste_clp,
+  ROUND(100.0 * SUM(waste_cost_clp) / NULLIF(SUM(purchase_cost_clp), 0), 2) AS waste_rate_pct
+FROM batch_reconciliation
+GROUP BY category_name
+ORDER BY total_waste_clp DESC;`,
+    limits: {
+      es: "Los 3.825 lotes provienen de una simulación de cohortes. El libro de Excel separa los 498 cierres posteriores al 30 de junio de 2025. No se reclaman ahorros realizados ni retorno de inversión de equipos de frío sin medir antes merma diaria real por producto.",
+      en: "All 3,825 batches come from a cohort simulation. The Excel workbook separates 498 closures occurring after June 30, 2025. No realized savings or cold-storage ROI are claimed prior to capturing daily physical SKU waste.",
+    },
+    caseUrl: "case-studies/market-stall-analytics/index.html",
+  },
+  "grocery-replenishment-policy": {
+    meta: "Cadena de Suministro · dbt / LightGBM / Tableau",
+    title: {
+      es: "Metodología y SQL: Pronóstico para piloto de reposición",
+      en: "Methodology & SQL: Forecasting for a replenishment pilot",
+    },
+    question: {
+      es: "¿Un modelo recursivo LightGBM validado temporalmente supera al baseline estacional para guiar un piloto de reposición en sombra?",
+      en: "Does a temporally validated recursive LightGBM model outperform a seasonal-naive baseline to guide a shadow replenishment pilot?",
+    },
+    sql: `-- Completitud de calendario tienda-SKU en dbt (213.480 filas · 21 tests de calidad)
+WITH spine AS (
+  SELECT d.calendar_date, s.store_id, p.product_id, p.family
+  FROM dim_calendar d
+  CROSS JOIN dim_stores s
+  CROSS JOIN dim_products p
+  WHERE d.calendar_date BETWEEN DATE '2015-01-01' AND DATE '2016-08-31'
+),
+daily_sales AS (
+  SELECT
+    sp.calendar_date,
+    sp.store_id,
+    sp.product_id,
+    sp.family,
+    GREATEST(COALESCE(f.units_sold, 0), 0) AS clean_units_sold,
+    -- Variables rezagadas estrictamente pasadas para evitar fuga de datos
+    LAG(GREATEST(COALESCE(f.units_sold, 0), 0), 7) OVER (
+      PARTITION BY sp.store_id, sp.product_id ORDER BY sp.calendar_date
+    ) AS lag_7d_units
+  FROM spine sp
+  LEFT JOIN fct_raw_transactions f
+    ON sp.calendar_date = f.date AND sp.store_id = f.store_id AND sp.product_id = f.product_id
+)
+SELECT * FROM daily_sales;`,
+    limits: {
+      es: "La reducción de WMAPE en bebidas tienda 1 (30,28% vs 44,89%) no equivale automáticamente a ahorro de inventario. La media por SKU-tienda (115,56%) refleja demanda intermitente; por ello se recomienda operar en piloto en sombra antes de automatizar compras.",
+      en: "Lowering aggregate beverage WMAPE (30.28% vs 44.89%) does not automatically equal inventory savings. Mean SKU-store WMAPE (115.56%) reflects intermittent demand; therefore shadow operation is recommended before automating orders.",
+    },
+    caseUrl: "case-studies/grocery-replenishment-policy/index.html",
+  },
+  "airline-reliability": {
+    meta: "Logística Aérea · Datos Oficiales BTS / Python / Power BI",
+    title: {
+      es: "Metodología y SQL: Confiabilidad de rutas aéreas",
+      en: "Methodology & SQL: Air route reliability (BTS)",
+    },
+    question: {
+      es: "¿Qué rutas direccionales concentran el mayor volumen de vuelos afectados en junio de 2023 separando correctamente cancelaciones, desvíos y retrasos?",
+      en: "Which directional routes concentrate the highest disrupted-flight volume in June 2023 when properly separating cancellations, diversions, and arrival delays?",
+    },
+    sql: `-- Separación de denominadores en 577.262 vuelos oficiales BTS (Junio 2023)
+SELECT
+  origin_airport || ' -> ' || dest_airport AS directional_route,
+  COUNT(*) AS scheduled_flights,
+  SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) AS cancelled_flights,
+  SUM(CASE WHEN diverted = 1 THEN 1 ELSE 0 END) AS diverted_flights,
+  SUM(CASE WHEN cancelled = 0 AND diverted = 0 THEN 1 ELSE 0 END) AS completed_arrivals,
+  SUM(CASE WHEN cancelled = 0 AND diverted = 0 AND arr_delay_minutes >= 15 THEN 1 ELSE 0 END) AS delayed_arrivals,
+  SUM(CASE WHEN cancelled = 1 OR diverted = 1 OR arr_delay_minutes >= 15 THEN 1 ELSE 0 END) AS total_disrupted
+FROM bts_ontime_june_2023
+GROUP BY origin_airport, dest_airport
+HAVING COUNT(*) >= 100
+ORDER BY total_disrupted DESC
+LIMIT 15;`,
+    limits: {
+      es: "Un solo mes histórico (junio 2023) no representa el desempeño actual ni permite atribuir causas meteorológicas o de tráfico aéreo. Los intervalos de Wilson son descriptivos y no se cuenta con costos ni pasajeros por conexión.",
+      en: "A single historical month (June 2023) does not represent current performance or isolate weather shocks. Wilson confidence intervals are descriptive guides, and passenger/cost figures are unavailable.",
+    },
+    caseUrl: "case-studies/airline-reliability/index.html",
+  },
+  "copper-observatory": {
+    meta: "Minería y Economía · COCHILCO / SQL / Power BI",
+    title: {
+      es: "Metodología y SQL: Cobre chileno — volumen frente a valor",
+      en: "Methodology & SQL: Chile’s copper — volume versus value",
+    },
+    question: {
+      es: "¿Qué debe monitorear un equipo directivo cuando el valor nominal exportado crece 16,7% pero la producción física sube solo 4,9%?",
+      en: "What should leadership monitor when nominal export value grows 16.7% while physical mine output rises only 4.9%?",
+    },
+    sql: `-- Conciliación anual 1976-2024 (49 años) y cálculo de variaciones YoY con SQL Window Functions
+WITH annual_joined AS (
+  SELECT
+    p.year,
+    p.production_kt,
+    e.exports_usd_m,
+    pr.lme_price_cent_lb,
+    LAG(p.production_kt) OVER (ORDER BY p.year) AS prev_prod_kt,
+    LAG(e.exports_usd_m) OVER (ORDER BY p.year) AS prev_exp_usd_m,
+    LAG(pr.lme_price_cent_lb) OVER (ORDER BY p.year) AS prev_price
+  FROM cochilco_production p
+  INNER JOIN cochilco_exports e ON p.year = e.year
+  INNER JOIN cochilco_price pr ON p.year = pr.year
+  WHERE p.year BETWEEN 1976 AND 2024
+)
+SELECT
+  year,
+  ROUND(100.0 * (production_kt - prev_prod_kt) / prev_prod_kt, 2) AS prod_yoy_pct,
+  ROUND(100.0 * (exports_usd_m - prev_exp_usd_m) / prev_exp_usd_m, 2) AS exports_yoy_pct,
+  ROUND(100.0 * (lme_price_cent_lb - prev_price) / prev_price, 2) AS price_yoy_pct
+FROM annual_joined
+ORDER BY year DESC;`,
+    limits: {
+      es: "Serie agregada nacional hasta 2024 en valores nominales; no incluye leyes de mineral, costos C1 por faena ni contratos de venta. La correlación entre variaciones (0,923) es descriptiva, no causal.",
+      en: "Aggregate national series through 2024 in nominal terms; excludes ore grades, mine-level C1 costs, and contract terms. The 0.923 change correlation is descriptive, not causal.",
+    },
+    caseUrl: "case-studies/copper-observatory/index.html",
+  },
+  "feria-demand": {
+    meta: "Planificación Comercial · SQL / Python / Tableau",
+    title: {
+      es: "Metodología y SQL: Pronóstico operativo para comercio",
+      en: "Methodology & SQL: Operational forecast for a small business",
+    },
+    question: {
+      es: "Con solo fecha, producto y demanda histórica, ¿una media móvil de 8 semanas por día de la semana mejora el hábito de repetir la semana pasada?",
+      en: "With only date, product, and historical demand, does an 8-week weekday mean improve on repeating last week?",
+    },
+    sql: `-- Comparación de WMAPE en hold-out final (28 días reservados de diciembre)
+WITH holdout_eval AS (
+  SELECT
+    product_id,
+    demand_date,
+    actual_demand,
+    seasonal_naive_7d,
+    weekday_mean_8w,
+    ABS(actual_demand - seasonal_naive_7d) AS abs_err_naive,
+    ABS(actual_demand - weekday_mean_8w) AS abs_err_wk_mean
+  FROM holdout_predictions
+)
+SELECT
+  ROUND(100.0 * SUM(abs_err_naive) / NULLIF(SUM(actual_demand), 0), 2) AS wmape_naive_pct,
+  ROUND(100.0 * SUM(abs_err_wk_mean) / NULLIF(SUM(actual_demand), 0), 2) AS wmape_weekday_mean_pct,
+  ROUND(100.0 * (1.0 - SUM(abs_err_wk_mean) / NULLIF(SUM(abs_err_naive), 0)), 2) AS relative_improvement_pct
+FROM holdout_eval;`,
+    limits: {
+      es: "Los 140.288 registros diarios son sintéticos (semilla fija 20260907). La clasificación ABC es por volumen físico y no por margen en pesos. Se requiere capturar quiebres de stock y vida útil antes de automatizar compras.",
+      en: "All 140,288 daily records are synthetic (fixed seed 20260907). ABC classes reflect physical volume rather than revenue margin. Stockout and shelf-life tracking are required before automating orders.",
+    },
+    caseUrl: "case-studies/feria-demand/index.html",
+  },
+  "bank-campaign": {
+    meta: "Banca y Modelos Predictivos · UCI / Python / SQL",
+    title: {
+      es: "Metodología y SQL: Cuándo no desplegar un modelo bancario",
+      en: "Methodology & SQL: When a banking model should not ship",
+    },
+    question: {
+      es: "¿Se sostiene el ranking de propensión de contacto cuando se evalúa en una cohorte futura real y sin fuga de duración de llamada?",
+      en: "Does contact propensity ranking hold up in a later chronological cohort when call-duration leakage is removed?",
+    },
+    sql: `-- Evaluación de cambio en tasa base por partición cronológica estricta (60% / 20% / 20%)
+WITH ordered_campaigns AS (
+  SELECT
+    row_id,
+    subscribed_flag,
+    NTILE(5) OVER (ORDER BY row_id ASC) AS chrono_quintile
+  FROM campaign_records
+)
+SELECT
+  CASE
+    WHEN chrono_quintile IN (1, 2, 3) THEN '1_TRAIN (60%)'
+    WHEN chrono_quintile = 4 THEN '2_VALIDATION (20%)'
+    ELSE '3_HOLDOUT (20%)'
+  END AS split_partition,
+  COUNT(*) AS total_contacts,
+  SUM(subscribed_flag) AS total_subscriptions,
+  ROUND(100.0 * AVG(subscribed_flag), 2) AS conversion_rate_pct
+FROM ordered_campaigns
+GROUP BY 1
+ORDER BY 1;`,
+    limits: {
+      es: "Dataset académico portugués (2008–2010, UCI). La tasa de conversión salta de 4,8% en entrenamiento a 30,8% en hold-out por cambio en el entorno económico, provocando un AUC de 0,458. El estudio muestra por qué validar en orden temporal evita llevar a producción modelos descalibrados.",
+      en: "Portuguese academic dataset (2008–2010, UCI). Base conversion shifts from 4.8% in training to 30.8% in hold-out due to macroeconomic changes, yielding a 0.458 AUC. Demonstrates why chronological validation prevents shipping uncalibrated models.",
+    },
+    caseUrl: "case-studies/bank-campaign/index.html",
   },
 };
 
-const I18N = {
-  en: {
-    "nav.about": "About",
-    "nav.experience": "Experience",
-    "nav.projects": "Projects",
-    "nav.skills": "Skills",
-    "nav.contact": "Contact",
-
-    "hero.eyebrow": "Data Analyst · Business Intelligence",
-    "hero.tagline": "I turn raw data into dashboards, automation and decisions that move the business.",
-    "hero.summary": "Data Analyst with 4+ years of experience delivering measurable impact across the full data lifecycle — SQL, Python, Power BI and Tableau. I own the data end to end, from the pipeline that cleans and models it to the dashboard that drives the decision.",
-    "hero.seeWork": "See my work",
-    "hero.download": "Download Resume (EN)",
-    "hero.downloadAlt": "Also available in Spanish (PDF)",
-    "hero.email": "Email me",
-    "hero.call": "Call me",
-
-    "stats.years": "years of experience",
-    "stats.reporting": "faster compliance reporting",
-    "stats.accuracy": "automated verification accuracy",
-    "stats.companies": "companies served by my dashboards",
-
-    "proj.kicker": "01 — Projects",
-    "proj.title": "Featured work",
-    "proj.lead": "Explore three complete cases: the decision, reproducible analysis, executive report and native BI files.",
-    "proj.caseLabel": "Case study",
-    "proj.lblContext": "Context",
-    "proj.lblAction": "What I did",
-    "proj.lblImpact": "Impact",
-    "proj.viewRepo": "View code & notebooks",
-    "proj.workNote": "Built at Top Partners S.A. Code and data are proprietary, so no repository.",
-
-    "proj.p0.title": "Demand Forecasting & Inventory Optimization",
-    "proj.p0.context": "A grocery retailer has to answer one question every day, for every item, in every store: how much do we order? Too little and shelves go empty; too much and perishables rot with capital frozen in the warehouse.",
-    "proj.p0.action": "Modeled the raw data into a star schema with dbt (11 models, 21 data-quality tests), then benchmarked a seasonal-naive baseline against Prophet, SARIMAX and LightGBM with time-based walk-forward backtesting — never random k-fold. Turned the winning forecast into safety stock, reorder points and an ABC-differentiated service-level policy.",
-    "proj.p0.m1": "forecast error vs baseline",
-    "proj.p0.m2": "WMAPE (baseline 0.45)",
-    "proj.p0.m3": "safety stock freed (modeled)",
-    "proj.p0.note": "Personal project on the Corporación Favorita dataset. Ships a synthetic data generator so the repo runs end to end without the gated Kaggle download; the pipeline is identical for the real data.",
-
-    "proj.p1.title": "Feria Business Modernization",
-    "proj.p1.note": "Impact figures come from the real engagement. The public repo is an anonymized English adaptation: supplier names are fictitious and amounts approximate, grounded in Chilean wholesale reference ranges.",
-    "proj.p1.context": "An artisanal-products market business ran with no data: improvised pricing, weekly stockouts and a single supplier.",
-    "proj.p1.action": "Operations diagnosis, supply-chain redesign and a standardized pricing policy, plus a BI stack (SQL, Power BI, Tableau) fed by a WhatsApp bot that turns voice notes into inventory and sales data.",
-    "proj.p1.m1": "stockouts",
-    "proj.p1.m2": "supply costs",
-    "proj.p1.m3": "sales",
-
-    "proj.p3.title": "Compliance Verification Automation",
-    "proj.p3.context": "Verifying compliance documents (Law 20.123) for 70+ client companies was manual and didn't scale.",
-    "proj.p3.action": "Automated the whole workflow in SQL (stored procedures and triggers) with format validation and business rules, plus anomaly detection in Python (Pandas, Seaborn).",
-    "proj.p3.m1": "verification accuracy",
-    "proj.p3.m2": "faster reporting",
-
-    "proj.p4.title": "HR & People Analytics Dashboards",
-    "proj.p4.context": "The People team consolidated turnover, absenteeism and headcount by hand, from the ERP and control spreadsheets.",
-    "proj.p4.action": "Modeled the data and integrated ERP and spreadsheets into Power BI: turnover, absenteeism, headcount and staffing evolution, plus cohort analysis and automated payroll reporting.",
-    "proj.p4.m1": "manual consolidation",
-    "proj.p4.m2": "users reached",
-
-    "proj.platformsLabel": "Find more of my work on:",
-    "proj.dashboards": "dashboards",
-    "proj.ghTitle": "Code & notebooks",
-    "proj.ghLoading": "Loading repositories…",
-    "proj.ghError": "Couldn't load repositories right now — visit github.com/Chrov instead.",
-
-    "tag.automation": "Automation",
-    "tag.erp": "ERP Integration",
-    "tag.cohort": "Cohort Analysis",
-
-    "exp.kicker": "02 — Experience",
-    "exp.title": "Where I've made an impact",
-    "exp.job2.role": "Independent Consultant — Business & Data Modernization",
-    "exp.job2.period": "Apr – Jul 2026",
-    "exp.job2.company": "Feria Business Modernization · Independent Project",
-    "exp.job2.b1": "Led an end-to-end operations and data modernization project for an artisanal-products market business, from diagnosis to full implementation.",
-    "exp.job2.b2": "Cut supply costs by 15–20% by diversifying suppliers and building an emergency supply chain.",
-    "exp.job2.b3": "Contributed to a 10–15% sales increase through standardized pricing and daily data-informed decisions.",
-    "exp.job2.b4": "Built a full BI stack (Excel, Power BI, Tableau, SQL) plus a WhatsApp voice-note bot with automated transcription — reducing stockouts to near zero.",
-    "exp.job1.role": "Analyst Programmer",
-    "exp.job1.period": "Dec 2021 – Jan 2026",
-    "exp.job1.b1": "Designed and automated SQL data pipelines (stored procedures, triggers) that significantly cut report processing time.",
-    "exp.job1.b2": "Developed Power BI and Tableau dashboards for contractor reporting and operational monitoring.",
-    "exp.job1.b3": "Automated document-verification workflows using SQL and structured data checks.",
-    "exp.job1.b4": "Worked on compliance reporting and anomaly analysis with SQL and Python.",
-    "exp.job1.b5": "Developed HR & People Analytics dashboards: turnover, absenteeism, headcount, payroll automation and cohort analyses.",
-
-    "skills.kicker": "03 — Skills",
-    "skills.title": "Tools I work with",
-    "skills.g1": "Data & BI",
-    "skills.g2": "Programming",
-    "skills.g4": "Tools & Methods",
-    "skills.excel": "Advanced Excel",
-    "skills.modeling": "Data Modeling",
-    "skills.storedproc": "Stored Procedures",
-    "skills.supply": "Supply Chain Analytics",
-    "skills.api": "API Integration",
-    "skills.certsTitle": "Education & Certifications",
-    "cert.c1t": "Systems Analyst",
-    "cert.c4t": "Full Stack Web Developer (Bootcamp)",
-    "cert.c5t": "JavaScript Certificate",
-
-    "about.kicker": "04 — About",
-    "about.title": "From raw data to business impact",
-    "about.p1": "I am a Data Analyst based in Chile with experience in SQL automation, compliance reporting, Python analysis and KPI dashboards in Power BI and Tableau.",
-    "about.p2": "My work has cut compliance reporting time by ~40%, raised automated document-verification accuracy above 90%, and — in an end-to-end business modernization project — helped increase sales by 10–15% while reducing supply costs by 15–20%.",
-    "about.p3": "What makes me different: I own the data lifecycle end to end. I don't just read the dashboard — I design the pipeline that feeds it, automate the validation that keeps it trustworthy, and translate the result into a decision the business can act on.",
-    "about.location": "Location",
-    "about.langs": "Languages",
-    "about.langsValue": "Spanish (native) · English (B2, self-assessed)",
-    "about.focus": "Focus",
-    "about.focusValue": "Data Analytics · BI · Automation",
-    "about.education": "Education",
-    "about.educationValue": "Systems Analyst — IES, Córdoba (AR)",
-
-    "contact.kicker": "05 — Contact",
-    "contact.title": "Let's work together",
-    "contact.text": "Looking for someone who can turn your data into decisions — and build the tools to do it? I'd love to hear from you.",
-    "contact.call": "Call me",
-
-    "footer.built": "Built with vanilla HTML, CSS & JS — no frameworks needed.",
-  },
-
-  es: {
-    "nav.about": "Sobre mí",
-    "nav.experience": "Experiencia",
-    "nav.projects": "Proyectos",
-    "nav.skills": "Habilidades",
-    "nav.contact": "Contacto",
-
-    "hero.eyebrow": "Analista de Datos · Business Intelligence",
-    "hero.tagline": "Convierto datos crudos en dashboards, automatización y decisiones que mueven el negocio.",
-    "hero.summary": "Analista de Datos con más de 4 años de experiencia generando impacto medible en todo el ciclo de vida del dato — SQL, Python, Power BI y Tableau. Manejo el dato de punta a punta, desde el pipeline que lo limpia y modela hasta el dashboard que impulsa la decisión.",
-    "hero.seeWork": "Ver mi trabajo",
-    "hero.download": "Descargar CV (ES)",
-    "hero.downloadAlt": "También disponible en inglés (PDF)",
-    "hero.email": "Escríbeme",
-    "hero.call": "Llámame",
-
-    "stats.years": "años de experiencia",
-    "stats.reporting": "reportes de cumplimiento más rápidos",
-    "stats.accuracy": "precisión en verificación automática",
-    "stats.companies": "empresas usan mis dashboards",
-
-    "proj.kicker": "01 — Proyectos",
-    "proj.title": "Trabajo destacado",
-    "proj.lead": "Explora tres casos completos: decisión, análisis reproducible, informe ejecutivo y archivos nativos de BI.",
-    "proj.caseLabel": "Caso",
-    "proj.lblContext": "Contexto",
-    "proj.lblAction": "Qué hice",
-    "proj.lblImpact": "Impacto",
-    "proj.viewRepo": "Ver código y notebooks",
-    "proj.workNote": "Desarrollado en Top Partners S.A. El código y los datos son propietarios, por eso no hay repositorio.",
-
-    "proj.p0.title": "Pronóstico de Demanda y Optimización de Inventario",
-    "proj.p0.context": "Un retail de supermercados debe responder una pregunta cada día, para cada producto, en cada tienda: ¿cuánto pedimos? Si pide poco, las góndolas se vacían; si pide mucho, los perecibles se pierden y el capital queda congelado en bodega.",
-    "proj.p0.action": "Modelé los datos crudos en un star schema con dbt (11 modelos, 21 tests de calidad) y comparé un baseline naive estacional contra Prophet, SARIMAX y LightGBM con backtesting walk-forward por tiempo — nunca k-fold aleatorio. Convertí el pronóstico ganador en stock de seguridad, puntos de reorden y una política de nivel de servicio diferenciada por ABC.",
-    "proj.p0.m1": "error de pronóstico vs baseline",
-    "proj.p0.m2": "WMAPE (baseline 0,45)",
-    "proj.p0.m3": "stock de seguridad liberado (modelado)",
-    "proj.p0.note": "Proyecto personal sobre el dataset de Corporación Favorita. Incluye un generador de datos sintéticos para que el repo corra de punta a punta sin la descarga restringida de Kaggle; el pipeline es idéntico con los datos reales.",
-
-    "proj.p1.title": "Modernización de Negocio de Feria",
-    "proj.p1.note": "Las cifras de impacto vienen del trabajo real. El repo público es una adaptación anonimizada al inglés: los nombres de proveedores son ficticios y los montos aproximados, anclados en rangos de referencia mayoristas chilenos.",
-    "proj.p1.context": "Un negocio de feria de productos artesanales operaba sin datos: precios improvisados, quiebres de stock semanales y un solo proveedor.",
-    "proj.p1.action": "Diagnóstico de la operación, rediseño de la cadena de suministro y política de precios estandarizada, más un stack de BI (SQL, Power BI, Tableau) alimentado por un bot de WhatsApp que convierte notas de voz en datos de inventario y ventas.",
-    "proj.p1.m1": "quiebres de stock",
-    "proj.p1.m2": "costos de abastecimiento",
-    "proj.p1.m3": "ventas",
-
-    "proj.p3.title": "Automatización de Verificación de Cumplimiento",
-    "proj.p3.context": "Verificar los documentos de cumplimiento (Ley 20.123) de más de 70 empresas mandantes era manual y no escalaba.",
-    "proj.p3.action": "Automaticé el flujo completo en SQL (procedimientos almacenados y triggers) con validaciones de formato y reglas de negocio, más detección de anomalías en Python (Pandas, Seaborn).",
-    "proj.p3.m1": "precisión de verificación",
-    "proj.p3.m2": "más rápido el reporte",
-
-    "proj.p4.title": "Dashboards de RR.HH. y People Analytics",
-    "proj.p4.context": "El equipo de personas consolidaba a mano rotación, ausentismo y dotación desde el ERP y planillas de control.",
-    "proj.p4.action": "Modelé los datos e integré ERP y planillas en Power BI: rotación, ausentismo, headcount y evolución de dotación, más análisis de cohortes y reporte de nómina automatizado.",
-    "proj.p4.m1": "consolidación manual",
-    "proj.p4.m2": "usuarios alcanzados",
-
-    "proj.platformsLabel": "Encuentra más de mi trabajo en:",
-    "proj.dashboards": "dashboards",
-    "proj.ghTitle": "Código y notebooks",
-    "proj.ghLoading": "Cargando repositorios…",
-    "proj.ghError": "No se pudieron cargar los repositorios — visita github.com/Chrov.",
-
-    "tag.automation": "Automatización",
-    "tag.erp": "Integración ERP",
-    "tag.cohort": "Análisis de Cohortes",
-
-    "exp.kicker": "02 — Experiencia",
-    "exp.title": "Dónde he generado impacto",
-    "exp.job2.role": "Consultor Independiente — Modernización de Negocio y Datos",
-    "exp.job2.period": "Abr – Jul 2026",
-    "exp.job2.company": "Modernización de Negocio de Feria · Proyecto Independiente",
-    "exp.job2.b1": "Lideré un proyecto integral de modernización operativa y de datos para una feria de productos artesanales, desde el diagnóstico hasta la implementación completa.",
-    "exp.job2.b2": "Reduje los costos de abastecimiento en un 15–20% diversificando proveedores y construyendo una cadena de suministro de emergencia.",
-    "exp.job2.b3": "Contribuí a un aumento de 10–15% en ventas mediante precios estandarizados y decisiones diarias basadas en datos.",
-    "exp.job2.b4": "Construí un stack completo de BI (Excel, Power BI, Tableau, SQL) más un bot de WhatsApp con transcripción automática — reduciendo los quiebres de stock a casi cero.",
-    "exp.job1.role": "Analista Programador",
-    "exp.job1.period": "Dic 2021 – Ene 2026",
-    "exp.job1.b1": "Diseñé y automaticé pipelines de datos en SQL (procedimientos almacenados, triggers) que redujeron significativamente el tiempo de procesamiento de reportes.",
-    "exp.job1.b2": "Desarrollé dashboards en Power BI y Tableau para reportes de contratistas y seguimiento operacional.",
-    "exp.job1.b3": "Automaticé flujos de verificación documental con SQL y controles de datos estructurados.",
-    "exp.job1.b4": "Trabajé en reportes de cumplimiento y análisis de anomalías con SQL y Python.",
-    "exp.job1.b5": "Desarrollé dashboards de RR.HH. y People Analytics: rotación, ausentismo, headcount, automatización de nómina y análisis de cohortes.",
-
-    "skills.kicker": "03 — Habilidades",
-    "skills.title": "Herramientas con las que trabajo",
-    "skills.g1": "Datos y BI",
-    "skills.g2": "Programación",
-    "skills.g4": "Herramientas y Métodos",
-    "skills.excel": "Excel Avanzado",
-    "skills.modeling": "Modelado de Datos",
-    "skills.storedproc": "Procedimientos Almacenados",
-    "skills.supply": "Analítica de Cadena de Suministro",
-    "skills.api": "Integración de APIs",
-    "skills.certsTitle": "Educación y Certificaciones",
-    "cert.c1t": "Analista de Sistemas",
-    "cert.c4t": "Full Stack Web Developer (Bootcamp)",
-    "cert.c5t": "Certificado JavaScript",
-
-    "about.kicker": "04 — Sobre mí",
-    "about.title": "De datos crudos a impacto en el negocio",
-    "about.p1": "Soy Analista de Datos en Chile con experiencia en automatización SQL, reportes de cumplimiento, análisis Python y dashboards de KPIs en Power BI y Tableau.",
-    "about.p2": "Mi trabajo ha reducido el tiempo de reportes de cumplimiento en ~40%, elevado la precisión de verificación automática de documentos sobre el 90%, y — en un proyecto integral de modernización de negocio — ayudó a aumentar las ventas un 10–15% reduciendo costos de abastecimiento un 15–20%.",
-    "about.p3": "Lo que me diferencia: manejo el ciclo de vida del dato de punta a punta. No solo leo el dashboard — diseño el pipeline que lo alimenta, automatizo la validación que lo mantiene confiable y traduzco el resultado en una decisión que el negocio puede ejecutar.",
-    "about.location": "Ubicación",
-    "about.langs": "Idiomas",
-    "about.langsValue": "Español (nativo) · Inglés (B2, nivel actual autoevaluado)",
-    "about.focus": "Enfoque",
-    "about.focusValue": "Análisis de Datos · BI · Automatización",
-    "about.education": "Educación",
-    "about.educationValue": "Analista de Sistemas — IES, Córdoba (AR)",
-
-    "contact.kicker": "05 — Contacto",
-    "contact.title": "Trabajemos juntos",
-    "contact.text": "¿Buscas a alguien que convierta tus datos en decisiones — y que construya las herramientas para lograrlo? Me encantaría saber de ti.",
-    "contact.call": "Llámame",
-
-    "footer.built": "Hecho con HTML, CSS y JS puro — sin frameworks.",
-  },
-};
-
-/* ===== Language ===== */
+/* ===== Language Switcher ===== */
 function setLang(lang) {
-  const dict = I18N[lang] || I18N.en;
+  const targetLang = lang === "en" ? "en" : "es";
+  const dict = (window.PORTFOLIO_I18N && window.PORTFOLIO_I18N[targetLang]) || {};
+
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     if (dict[key]) el.textContent = dict[key];
   });
-  document.documentElement.lang = lang;
-  document.getElementById("btnEn").classList.toggle("active", lang === "en");
-  document.getElementById("btnEs").classList.toggle("active", lang === "es");
 
-  // Primary download = current language; alt link = the other one
+  document.documentElement.lang = targetLang;
+  const btnEn = document.getElementById("btnEn");
+  const btnEs = document.getElementById("btnEs");
+  if (btnEn) btnEn.classList.toggle("active", targetLang === "en");
+  if (btnEs) btnEs.classList.toggle("active", targetLang === "es");
+
+  // Update all CV download buttons to match active language
   const primary = document.getElementById("cvDownload");
   const alt = document.getElementById("cvDownloadAlt");
-  primary.href = CV_FILES[lang];
-  alt.href = CV_FILES[lang === "en" ? "es" : "en"];
+  const navCta = document.getElementById("navCvBtn");
+  const contactCv = document.getElementById("contactCvBtn");
+  if (primary) primary.href = CV_FILES[targetLang];
+  if (navCta) navCta.href = CV_FILES[targetLang];
+  if (contactCv) contactCv.href = CV_FILES[targetLang];
+  if (alt) alt.href = CV_FILES[targetLang === "en" ? "es" : "en"];
 
-  localStorage.setItem("lang", lang);
+  localStorage.setItem("lang", targetLang);
 }
 
-/* ===== GitHub repos (curated) ===== */
-async function loadRepos() {
-  const grid = document.getElementById("ghGrid");
-  const lang = localStorage.getItem("lang") || "en";
-  try {
-    const settled = await Promise.all(
-      CURATED_REPOS.map((name) =>
-        fetch(`https://api.github.com/repos/Chrov/${name}`)
-          .then((r) => (r.ok ? r.json() : null))
-          .catch(() => null)
-      )
-    );
-    const repos = settled.filter(Boolean);
-    if (!repos.length) throw new Error("empty");
-    grid.innerHTML = "";
-    repos.forEach((r) => {
-      const a = document.createElement("a");
-      a.className = "repo";
-      a.href = r.html_url;
-      a.target = "_blank";
-      a.rel = "noopener";
+/* ===== Case Studies Domain Filter & View Mode Toggle ===== */
+const filterButtons = document.querySelectorAll(".filter-btn[data-filter]");
+const caseArticles = document.querySelectorAll(".evidence-case[data-categories]");
+const viewCardsBtn = document.getElementById("viewCardsBtn");
+const viewMatrixBtn = document.getElementById("viewMatrixBtn");
+const casesList = document.getElementById("casesList");
+const matrixView = document.getElementById("matrixView");
 
-      const name = document.createElement("span");
-      name.className = "repo__name";
-      name.textContent = r.name;
+filterButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const filter = btn.getAttribute("data-filter");
+    filterButtons.forEach((b) => b.classList.toggle("active", b === btn));
 
-      const desc = document.createElement("span");
-      desc.className = "repo__desc";
-      const blurb = REPO_BLURBS[r.name];
-      desc.textContent = (blurb && (blurb[lang] || blurb.en)) || r.description || "—";
+    if (casesList && matrixView && viewCardsBtn && viewMatrixBtn) {
+      casesList.classList.remove("hidden");
+      matrixView.classList.remove("active");
+      viewCardsBtn.classList.add("active");
+      viewMatrixBtn.classList.remove("active");
+    }
 
-      const meta = document.createElement("span");
-      meta.className = "repo__meta";
-      if (r.language) {
-        const lang = document.createElement("span");
-        lang.className = "repo__lang";
-        lang.textContent = r.language;
-        meta.appendChild(lang);
+    caseArticles.forEach((article) => {
+      const cats = (article.getAttribute("data-categories") || "").split(/\s+/);
+      if (filter === "all" || cats.includes(filter)) {
+        article.removeAttribute("hidden");
+        requestAnimationFrame(() => article.classList.add("is-visible"));
+      } else {
+        article.setAttribute("hidden", "");
       }
-      const stars = document.createElement("span");
-      stars.textContent = `★ ${r.stargazers_count}`;
-      meta.appendChild(stars);
-
-      a.append(name, desc, meta);
-      grid.appendChild(a);
     });
-  } catch (e) {
-    const lang = localStorage.getItem("lang") || "en";
-    grid.innerHTML = "";
-    const p = document.createElement("p");
-    p.className = "gh__loading";
-    p.textContent = I18N[lang]["proj.ghError"];
-    grid.appendChild(p);
-  }
+  });
+});
+
+if (viewCardsBtn && viewMatrixBtn && casesList && matrixView) {
+  viewCardsBtn.addEventListener("click", () => {
+    viewCardsBtn.classList.add("active");
+    viewMatrixBtn.classList.remove("active");
+    casesList.classList.remove("hidden");
+    matrixView.classList.remove("active");
+  });
+
+  viewMatrixBtn.addEventListener("click", () => {
+    viewMatrixBtn.classList.add("active");
+    viewCardsBtn.classList.remove("active");
+    matrixView.classList.add("active");
+    casesList.classList.add("hidden");
+  });
 }
 
-/* ===== Theme (light default, dark via toggle; respects system preference) ===== */
+/* ===== Quick SQL & Method Modal ===== */
+function openAuditModal(caseId) {
+  const data = CASE_AUDIT_DATA[caseId];
+  if (!data) return;
+  const lang = document.documentElement.lang === "en" ? "en" : "es";
+  const backdrop = document.getElementById("auditModalBackdrop");
+  const metaEl = document.getElementById("auditModalMeta");
+  const titleEl = document.getElementById("auditModalTitle");
+  const bodyEl = document.getElementById("auditModalBody");
+
+  if (!backdrop || !metaEl || !titleEl || !bodyEl) return;
+
+  metaEl.textContent = data.meta;
+  titleEl.textContent = data.title[lang];
+
+  const lblQ = lang === "en" ? "Business Question & Context" : "Pregunta de Negocio y Contexto";
+  const lblSql = lang === "en" ? "SQL & Validation Logic" : "Consulta SQL y Lógica de Validación";
+  const lblLim = lang === "en" ? "Scope & Considerations" : "Alcance y Consideraciones del Análisis";
+  const lblOpen = lang === "en" ? "Explore Full Case Study & Files →" : "Explorar Caso Completo y Descargables →";
+
+  bodyEl.innerHTML = `
+    <p style="font-weight: 600; color: var(--text); margin-bottom: 4px;">${lblQ}</p>
+    <p style="color: var(--text-secondary); font-size: 0.94rem; margin-bottom: 16px;">${data.question[lang]}</p>
+    <p style="font-weight: 600; color: var(--text); margin-bottom: 4px;">${lblSql}</p>
+    <pre class="audit-code"><code>${data.sql.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>
+    <p style="font-weight: 600; color: var(--text); margin-bottom: 4px;">${lblLim}</p>
+    <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 22px;">${data.limits[lang]}</p>
+    <div style="display: flex; justify-content: flex-end; gap: 12px; border-top: 1px solid var(--border); padding-top: 16px;">
+      <a class="btn btn--primary btn--sm" href="${data.caseUrl}">${lblOpen}</a>
+    </div>
+  `;
+
+  backdrop.classList.add("open");
+}
+
+function closeAuditModal() {
+  const backdrop = document.getElementById("auditModalBackdrop");
+  if (backdrop) backdrop.classList.remove("open");
+}
+
+window.openAuditModal = openAuditModal;
+window.closeAuditModal = closeAuditModal;
+window.setLang = setLang;
+
+document.getElementById("auditModalBackdrop")?.addEventListener("click", (e) => {
+  if (e.target.id === "auditModalBackdrop") closeAuditModal();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeAuditModal();
+});
+
+/* ===== Natural Scroll-Reveal Choreography ===== */
+const revealElements = document.querySelectorAll(".reveal");
+
+// Assign subtle stagger delays to sibling reveal elements within grids
+document.querySelectorAll(".hero__proof-strip, .skills__grid, .timeline").forEach((group) => {
+  group.querySelectorAll(":scope > .reveal").forEach((el, idx) => {
+    el.style.setProperty("--reveal-delay", `${idx * 75}ms`);
+  });
+});
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  revealElements.forEach((el) => revealObserver.observe(el));
+} else {
+  revealElements.forEach((el) => el.classList.add("is-visible"));
+}
+
+/* ===== Animated Stat Counters ===== */
+const statCounters = document.querySelectorAll(".stat-counter[data-target]");
+function animateCounter(el) {
+  const target = parseInt(el.getAttribute("data-target") || "0", 10);
+  if (!target || isNaN(target)) return;
+  const duration = 1200;
+  const startTime = performance.now();
+
+  function tick(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    // Ease out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = String(Math.round(target * eased));
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    } else {
+      el.textContent = String(target);
+    }
+  }
+  requestAnimationFrame(tick);
+}
+
+if ("IntersectionObserver" in window && statCounters.length > 0) {
+  const counterObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+  statCounters.forEach((counter) => counterObserver.observe(counter));
+}
+
+/* ===== Subtle Interactive Cursor Spotlight on Project Cards ===== */
+document.querySelectorAll(".evidence-case").forEach((card) => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  });
+});
+
+/* ===== Theme Controller ===== */
 function setTheme(theme) {
   if (theme === "dark") {
     document.documentElement.setAttribute("data-theme", "dark");
@@ -358,7 +445,7 @@ function setTheme(theme) {
   localStorage.setItem("theme", theme);
 }
 
-document.getElementById("themeToggle").addEventListener("click", () => {
+document.getElementById("themeToggle")?.addEventListener("click", () => {
   const isDark = document.documentElement.getAttribute("data-theme") === "dark";
   setTheme(isDark ? "light" : "dark");
 });
@@ -368,20 +455,20 @@ setTheme(
     (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
 );
 
-/* ===== Mobile menu ===== */
+/* ===== Mobile Menu ===== */
 const burger = document.getElementById("burger");
 const navLinks = document.getElementById("navLinks");
-burger.addEventListener("click", () => navLinks.classList.toggle("open"));
-navLinks.querySelectorAll("a").forEach((a) =>
-  a.addEventListener("click", () => navLinks.classList.remove("open"))
-);
+if (burger && navLinks) {
+  burger.addEventListener("click", () => navLinks.classList.toggle("open"));
+  navLinks.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => navLinks.classList.remove("open"))
+  );
+}
 
-/* ===== Motion preference ===== */
-const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-/* ===== Scroll progress bar ===== */
+/* ===== Scroll Progress Bar ===== */
 const progressBar = document.getElementById("progress");
 function updateProgress() {
+  if (!progressBar) return;
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
   const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
   progressBar.style.width = `${Math.min(pct, 100)}%`;
@@ -390,84 +477,30 @@ window.addEventListener("scroll", updateProgress, { passive: true });
 window.addEventListener("resize", updateProgress);
 updateProgress();
 
-/* ===== Animated stat counters ===== */
-function countUp(el) {
-  const target = Number(el.dataset.count);
-  const suffix = el.dataset.suffix || "";
-  if (!Number.isFinite(target)) return;
-  if (REDUCED_MOTION) {
-    el.textContent = target + suffix;
-    return;
-  }
-  const duration = 1100;
-  const start = performance.now();
-  function frame(now) {
-    const t = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
-    el.textContent = Math.round(target * eased) + suffix;
-    if (t < 1) requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-}
-
-const counterObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        countUp(e.target);
-        counterObserver.unobserve(e.target);
-      }
-    });
-  },
-  { threshold: 0.5 }
-);
-document.querySelectorAll(".stat__num[data-count]").forEach((el) => {
-  el.textContent = "0" + (el.dataset.suffix || "");
-  counterObserver.observe(el);
-});
-
-/* ===== Scroll reveal ===== */
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add("visible");
-        observer.unobserve(e.target);
-      }
-    });
-  },
-  { threshold: 0.12 }
-);
-document
-  .querySelectorAll(".section .container > *, .case, .timeline__item")
-  .forEach((el) => {
-    el.classList.add("reveal");
-    observer.observe(el);
+/* ===== Scrollspy ===== */
+const spyLinks = new Map();
+if (navLinks) {
+  navLinks.querySelectorAll("a[href^='#']").forEach((a) => {
+    const section = document.querySelector(a.getAttribute("href"));
+    if (section) spyLinks.set(section, a);
   });
 
-/* ===== Scrollspy — highlight the section you're reading ===== */
-const spyLinks = new Map();
-navLinks.querySelectorAll("a[href^='#']").forEach((a) => {
-  const section = document.querySelector(a.getAttribute("href"));
-  if (section) spyLinks.set(section, a);
-});
+  const spyObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        const link = spyLinks.get(e.target);
+        if (!link) return;
+        if (e.isIntersecting) {
+          spyLinks.forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+        }
+      });
+    },
+    { rootMargin: "-35% 0px -55% 0px" }
+  );
+  spyLinks.forEach((_, section) => spyObserver.observe(section));
+}
 
-const spyObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((e) => {
-      const link = spyLinks.get(e.target);
-      if (!link) return;
-      if (e.isIntersecting) {
-        spyLinks.forEach((l) => l.classList.remove("active"));
-        link.classList.add("active");
-      }
-    });
-  },
-  { rootMargin: "-45% 0px -50% 0px" }
-);
-spyLinks.forEach((_, section) => spyObserver.observe(section));
-
-/* ===== Init ===== */
-for (const lang of ["en", "es"]) Object.assign(I18N[lang], window.PORTFOLIO_I18N?.[lang] || {});
-setLang(localStorage.getItem("lang") || "en");
-if (document.getElementById("repoGrid")) loadRepos();
+/* ===== Initialize ===== */
+const initialLang = localStorage.getItem("lang") || "es";
+setLang(initialLang);
