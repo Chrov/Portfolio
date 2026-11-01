@@ -23,9 +23,9 @@ main {
 nav.downloads {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 8px;
   padding-bottom: 20px;
   margin-bottom: 36px;
   border-bottom: 1px solid var(--border);
@@ -37,6 +37,7 @@ nav.downloads a:first-child {
   font-size: 0.95rem;
   color: var(--text);
   text-decoration: none;
+  margin-right: auto;
 }
 
 nav.downloads a:first-child:hover {

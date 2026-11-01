@@ -353,7 +353,7 @@ button:focus-visible {
 /* ===== Hero Section ===== */
 .hero {
   position: relative;
-  padding: 84px 0 64px;
+  padding: 44px 0 48px;
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
@@ -434,27 +434,28 @@ button:focus-visible {
 
 .hero__summary {
   color: var(--text-secondary);
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 0.98rem;
+  line-height: 1.65;
   max-width: 64ch;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .hero__cta {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 14px;
-  margin-bottom: 28px;
+  gap: 12px;
+  margin-bottom: 22px;
 }
 
 .link-alt {
-  font-size: 0.86rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--text-muted);
   text-decoration: underline;
   text-underline-offset: 4px;
   white-space: nowrap;
+  padding-left: 4px;
 }
 
 .link-alt:hover {
@@ -465,10 +466,10 @@ button:focus-visible {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
-  padding-top: 20px;
+  gap: 14px;
+  padding-top: 16px;
   border-top: 1px solid var(--border);
-  font-size: 0.86rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
@@ -485,7 +486,7 @@ button:focus-visible {
   gap: 6px;
   color: var(--text-secondary);
   font-weight: 600;
-  font-size: 0.86rem;
+  font-size: 0.85rem;
   transition: color 0.2s ease, transform 0.2s var(--ease-spring);
 }
 
@@ -500,12 +501,12 @@ button:focus-visible {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 30px;
+  padding: 24px 26px;
   box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 22px;
+  gap: 16px;
   transition: transform 0.35s var(--ease-spring), box-shadow 0.35s var(--ease-out-expo), border-color 0.3s ease;
 }
 
@@ -519,61 +520,61 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding-bottom: 14px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--border);
 }
 
 .dossier__title {
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   font-weight: 700;
   color: var(--text);
 }
 
 .dossier__loc {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   color: var(--accent);
 }
 
 .dossier__rows {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 }
 
 .dossier__item {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
 .dossier__label {
   font-family: var(--font-mono);
-  font-size: 0.73rem;
+  font-size: 0.72rem;
   color: var(--accent);
 }
 
 .dossier__value {
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   color: var(--text);
-  line-height: 1.38;
+  line-height: 1.35;
 }
 
 .dossier__sub {
-  font-size: 0.83rem;
+  font-size: 0.81rem;
   color: var(--text-muted);
-  line-height: 1.45;
+  line-height: 1.42;
 }
 
 .dossier__footer {
-  padding-top: 14px;
+  padding-top: 12px;
   border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
 }
 
@@ -583,19 +584,19 @@ button:focus-visible {
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-top: 48px;
+  gap: 18px;
+  margin-top: 28px;
 }
 
 .proof-cell {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 22px 24px;
+  padding: 18px 22px;
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   transition: transform 0.28s var(--ease-spring), box-shadow 0.28s var(--ease-out-expo), border-color 0.25s ease;
 }
 
@@ -840,11 +841,11 @@ button:focus-visible {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 38px;
+  padding: 36px;
   display: grid;
   grid-template-columns: 1.12fr 0.88fr;
-  gap: 40px;
-  align-items: stretch;
+  gap: 36px;
+  align-items: center;
   box-shadow: var(--shadow-sm);
   overflow: hidden;
   transition: transform 0.35s var(--ease-spring), border-color 0.3s ease, box-shadow 0.35s var(--ease-out-expo);
@@ -994,7 +995,8 @@ button:focus-visible {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 14px;
   background: var(--surface-subtle);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1026,7 +1028,6 @@ button:focus-visible {
 }
 
 .evidence-visual-caption {
-  margin-top: 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1484,14 +1485,15 @@ button:focus-visible {
   }
 }
 
-.reveal {
+html.js-ready .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.65s var(--ease-out-expo), transform 0.65s var(--ease-out-expo);
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
-.reveal.visible {
+html.js-ready .reveal.visible,
+html.js-ready .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }

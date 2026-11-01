@@ -283,7 +283,7 @@ filterButtons.forEach((btn) => {
       const cats = (article.getAttribute("data-categories") || "").split(/\s+/);
       if (filter === "all" || cats.includes(filter)) {
         article.removeAttribute("hidden");
-        requestAnimationFrame(() => article.classList.add("is-visible"));
+        requestAnimationFrame(() => article.classList.add("visible", "is-visible"));
       } else {
         article.setAttribute("hidden", "");
       }
@@ -360,6 +360,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* ===== Natural Scroll-Reveal Choreography ===== */
+document.documentElement.classList.add("js-ready");
 const revealElements = document.querySelectorAll(".reveal");
 
 // Assign subtle stagger delays to sibling reveal elements within grids
@@ -369,22 +370,33 @@ document.querySelectorAll(".hero__proof-strip, .skills__grid, .timeline").forEac
   });
 });
 
+function markRevealed(el) {
+  el.classList.add("visible", "is-visible");
+}
+
 if ("IntersectionObserver" in window) {
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
+          markRevealed(entry.target);
           observer.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    { threshold: 0.06, rootMargin: "0px 0px -20px 0px" }
   );
 
-  revealElements.forEach((el) => revealObserver.observe(el));
+  revealElements.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.95) {
+      requestAnimationFrame(() => markRevealed(el));
+    } else {
+      revealObserver.observe(el);
+    }
+  });
 } else {
-  revealElements.forEach((el) => el.classList.add("is-visible"));
+  revealElements.forEach((el) => markRevealed(el));
 }
 
 /* ===== Animated Stat Counters ===== */
