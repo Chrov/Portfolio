@@ -4,8 +4,13 @@
 
 Data Analyst and Business Intelligence specialist with 4+ years of experience turning complex operational, clinical, and commercial datasets into clear dashboards, automated workflows, and evidence-backed decisions.
 
-- **Experience**: Digital Health & Clinical Operations Analytics at **Airmed** · B2B SaaS Compliance & People Analytics at **Top Partners S.A. (SubContrataLey · 70+ client companies)** · Independent BI & Retail Operations Consulting.
-- **Higher Education**: **Associate Degree in Data Analysis (Analista de Datos)** *(graduating 2027)* & **B.Eng. in Data Science Engineering (Ingeniería en Ciencia de Datos)** *(graduating 2028)* at Instituto Profesional AIEP.
+- **Experience**:
+  - **Airmed**: Digital Health & Clinical Operations Analytics (SQL, Power BI, Python data quality, clinical SLA & capacity KPIs).
+  - **Top Partners S.A. (SubContrataLey · Dec 2021 – Jan 2026)**: B2B SaaS Compliance & People Analytics across 70+ client companies.
+  - **Freelance Data, BI & Operations Consultant (Jan 2026 – Present)**: End-to-end commercial retail modernization (+10–15% sales, -15–20% procurement costs, near-zero stockouts, WhatsApp voice-to-data automation), demand forecasting & replenishment systems (`dbt`, `LightGBM`, moving-average baselines), CLP batch waste control, and executive BI dashboards.
+- **Higher Education (Started 2026)**:
+  - **Associate Degree in Data Analysis (Analista de Datos)** — **Instituto Profesional IPLACEX** *(2026 – 2027)*.
+  - **B.Eng. in Data Science Engineering (Ingeniería en Ciencia de Datos)** — **Instituto Profesional IPG** *(2026 – 2028)*.
 - **Core Stack**: SQL (PostgreSQL, BigQuery, dbt, Star Schema), Python (Pandas, scikit-learn, LightGBM), Power BI (DAX, Power Query, `.pbip`), Tableau, and Advanced Excel.
 
 ---

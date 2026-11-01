@@ -11,18 +11,18 @@ const DATA = {
   es: {
     filename: path.join(ROOT, 'assets', 'Camilo_Vergara_CV_ES.pdf'),
     name: 'CAMILO VERGARA SALAS',
-    headline: 'Analista de Datos | Business Intelligence & Ingeniería en Ciencia de Datos (c)',
+    headline: 'Analista de Datos | Business Intelligence & Consultor Freelance · Ing. en Ciencia de Datos (c)',
     contact1: 'Santiago, Chile · camilovergarasalas.cvs@gmail.com · +56 9 9751 3084',
     contact2: 'linkedin.com/in/camilo-evs · chrov.github.io/Portfolio · github.com/Chrov · Modalidad Híbrida / Remota / Presencial',
     sections: {
       summary: 'PERFIL PROFESIONAL',
       experience: 'EXPERIENCIA PROFESIONAL',
       education: 'EDUCACIÓN SUPERIOR Y CERTIFICACIONES',
-      projects: 'PROYECTOS DE ANALÍTICA APLICADA Y CIENCIA DE DATOS',
+      projects: 'PROYECTOS REALIZADOS Y ANALÍTICA APLICADA',
       skills: 'COMPETENCIAS TÉCNICAS Y DOMINIOS DE NEGOCIO'
     },
     summaryText:
-      'Analista de Datos y especialista en Business Intelligence con más de 4 años de experiencia transformando datos complejos en decisiones operativas, clínicas y comerciales. Trayectoria comprobada en plataformas SaaS B2B (Top Partners S.A. · +70 empresas cliente) y operaciones de salud (Airmed), combinando SQL avanzado (PostgreSQL, BigQuery), modelado dimensional (Star Schema, dbt), automatización en Python y reportería ejecutiva en Power BI (DAX) y Tableau. Próximo a titularse como Analista de Datos (2027) y cursando Ingeniería en Ciencia de Datos (2028), con sello distintivo en validación temporal rigurosa, gobernanza de datos y criterio ejecutivo orientado a impacto medible.',
+      'Analista de Datos y especialista en Business Intelligence con más de 4 años de experiencia transformando datos complejos en decisiones operativas, clínicas y comerciales. Trayectoria comprobada en plataformas SaaS B2B (Top Partners S.A. · +70 empresas cliente), operaciones de salud (Airmed) y como consultor freelance de datos y BI, combinando SQL avanzado (PostgreSQL, BigQuery), modelado dimensional (Star Schema, dbt), automatización en Python y reportería ejecutiva en Power BI (DAX) y Tableau. Cursando Analista de Datos en IPLACEX (2026–2027) e Ingeniería en Ciencia de Datos en IPG (2026–2028), con sello distintivo en validación temporal rigurosa, gobernanza de datos y entregas orientadas a impacto medible.',
     jobs: [
       {
         role: 'Analista de Datos & Business Intelligence',
@@ -35,6 +35,16 @@ const DATA = {
         ]
       },
       {
+        role: 'Consultor Freelance de Datos, Business Intelligence y Operaciones',
+        company: 'Consultoría Independiente (Retail, Abastecimiento y BI)',
+        period: 'Ene 2026 – Presente',
+        bullets: [
+          'Lideré la modernización operativa y analítica de un negocio comercial (retail artesanal) definiendo desde cero KPIs de margen diario, rotación de inventario, merma valorizada al costo y abastecimiento.',
+          'Reduje los quiebres de stock a casi cero, impulsé las ventas entre 10% y 15% y disminuí costos de compra entre 15% y 20% implementando control diario en SQL, Excel avanzado, Power BI, Tableau y captura automatizada por WhatsApp (voz a datos).',
+          'Diseñé y entregué proyectos independientes de ingeniería analítica y BI: modelos de pronóstico y reposición (dbt, LightGBM, medias móviles validadas por walk-forward), control de merma por cohortes en CLP y auditoría temporal de modelos.'
+        ]
+      },
+      {
         role: 'Analista de Datos / Analista Programador',
         company: 'Top Partners S.A. · SubContrataLey (SaaS B2B)',
         period: 'Dic 2021 – Ene 2026',
@@ -44,28 +54,18 @@ const DATA = {
           'Elevé sobre el 90% la precisión de la verificación automática de documentos implementando reglas de gobernanza de datos y rutinas de detección de anomalías en Python (Pandas, Seaborn) sobre el flujo documental diario.',
           'Lideré la línea de People Analytics (RR.HH.): modelé cohortes de permanencia, rotación, ausentismo, headcount y métricas de selección, reduciendo la consolidación manual de nómina y ERP mediante Power Query.'
         ]
-      },
-      {
-        role: 'Consultor de Business Intelligence y Operaciones',
-        company: 'Modernización Comercial · Retail de Productos Artesanales',
-        period: 'Abr 2026 – Jul 2026',
-        bullets: [
-          'Lideré la modernización operativa y analítica de punta a punta en 4 meses, definiendo desde cero KPIs de margen diario, rotación de inventario, merma valorizada y abastecimiento.',
-          'Reduje los quiebres de stock a casi cero e impulsé las ventas entre 10% y 15% implementando control diario en SQL, Excel avanzado, Power BI, Tableau y un flujo automatizado de captura por WhatsApp (voz a datos).',
-          'Disminuí los costos de abastecimiento entre 15% y 20% eliminando la dependencia de proveedor único y estandarizando formatos de pesaje, envases y política de precios en todo el catálogo.'
-        ]
       }
     ],
     education: [
       {
         degree: 'Ingeniería en Ciencia de Datos',
-        school: 'Instituto Profesional AIEP, Chile',
-        date: 'En curso · Titulación 2028'
+        school: 'Instituto Profesional IPG, Chile',
+        date: '2026 – 2028 · En curso'
       },
       {
         degree: 'Técnico de Nivel Superior en Análisis de Datos (Analista de Datos)',
-        school: 'Instituto Profesional AIEP, Chile',
-        date: 'En curso · Titulación 2027'
+        school: 'Instituto Profesional IPLACEX, Chile',
+        date: '2026 – 2027 · En curso'
       },
       {
         degree: 'Analista de Sistemas (3 años cursados)',
@@ -86,9 +86,9 @@ const DATA = {
         ]
       },
       {
-        title: 'Control de Merma en Retail, Confiabilidad Aérea BTS y Auditoría de Modelos (SQL · Python · Power BI)',
+        title: 'Control de Merma por Cohortes, Confiabilidad Aérea BTS y Auditoría de Modelos (SQL · Python · Power BI)',
         bullets: [
-          'Desarrollé 5 casos reproducibles adicionales con datos oficiales (577.262 vuelos BTS EE.UU.; 49 años de series COCHILCO; 41.188 registros bancarios UCI) y simulaciones auditables, incluyendo diccionarios de datos, pruebas de deriva temporal (data drift) y reportes ejecutivos bilingües.'
+          'Desarrollé 5 estudios analíticos reproducibles adicionales sobre retail y datos oficiales (3.825 lotes conciliados en CLP; 577.262 vuelos BTS EE.UU.; 49 años de series COCHILCO; 41.188 registros bancarios UCI) con modelos nativos en Power BI (.pbip), Tableau (.twbx) y Excel (.xlsx).'
         ]
       }
     ],
@@ -103,18 +103,18 @@ const DATA = {
   en: {
     filename: path.join(ROOT, 'assets', 'Camilo_Vergara_Resume_EN.pdf'),
     name: 'CAMILO VERGARA SALAS',
-    headline: 'Data Analyst | Business Intelligence & Data Science Engineering (c)',
+    headline: 'Data Analyst | Business Intelligence & Freelance Consultant · Data Science Engineering (c)',
     contact1: 'Santiago, Chile · camilovergarasalas.cvs@gmail.com · +56 9 9751 3084',
     contact2: 'linkedin.com/in/camilo-evs · chrov.github.io/Portfolio · github.com/Chrov · Open to Remote / Hybrid / Relocation',
     sections: {
       summary: 'EXECUTIVE SUMMARY',
       experience: 'PROFESSIONAL EXPERIENCE',
       education: 'EDUCATION & PROFESSIONAL CERTIFICATIONS',
-      projects: 'APPLIED ANALYTICS & DATA SCIENCE PROJECTS',
+      projects: 'DELIVERED ANALYTICS & DATA SCIENCE PROJECTS',
       skills: 'TECHNICAL SKILLS & BUSINESS DOMAINS'
     },
     summaryText:
-      'Data Analyst and Business Intelligence specialist with 4+ years of experience turning complex operational, clinical, and commercial datasets into measurable decisions. Proven track record across B2B SaaS compliance (Top Partners S.A. · 70+ enterprise clients) and healthcare operations (Airmed), combining advanced SQL (PostgreSQL, BigQuery), dimensional modeling (Star Schema, dbt), Python automation, and executive dashboards in Power BI (DAX) and Tableau. Completing a Data Analyst degree in 2027 and a B.Eng. in Data Science Engineering in 2028, distinguished by leakage-free temporal validation, data governance rigor, and decision-first analytical judgment.',
+      'Data Analyst and Business Intelligence specialist with 4+ years of experience turning complex operational, clinical, and commercial datasets into measurable decisions. Proven track record across B2B SaaS compliance (Top Partners S.A. · 70+ enterprise clients), healthcare operations (Airmed), and freelance Data & BI consulting, combining advanced SQL (PostgreSQL, BigQuery), dimensional modeling (Star Schema, dbt), Python automation, and executive dashboards in Power BI (DAX) and Tableau. Pursuing an Associate Degree in Data Analysis at IPLACEX (2026–2027) and a B.Eng. in Data Science Engineering at IPG (2026–2028), distinguished by leakage-free temporal validation, data governance rigor, and decision-first analytical judgment.',
     jobs: [
       {
         role: 'Data Analyst & Business Intelligence Specialist',
@@ -127,6 +127,16 @@ const DATA = {
         ]
       },
       {
+        role: 'Freelance Data, Business Intelligence & Operations Consultant',
+        company: 'Independent Consulting (Retail, Supply Chain & BI)',
+        period: 'Jan 2026 – Present',
+        bullets: [
+          'Delivered an end-to-end operational and analytics modernization for a commercial retail business, defining daily gross margin, inventory turnover, waste-at-cost, and procurement KPIs from scratch.',
+          'Reduced stockouts to near zero, drove a 10–15% sales increase, and lowered procurement costs by 15–20% by deploying daily tracking across SQL, advanced Excel, Power BI, Tableau, and an automated WhatsApp voice-to-data bot.',
+          'Engineered and delivered independent BI and analytics solutions: demand forecasting & replenishment pipelines (dbt, LightGBM, walk-forward validated moving-average baselines), CLP cohort waste control, and temporal model audits.'
+        ]
+      },
+      {
         role: 'Data Analyst / Analyst Programmer',
         company: 'Top Partners S.A. · SubContrataLey (B2B SaaS)',
         period: 'Dec 2021 – Jan 2026',
@@ -136,28 +146,18 @@ const DATA = {
           'Raised automated document verification accuracy above 90% by enforcing data governance rules and deploying Python anomaly-detection routines (Pandas, Seaborn) across daily document ingestion.',
           'Spearheaded People Analytics (HR): modeled employee tenure cohorts, attrition, absenteeism, headcount, and recruitment funnel metrics while automating ERP payroll consolidation with Power Query.'
         ]
-      },
-      {
-        role: 'Business Intelligence & Operations Consultant',
-        company: 'Retail & Artisanal Market Modernization',
-        period: 'Apr 2026 – Jul 2026',
-        bullets: [
-          'Delivered a 4-month end-to-end operational and analytics modernization, defining inventory turnover, daily gross margin, waste-at-cost, and procurement KPIs from scratch.',
-          'Reduced stockouts to near zero and drove a 10–15% sales increase by deploying daily tracking across SQL, advanced Excel, Power BI, Tableau, and an automated WhatsApp voice-to-data bot.',
-          'Lowered procurement costs by 15–20% by eliminating single-supplier dependency, establishing emergency supply routes, and standardizing catalog pricing and packaging.'
-        ]
       }
     ],
     education: [
       {
         degree: 'B.Eng. in Data Science Engineering (Ingeniería en Ciencia de Datos)',
-        school: 'AIEP, Chile',
-        date: 'Enrolled · Graduation 2028'
+        school: 'Instituto Profesional IPG, Chile',
+        date: '2026 – 2028 · In progress'
       },
       {
         degree: 'Associate Degree in Data Analysis (Analista de Datos)',
-        school: 'AIEP, Chile',
-        date: 'Enrolled · Graduation 2027'
+        school: 'Instituto Profesional IPLACEX, Chile',
+        date: '2026 – 2027 · In progress'
       },
       {
         degree: 'Systems Analysis Studies (3 Years Completed)',
@@ -180,7 +180,7 @@ const DATA = {
       {
         title: 'Retail Cohort Waste, BTS Airline Reliability & ML Drift Auditing (SQL · Python · Power BI)',
         bullets: [
-          'Published 5 additional reproducible studies across official public datasets (577,262 US BTS flights; 49-year COCHILCO copper series; 41,188 UCI bank records) and audited simulations with full data dictionaries, drift diagnostics, and native BI workbooks.'
+          'Built 5 additional reproducible studies across retail and official public datasets (3,825 CLP batches; 577,262 US BTS flights; 49-year COCHILCO copper series; 41,188 UCI bank records) with native Power BI (.pbip), Tableau (.twbx), and Excel (.xlsx) workbooks.'
         ]
       }
     ],
@@ -202,8 +202,8 @@ function buildResume(cfg) {
       info: {
         Title: `${cfg.name} - ${cfg.headline}`,
         Author: 'Camilo Vergara Salas',
-        Subject: 'ATS-Optimized Data Analyst & Business Intelligence Resume',
-        Keywords: 'Data Analyst, Business Intelligence, SQL, Python, Power BI, Tableau, dbt, BigQuery, Data Science, Airmed, Top Partners'
+        Subject: 'Data Analyst & Business Intelligence Resume',
+        Keywords: 'Data Analyst, Business Intelligence, SQL, Python, Power BI, Tableau, dbt, BigQuery, Data Science, Airmed, Top Partners, IPLACEX, IPG'
       }
     });
 
@@ -231,7 +231,7 @@ function buildResume(cfg) {
     doc.moveDown(0.12);
     doc
       .font('Helvetica-Bold')
-      .fontSize(9.8)
+      .fontSize(9.5)
       .fillColor(accentColor)
       .text(cfg.headline, leftX, doc.y, { width: pageWidth, align: 'center' });
 
@@ -300,14 +300,14 @@ function buildResume(cfg) {
     drawSectionHeader(cfg.sections.summary);
     doc
       .font('Helvetica')
-      .fontSize(8.45)
+      .fontSize(8.4)
       .fillColor(textColor)
       .text(cfg.summaryText, leftX, doc.y, {
         width: pageWidth,
         align: 'justify',
-        lineGap: 1.3
+        lineGap: 1.25
       });
-    doc.moveDown(0.45);
+    doc.moveDown(0.42);
 
     // 2. Experience
     drawSectionHeader(cfg.sections.experience);
@@ -322,17 +322,17 @@ function buildResume(cfg) {
           .text('•', leftX + 2, bY);
         doc
           .font('Helvetica')
-          .fontSize(8.35)
+          .fontSize(8.3)
           .fillColor(textColor)
           .text(b, leftX + 11, bY, {
             width: pageWidth - 11,
-            lineGap: 1.1
+            lineGap: 1.05
           });
-        doc.moveDown(0.1);
+        doc.moveDown(0.08);
       });
-      if (idx < cfg.jobs.length - 1) doc.moveDown(0.25);
+      if (idx < cfg.jobs.length - 1) doc.moveDown(0.22);
     });
-    doc.moveDown(0.35);
+    doc.moveDown(0.32);
 
     // 3. Education
     drawSectionHeader(cfg.sections.education);
@@ -340,18 +340,18 @@ function buildResume(cfg) {
       if (!ed.date) {
         doc
           .font('Helvetica-Bold')
-          .fontSize(8.35)
+          .fontSize(8.3)
           .fillColor(textColor)
           .text(`${ed.degree}: `, leftX, doc.y, { width: pageWidth, continued: true })
           .font('Helvetica')
           .fillColor(mutedColor)
-          .text(ed.school, { width: pageWidth, lineGap: 1.1 });
+          .text(ed.school, { width: pageWidth, lineGap: 1.05 });
         doc.moveDown(0.12);
       } else {
         const startY = doc.y;
         doc
           .font('Helvetica-Bold')
-          .fontSize(8.5)
+          .fontSize(8.45)
           .fillColor(textColor)
           .text(ed.degree, leftX, startY, { width: leftColWidth, continued: true })
           .font('Helvetica')
@@ -371,17 +371,17 @@ function buildResume(cfg) {
         doc.y = Math.max(leftEndY, rightEndY) + 1.5;
       }
     });
-    doc.moveDown(0.28);
+    doc.moveDown(0.26);
 
     // 4. Projects
     drawSectionHeader(cfg.sections.projects);
     cfg.projects.forEach((proj) => {
       doc
         .font('Helvetica-Bold')
-        .fontSize(8.5)
+        .fontSize(8.45)
         .fillColor(textColor)
         .text(proj.title, leftX, doc.y, { width: pageWidth });
-      doc.moveDown(0.08);
+      doc.moveDown(0.06);
       proj.bullets.forEach((b) => {
         const bY = doc.y;
         doc
@@ -391,29 +391,29 @@ function buildResume(cfg) {
           .text('•', leftX + 2, bY);
         doc
           .font('Helvetica')
-          .fontSize(8.3)
+          .fontSize(8.25)
           .fillColor(textColor)
           .text(b, leftX + 11, bY, {
             width: pageWidth - 11,
             lineGap: 1.05
           });
       });
-      doc.moveDown(0.18);
+      doc.moveDown(0.16);
     });
-    doc.moveDown(0.2);
+    doc.moveDown(0.18);
 
     // 5. Technical Skills
     drawSectionHeader(cfg.sections.skills);
     cfg.skills.forEach(([label, items]) => {
       doc
         .font('Helvetica-Bold')
-        .fontSize(8.3)
+        .fontSize(8.25)
         .fillColor(textColor)
         .text(`${label} `, leftX, doc.y, { width: pageWidth, continued: true })
         .font('Helvetica')
         .fillColor(textColor)
         .text(items, { width: pageWidth, lineGap: 1.05 });
-      doc.moveDown(0.1);
+      doc.moveDown(0.08);
     });
 
     doc.end();
@@ -424,4 +424,4 @@ function buildResume(cfg) {
 
 await buildResume(DATA.es);
 await buildResume(DATA.en);
-console.log('Generated both ATS-optimized PDF resumes cleanly.');
+console.log('Generated both PDF resumes cleanly with IPLACEX, IPG, and Freelance details.');
