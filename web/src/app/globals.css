@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Design tokens. Chart colours follow the validated dataviz reference palette. */
+:root {
+  color-scheme: light;
+  --bg: #f3f3f0;
+  --surface: #fcfcfb;
+  --surface-2: #f0efec;
+  --border: #e3e1db;
+  --border-strong: #cfccc3;
+  --text: #0b0b0b;
+  --text-2: #52514e;
+  --text-3: #6f6d67;
+  --accent: #2a78d6;
+  --accent-soft: #e6effb;
+  --good: #0a7d0a;
+  --bad: #c03030;
+  --warn-bg: #fff4dc;
+  --warn-text: #6b4a00;
+  --sim-bg: #efeafc;
+  --sim-text: #4a3aa7;
+  --shadow: 0 1px 2px rgb(20 20 18 / 0.04), 0 4px 16px rgb(20 20 18 / 0.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --bg: #121211; --surface: #1a1a19; --surface-2: #232321; --border: #2e2e2b; --border-strong: #45443f;
+    --text: #f0efec; --text-2: #c3c2b7; --text-3: #9a988f; --accent: #3987e5; --accent-soft: #1b2a3f;
+    --good: #3fc23f; --bad: #ef7676; --warn-bg: #3a2f12; --warn-text: #f3d38a; --sim-bg: #27223f; --sim-text: #b9b1f2;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121211; --surface: #1a1a19; --surface-2: #232321; --border: #2e2e2b; --border-strong: #45443f;
+  --text: #f0efec; --text-2: #c3c2b7; --text-3: #9a988f; --accent: #3987e5; --accent-soft: #1b2a3f;
+  --good: #3fc23f; --bad: #ef7676; --warn-bg: #3a2f12; --warn-text: #f3d38a; --sim-bg: #27223f; --sim-text: #b9b1f2;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text);
+  --color-ink-2: var(--text-2);
+  --color-ink-3: var(--text-3);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-good: var(--good);
+  --color-bad: var(--bad);
+  --color-warn-bg: var(--warn-bg);
+  --color-warn-text: var(--warn-text);
+  --color-sim-bg: var(--sim-bg);
+  --color-sim-text: var(--sim-text);
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --shadow-card: var(--shadow);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 12px; }
+@media (min-width: 768px) { html { scroll-padding-top: 132px; } }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1;
+  -webkit-font-smoothing: antialiased;
+}
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.num { font-variant-numeric: tabular-nums; }
+
+input[type="range"] { accent-color: var(--accent); }
+select { background-image: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.animate-in { animation: fade-up 0.35s ease both; }

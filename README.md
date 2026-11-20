@@ -15,6 +15,17 @@ Data Analyst and Business Intelligence specialist with 4+ years of experience tu
 
 ---
 
+## Analytics Applications / Aplicaciones Analíticas
+
+| App | What it does / Qué hace | Data / Datos |
+|---|---|---|
+| **[Revenue Intelligence](https://chrov.github.io/Portfolio/apps/revenue-intelligence/)** | KPIs with methodology, period comparison, anomalies, price-volume decomposition, categories, RFM, 8-week forecast vs baselines (leakage-free backtest), scenario simulator | Olist public e-commerce (Kaggle, real) |
+| **[TalentRisk AI](https://chrov.github.io/Portfolio/apps/talentrisk/)** | Filterable people analytics, associations with Wilson CIs and BH-corrected tests, LR / RF / XGBoost with calibration, SHAP, fairness audit, risk explorer, retention-score simulator | IBM HR Attrition (Kaggle, **fictional**) |
+
+Stack: SQL (DuckDB) · Python (pandas, scikit-learn, XGBoost, SHAP) · FastAPI · Next.js + TypeScript + Tailwind + ECharts · pytest / node:test. Source and run instructions: [`analytics/`](analytics/README.md) and [`web/`](web/README.md).
+
+---
+
 ## Featured Case Studies / Casos de Estudio
 
 | Case / Caso | Evidence & Scope / Evidencia y Alcance | BI & Artifacts / Entregables |

@@ -685,3 +685,19 @@ html.js-ready .reveal.is-visible { opacity: 1; transform: none; }
   html.js-ready .reveal { opacity: 1; transform: none; }
   body { background: #fff; }
 }
+
+/* ===== Featured analytics applications ===== */
+.apps__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 8px; }
+.app-card { border: 1px solid var(--rule); padding: 28px; display: flex; flex-direction: column; gap: 14px; background: var(--paper); position: relative; }
+.app-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--accent); }
+.app-card__tag { margin: 0; font-size: 13px; color: var(--text-secondary); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.app-card__title { font-size: clamp(28px, 3vw, 36px); }
+.app-card__problem { margin: 0; font-family: var(--serif); font-size: 19px; line-height: 1.4; color: var(--ink); }
+.app-card__facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; border-top: 1px solid var(--rule); padding-top: 14px; }
+.app-card__facts li { display: grid; grid-template-columns: minmax(84px, auto) 1fr; gap: 12px; align-items: baseline; font-size: 15px; color: var(--text-secondary); }
+.app-card__facts strong { font-family: var(--mono); font-size: 15px; color: var(--ink); font-weight: 600; white-space: nowrap; }
+.app-card__stack { margin: 0; font-size: 12.5px; color: var(--text-secondary); }
+.app-card .btn { align-self: flex-start; margin-top: auto; }
+.apps__more { margin: 20px 0 0; font-size: 15px; }
+@media (max-width: 960px) { .apps__grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .app-card { padding: 22px 18px; } .app-card__facts li { grid-template-columns: 1fr; gap: 2px; } }

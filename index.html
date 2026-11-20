@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20261120" />
+  <link rel="stylesheet" href="styles.css?v=20261120b" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23b3261e'/><text x='50' y='66' font-family='sans-serif' font-weight='700' font-size='44' text-anchor='middle' fill='%23fbfaf7'>CV</text></svg>" />
 
   <!-- Schema.org JSON-LD -->
@@ -116,6 +116,7 @@
       </a>
 
       <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
+        <a href="#apps" data-i18n="nav.apps">Aplicaciones</a>
         <a href="#projects" data-i18n="nav.projects">Casos de Estudio</a>
         <a href="#products" data-i18n="nav.products">Ingeniería de Productos</a>
         <a href="#skills" data-i18n="nav.skills">Stack Técnico</a>
@@ -160,7 +161,8 @@
           <p class="hero__study" data-i18n="hero.study">Estudiando Analista de Datos (IPLACEX, 2027) e Ingeniería en Ciencia de Datos (IPG, 2028).</p>
 
           <div class="hero__cta">
-            <a class="btn btn--primary" href="#projects"><span data-i18n="hero.seeWork">Ver casos de estudio</span></a>
+            <a class="btn btn--primary" href="#apps"><span data-i18n="hero.seeApps">Ver aplicaciones analíticas</span></a>
+            <a class="btn btn--ghost" href="#projects"><span data-i18n="hero.seeWork">Ver casos de estudio</span></a>
             <a id="cvDownload" class="btn btn--ghost" href="assets/Camilo_Vergara_CV_ES.pdf" download><span data-i18n="hero.download">Descargar CV (ES)</span></a>
             <a id="cvDownloadAlt" class="link-alt" href="assets/Camilo_Vergara_Resume_EN.pdf" download data-i18n="hero.downloadAlt">English Resume (PDF)</a>
           </div>
@@ -212,6 +214,46 @@
   </section>
 
   <main id="mainContent">
+    <!-- ===== Featured analytics applications (Next.js apps under /apps) ===== -->
+    <section id="apps" class="section apps" aria-labelledby="apps-title">
+      <div class="container">
+        <div class="section__header reveal">
+          <div>
+            <p class="section__kicker" data-i18n="apps.kicker">Destacado · Aplicaciones analíticas</p>
+            <h2 class="section__title" id="apps-title" data-i18n="apps.title">Dos aplicaciones completas: del dato a una herramienta de negocio</h2>
+            <p class="section__lead" data-i18n="apps.lead">Pipeline reproducible, SQL, modelos evaluados sin fuga de información y dashboards interactivos. Cada cifra separa lo medido, lo simulado y el impacto que falta validar.</p>
+          </div>
+        </div>
+        <div class="apps__grid">
+          <article class="app-card reveal">
+            <p class="app-card__tag"><span class="source-tag" data-i18n="apps.rev.src">Datos públicos reales</span> Olist · Kaggle</p>
+            <h3 class="app-card__title">Revenue Intelligence</h3>
+            <p class="app-card__problem" data-i18n="apps.rev.problem">¿Cuánto vende realmente un marketplace, qué mueve sus ingresos y cómo planificar las próximas semanas?</p>
+            <ul class="app-card__facts">
+              <li><strong data-i18n="apps.rev.n1">91.484</strong> <span data-i18n="apps.rev.f1">pedidos válidos analizados (ene 2017 – jul 2018)</span></li>
+              <li><strong>−18%</strong> <span data-i18n="apps.rev.f2">error de pronóstico frente a una media móvil (backtest)</span></li>
+              <li><strong data-i18n="apps.rev.n3">3,0%</strong> <span data-i18n="apps.rev.f3">de clientes recompra: la palanca menos usada</span></li>
+            </ul>
+            <p class="app-card__stack mono">SQL · DuckDB · pandas · scikit-learn · FastAPI · Next.js · ECharts</p>
+            <a class="btn btn--primary" href="apps/revenue-intelligence/"><span data-i18n="apps.open">Abrir aplicación</span> →</a>
+          </article>
+          <article class="app-card reveal">
+            <p class="app-card__tag"><span class="source-tag" data-i18n="apps.tr.src">Datos ficticios de IBM</span> IBM HR · Kaggle</p>
+            <h3 class="app-card__title">TalentRisk AI</h3>
+            <p class="app-card__problem" data-i18n="apps.tr.problem">¿Qué factores se asocian con la rotación, qué tan bien se puede anticipar y cómo usar un modelo de forma responsable?</p>
+            <ul class="app-card__facts">
+              <li><strong data-i18n="apps.tr.n1">0,62</strong> <span data-i18n="apps.tr.f1">PR-AUC en prueba (azar: 0,16), regresión logística calibrada</span></li>
+              <li><strong data-i18n="apps.tr.n2">30,5% vs 10,4%</strong> <span data-i18n="apps.tr.f2">salidas con y sin horas extra (asociación, no causa)</span></li>
+              <li><strong>SHAP</strong> <span data-i18n="apps.tr.f3">exacto, auditoría de equidad y simulador de retención</span></li>
+            </ul>
+            <p class="app-card__stack mono">pandas · scikit-learn · XGBoost · SHAP · FastAPI · Next.js · ECharts</p>
+            <a class="btn btn--primary" href="apps/talentrisk/"><span data-i18n="apps.open">Abrir aplicación</span> →</a>
+          </article>
+        </div>
+        <p class="apps__more"><a href="apps/" data-i18n="apps.more">Ver ambas aplicaciones, tecnologías y habilidades demostradas →</a></p>
+      </div>
+    </section>
+
     <!-- ===== Featured Case Studies ===== -->
     <section id="projects" class="section">
       <div class="container">
@@ -1159,9 +1201,9 @@
     </div>
   </div>
 
-  <script src="case-content.js?v=20261120"></script>
-  <script src="script.js?v=20261120"></script>
-  <script src="charts-data.js?v=20261120"></script>
-  <script src="charts.js?v=20261120"></script>
+  <script src="case-content.js?v=20261120b"></script>
+  <script src="script.js?v=20261120b"></script>
+  <script src="charts-data.js?v=20261120b"></script>
+  <script src="charts.js?v=20261120b"></script>
 </body>
 </html>

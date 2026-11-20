@@ -15,3 +15,13 @@ case-studies/*/excel-data.json
 # Local AI-tool working files (never publish)
 .aistudio/
 public/assets/aistudio/
+
+# Analytics platform
+analytics/data/
+analytics/.venv/
+.pytest_cache/
+web/node_modules/
+web/.next/
+web/out/
+web/*.tsbuildinfo
+web/next-env.d.ts
