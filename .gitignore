@@ -11,3 +11,7 @@ case-studies/*/excel-data.json
 .env
 .env.*
 !.env.example
+
+# Local AI-tool working files (never publish)
+.aistudio/
+public/assets/aistudio/

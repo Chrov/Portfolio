@@ -1,6 +1,6 @@
 /* ==========================================================================
    Camilo Vergara Salas — Portfolio Interactive Controller
-   Features: Bilingual i18n (ES/EN), Hero Data Constellation Canvas,
+   Features: Bilingual i18n (ES/EN),
    Natural Scroll-Reveal Choreography, Animated Stat Counters,
    Case Filters, Architecture/SQL Benchmark Modal & Technical Notes Reader
    ========================================================================== */
@@ -23,14 +23,14 @@ const CASE_AUDIT_DATA = {
     },
     benchmark: {
       headers: {
-        es: ["Categoría / Cohorte", "Lotes Analizados", "Merma al Costo (CLP)", "Tasa de Merma (%)"],
-        en: ["Category / Cohort", "Batches Analyzed", "Waste at Cost (CLP)", "Waste Rate (%)"],
+        es: ["Categoría", "Costo de compra (CLP)", "Merma al costo (CLP)", "Merma / costo"],
+        en: ["Category", "Purchase cost (CLP)", "Waste at cost (CLP)", "Waste / cost"],
       },
       rows: [
-        ["Aceitunas (Prioridad #1)", "812 lotes", "CLP 2,984,432", "2.90% (Mayor impacto CLP)"],
-        ["Encurtidos y Conservas", "940 lotes", "CLP 1,842,110", "2.45%"],
-        ["Frutos Secos y Semillas", "1,125 lotes", "CLP 1,410,880", "1.92%"],
-        ["Total General (Corte Jun 2025)", "3,825 lotes (498 post-corte)", "CLP 8,214,900", "2.90% global / 25.03% margen"],
+        ["Aceitunas · Olives (mayor monto)", "CLP 56,500,600", "CLP 2,984,432", "5.28%"],
+        ["Frutos secos · Nuts", "CLP 98,469,600", "CLP 1,919,798", "1.95%"],
+        ["Granos · Grains (mayor tasa)", "CLP 18,631,550", "CLP 1,710,315", "9.18%"],
+        ["Total 14 categorías · 3,825 lotes", "CLP 309,556,750", "CLP 8,992,168", "2.90% · margen 25.03%"],
       ],
     },
     sql: `-- Conciliación de lotes por clave única y priorización monetaria de merma al costo (CLP)
@@ -82,8 +82,8 @@ ORDER BY total_waste_clp DESC;`,
       rows: [
         ["Seasonal Naive (Lag 7d)", "Walk-Forward (4 cortes + 15d)", "44.89%", "Baseline operativo de referencia"],
         ["LightGBM Recursivo (Bebidas Tienda 1)", "Walk-Forward sin fuga futura", "30.28%", "Supera baseline (-14.61 pp WMAPE)"],
-        ["Prophet / SARIMAX (Serie agregada)", "Walk-Forward (4 cortes)", "34.12%", "Menor adaptabilidad a quiebres"],
-        ["LightGBM Media Global SKU-Tienda", "360 series (alta intermitencia)", "115.56%", "Separar SKUs intermitentes en piloto"],
+        ["Media móvil 8 sem. por día (Bebidas Tienda 1)", "Walk-Forward sin fuga futura", "32.79%", "Baseline simple competitivo"],
+        ["LightGBM · WMAPE medio SKU-tienda", "360 series (alta intermitencia)", "115.56%", "Separar SKUs intermitentes en piloto"],
       ],
     },
     sql: `-- Completitud de calendario tienda-SKU en dbt (213.480 filas · 21 tests de calidad)
@@ -174,9 +174,9 @@ LIMIT 15;`,
         en: ["Official COCHILCO Indicator", "2024 Value", "YoY Change (2024 vs 2023)", "Executive Takeaway"],
       },
       rows: [
-        ["Producción Física de Cobre", "5,507.9 kMT", "+4.9%", "Recuperación moderada de tonelaje"],
-        ["Valor Exportado (FOB Nominal)", "USD 50,858.2M", "+16.7%", "Impulsado principalmente por precio"],
-        ["Precio Promedio LME", "414.9 ¢/lb", "+7.9%", "Correlación YoY con exportaciones r = 0.923"],
+        ["Producción Física de Cobre", "5,505.9 kt", "+4.9%", "Recuperación moderada de tonelaje"],
+        ["Valor Exportado (FOB Nominal)", "USD 49,708.4M", "+16.7%", "Impulsado principalmente por precio"],
+        ["Precio Promedio LME", "414.9 ¢/lb", "+7.9%", "Correlación de variaciones YoY precio–exportaciones r = 0.923"],
       ],
     },
     sql: `-- Conciliación anual 1976-2024 (49 años) y cálculo de variaciones YoY con SQL Window Functions
@@ -223,8 +223,8 @@ ORDER BY year DESC;`,
         en: ["Forecasting Rule", "Backtest (4 Splits)", "Final Hold-out (28 days)", "Relative Improvement"],
       },
       rows: [
-        ["Seasonal Naive (Repetir semana previa)", "43.8% WMAPE", "44.6% WMAPE", "Baseline actual del negocio"],
-        ["Media Móvil 8 Semanas por Día Semana", "35.2% WMAPE", "35.9% WMAPE", "-19.4% reducción de error relativo"],
+        ["Seasonal Naive (Repetir semana previa)", "48.3% WMAPE", "44.6% WMAPE", "Baseline actual del negocio"],
+        ["Media Móvil 8 Semanas por Día Semana", "37.9% WMAPE", "35.9% WMAPE", "-19.4% reducción de error relativo"],
         ["69 Productos Clase A (Pareto)", "80.0% del volumen", "Prioridad de conteo diario", "Foco operativo inmediato"],
       ],
     },
@@ -267,9 +267,9 @@ FROM holdout_eval;`,
         en: ["Chronological Split (41,188 rows)", "Base Conversion Rate", "ROC-AUC (No Leakage)", "Brier Score / Diagnosis"],
       },
       rows: [
-        ["1. Train (Primer 60% · 24,712 filas)", "4.85%", "Entrenamiento base", "Régimen pre-crisis"],
-        ["2. Validation (Siguiente 20% · 8,238 filas)", "9.42%", "0.683 AUC", "Discriminación moderada"],
-        ["3. Hold-out Final (Último 20% · 8,238 filas)", "30.80%", "0.458 AUC (Colapso)", "0.233 Brier · No desplegar"],
+        ["1. Train (Primer 60% · 24,712 filas)", "4.81%", "Entrenamiento", "Régimen inicial"],
+        ["2. Validation (Siguiente 20% · 8,238 filas)", "11.07%", "0.489 AUC", "Sin poder discriminante"],
+        ["3. Hold-out Final (Último 20% · 8,238 filas)", "30.83%", "0.458 AUC (bajo azar)", "0.308 Brier · No desplegar"],
       ],
     },
     sql: `-- Evaluación de cambio en tasa base por partición cronológica estricta (60% / 20% / 20%)
@@ -293,8 +293,8 @@ FROM ordered_campaigns
 GROUP BY 1
 ORDER BY 1;`,
     limits: {
-      es: "Dataset académico portugués (2008–2010, UCI). La tasa de conversión salta de 4,8% en entrenamiento a 30,8% en hold-out por cambio en el entorno económico, provocando un AUC de 0,458. El estudio muestra por qué validar en orden temporal evita llevar a producción modelos descalibrados.",
-      en: "Portuguese academic dataset (2008–2010, UCI). Base conversion shifts from 4.8% in training to 30.8% in hold-out due to macroeconomic changes, yielding a 0.458 AUC. Demonstrates why chronological validation prevents shipping uncalibrated models.",
+      es: "Dataset académico portugués (2008–2010, UCI). La tasa de conversión salta de 4,8% en entrenamiento a 30,8% en hold-out por cambio en el entorno económico, y el modelo no supera al azar (AUC 0,458). El estudio muestra por qué validar en orden temporal evita llevar a producción modelos descalibrados.",
+      en: "Portuguese academic dataset (2008–2010, UCI). Base conversion shifts from 4.8% in training to 30.8% in hold-out as the macro environment changes, and the model fails to beat random (0.458 AUC). Demonstrates why chronological validation prevents shipping uncalibrated models.",
     },
     caseUrl: "case-studies/bank-campaign/index.html",
   },
@@ -331,26 +331,28 @@ for step_day in horizon_days:
   "concept-drift": {
     meta: "Nota Técnica #02 · Machine Learning y Calibración en Producción",
     title: {
-      es: "Auditoría de Concept Drift: cuando un clasificador cae de 0.683 a 0.458 AUC en producción",
-      en: "Auditing Concept Drift: when a classifier drops from 0.683 to 0.458 AUC in production",
+      es: "Auditoría de deriva: por qué un clasificador bancario no supera al azar (AUC 0.458) en una cohorte futura",
+      en: "Auditing drift: why a banking classifier fails to beat random (0.458 AUC) on a later cohort",
     },
     problem: {
       es: "Muchos tutoriales sobre el dataset bancario UCI reportan un AUC > 0.90 porque incluyen la variable 'duration' (duración de la llamada, que solo se conoce cuando la llamada termina) y dividen los datos al azar.",
       en: "Many tutorials on the UCI banking dataset report AUC > 0.90 because they include call 'duration' (which is only known after the call ends) and split rows randomly.",
     },
     code: `# Diagnóstico de deriva temporal y calibración en partición cronológica 60 / 20 / 20
-features_pre_call = [c for c in df.columns if c not in ['duration', 'y', 'row_id']]
+# Solo variables conocidas antes de llamar: sin 'duration' ni demografía
+features_pre_call = ['contact', 'month', 'day_of_week', 'pdays', 'previous', 'poutcome',
+                     'emp.var.rate', 'cons.price.idx', 'cons.conf.idx', 'euribor3m', 'nr.employed']
 
 # Partición respetando estrictamente el orden temporal de la campaña (2008-2010)
 train, val, holdout = np.split(df, [int(0.6 * len(df)), int(0.8 * len(df))])
 
 # Evaluación en cohorte futura real
-val_auc = roc_auc_score(val['y'], model.predict_proba(val[features_pre_call])[:, 1])     # 0.683
+val_auc = roc_auc_score(val['y'], model.predict_proba(val[features_pre_call])[:, 1])     # 0.489
 hold_auc = roc_auc_score(holdout['y'], model.predict_proba(holdout[features_pre_call])[:, 1]) # 0.458
-brier = brier_score_loss(holdout['y'], model.predict_proba(holdout[features_pre_call])[:, 1]) # 0.233`,
+brier = brier_score_loss(holdout['y'], model.predict_proba(holdout[features_pre_call])[:, 1]) # 0.308`,
     takeaway: {
-      es: "Aprendizaje clave: entre el primer 60% de los contactos y el último 20%, la tasa base de suscripción saltó de 4,8% a 30,8% por el cambio en las tasas de interés europeas. Saber cuándo recomendar NO desplegar un modelo es tan valioso como entrenarlo.",
-      en: "Key takeaway: between the first 60% of contacts and the final 20%, base subscription jumped from 4.8% to 30.8% due to shifting European interest rates. Knowing when to recommend NOT shipping a model is as valuable as training one.",
+      es: "Aprendizaje clave: entre el primer 60% de los contactos y el último 20%, la tasa base de suscripción saltó de 4,8% a 30,8%, coincidiendo con un cambio del entorno macroeconómico (euribor, empleo). Saber cuándo recomendar NO desplegar un modelo es tan valioso como entrenarlo.",
+      en: "Key takeaway: between the first 60% of contacts and the final 20%, base subscription jumped from 4.8% to 30.8%, coinciding with a shift in the macro environment (euribor, employment). Knowing when to recommend NOT shipping a model is as valuable as training one.",
     },
     caseUrl: "case-studies/bank-campaign/index.html",
   },
@@ -613,119 +615,11 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeAuditModal();
 });
 
-/* ===== Interactive Hero Data Constellation Canvas ===== */
-(function initHeroCanvas() {
-  const canvas = document.getElementById("heroCanvas");
-  if (!canvas) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
-
-  let width = 0;
-  let height = 0;
-  let nodes = [];
-  const NODE_COUNT = 28;
-  let mouse = { x: -1000, y: -1000 };
-
-  function resize() {
-    const rect = canvas.parentElement.getBoundingClientRect();
-    width = rect.width;
-    height = rect.height;
-    canvas.width = width;
-    canvas.height = height;
-  }
-
-  function createNodes() {
-    nodes = [];
-    for (let i = 0; i < NODE_COUNT; i++) {
-      nodes.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.28,
-        vy: (Math.random() - 0.5) * 0.28,
-        r: Math.random() * 1.8 + 1.2,
-      });
-    }
-  }
-
-  resize();
-  createNodes();
-  window.addEventListener("resize", () => {
-    resize();
-    createNodes();
-  });
-
-  canvas.parentElement.addEventListener("mousemove", (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  });
-
-  canvas.parentElement.addEventListener("mouseleave", () => {
-    mouse.x = -1000;
-    mouse.y = -1000;
-  });
-
-  function draw() {
-    ctx.clearRect(0, 0, width, height);
-    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-    const strokeRgb = isDark ? "124, 194, 156" : "31, 75, 56";
-
-    for (let i = 0; i < nodes.length; i++) {
-      const n = nodes[i];
-      n.x += n.vx;
-      n.y += n.vy;
-
-      if (n.x < 0 || n.x > width) n.vx *= -1;
-      if (n.y < 0 || n.y > height) n.vy *= -1;
-
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${strokeRgb}, 0.28)`;
-      ctx.fill();
-
-      for (let j = i + 1; j < nodes.length; j++) {
-        const m = nodes[j];
-        const dx = n.x - m.x;
-        const dy = n.y - m.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 145) {
-          const alpha = (1 - dist / 145) * 0.14;
-          ctx.beginPath();
-          ctx.moveTo(n.x, n.y);
-          ctx.lineTo(m.x, m.y);
-          ctx.strokeStyle = `rgba(${strokeRgb}, ${alpha})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      }
-
-      const mdx = n.x - mouse.x;
-      const mdy = n.y - mouse.y;
-      const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-      if (mdist < 170) {
-        const alpha = (1 - mdist / 170) * 0.24;
-        ctx.beginPath();
-        ctx.moveTo(n.x, n.y);
-        ctx.lineTo(mouse.x, mouse.y);
-        ctx.strokeStyle = `rgba(${strokeRgb}, ${alpha})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-    }
-
-    requestAnimationFrame(draw);
-  }
-
-  requestAnimationFrame(draw);
-})();
-
 /* ===== Natural Scroll-Reveal Choreography ===== */
 document.documentElement.classList.add("js-ready");
 const revealElements = document.querySelectorAll(".reveal");
 
-document.querySelectorAll(".hero__proof-strip, .skills__grid, .timeline, .products-grid, .notes-grid").forEach((group) => {
+document.querySelectorAll(".figures, .skills__grid, .timeline, .products-grid, .notes-grid").forEach((group) => {
   group.querySelectorAll(":scope > .reveal").forEach((el, idx) => {
     el.style.setProperty("--reveal-delay", `${idx * 70}ms`);
   });
@@ -759,6 +653,9 @@ if ("IntersectionObserver" in window) {
 } else {
   revealElements.forEach((el) => markRevealed(el));
 }
+
+// Safety net: never leave content hidden if the observer does not fire.
+setTimeout(() => revealElements.forEach((el) => markRevealed(el)), 4000);
 
 /* ===== Animated Stat Counters ===== */
 const statCounters = document.querySelectorAll(".stat-counter[data-target]");
