@@ -7,9 +7,15 @@ import "./globals.css";
 const sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-plex-sans", display: "swap" });
 const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-plex-mono", display: "swap" });
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 export const metadata: Metadata = {
-  title: { default: "Analytics apps — Camilo Vergara Salas", template: "%s — Camilo Vergara Salas" },
-  description: "Revenue Intelligence and TalentRisk AI: interactive analytics applications built on public datasets.",
+  title: { default: "Casos interactivos — Camilo Vergara Salas", template: "%s — Camilo Vergara Salas" },
+  description: "Eight interactive analytics case studies: dashboards, models, simulators and documented methodology.",
+  // Same icon as the portfolio so every tab opened from it keeps one identity.
+  icons: {
+    icon: [{ url: `${BASE}/favicon.svg`, type: "image/svg+xml" }, { url: `${BASE}/favicon-32.png`, sizes: "32x32", type: "image/png" }],
+    apple: `${BASE}/apple-touch-icon.png`,
+  },
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 

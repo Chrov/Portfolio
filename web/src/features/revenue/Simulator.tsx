@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Select } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
-import { brl, brlAxis, monthLabel, signedPct } from "@/lib/format";
+import { monthLabel, signedPct } from "@/lib/format";
+import { money, moneyAxis } from "@/lib/money";
 import { L } from "@/lib/prefs";
 import { simulate, type Scenario } from "@/lib/revenue";
 import type { RCtx } from "./ctx";
@@ -26,8 +27,8 @@ export function Simulator({ c }: { c: RCtx }) {
   const names = r.rows.map((x) => { const g = d.regions.find((k) => k.id === x.id)!; return lang === "es" ? g.es : g.en; });
   const option = useMemo<EOption>(() => ({
     ...base(ct), legend: legend(ct), grid: { left: 8, right: 16, top: 32, bottom: 8, containLabel: true },
-    xAxis: catAxis(ct, names), yAxis: valueAxis(ct, (v: number) => brlAxis(v, lang)),
-    tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } }, formatter: (ps: any[]) => { const x = r.rows[ps[0].dataIndex]; return tipHead(names[ps[0].dataIndex]) + tipRow(ct.neutral, t(L("Base medida (12 meses)", "Measured baseline (12 months)")), brl(x.base, lang, false)) + tipRow(ct.series[6], t(L("Escenario simulado", "Simulated scenario")), brl(x.sim, lang, false)) + tipRow(ct.text, t(L("Diferencia", "Difference")), signedPct(x.sim / x.base - 1, lang)); } },
+    xAxis: catAxis(ct, names), yAxis: valueAxis(ct, (v: number) => moneyAxis(v, lang)),
+    tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } }, formatter: (ps: any[]) => { const x = r.rows[ps[0].dataIndex]; return tipHead(names[ps[0].dataIndex]) + tipRow(ct.neutral, t(L("Base medida (12 meses)", "Measured baseline (12 months)")), money(x.base, lang, false)) + tipRow(ct.series[6], t(L("Escenario simulado", "Simulated scenario")), money(x.sim, lang, false)) + tipRow(ct.text, t(L("Diferencia", "Difference")), signedPct(x.sim / x.base - 1, lang)); } },
     series: [
       { name: t(L("Base medida", "Measured baseline")), type: "bar", data: r.rows.map((x) => x.base), itemStyle: barStyle(ct.neutral), barMaxWidth: 26, barGap: "10%" },
       { name: t(L("Simulado", "Simulated")), type: "bar", data: r.rows.map((x) => x.sim), itemStyle: barStyle(ct.series[6]), barMaxWidth: 26 },
@@ -69,9 +70,9 @@ export function Simulator({ c }: { c: RCtx }) {
         <div className="min-w-0">
           <div className="grid grid-cols-3 gap-3">
             {[
-              [t(L("Base medida (12 meses)", "Measured baseline (12 months)")), brl(r.base, lang), "measured"],
-              [t(L("Escenario simulado", "Simulated scenario")), brl(r.sim, lang), "simulated"],
-              [t(L("Diferencia", "Difference")), `${brl(r.delta, lang)} (${signedPct(r.change, lang)})`, "simulated"],
+              [t(L("Base medida (12 meses)", "Measured baseline (12 months)")), money(r.base, lang), "measured"],
+              [t(L("Escenario simulado", "Simulated scenario")), money(r.sim, lang), "simulated"],
+              [t(L("Diferencia", "Difference")), `${money(r.delta, lang)} (${signedPct(r.change, lang)})`, "simulated"],
             ].map(([k, v, tone]) => (
               <div key={k} className="rounded-lg border border-line p-3">
                 <Badge tone={tone as "measured" | "simulated"}>{tone === "measured" ? t(L("Medido", "Measured")) : t(L("Simulado", "Simulated"))}</Badge>

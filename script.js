@@ -440,7 +440,7 @@ function setLang(lang) {
 
 /* ===== Case Studies Domain Filter & View Mode Toggle ===== */
 const filterButtons = document.querySelectorAll(".filter-btn[data-filter]");
-const caseArticles = document.querySelectorAll(".evidence-case[data-categories]");
+const caseArticles = document.querySelectorAll(".case-card[data-categories]");
 const viewCardsBtn = document.getElementById("viewCardsBtn");
 const viewMatrixBtn = document.getElementById("viewMatrixBtn");
 const casesList = document.getElementById("casesList");
@@ -692,17 +692,6 @@ if ("IntersectionObserver" in window && statCounters.length > 0) {
   );
   statCounters.forEach((counter) => counterObserver.observe(counter));
 }
-
-/* ===== Subtle Interactive Cursor Spotlight on Project Cards ===== */
-document.querySelectorAll(".evidence-case").forEach((card) => {
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty("--mouse-x", `${x}px`);
-    card.style.setProperty("--mouse-y", `${y}px`);
-  });
-});
 
 /* ===== Theme Controller ===== */
 function setTheme(theme) {

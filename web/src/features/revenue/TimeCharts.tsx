@@ -4,7 +4,8 @@ import { ChartCard } from "@/components/ChartCard";
 import { EChart, type EOption } from "@/components/EChart";
 import { base, barStyle, catAxis, legend, tipHead, tipNote, tipRow, valueAxis } from "@/components/chart-kit";
 import { Segmented } from "@/components/ui/segmented";
-import { brl, brlAxis, dateLabel, monthLabel, num, pct, signedPct, WEEKDAYS } from "@/lib/format";
+import { dateLabel, monthLabel, num, pct, signedPct, WEEKDAYS } from "@/lib/format";
+import { cs, mnum, money, moneyAxis } from "@/lib/money";
 import { L } from "@/lib/prefs";
 import { bucket, dayISO, monthDays, priceVolume, type Gran } from "@/lib/revenue";
 import { robustAnomalies, sum } from "@/lib/stats";
@@ -68,16 +69,16 @@ export function TrendChart({ c }: { c: RCtx }) {
       legend: legend(ct),
       grid: { left: 8, right: 16, top: 32, bottom: 8, containLabel: true },
       xAxis: catAxis(ct, labels, { boundaryGap: gran !== "day" ? true : false, axisLabel: { color: ct.text3, fontSize: 11, hideOverlap: true } }),
-      yAxis: valueAxis(ct, (v: number) => brlAxis(v, lang)),
+      yAxis: valueAxis(ct, (v: number) => moneyAxis(v, lang)),
       tooltip: {
         ...base(ct).tooltip,
         formatter: (ps: any[]) => {
           const k = ps[0].dataIndex;
           let h = tipHead(labels[k] + (m.cur.partial[k] ? ` (${t(L("parcial", "partial"))})` : ""));
-          h += tipRow(ct.series[0], t(L("Ingresos", "Revenue")), brl(m.cur.values[k], lang, false));
+          h += tipRow(ct.series[0], t(L("Ingresos", "Revenue")), money(m.cur.values[k], lang, false));
           h += tipRow(ct.neutralSoft, t(L("Pedidos", "Orders")), num(m.curO.values[k], lang));
           if (m.comp && Number.isFinite(m.comp[k])) {
-            h += tipRow(ct.neutral, `${t(L("Comparación", "Comparison"))} (${labelFor(c, m.compLabels[k], gran)})`, brl(m.comp[k], lang, false));
+            h += tipRow(ct.neutral, `${t(L("Comparación", "Comparison"))} (${labelFor(c, m.compLabels[k], gran)})`, money(m.comp[k], lang, false));
             h += tipNote(`${t(L("Variación", "Change"))}: ${signedPct(m.cur.values[k] / m.comp[k] - 1, lang)}`);
           }
           const an = m.anomalies.find((x) => x.i - m.a === k);
@@ -95,12 +96,12 @@ export function TrendChart({ c }: { c: RCtx }) {
   const iMin = complete.indexOf(Math.min(...complete.filter(Number.isFinite)));
   const compTotal = m.comp ? m.comp.filter(Number.isFinite).reduce((x, y) => x + y, 0) : 0;
   const unit = { day: L("día", "day"), week: L("semana", "week"), month: L("mes", "month") }[gran];
-  const obsEs = `Entre ${monthLabel(d.calendar.months[from], "es", true)} y ${monthLabel(d.calendar.months[to], "es", true)}, ${regionName({ ...c, lang: "es" })} facturó ${brl(total, "es")}. ` +
-    (iMax >= 0 ? `El punto más alto (${unit.es}) fue ${labelFor({ ...c, lang: "es" }, m.cur.labels[iMax], gran)} con ${brl(complete[iMax], "es")}; el más bajo, ${labelFor({ ...c, lang: "es" }, m.cur.labels[iMin], gran)} con ${brl(complete[iMin], "es")}. ` : "") +
+  const obsEs = `Entre ${monthLabel(d.calendar.months[from], "es", true)} y ${monthLabel(d.calendar.months[to], "es", true)}, ${regionName({ ...c, lang: "es" })} facturó ${money(total, "es")}. ` +
+    (iMax >= 0 ? `El punto más alto (${unit.es}) fue ${labelFor({ ...c, lang: "es" }, m.cur.labels[iMax], gran)} con ${money(complete[iMax], "es")}; el más bajo, ${labelFor({ ...c, lang: "es" }, m.cur.labels[iMin], gran)} con ${money(complete[iMin], "es")}. ` : "") +
     (m.comp ? `Frente a la comparación elegida, la variación es ${signedPct(total / compTotal - 1, "es")}. ` : "") +
     (gran === "day" ? `Se marcan ${m.anomalies.length} días atípicos (regla robusta mediana/MAD).` : "");
-  const obsEn = `Between ${monthLabel(d.calendar.months[from], "en", true)} and ${monthLabel(d.calendar.months[to], "en", true)}, ${regionName({ ...c, lang: "en" })} generated ${brl(total, "en")}. ` +
-    (iMax >= 0 ? `The best ${unit.en} was ${labelFor({ ...c, lang: "en" }, m.cur.labels[iMax], gran)} at ${brl(complete[iMax], "en")}; the lowest, ${labelFor({ ...c, lang: "en" }, m.cur.labels[iMin], gran)} at ${brl(complete[iMin], "en")}. ` : "") +
+  const obsEn = `Between ${monthLabel(d.calendar.months[from], "en", true)} and ${monthLabel(d.calendar.months[to], "en", true)}, ${regionName({ ...c, lang: "en" })} generated ${money(total, "en")}. ` +
+    (iMax >= 0 ? `The best ${unit.en} was ${labelFor({ ...c, lang: "en" }, m.cur.labels[iMax], gran)} at ${money(complete[iMax], "en")}; the lowest, ${labelFor({ ...c, lang: "en" }, m.cur.labels[iMin], gran)} at ${money(complete[iMin], "en")}. ` : "") +
     (m.comp ? `Against the chosen comparison, the change is ${signedPct(total / compTotal - 1, "en")}. ` : "") +
     (gran === "day" ? `${m.anomalies.length} anomalous days are marked (robust median/MAD rule).` : "");
 
@@ -108,7 +109,7 @@ export function TrendChart({ c }: { c: RCtx }) {
     <ChartCard
       id="chart-trend"
       title={L("Evolución de ingresos", "Revenue over time")}
-      subtitle={L("Ingresos por productos (R$), pedidos válidos, por fecha de compra", "Product revenue (R$), valid orders, by purchase date")}
+      subtitle={L(`Ingresos por productos (${cs()}), pedidos válidos, por fecha de compra`, `Product revenue (${cs()}), valid orders, by purchase date`)}
       filters={[F.region, F.period]}
       source={SRC}
       actions={<>
@@ -122,8 +123,8 @@ export function TrendChart({ c }: { c: RCtx }) {
           ]} />
       </>}
       table={{
-        columns: [t(L("Período", "Period")), t(L("Ingresos (R$)", "Revenue (R$)")), t(L("Pedidos", "Orders"))],
-        rows: m.cur.labels.map((s, k) => [labelFor(c, s, gran), num(m.cur.values[k], lang, 2), num(m.curO.values[k], lang)]),
+        columns: [t(L("Período", "Period")), t(L(`Ingresos (${cs()})`, `Revenue (${cs()})`)), t(L("Pedidos", "Orders"))],
+        rows: m.cur.labels.map((s, k) => [labelFor(c, s, gran), mnum(m.cur.values[k], lang, 2), num(m.curO.values[k], lang)]),
       }}
       empty={total === 0}
       explain={{
@@ -159,20 +160,20 @@ export function WeekdayChart({ c }: { c: RCtx }) {
   const option = useMemo<EOption>(() => ({
     ...base(ct),
     xAxis: catAxis(ct, days),
-    yAxis: valueAxis(ct, (x: number) => brlAxis(x, lang)),
+    yAxis: valueAxis(ct, (x: number) => moneyAxis(x, lang)),
     tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } },
-      formatter: (ps: any[]) => { const k = ps[0].dataIndex; return tipHead(days[k]) + tipRow(ct.series[0], t(L("Ingreso medio por día", "Average revenue per day")), brl(v.avg[k], lang, false)) + tipRow(ct.neutralSoft, t(L("Pedidos medios", "Average orders")), num(v.ord[k], lang, 1)) + tipNote(`${v.cnt[k]} ${t(L("días en el período", "days in the period"))}`); } },
+      formatter: (ps: any[]) => { const k = ps[0].dataIndex; return tipHead(days[k]) + tipRow(ct.series[0], t(L("Ingreso medio por día", "Average revenue per day")), money(v.avg[k], lang, false)) + tipRow(ct.neutralSoft, t(L("Pedidos medios", "Average orders")), num(v.ord[k], lang, 1)) + tipNote(`${v.cnt[k]} ${t(L("días en el período", "days in the period"))}`); } },
     series: [{ type: "bar", barMaxWidth: 34, data: v.avg.map((x, i) => ({ value: x, itemStyle: barStyle(i === iMax ? ct.series[0] : ct.neutral) })) }],
   }), [v, ct, lang, t, days, iMax]);
   return (
-    <ChartCard title={L("Ingreso promedio por día de la semana", "Average revenue by weekday")} subtitle={L("R$ por día calendario", "R$ per calendar day")}
+    <ChartCard title={L("Ingreso promedio por día de la semana", "Average revenue by weekday")} subtitle={L(`${cs()} por día calendario`, `${cs()} per calendar day`)}
       filters={[F.region, F.period]} source={SRC} empty={!v.avg.some((x) => x > 0)}
-      table={{ columns: [t(L("Día", "Day")), t(L("Ingreso medio (R$)", "Avg revenue (R$)")), t(L("Pedidos medios", "Avg orders"))], rows: days.map((x, i) => [x, num(v.avg[i], lang, 0), num(v.ord[i], lang, 1)]) }}
+      table={{ columns: [t(L("Día", "Day")), t(L(`Ingreso medio (${cs()})`, `Avg revenue (${cs()})`)), t(L("Pedidos medios", "Avg orders"))], rows: days.map((x, i) => [x, mnum(v.avg[i], lang, 0), num(v.ord[i], lang, 1)]) }}
       explain={{
         measures: L("Ingreso total de cada día de la semana dividido por cuántos de esos días hay en el período (corrige que no todos los días aparecen igual número de veces).",
           "Total revenue for each weekday divided by how many of those days fall in the period (corrects for unequal counts)."),
-        observed: { es: `${WEEKDAYS.es[iMax]} es el día más fuerte (${brl(v.avg[iMax], "es")} promedio) y ${WEEKDAYS.es[iMin]} el más débil (${brl(v.avg[iMin], "es")}), una diferencia de ${pct(v.avg[iMax] / v.avg[iMin] - 1, "es", 0)}.`,
-          en: `${WEEKDAYS.en[iMax]} is the strongest day (${brl(v.avg[iMax], "en")} on average) and ${WEEKDAYS.en[iMin]} the weakest (${brl(v.avg[iMin], "en")}), a ${pct(v.avg[iMax] / v.avg[iMin] - 1, "en", 0)} gap.` },
+        observed: { es: `${WEEKDAYS.es[iMax]} es el día más fuerte (${money(v.avg[iMax], "es")} promedio) y ${WEEKDAYS.es[iMin]} el más débil (${money(v.avg[iMin], "es")}), una diferencia de ${pct(v.avg[iMax] / v.avg[iMin] - 1, "es", 0)}.`,
+          en: `${WEEKDAYS.en[iMax]} is the strongest day (${money(v.avg[iMax], "en")} on average) and ${WEEKDAYS.en[iMin]} the weakest (${money(v.avg[iMin], "en")}), a ${pct(v.avg[iMax] / v.avg[iMin] - 1, "en", 0)} gap.` },
         implications: L("El patrón semanal define cuándo conviene lanzar campañas o reforzar atención.", "The weekly pattern indicates when to launch campaigns or reinforce support."),
         decisions: L("Calendario de promociones y turnos de atención al cliente.", "Promotion calendar and customer-service shifts."),
         limits: L("Se usa la hora de compra registrada por Olist (zona horaria no documentada).", "Uses Olist's recorded purchase time (time zone undocumented)."),
@@ -226,10 +227,10 @@ export function PriceVolumeChart({ c }: { c: RCtx }) {
   const volMonths = rows.filter((r) => Math.abs(r.volume) >= Math.abs(r.ticket)).length;
   const option = useMemo<EOption>(() => ({
     ...base(ct), legend: legend(ct), grid: { left: 8, right: 16, top: 34, bottom: 8, containLabel: true },
-    xAxis: catAxis(ct, labels), yAxis: valueAxis(ct, (x: number) => brlAxis(x, lang)),
+    xAxis: catAxis(ct, labels), yAxis: valueAxis(ct, (x: number) => moneyAxis(x, lang)),
     tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } }, formatter: (ps: any[]) => {
       const r = rows[ps[0].dataIndex];
-      return tipHead(monthLabel(r.month, lang, true)) + tipRow(ct.series[0], t(L("Efecto volumen", "Volume effect")), brl(r.volume, lang, false)) + tipRow(ct.series[1], t(L("Efecto ticket", "Ticket effect")), brl(r.ticket, lang, false)) + tipRow(ct.text, t(L("Cambio total vs mes anterior", "Total change vs prior month")), brl(r.total, lang, false));
+      return tipHead(monthLabel(r.month, lang, true)) + tipRow(ct.series[0], t(L("Efecto volumen", "Volume effect")), money(r.volume, lang, false)) + tipRow(ct.series[1], t(L("Efecto ticket", "Ticket effect")), money(r.ticket, lang, false)) + tipRow(ct.text, t(L("Cambio total vs mes anterior", "Total change vs prior month")), money(r.total, lang, false));
     } },
     series: [
       { name: t(L("Efecto volumen (más/menos pedidos)", "Volume effect (more/fewer orders)")), type: "bar", stack: "pv", data: rows.map((r) => r.volume), itemStyle: { color: ct.series[0], borderColor: ct.surface, borderWidth: 1 }, barMaxWidth: 28 },
@@ -239,9 +240,9 @@ export function PriceVolumeChart({ c }: { c: RCtx }) {
   }), [rows, ct, lang, t, labels]);
   return (
     <ChartCard id="chart-drivers" title={L("¿Qué explica la variación mensual del ingreso?", "What drives month-to-month revenue change?")}
-      subtitle={L("Descomposición precio-volumen, R$ vs mes anterior", "Price-volume decomposition, R$ vs prior month")}
+      subtitle={L(`Descomposición precio-volumen, ${cs()} vs mes anterior`, `Price-volume decomposition, ${cs()} vs prior month`)}
       filters={[F.region, F.period]} source={SRC} empty={!rows.length}
-      table={{ columns: [t(L("Mes", "Month")), t(L("Volumen", "Volume")), t(L("Ticket", "Ticket")), t(L("Total", "Total"))], rows: rows.map((r) => [monthLabel(r.month, lang, true), num(r.volume, lang), num(r.ticket, lang), num(r.total, lang)]) }}
+      table={{ columns: [t(L("Mes", "Month")), t(L("Volumen", "Volume")), t(L("Ticket", "Ticket")), t(L("Total", "Total"))], rows: rows.map((r) => [monthLabel(r.month, lang, true), mnum(r.volume, lang), mnum(r.ticket, lang), mnum(r.total, lang)]) }}
       explain={{
         measures: L("ΔIngreso = ΔPedidos × Ticket₀ + Pedidos₁ × ΔTicket. Separa cuánto del cambio viene de vender más pedidos y cuánto de pedidos más caros.",
           "ΔRevenue = ΔOrders × Ticket₀ + Orders₁ × ΔTicket. Splits change into more orders vs pricier orders."),
@@ -266,8 +267,8 @@ export function AnomalyCard({ c }: { c: RCtx }) {
   const labels = list.map((x) => dateLabel(x.date, lang));
   const option = useMemo<EOption>(() => ({
     ...base(ct), legend: legend(ct), grid: { left: 8, right: 24, top: 32, bottom: 8, containLabel: true },
-    yAxis: catAxis(ct, labels, { inverse: true }), xAxis: valueAxis(ct, (x: number) => brlAxis(x, lang)),
-    tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } }, formatter: (ps: any[]) => { const x = list[ps[0].dataIndex]; return tipHead(dateLabel(x.date, lang)) + tipRow(ct.series[7], t(L("Real", "Actual")), brl(x.value, lang, false)) + tipRow(ct.neutral, t(L("Esperado (mediana 28 días)", "Expected (28-day median)")), brl(x.expected, lang, false)) + tipNote(`z robusto ${x.z.toFixed(1)}`); } },
+    yAxis: catAxis(ct, labels, { inverse: true }), xAxis: valueAxis(ct, (x: number) => moneyAxis(x, lang)),
+    tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } }, formatter: (ps: any[]) => { const x = list[ps[0].dataIndex]; return tipHead(dateLabel(x.date, lang)) + tipRow(ct.series[7], t(L("Real", "Actual")), money(x.value, lang, false)) + tipRow(ct.neutral, t(L("Esperado (mediana 28 días)", "Expected (28-day median)")), money(x.expected, lang, false)) + tipNote(`z robusto ${x.z.toFixed(1)}`); } },
     series: [
       { name: t(L("Esperado", "Expected")), type: "bar", data: list.map((x) => x.expected), itemStyle: barStyle(ct.neutral, true), barGap: "15%", barMaxWidth: 14 },
       { name: t(L("Real", "Actual")), type: "bar", data: list.map((x) => x.value), itemStyle: barStyle(ct.series[7], true), barMaxWidth: 14 },
@@ -277,7 +278,7 @@ export function AnomalyCard({ c }: { c: RCtx }) {
   return (
     <ChartCard title={L("Cambios inusuales en los ingresos", "Unusual revenue changes")} subtitle={L("Días cuyo ingreso se aleja de la mediana móvil de 28 días (|z robusto| > 3,5)", "Days whose revenue departs from the 28-day rolling median (|robust z| > 3.5)")}
       filters={[F.region, F.period]} source={SRC} empty={!list.length}
-      table={{ columns: [t(L("Fecha", "Date")), t(L("Real", "Actual")), t(L("Esperado", "Expected")), "z"], rows: list.map((x) => [dateLabel(x.date, lang), num(x.value, lang), num(x.expected, lang), x.z.toFixed(1)]) }}
+      table={{ columns: [t(L("Fecha", "Date")), t(L("Real", "Actual")), t(L("Esperado", "Expected")), "z"], rows: list.map((x) => [dateLabel(x.date, lang), mnum(x.value, lang), mnum(x.expected, lang), x.z.toFixed(1)]) }}
       explain={{
         measures: L("Detección robusta: z = 0,6745·(x − mediana)/MAD sobre una ventana centrada de 28 días. La misma regla corre en el pipeline Python y en el navegador (probado).",
           "Robust detection: z = 0.6745·(x − median)/MAD over a centred 28-day window. The same rule runs in the Python pipeline and in the browser (tested)."),

@@ -62,3 +62,31 @@ export const tipNote = (s: string) => `<div style="margin-top:4px;opacity:.7;fon
 export function escapeHtml(s: string) {
   return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 }
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/** Confidence-interval whiskers. data rows: [categoryIndex, low, high]. */
+export function errorBars(name: string, color: string, data: [number, number, number][], horizontal = false) {
+  return {
+    name, type: "custom" as const, data, z: 5, silent: true,
+    encode: horizontal ? { x: [1, 2], y: 0 } : { x: 0, y: [1, 2] },
+    renderItem: (_: any, api: any) => {
+      const c = api.value(0);
+      const lo = horizontal ? api.coord([api.value(1), c]) : api.coord([c, api.value(1)]);
+      const hi = horizontal ? api.coord([api.value(2), c]) : api.coord([c, api.value(2)]);
+      const st = { stroke: color, lineWidth: 1.5 };
+      const cap = (p: number[]) => horizontal
+        ? { type: "line", shape: { x1: p[0], y1: p[1] - 4, x2: p[0], y2: p[1] + 4 }, style: st }
+        : { type: "line", shape: { x1: p[0] - 4, y1: p[1], x2: p[0] + 4, y2: p[1] }, style: st };
+      return { type: "group", children: [{ type: "line", shape: { x1: lo[0], y1: lo[1], x2: hi[0], y2: hi[1] }, style: st }, cap(lo), cap(hi)] };
+    },
+  };
+}
+
+/** Index-based tooltip for axis charts (formatter receives the hovered data index). */
+export function axisTip(ct: ReturnType<typeof import("@/lib/palette").chartTheme>, f: (i: number) => string, shadow = false) {
+  return {
+    ...base(ct).tooltip,
+    ...(shadow ? { axisPointer: { type: "shadow" as const, shadowStyle: { color: ct.grid, opacity: 0.5 } } } : {}),
+    formatter: (ps: any) => f((Array.isArray(ps) ? ps[0] : ps).dataIndex),
+  };
+}

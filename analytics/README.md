@@ -1,4 +1,4 @@
-# Analytics platform — Revenue Intelligence & TalentRisk AI
+# Analytics platform — the eight interactive cases
 
 Python pipelines, SQL models, a FastAPI service and tests behind the two web
 applications published at <https://chrov.github.io/Portfolio/apps/>.
@@ -37,7 +37,9 @@ pip install -r analytics/requirements.txt
 python -m analytics.common.data_sources --download   # Kaggle -> analytics/data/raw, verified
 python -m analytics.revenue.build                    # -> web/public/data/revenue.json
 python -m analytics.talentrisk.build                 # -> web/public/data/talentrisk.json
-python -m pytest analytics/tests -q                  # 22 tests
+python -m analytics.cases.build --download           # six case apps -> web/public/data/case-*.json
+python -m analytics.common.fx                        # official USD/CLP/BRL averages -> web/public/data/fx.json
+python -m pytest analytics/tests -q                  # 37 tests
 uvicorn analytics.api.main:app --reload              # http://127.0.0.1:8000/docs
 ```
 
@@ -52,6 +54,26 @@ Web apps (Node 20+): `cd web && npm ci && npm run dev` then open
 <http://localhost:3000/Portfolio/apps/>. `npm run export:site` builds the static
 export and copies it to `../apps`, which GitHub Pages serves from `main`.
 `npm test` runs the TypeScript parity tests against the generated JSON.
+
+## The six case apps (`analytics/cases/build.py`)
+
+Inputs are the outputs each project already published: `case-studies/<case>/`
+in this repository (bank, copper, feria) and the author's public project
+repositories (airline, grocery, market), downloaded with `--download` and pinned
+by SHA-256 in `analytics/data/raw/cases/manifest.json`. Nothing is re-estimated:
+the script aggregates the reviewed outputs and stops unless every total
+reconciles with the project's own summary (31 checks, shown in each app).
+Legacy outputs that the projects flag as unvalidated (grocery inventory policy,
+market EOQ) are not published.
+
+## Currency (`analytics/common/fx.py`)
+
+Amounts stay in their native currency in the JSON and are converted only for
+display. Each app uses the average rate of its own period: Olist BRL→USD (ECB,
+Jan 2017 – Jul 2018) and USD→CLP (Central Bank of Chile observed dollar, same
+period); market stall USD/CLP for Jul 2023 – Jun 2025; copper USD→CLP 2024
+average as a reading unit (not historical pesos). Raw API responses are cached
+in `analytics/data/raw/fx/`.
 
 ## Key definitions
 
@@ -69,9 +91,9 @@ export and copies it to `../apps`, which GitHub Pages serves from `main`.
 * SHAP is exact for the deployed logistic model (`φⱼ = a·wⱼ·(xⱼ − E[xⱼ])` in calibrated log-odds); `scoring.py` and the browser reproduce scikit-learn's probabilities to 1e-9.
 * The retention simulator reports changes in **model score**, never causal effects.
 
-## Tests (`analytics/tests`, `web/src/lib/revenue.test.ts`)
+## Tests (`analytics/tests`, `web/src/lib/*.test.ts`)
 
-Ingestion row counts · SQL fan-out (a naive items×payments×reviews join inflates revenue; the mart does not) · regional and category totals · non-additivity of distinct customers · forecast leakage (perturbing the future does not change predictions) · CV-only model selection · calibration improves Brier · explorer contributions sum to the logit · API validation errors (422/404) · browser KPI, bucketing, price-volume and anomaly parity with Python.
+Ingestion row counts · SQL fan-out (a naive items×payments×reviews join inflates revenue; the mart does not) · regional and category totals · non-additivity of distinct customers · forecast leakage (perturbing the future does not change predictions) · CV-only model selection · calibration improves Brier · explorer contributions sum to the logit · API validation errors (422/404) · every case reconciles and its published JSON equals a fresh build · FX rates documented and plausible · currency formatting and conversion factors · browser KPI, bucketing, price-volume and anomaly parity with Python.
 
 ## Limitations
 

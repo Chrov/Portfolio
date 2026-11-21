@@ -1,6 +1,8 @@
 "use client";
 import { ArrowLeft, Moon, Presentation, Sun } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
+import type { FxKey } from "@/lib/money";
+import { CurrencyToggle } from "./Money";
 import { L, usePrefs, type Bi } from "@/lib/prefs";
 import { Button } from "./ui/button";
 import { cn } from "./ui/cn";
@@ -26,8 +28,15 @@ export function PrefToggles() {
   );
 }
 
-export function AppShell({ app, tagline, nav, onPresent, filterBar, children }: {
-  app: string; tagline: Bi; nav: NavItem[]; onPresent: () => void; filterBar?: ReactNode; children: ReactNode;
+/** Same monogram as the portfolio favicon, so every tab reads as one site. */
+export function BrandMark({ className }: { className?: string }) {
+  return (
+    <span aria-hidden className={cn("inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-[6px] bg-[#b3261e] font-sans text-[11px] font-bold tracking-tight text-[#fbfaf7]", className)}>CV</span>
+  );
+}
+
+export function AppShell({ app, tagline, nav, onPresent, filterBar, currency, children }: {
+  app: string; tagline: Bi; nav: NavItem[]; onPresent: () => void; filterBar?: ReactNode; currency?: FxKey; children: ReactNode;
 }) {
   const { t } = usePrefs();
   const [active, setActive] = useState(nav[0]?.id);
@@ -47,17 +56,18 @@ export function AppShell({ app, tagline, nav, onPresent, filterBar, children }: 
     <div className="min-h-screen">
       <header className="relative z-30 border-b border-line bg-surface/90 backdrop-blur md:sticky md:top-0">
         <div className="mx-auto flex h-14 max-w-[1440px] items-center gap-3 px-4">
-          <a href={`${base.replace(/\/apps$/, "")}/`} className="inline-flex items-center gap-1.5 text-[13px] text-ink-3 hover:text-ink">
-            <ArrowLeft className="h-4 w-4" /> <span className="hidden sm:inline">{t(L("Portafolio", "Portfolio"))}</span>
+          <a href={`${base.replace(/\/apps$/, "")}/#cases`} className="inline-flex items-center gap-2 text-[13px] text-ink-3 hover:text-ink" aria-label={t(L("Volver al portafolio", "Back to the portfolio"))}>
+            <ArrowLeft className="h-4 w-4" /> <BrandMark /> <span className="hidden xl:inline">{t(L("Portafolio", "Portfolio"))}</span>
           </a>
           <span className="h-5 w-px bg-line" aria-hidden />
           <div className="min-w-0 flex-1">
             <p className="truncate text-[15px] font-semibold leading-tight">{app}</p>
             <p className="hidden truncate text-[11.5px] text-ink-3 sm:block">{t(tagline)}</p>
           </div>
-          <a href={`${base}/`} className="hidden text-[13px] text-ink-3 hover:text-ink md:inline">{t(L("Apps", "Apps"))}</a>
+          <a href={`${base}/`} className="hidden text-[13px] text-ink-3 hover:text-ink lg:inline">{t(L("Todos los casos", "All cases"))}</a>
+          {currency && <CurrencyToggle fxKey={currency} />}
           <Button size="sm" variant="default" onClick={onPresent}>
-            <Presentation className="h-4 w-4" /> <span className="hidden sm:inline">{t(L("Modo presentación", "Presentation mode"))}</span>
+            <Presentation className="h-4 w-4" /> <span className="hidden md:inline">{t(L("Modo presentación", "Presentation mode"))}</span>
           </Button>
           <PrefToggles />
         </div>

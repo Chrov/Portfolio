@@ -27,7 +27,7 @@ export function KpiCard({ label, value, change, changeLabel, description, method
           <Info className="h-3.5 w-3.5" />
         </button>
       </div>
-      <span className={compact ? "text-[17px] font-semibold leading-snug text-ink" : "num truncate text-[26px] font-semibold leading-tight tracking-tight text-ink"} title={value}>{value}</span>
+      <span className={compact ? "text-[17px] font-semibold leading-snug text-ink" : `num truncate ${value.length > 11 ? "text-[21px]" : "text-[26px]"} font-semibold leading-tight tracking-tight text-ink`} title={value}>{value}</span>
       <span className={`num inline-flex items-center gap-1 text-[12.5px] font-medium ${good == null ? "text-ink-3" : good ? "text-good" : "text-bad"}`}>
         <Icon aria-hidden className="h-3.5 w-3.5" />
         {changeLabel}

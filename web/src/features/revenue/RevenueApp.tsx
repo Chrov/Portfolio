@@ -3,6 +3,7 @@ import { RotateCcw } from "lucide-react";
 import { useMemo, useState } from "react";
 import { AppShell, Section, type NavItem } from "@/components/AppShell";
 import { KpiCard, type Method } from "@/components/KpiCard";
+import { FxNote, useMoney } from "@/components/Money";
 import { BigStat, PresentationMode, type Slide } from "@/components/Presentation";
 import { LoadError, Loading } from "@/components/States";
 import { ArchitectureFlow, ChecksList, DefTable, ImpactTriad, InsightsPanel, ProcessTimeline, RepoLink, type Step } from "@/components/Story";
@@ -11,7 +12,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Select } from "@/components/ui/select";
 import { useDataset } from "@/lib/data";
-import { brl, monthLabel, num, pct, signedPct } from "@/lib/format";
+import { monthLabel, num, pct, signedPct } from "@/lib/format";
+import { fillMoney, money } from "@/lib/money";
 import { chartTheme } from "@/lib/palette";
 import { L, usePrefs, type Bi } from "@/lib/prefs";
 import { computeKpis, isRevenueData, simulate, type RevenueData } from "@/lib/revenue";
@@ -51,8 +53,16 @@ export default function RevenueApp() {
   return <Revenue d={s.data} />;
 }
 
-function Revenue({ d }: { d: RevenueData }) {
+function Revenue({ d: raw }: { d: RevenueData }) {
   const { lang, theme, t } = usePrefs();
+  const fx = useMoney("olist");
+  // insight texts carry ⟦m:value⟧ tokens so their amounts follow the selected currency
+  const d = useMemo(() => {
+    const f = (b: Bi) => ({ es: fillMoney(b.es, "es"), en: fillMoney(b.en, "en") });
+    return { ...raw, insights: raw.insights.map((i) => ({ ...i, title: f(i.title), evidence: f(i.evidence), why: f(i.why), action: f(i.action), validate: f(i.validate) })) };
+    // fx.code: re-fill when the currency changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [raw, fx.code]);
   const last = d.calendar.months.length - 1;
   const [region, setRegion] = useState("ALL");
   const [from, setFrom] = useState(last - 5);
@@ -80,9 +90,10 @@ function Revenue({ d }: { d: RevenueData }) {
         <Button size="sm" variant="ghost" className="mb-0.5" onClick={() => { setRegion("ALL"); setFrom(last - 5); setTo(last); }}>
           <RotateCcw className="h-3.5 w-3.5" /> {t(L("Restablecer", "Reset"))}
         </Button>
-        <p className="mb-1.5 ml-auto hidden text-[12px] text-ink-3 xl:block">
-          {t(L("Los filtros actualizan KPIs, gráficos y sus explicaciones. Cada gráfico indica qué filtros usa.", "Filters update KPIs, charts and their explanations. Each chart states which filters it uses."))}
-        </p>
+        <div className="mb-1 ml-auto hidden max-w-xl xl:block">
+          <p className="text-[12px] text-ink-3">{t(L("Los filtros actualizan KPIs, gráficos y sus explicaciones. Cada gráfico indica qué filtros usa.", "Filters update KPIs, charts and their explanations. Each chart states which filters it uses."))}</p>
+          <FxNote note={fx.note} />
+        </div>
       </div>
     </div>
   );
@@ -110,9 +121,9 @@ function Revenue({ d }: { d: RevenueData }) {
         `We analysed ${num(d.meta.windowOrders, "en")} valid Olist orders from January 2017 to July 2018 to measure revenue, customers and categories, and to project the next 8 weeks. Real public data; no costs, so we do not discuss profit.`))}</p> },
     { kicker: L("Indicadores principales", "Key indicators"), title: L("Ventana completa (19 meses)", "Full window (19 months)"),
       body: <div className="grid gap-4 md:grid-cols-4">
-        <BigStat value={brl(full.revenue.value, lang)} label={t(L("Ingresos por productos", "Product revenue"))} />
+        <BigStat value={money(full.revenue.value, lang)} label={t(L("Ingresos por productos", "Product revenue"))} />
         <BigStat value={num(full.orders.value, lang)} label={t(L("Pedidos válidos", "Valid orders"))} />
-        <BigStat value={brl(full.ticket.value, lang)} label={t(L("Ticket promedio", "Average ticket"))} />
+        <BigStat value={money(full.ticket.value, lang)} label={t(L("Ticket promedio", "Average ticket"))} />
         <BigStat value={pct(cu.repeatRate, lang)} label={t(L("Clientes recurrentes", "Repeat customers"))} note={t(L(`de ${num(cu.customers, "es")} clientes`, `of ${num(cu.customers, "en")} customers`))} />
       </div> },
     { kicker: L("Hallazgos", "Findings"), title: L("Lo que muestran los datos", "What the data shows"),
@@ -127,7 +138,7 @@ function Revenue({ d }: { d: RevenueData }) {
       body: <ol className="max-w-4xl list-decimal space-y-3 pl-6">{d.insights.slice(0, 5).map((i) => <li key={i.id}>{t(i.action)} <span className="text-ink-3">— {t(i.validate)}</span></li>)}</ol> },
     { kicker: L("Impacto potencial", "Potential impact"), title: L("Beneficios esperados, a validar", "Expected benefits, to be validated"),
       body: <div className="grid gap-4 md:grid-cols-2">
-        <div className="rounded-xl border border-line bg-surface p-5"><Badge tone="simulated">{t(L("Simulado", "Simulated"))}</Badge><p className="mt-2">{t(L(`Escenario moderado (+5% pedidos, +2% ticket, +5% Nordeste): ${brl(sim.sim, "es")} anual vs ${brl(sim.base, "es")} medido (${signedPct(sim.change, "es")}). Ilustrativo.`, `Moderate scenario (+5% orders, +2% ticket, +5% Northeast): ${brl(sim.sim, "en")} a year vs ${brl(sim.base, "en")} measured (${signedPct(sim.change, "en")}). Illustrative.`))}</p></div>
+        <div className="rounded-xl border border-line bg-surface p-5"><Badge tone="simulated">{t(L("Simulado", "Simulated"))}</Badge><p className="mt-2">{t(L(`Escenario moderado (+5% pedidos, +2% ticket, +5% Nordeste): ${money(sim.sim, "es")} anual vs ${money(sim.base, "es")} medido (${signedPct(sim.change, "es")}). Ilustrativo.`, `Moderate scenario (+5% orders, +2% ticket, +5% Northeast): ${money(sim.sim, "en")} a year vs ${money(sim.base, "en")} measured (${signedPct(sim.change, "en")}). Illustrative.`))}</p></div>
         <div className="rounded-xl border border-line bg-surface p-5"><Badge tone="expected">{t(L("Esperado", "Expected"))}</Badge><p className="mt-2">{t(L("Menos reporting manual, detección temprana de caídas y planificación de inventario con rangos. Requiere piloto en una empresa real para cuantificarse.", "Less manual reporting, early detection of drops and inventory planning with ranges. Needs a pilot in a real company to be quantified."))}</p></div>
       </div> },
     { kicker: L("Limitaciones", "Limitations"), title: L("Lo que este análisis no puede afirmar", "What this analysis cannot claim"),
@@ -140,7 +151,7 @@ function Revenue({ d }: { d: RevenueData }) {
 
   return (
     <>
-      <AppShell app="Revenue Intelligence" tagline={L("Inteligencia comercial · Olist, Brasil", "Commercial intelligence · Olist, Brazil")} nav={NAV} onPresent={() => setPresent(true)} filterBar={filterBar}>
+      <AppShell app="Revenue Intelligence" tagline={L("Inteligencia comercial · Olist, Brasil", "Commercial intelligence · Olist, Brazil")} nav={NAV} onPresent={() => setPresent(true)} filterBar={filterBar} currency="olist">
         <div className="grid gap-4 lg:grid-cols-[1.25fr_1fr]">
           <Section id="resumen" n={1} title={L("Resumen ejecutivo", "Executive summary")}>
             <Card className="p-5 text-[14px] leading-relaxed text-ink-2">
@@ -150,7 +161,7 @@ function Revenue({ d }: { d: RevenueData }) {
                 <Badge tone="outline">{t(L("ene 2017 – jul 2018", "Jan 2017 – Jul 2018"))}</Badge>
               </div>
               <ul className="space-y-2">
-                <li>{t(L(`El marketplace facturó ${brl(full.revenue.value, "es")} en productos con ${num(full.orders.value, "es")} pedidos válidos y ${num(full.customers.value, "es")} clientes.`, `The marketplace generated ${brl(full.revenue.value, "en")} in product revenue from ${num(full.orders.value, "en")} valid orders and ${num(full.customers.value, "en")} customers.`))}</li>
+                <li>{t(L(`El marketplace facturó ${money(full.revenue.value, "es")} en productos con ${num(full.orders.value, "es")} pedidos válidos y ${num(full.customers.value, "es")} clientes.`, `The marketplace generated ${money(full.revenue.value, "en")} in product revenue from ${num(full.orders.value, "en")} valid orders and ${num(full.customers.value, "en")} customers.`))}</li>
                 <li>{t(L(`El primer semestre de 2018 creció ${pct(h1.yoy.change ?? 0, "es", 0)} interanual, impulsado por volumen; desde enero el ingreso mensual se estabilizó.`, `H1 2018 grew ${pct(h1.yoy.change ?? 0, "en", 0)} year over year, driven by volume; monthly revenue has levelled off since January.`))}</li>
                 <li>{t(L(`Solo ${pct(cu.repeatRate, "es")} de los clientes repite compra; un pronóstico semanal reduce el error ${pct(fc.improvementVsBaseline, "es", 0)} frente a una media móvil.`, `Only ${pct(cu.repeatRate, "en")} of customers buy again; a weekly forecast cuts error by ${pct(fc.improvementVsBaseline, "en", 0)} vs a moving average.`))}</li>
               </ul>
@@ -180,13 +191,14 @@ function Revenue({ d }: { d: RevenueData }) {
         <Section id="dashboard" n={3} title={L("Dashboard ejecutivo de ingresos", "Executive revenue dashboard")}
           intro={{ es: `${regionName({ ...c, lang: "es" })} · ${monthLabel(d.calendar.months[from], "es", true)} – ${monthLabel(d.calendar.months[to], "es", true)} (${k.months} meses). Pulsa ⓘ en cada indicador para ver su metodología.`, en: `${regionName({ ...c, lang: "en" })} · ${monthLabel(d.calendar.months[from], "en", true)} – ${monthLabel(d.calendar.months[to], "en", true)} (${k.months} months). Press ⓘ on each indicator for its methodology.` }}>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
-            <KpiCard label={L("Ingresos del período", "Period revenue")} value={brl(k.revenue.value, lang)} change={k.revenue.change} changeLabel={chg(k.revenue.change, vsPrev)} description={L("Precio de productos, sin flete", "Product price, excluding freight")} method={METHODS.revenue} />
+            <KpiCard label={L("Ingresos del período", "Period revenue")} value={money(k.revenue.value, lang)} change={k.revenue.change} changeLabel={chg(k.revenue.change, vsPrev)} description={L("Precio de productos, sin flete", "Product price, excluding freight")} method={METHODS.revenue} />
             <KpiCard label={L("Pedidos válidos", "Valid orders")} value={num(k.orders.value, lang)} change={k.orders.change} changeLabel={chg(k.orders.change, vsPrev)} description={L("Sin cancelados ni no disponibles", "Excluding canceled and unavailable")} method={METHODS.orders} />
-            <KpiCard label={L("Ticket promedio", "Average ticket")} value={brl(k.ticket.value, lang, false)} change={k.ticket.change} changeLabel={chg(k.ticket.change, vsPrev)} description={L("Ingreso por pedido", "Revenue per order")} method={METHODS.ticket} />
+            <KpiCard label={L("Ticket promedio", "Average ticket")} value={money(k.ticket.value, lang, false)} change={k.ticket.change} changeLabel={chg(k.ticket.change, vsPrev)} description={L("Ingreso por pedido", "Revenue per order")} method={METHODS.ticket} />
             <KpiCard label={L("Clientes únicos", "Unique customers")} value={num(k.customers.value, lang)} change={k.customers.change} changeLabel={chg(k.customers.change, vsPrev)} description={L("Personas distintas que compraron", "Distinct people who bought")} method={METHODS.customers} />
-            <KpiCard label={L("Crecimiento interanual", "Year-over-year growth")} value={k.yoy.change == null ? "—" : signedPct(k.yoy.change, lang)} change={k.yoy.change} changeLabel={k.yoy.change == null ? t(L("Requiere período desde ene 2018", "Needs a period from Jan 2018")) : `${t(L("vs", "vs"))} ${brl(k.yoy.prev ?? 0, lang)}`} description={L("Mismos meses del año anterior", "Same months a year earlier")} method={METHODS.yoy} />
+            <KpiCard label={L("Crecimiento interanual", "Year-over-year growth")} value={k.yoy.change == null ? "—" : signedPct(k.yoy.change, lang)} change={k.yoy.change} changeLabel={k.yoy.change == null ? t(L("Requiere período desde ene 2018", "Needs a period from Jan 2018")) : `${t(L("vs", "vs"))} ${money(k.yoy.prev ?? 0, lang)}`} description={L("Mismos meses del año anterior", "Same months a year earlier")} method={METHODS.yoy} />
             <KpiCard label={L("Categoría líder", "Top category")} value={k.topCategory ? catName(c, k.topCategory.id) : "—"} change={null} changeLabel={k.topCategory ? `${pct(k.topCategory.share, lang)} ${t(L("del ingreso", "of revenue"))}` : ""} description={L("Mayor ingreso en el período", "Highest revenue in the period")} method={METHODS.top} compact />
           </div>
+          <FxNote note={fx.note} className="mt-2 xl:hidden" />
           <div className="mt-4 grid gap-4">
             <TrendChart c={c} />
             <div className="grid gap-4 xl:grid-cols-2">
@@ -243,12 +255,12 @@ function Revenue({ d }: { d: RevenueData }) {
           intro={L("Separamos lo medido, lo simulado y lo que solo puede validarse en una empresa real.", "We separate what was measured, what is simulated and what can only be validated in a real company.")}>
           <ImpactTriad
             measured={<ul className="list-disc space-y-1.5 pl-4">
-              <li>{t(L(`Ingresos de la ventana: ${brl(full.revenue.value, "es")}; ticket ${brl(full.ticket.value, "es")}.`, `Window revenue: ${brl(full.revenue.value, "en")}; ticket ${brl(full.ticket.value, "en")}.`))}</li>
+              <li>{t(L(`Ingresos de la ventana: ${money(full.revenue.value, "es")}; ticket ${money(full.ticket.value, "es")}.`, `Window revenue: ${money(full.revenue.value, "en")}; ticket ${money(full.ticket.value, "en")}.`))}</li>
               <li>{t(L(`Recompra: ${pct(cu.repeatRate, "es")} de clientes; 10% superior concentra ${pct(cu.top10Share, "es")} del ingreso.`, `Repurchase: ${pct(cu.repeatRate, "en")} of customers; top 10% hold ${pct(cu.top10Share, "en")} of revenue.`))}</li>
               <li>{t(L(`Pronóstico: WMAPE ${pct(selM.wmape, "es")}, ${pct(fc.improvementVsBaseline, "es", 0)} menos error que la media móvil.`, `Forecast: WMAPE ${pct(selM.wmape, "en")}, ${pct(fc.improvementVsBaseline, "en", 0)} less error than the moving average.`))}</li>
             </ul>}
             simulated={<div className="space-y-2">
-              <p>{t(L(`Escenario moderado: ${brl(sim.sim, "es")} anual frente a ${brl(sim.base, "es")} medido (${signedPct(sim.change, "es")}).`, `Moderate scenario: ${brl(sim.sim, "en")} a year vs ${brl(sim.base, "en")} measured (${signedPct(sim.change, "en")}).`))}</p>
+              <p>{t(L(`Escenario moderado: ${money(sim.sim, "es")} anual frente a ${money(sim.base, "es")} medido (${signedPct(sim.change, "es")}).`, `Moderate scenario: ${money(sim.sim, "en")} a year vs ${money(sim.base, "en")} measured (${signedPct(sim.change, "en")}).`))}</p>
               <p className="font-mono text-[12px] text-ink">Σᵣ Oᵣ(1+Δo+gᵣ)·Tᵣ(1+Δt)</p>
               <a href="#simulator" className="text-accent hover:underline">{t(L("Ajustar supuestos en el simulador ↓", "Adjust assumptions in the simulator ↓"))}</a>
             </div>}

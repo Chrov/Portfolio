@@ -1,7 +1,20 @@
 /* ==========================================================================
    Reviewed Case Study Monograph Stylesheet (Shared across all 6 studies)
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* Map this page's variables onto the portfolio's editorial tokens (styles.css). */
+:root, [data-theme="dark"] {
+  --bg: var(--paper);
+  --surface: var(--card);
+  --font-display: var(--serif);
+  --font-body: var(--sans);
+  --font-mono: var(--mono);
+  --radius: 0px;
+  --radius-sm: 0px;
+  --bg-alt: var(--paper-2);
+  --text-muted: var(--muted);
+}
 
 html[lang="en"] [lang="es"],
 html[lang="es"] [lang="en"] {
@@ -43,6 +56,21 @@ nav.downloads a:first-child {
 nav.downloads a:first-child:hover {
   color: var(--accent);
 }
+
+nav.downloads a.case-live {
+  order: -1;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 12px 16px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 0;
+}
+nav.downloads a.case-live:hover { background: var(--accent); color: var(--on-accent); }
 
 h1 {
   font-family: var(--font-display);

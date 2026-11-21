@@ -1,5 +1,8 @@
 """Revenue Intelligence: compute every metric the web app shows -> revenue.json.
 
+Amounts inside insight texts are written as ⟦m:<BRL value>⟧ tokens so the web app
+can show them in the currency the viewer picks (BRL, USD or CLP).
+
 Run from the repository root:  python -m analytics.revenue.build
 All figures are measured on the Olist public dataset; nothing is hand-typed.
 """
@@ -174,8 +177,8 @@ def insights(data, fc):
         "id": "growth", "kind": "measured",
         "title": {"es": "El ingreso creció con fuerza entre 2017 y 2018, pero se estabilizó",
                   "en": "Revenue grew strongly from 2017 to 2018, then levelled off"},
-        "evidence": {"es": f"Ene–jun 2018 sumó R$ {h1_18/1e6:.2f} M frente a R$ {h1_17/1e6:.2f} M en ene–jun 2017 ({h1_18/h1_17-1:+.0%}). Desde ene 2018 el ingreso mensual se mantiene entre R$ {m['2018-01':].min()/1e6:.2f} M y R$ {m['2018-01':].max()/1e6:.2f} M.",
-                     "en": f"Jan–Jun 2018 totalled R$ {h1_18/1e6:.2f}M vs R$ {h1_17/1e6:.2f}M in Jan–Jun 2017 ({h1_18/h1_17-1:+.0%}). Since Jan 2018 monthly revenue stays between R$ {m['2018-01':].min()/1e6:.2f}M and R$ {m['2018-01':].max()/1e6:.2f}M."},
+        "evidence": {"es": f"Ene–jun 2018 sumó ⟦m:{h1_18:.2f}⟧ frente a ⟦m:{h1_17:.2f}⟧ en ene–jun 2017 ({h1_18/h1_17-1:+.0%}). Desde ene 2018 el ingreso mensual se mantiene entre ⟦m:{m['2018-01':].min():.2f}⟧ y ⟦m:{m['2018-01':].max():.2f}⟧.",
+                     "en": f"Jan–Jun 2018 totalled ⟦m:{h1_18:.2f}⟧ vs ⟦m:{h1_17:.2f}⟧ in Jan–Jun 2017 ({h1_18/h1_17-1:+.0%}). Since Jan 2018 monthly revenue stays between ⟦m:{m['2018-01':].min():.2f}⟧ and ⟦m:{m['2018-01':].max():.2f}⟧."},
         "why": {"es": "Una meseta tras el crecimiento cambia la conversación: de captar volumen a sostenerlo.",
                 "en": "A plateau after growth shifts the question from acquiring volume to sustaining it."},
         "action": {"es": "Investigar si la meseta viene de menos pedidos o de un ticket menor (ver descomposición precio-volumen).",
@@ -189,8 +192,8 @@ def insights(data, fc):
     out.append({
         "id": "black_friday", "kind": "measured",
         "title": {"es": "Black Friday 2017 es el mayor pico del período", "en": "Black Friday 2017 is the largest spike in the period"},
-        "evidence": {"es": f"El {bf:%d-%m-%Y} se facturaron R$ {rev[bf]:,.0f}, {rev[bf]/med28:.1f} veces la mediana de los 28 días alrededor.",
-                     "en": f"On {bf:%Y-%m-%d} revenue reached R$ {rev[bf]:,.0f}, {rev[bf]/med28:.1f}× the median of the surrounding 28 days."},
+        "evidence": {"es": f"El {bf:%d-%m-%Y} se facturaron ⟦m:{rev[bf]:.2f}⟧, {rev[bf]/med28:.1f} veces la mediana de los 28 días alrededor.",
+                     "en": f"On {bf:%Y-%m-%d} revenue reached ⟦m:{rev[bf]:.2f}⟧, {rev[bf]/med28:.1f}× the median of the surrounding 28 days."},
         "why": {"es": "Un solo día concentra demanda equivalente a varios días normales; afecta inventario y logística.",
                 "en": "One day concentrates the demand of several normal days, which strains inventory and logistics."},
         "action": {"es": "Planificar stock y capacidad de despacho para el evento con semanas de anticipación.",

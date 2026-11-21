@@ -1,0 +1,50 @@
+{
+ "generatedAt": "2026-11-21",
+ "sources": {
+  "CLP": {
+   "es": "Banco Central de Chile, dólar observado (vía mindicador.cl)",
+   "en": "Central Bank of Chile, observed dollar (via mindicador.cl)"
+  },
+  "BRL": {
+   "es": "Banco Central Europeo, tipos de referencia (vía Frankfurter)",
+   "en": "European Central Bank reference rates (via Frankfurter)"
+  }
+ },
+ "periods": {
+  "olist": {
+   "from": "2017-01-01",
+   "to": "2018-07-31",
+   "native": "BRL",
+   "label": {
+    "es": "promedio ene 2017 – jul 2018",
+    "en": "average Jan 2017 – Jul 2018"
+   },
+   "clpPerUsd": 637.36,
+   "nClp": 393,
+   "usdPerBrl": 0.30427,
+   "nBrl": 403
+  },
+  "market": {
+   "from": "2023-07-01",
+   "to": "2025-06-30",
+   "native": "CLP",
+   "label": {
+    "es": "promedio jul 2023 – jun 2025",
+    "en": "average Jul 2023 – Jun 2025"
+   },
+   "clpPerUsd": 929.14,
+   "nClp": 494
+  },
+  "copper": {
+   "from": "2024-01-01",
+   "to": "2024-12-31",
+   "native": "USD",
+   "label": {
+    "es": "promedio 2024 (último año de la serie)",
+    "en": "2024 average (latest year in the series)"
+   },
+   "clpPerUsd": 943.58,
+   "nClp": 248
+  }
+ }
+}

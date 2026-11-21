@@ -1,8 +1,16 @@
 # Analytics web apps (Next.js)
 
 Static Next.js 16 + TypeScript + Tailwind CSS 4 + Apache ECharts 6 apps:
-`/` (hub), `/revenue-intelligence/`, `/talentrisk/`, served under
-`/Portfolio/apps` on GitHub Pages.
+`/` (hub), `/revenue-intelligence/`, `/talentrisk/`, `/replenishment-forecast/`,
+`/campaign-drift/`, `/waste-control/`, `/route-reliability/`, `/demand-baseline/`
+and `/copper-observatory/`, served under `/Portfolio/apps` on GitHub Pages.
+
+* The six case apps share `src/components/CaseKit.tsx` (summary, problem,
+  insights, measured/simulated/expected impact, 01–07 process, technical
+  exploration, limits) with one file per case in `src/features/cases`.
+* Currency: `src/lib/money.ts` + `src/components/Money.tsx`. Amounts are stored
+  natively and converted for display with `public/data/fx.json`; the choice
+  (original, USD or CLP) is remembered under the `currency` localStorage key.
 
 * UI primitives in `src/components/ui` follow the shadcn/ui pattern
   (class-variance-authority + tailwind-merge) but are hand-written; the shadcn

@@ -6,6 +6,7 @@ directly; this API is the local/server deployment path.
     uvicorn analytics.api.main:app --reload
 """
 import json
+import re
 from functools import lru_cache
 from typing import Dict, Optional, Union
 
@@ -82,9 +83,21 @@ def revenue_forecast():
     return {k: f[k] for k in ("selected", "bestBaseline", "metrics", "interval", "future")}
 
 
+MONEY_TOKEN = re.compile(r"⟦m:(-?[\d.]+)⟧")
+
+
+def brl_text(s: str, lang: str) -> str:
+    """Insight texts carry ⟦m:value⟧ tokens (the web app converts them); the API returns BRL."""
+    def fmt(m):
+        v = float(m.group(1))
+        txt = f"{v / 1e6:,.2f} M" if abs(v) >= 1e6 else f"{v:,.0f}"
+        return "R$ " + (txt.translate(str.maketrans(",.", ".,")) if lang == "es" else txt)
+    return MONEY_TOKEN.sub(fmt, s)
+
+
 @app.get("/api/revenue/insights")
 def revenue_insights(lang: str = Query("es", pattern="^(es|en)$")):
-    return [{k: (v[lang] if isinstance(v, dict) and lang in v else v) for k, v in i.items()}
+    return [{k: (brl_text(v[lang], lang) if isinstance(v, dict) and lang in v else v) for k, v in i.items()}
             for i in load("revenue")["insights"]]
 
 

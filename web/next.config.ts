@@ -8,6 +8,7 @@ const config: NextConfig = {
   basePath,
   trailingSlash: true,
   images: { unoptimized: true },
+  devIndicators: false,
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
     NEXT_PUBLIC_DATA_VERSION: new Date().toISOString().slice(0, 10).replace(/-/g, ""),

@@ -7,6 +7,7 @@ import {
 import * as echarts from "echarts/core";
 import { SVGRenderer } from "echarts/renderers";
 import { useEffect, useRef } from "react";
+import { usePrefs } from "@/lib/prefs";
 
 echarts.use([BarChart, BoxplotChart, CustomChart, HeatmapChart, LineChart, ScatterChart, AriaComponent, DataZoomComponent, GridComponent,
   LegendComponent, MarkAreaComponent, MarkLineComponent, MarkPointComponent, TitleComponent, TooltipComponent, VisualMapComponent, SVGRenderer]);
@@ -19,6 +20,8 @@ export function EChart({ option, height = 320, label, onClick }: {
   const ref = useRef<HTMLDivElement>(null);
   const chart = useRef<echarts.ECharts | null>(null);
   const clickRef = useRef(onClick);
+  // Axis/tooltip formatters read the active display currency; re-apply the option when it changes.
+  const { cur } = usePrefs();
   clickRef.current = onClick;
 
   useEffect(() => {
@@ -36,7 +39,7 @@ export function EChart({ option, height = 320, label, onClick }: {
 
   useEffect(() => {
     chart.current?.setOption({ aria: { enabled: true, label: { description: label } }, animationDuration: 350, ...option }, { notMerge: true });
-  }, [option, label]);
+  }, [option, label, cur]);
 
   return <div ref={ref} style={{ height }} className="w-full" role="img" aria-label={label} />;
 }

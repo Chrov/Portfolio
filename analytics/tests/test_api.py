@@ -1,3 +1,5 @@
+import json
+
 from fastapi.testclient import TestClient
 
 from analytics.api.main import app
@@ -38,3 +40,10 @@ def test_score_endpoint():
 
 def test_summary_unknown_department():
     assert client.get("/api/talentrisk/summary", params={"department": "Nope"}).status_code == 404
+
+
+def test_insights_have_no_currency_tokens():
+    r = client.get("/api/revenue/insights", params={"lang": "es"})
+    assert r.status_code == 200
+    text = json.dumps(r.json(), ensure_ascii=False)
+    assert "⟦" not in text and "R$ " in text

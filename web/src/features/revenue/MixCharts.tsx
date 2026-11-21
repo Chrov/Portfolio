@@ -4,7 +4,8 @@ import { ChartCard } from "@/components/ChartCard";
 import { EChart, type EOption } from "@/components/EChart";
 import { base, barStyle, catAxis, legend, tipHead, tipNote, tipRow, valueAxis } from "@/components/chart-kit";
 import { Segmented } from "@/components/ui/segmented";
-import { brl, brlAxis, monthLabel, num, pct, signedPct } from "@/lib/format";
+import { monthLabel, num, pct, signedPct } from "@/lib/format";
+import { cs, edge, mnum, money, moneyAxis } from "@/lib/money";
 import { L, type Bi } from "@/lib/prefs";
 import { sum } from "@/lib/stats";
 import { catName, F, regionName, SRC, type RCtx } from "./ctx";
@@ -31,7 +32,7 @@ export function CategoryRanking({ c }: { c: RCtx }) {
   const top = [...all].sort((a, b) => b[metric] - a[metric]).slice(0, 12);
   const active = all.filter((x) => x.revenue > 0).length;
   const top3 = top.slice(0, 3).reduce((s, x) => s + x[metric], 0) / (total || 1);
-  const fmt = (v: number) => (metric === "revenue" ? brlAxis(v, lang) : num(v, lang));
+  const fmt = (v: number) => (metric === "revenue" ? moneyAxis(v, lang) : num(v, lang));
   const names = top.map((x) => catName(c, x.id));
   const option = useMemo<EOption>(() => ({
     ...base(ct), grid: { left: 8, right: 64, top: 8, bottom: 8, containLabel: true },
@@ -39,7 +40,7 @@ export function CategoryRanking({ c }: { c: RCtx }) {
     xAxis: valueAxis(ct, fmt),
     tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } }, formatter: (ps: any[]) => {
       const x = top[ps[0].dataIndex];
-      return tipHead(names[ps[0].dataIndex]) + tipRow(ct.series[0], t(L("Ingresos", "Revenue")), brl(x.revenue, lang, false)) + tipRow(ct.neutral, t(L("Pedidos", "Orders")), num(x.orders, lang)) + tipRow(ct.neutral, t(L("Unidades", "Units")), num(x.units, lang)) + tipNote(`${pct(x[metric] / total, lang)} ${t(L("del total", "of total"))} · ${t(L("ticket por pedido", "revenue per order"))} ${brl(x.revenue / x.orders, lang, false)}`);
+      return tipHead(names[ps[0].dataIndex]) + tipRow(ct.series[0], t(L("Ingresos", "Revenue")), money(x.revenue, lang, false)) + tipRow(ct.neutral, t(L("Pedidos", "Orders")), num(x.orders, lang)) + tipRow(ct.neutral, t(L("Unidades", "Units")), num(x.units, lang)) + tipNote(`${pct(x[metric] / total, lang)} ${t(L("del total", "of total"))} · ${t(L("ticket por pedido", "revenue per order"))} ${money(x.revenue / x.orders, lang, false)}`);
     } },
     series: [{ type: "bar", barMaxWidth: 18, data: top.map((x, i) => ({ value: x[metric], itemStyle: barStyle(i === 0 ? ct.series[0] : ct.neutral, true) })),
       label: { show: true, position: "right", color: ct.text2, fontSize: 11, formatter: (p: any) => pct(p.value / total, lang) } }],
@@ -48,8 +49,8 @@ export function CategoryRanking({ c }: { c: RCtx }) {
     <ChartCard id="chart-categories" title={L("Ranking de categorías", "Category ranking")} subtitle={L("Top 12; la etiqueta muestra la participación en el total", "Top 12; label shows share of total")}
       filters={[F.region, F.period]} source={SRC} empty={total === 0}
       actions={<Segmented label={t(L("Métrica", "Metric"))} value={metric} onChange={setMetric} options={(Object.keys(METRIC) as Metric[]).map((m) => ({ value: m, label: t(METRIC[m]) }))} />}
-      table={{ columns: [t(L("Categoría", "Category")), t(L("Ingresos (R$)", "Revenue (R$)")), t(L("Pedidos", "Orders")), t(L("Unidades", "Units")), t(L("Participación", "Share"))],
-        rows: [...all].sort((a, b) => b[metric] - a[metric]).filter((x) => x.revenue > 0).map((x) => [catName(c, x.id), num(x.revenue, lang), num(x.orders, lang), num(x.units, lang), pct(x[metric] / total, lang)]) }}
+      table={{ columns: [t(L("Categoría", "Category")), t(L(`Ingresos (${cs()})`, `Revenue (${cs()})`)), t(L("Pedidos", "Orders")), t(L("Unidades", "Units")), t(L("Participación", "Share"))],
+        rows: [...all].sort((a, b) => b[metric] - a[metric]).filter((x) => x.revenue > 0).map((x) => [catName(c, x.id), mnum(x.revenue, lang), num(x.orders, lang), num(x.units, lang), pct(x[metric] / total, lang)]) }}
       explain={{
         measures: L("Ingresos (precio de productos), pedidos que contienen la categoría y unidades vendidas. Un pedido con dos categorías cuenta en ambas para «pedidos».",
           "Revenue (product price), orders containing the category and units sold. An order with two categories counts in both for “orders”."),
@@ -77,7 +78,7 @@ export function CategoryEvolution({ c }: { c: RCtx }) {
     return { id, vals: mode === "abs" ? vals : vals.map((v, k) => (totals[k] ? v / totals[k] : 0)) };
   });
   const labels = months.map((m) => monthLabel(m, lang));
-  const fmt = (v: number) => (mode === "abs" ? brlAxis(v, lang) : pct(v, lang, 0));
+  const fmt = (v: number) => (mode === "abs" ? moneyAxis(v, lang) : pct(v, lang, 0));
   const option = useMemo<EOption>(() => ({
     ...base(ct), legend: legend(ct, { type: "scroll" }), grid: { left: 8, right: 16, top: 34, bottom: 8, containLabel: true },
     xAxis: catAxis(ct, labels, { boundaryGap: false }), yAxis: valueAxis(ct, fmt),
@@ -88,8 +89,8 @@ export function CategoryEvolution({ c }: { c: RCtx }) {
   return (
     <ChartCard title={L("Evolución de las 5 categorías principales", "Top-5 category trends")} subtitle={L("Ingresos mensuales o participación en el ingreso del mes", "Monthly revenue or share of the month's revenue")}
       filters={[F.region, F.period]} source={SRC} empty={months.length < 2 || !top.length}
-      actions={<Segmented label={t(L("Escala", "Scale"))} value={mode} onChange={setMode} options={[{ value: "abs", label: "R$" }, { value: "share", label: t(L("% del mes", "% of month")) }]} />}
-      table={{ columns: [t(L("Mes", "Month")), ...top.map((id) => catName(c, id))], rows: months.map((m, k) => [monthLabel(m, lang, true), ...series.map((s) => (mode === "abs" ? num(s.vals[k], lang) : pct(s.vals[k], lang)))]) }}
+      actions={<Segmented label={t(L("Escala", "Scale"))} value={mode} onChange={setMode} options={[{ value: "abs", label: `${cs()}` }, { value: "share", label: t(L("% del mes", "% of month")) }]} />}
+      table={{ columns: [t(L("Mes", "Month")), ...top.map((id) => catName(c, id))], rows: months.map((m, k) => [monthLabel(m, lang, true), ...series.map((s) => (mode === "abs" ? mnum(s.vals[k], lang) : pct(s.vals[k], lang)))]) }}
       explain={{
         measures: L("Ingreso mensual de las cinco categorías con más ingreso en el filtro; en «% del mes», su peso sobre el ingreso total de ese mes.", "Monthly revenue of the five top categories in the filter; in “% of month”, their weight in that month's total."),
         observed: growth.length ? { es: `Comparando el primer y último mes del filtro, ${catName({ ...c, lang: "es" }, growth[0].id)} crece más (${signedPct(growth[0].g, "es", 0)}) y ${catName({ ...c, lang: "es" }, growth[growth.length - 1].id)} menos (${signedPct(growth[growth.length - 1].g, "es", 0)}).`,
@@ -112,8 +113,8 @@ export function CategoryScatter({ c }: { c: RCtx }) {
   const option = useMemo<EOption>(() => ({
     ...base(ct), grid: { left: 8, right: 24, top: 16, bottom: 30, containLabel: true },
     xAxis: valueAxis(ct, (v: number) => num(v, lang), { type: "log", name: t(L("Pedidos (escala log)", "Orders (log scale)")), nameLocation: "middle", nameGap: 26 }),
-    yAxis: valueAxis(ct, (v: number) => brlAxis(v, lang), { name: t(L("Ingreso por pedido", "Revenue per order")), nameLocation: "end" }),
-    tooltip: { ...base(ct).tooltip, trigger: "item", formatter: (p: any) => { const x = pts[p.dataIndex]; return tipHead(catName(c, x.id)) + tipRow(ct.series[0], t(L("Pedidos", "Orders")), num(x.orders, lang)) + tipRow(ct.series[0], t(L("Ingreso por pedido", "Revenue per order")), brl(x.revenue / x.orders, lang, false)) + tipRow(ct.neutral, t(L("Ingresos", "Revenue")), brl(x.revenue, lang, false)); } },
+    yAxis: valueAxis(ct, (v: number) => moneyAxis(v, lang), { name: t(L("Ingreso por pedido", "Revenue per order")), nameLocation: "end" }),
+    tooltip: { ...base(ct).tooltip, trigger: "item", formatter: (p: any) => { const x = pts[p.dataIndex]; return tipHead(catName(c, x.id)) + tipRow(ct.series[0], t(L("Pedidos", "Orders")), num(x.orders, lang)) + tipRow(ct.series[0], t(L("Ingreso por pedido", "Revenue per order")), money(x.revenue / x.orders, lang, false)) + tipRow(ct.neutral, t(L("Ingresos", "Revenue")), money(x.revenue, lang, false)); } },
     series: [{ type: "scatter", data: pts.map((p) => [p.orders, p.revenue / p.orders]), symbolSize: (_: any, p: any) => 8 + 26 * Math.sqrt(pts[p.dataIndex].revenue / maxR),
       itemStyle: { color: ct.series[0], opacity: 0.75, borderColor: ct.surface, borderWidth: 2 },
       label: { show: true, position: "top", fontSize: 10.5, color: ct.text2, formatter: (p: any) => (p.dataIndex < 4 ? catName(c, pts[p.dataIndex].id) : "") },
@@ -124,11 +125,11 @@ export function CategoryScatter({ c }: { c: RCtx }) {
   return (
     <ChartCard title={L("Volumen frente a ticket por categoría", "Volume vs ticket by category")} subtitle={L("Top 30 categorías por ingreso (≥ 20 pedidos); tamaño = ingreso", "Top 30 categories by revenue (≥ 20 orders); size = revenue")}
       filters={[F.region, F.period]} source={SRC} empty={pts.length < 2}
-      table={{ columns: [t(L("Categoría", "Category")), t(L("Pedidos", "Orders")), t(L("Ingreso por pedido", "Revenue per order")), t(L("Ingresos", "Revenue"))], rows: pts.map((p) => [catName(c, p.id), num(p.orders, lang), num(p.revenue / p.orders, lang, 2), num(p.revenue, lang)]) }}
+      table={{ columns: [t(L("Categoría", "Category")), t(L("Pedidos", "Orders")), t(L("Ingreso por pedido", "Revenue per order")), t(L("Ingresos", "Revenue"))], rows: pts.map((p) => [catName(c, p.id), num(p.orders, lang), mnum(p.revenue / p.orders, lang, 2), mnum(p.revenue, lang)]) }}
       explain={{
         measures: L("Cada punto es una categoría: eje X = pedidos (escala logarítmica), eje Y = ingreso de la categoría por pedido que la contiene, tamaño = ingreso total.", "Each point is a category: X = orders (log scale), Y = category revenue per order containing it, size = total revenue."),
-        observed: hiTicket ? { es: `${catName({ ...c, lang: "es" }, hiTicket.id)} tiene el mayor ingreso por pedido (${brl(hiTicket.revenue / hiTicket.orders, "es")}) con ${num(hiTicket.orders, "es")} pedidos; la mediana de las categorías mostradas es ${brl(medTicket, "es")}.`,
-          en: `${catName({ ...c, lang: "en" }, hiTicket.id)} has the highest revenue per order (${brl(hiTicket.revenue / hiTicket.orders, "en")}) with ${num(hiTicket.orders, "en")} orders; the median across shown categories is ${brl(medTicket, "en")}.` } : L("Sin categorías suficientes.", "Not enough categories."),
+        observed: hiTicket ? { es: `${catName({ ...c, lang: "es" }, hiTicket.id)} tiene el mayor ingreso por pedido (${money(hiTicket.revenue / hiTicket.orders, "es")}) con ${num(hiTicket.orders, "es")} pedidos; la mediana de las categorías mostradas es ${money(medTicket, "es")}.`,
+          en: `${catName({ ...c, lang: "en" }, hiTicket.id)} has the highest revenue per order (${money(hiTicket.revenue / hiTicket.orders, "en")}) with ${num(hiTicket.orders, "en")} orders; the median across shown categories is ${money(medTicket, "en")}.` } : L("Sin categorías suficientes.", "Not enough categories."),
         implications: L("Distingue categorías que crecen por volumen de las que dependen de pocos pedidos caros.", "Separates categories that grow by volume from those relying on few expensive orders."),
         decisions: L("Estrategias distintas: conversión para volumen, experiencia y financiamiento para ticket alto.", "Different strategies: conversion for volume, experience and financing for high ticket."),
         limits: L("Ingreso por pedido ≠ precio unitario: un pedido puede incluir varias unidades.", "Revenue per order ≠ unit price: an order may include several units."),
@@ -145,8 +146,8 @@ export function PriceBoxplot({ c }: { c: RCtx }) {
   const option = useMemo<EOption>(() => ({
     ...base(ct), grid: { left: 8, right: 16, top: 8, bottom: 8, containLabel: true },
     yAxis: catAxis(ct, names, { inverse: true, axisLabel: { color: ct.text2, fontSize: 11.5, width: 150, overflow: "truncate" } }),
-    xAxis: valueAxis(ct, (v: number) => brlAxis(v, lang)),
-    tooltip: { ...base(ct).tooltip, trigger: "item", formatter: (p: any) => { const r = rows[p.dataIndex]; return tipHead(names[p.dataIndex]) + tipRow(ct.series[0], t(L("Mediana", "Median")), brl(r.median, lang, false)) + tipRow(ct.neutral, "Q1 – Q3", `${brl(r.q1, lang, false)} – ${brl(r.q3, lang, false)}`) + tipRow(ct.neutral, t(L("Bigotes", "Whiskers")), `${brl(r.lo, lang, false)} – ${brl(r.hi, lang, false)}`) + tipNote(`n = ${num(r.n, lang)} · ${num(r.outliers, lang)} ${t(L("valores atípicos fuera de bigotes", "outliers beyond whiskers"))}`); } },
+    xAxis: valueAxis(ct, (v: number) => moneyAxis(v, lang)),
+    tooltip: { ...base(ct).tooltip, trigger: "item", formatter: (p: any) => { const r = rows[p.dataIndex]; return tipHead(names[p.dataIndex]) + tipRow(ct.series[0], t(L("Mediana", "Median")), money(r.median, lang, false)) + tipRow(ct.neutral, "Q1 – Q3", `${money(r.q1, lang, false)} – ${money(r.q3, lang, false)}`) + tipRow(ct.neutral, t(L("Bigotes", "Whiskers")), `${money(r.lo, lang, false)} – ${money(r.hi, lang, false)}`) + tipNote(`n = ${num(r.n, lang)} · ${num(r.outliers, lang)} ${t(L("valores atípicos fuera de bigotes", "outliers beyond whiskers"))}`); } },
     series: [{ type: "boxplot", data: rows.map((r) => [r.lo, r.q1, r.median, r.q3, r.hi]), boxWidth: [8, 16], itemStyle: { color: ct.band, borderColor: ct.series[0], borderWidth: 1.5 } }],
   }), [rows, names, ct, lang, t]);
   const widest = [...rows].sort((a, b) => b.q3 - b.q1 - (a.q3 - a.q1))[0];
@@ -154,11 +155,11 @@ export function PriceBoxplot({ c }: { c: RCtx }) {
   return (
     <ChartCard title={L("Distribución del precio unitario por categoría", "Unit price distribution by category")} subtitle={L("Boxplot del precio por línea de pedido, 10 categorías con más ingreso", "Boxplot of price per order line, 10 top-revenue categories")}
       filters={[F.regionOnly]} source={SRC} empty={!rows.length}
-      table={{ columns: [t(L("Categoría", "Category")), "Q1", t(L("Mediana", "Median")), "Q3", "n"], rows: rows.map((r, i) => [names[i], num(r.q1, lang, 2), num(r.median, lang, 2), num(r.q3, lang, 2), num(r.n, lang)]) }}
+      table={{ columns: [t(L("Categoría", "Category")), "Q1", t(L("Mediana", "Median")), "Q3", "n"], rows: rows.map((r, i) => [names[i], mnum(r.q1, lang, 2), mnum(r.median, lang, 2), mnum(r.q3, lang, 2), num(r.n, lang)]) }}
       explain={{
         measures: L("Caja = 50% central de precios (Q1–Q3), línea = mediana, bigotes = 1,5×RIC. Se calcula por línea de pedido.", "Box = middle 50% of prices (Q1–Q3), line = median, whiskers = 1.5×IQR. Computed per order line."),
-        observed: widest ? { es: `${catName({ ...c, lang: "es" }, widest.category)} tiene la mayor dispersión (RIC ${brl(widest.q3 - widest.q1, "es")}); ${catName({ ...c, lang: "es" }, cheapest.category)} la mediana más baja (${brl(cheapest.median, "es")}).`,
-          en: `${catName({ ...c, lang: "en" }, widest.category)} shows the widest spread (IQR ${brl(widest.q3 - widest.q1, "en")}); ${catName({ ...c, lang: "en" }, cheapest.category)} the lowest median (${brl(cheapest.median, "en")}).` } : L("Sin datos.", "No data."),
+        observed: widest ? { es: `${catName({ ...c, lang: "es" }, widest.category)} tiene la mayor dispersión (RIC ${money(widest.q3 - widest.q1, "es")}); ${catName({ ...c, lang: "es" }, cheapest.category)} la mediana más baja (${money(cheapest.median, "es")}).`,
+          en: `${catName({ ...c, lang: "en" }, widest.category)} shows the widest spread (IQR ${money(widest.q3 - widest.q1, "en")}); ${catName({ ...c, lang: "en" }, cheapest.category)} the lowest median (${money(cheapest.median, "en")}).` } : L("Sin datos.", "No data."),
         implications: L("Mucha dispersión indica surtido heterogéneo: un promedio sería engañoso.", "High spread signals a heterogeneous assortment: an average would mislead."),
         decisions: L("Segmentar precios dentro de la categoría antes de fijar descuentos.", "Segment prices within the category before setting discounts."),
         limits: L("Este gráfico responde solo al filtro de región (se precalcula para toda la ventana).", "This chart responds only to the region filter (precomputed for the full window)."),
@@ -176,14 +177,14 @@ export function StateChart({ c }: { c: RCtx }) {
   const shown = rows.slice(0, 15), total = rows.reduce((s, x) => s + x.revenue, 0);
   const option = useMemo<EOption>(() => ({
     ...base(ct), grid: { left: 8, right: 56, top: 8, bottom: 8, containLabel: true },
-    yAxis: catAxis(ct, shown.map((s) => s.id), { inverse: true }), xAxis: valueAxis(ct, (v: number) => brlAxis(v, lang)),
-    tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } }, formatter: (ps: any[]) => { const s = shown[ps[0].dataIndex]; return tipHead(s.id) + tipRow(ct.series[0], t(L("Ingresos", "Revenue")), brl(s.revenue, lang, false)) + tipRow(ct.neutral, t(L("Pedidos", "Orders")), num(s.orders, lang)) + tipRow(ct.neutral, t(L("Ticket", "Ticket")), brl(s.revenue / s.orders, lang, false)); } },
+    yAxis: catAxis(ct, shown.map((s) => s.id), { inverse: true }), xAxis: valueAxis(ct, (v: number) => moneyAxis(v, lang)),
+    tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } }, formatter: (ps: any[]) => { const s = shown[ps[0].dataIndex]; return tipHead(s.id) + tipRow(ct.series[0], t(L("Ingresos", "Revenue")), money(s.revenue, lang, false)) + tipRow(ct.neutral, t(L("Pedidos", "Orders")), num(s.orders, lang)) + tipRow(ct.neutral, t(L("Ticket", "Ticket")), money(s.revenue / s.orders, lang, false)); } },
     series: [{ type: "bar", barMaxWidth: 16, data: shown.map((s, i) => ({ value: s.revenue, itemStyle: barStyle(i === 0 ? ct.series[0] : ct.neutral, true) })), label: { show: true, position: "right", fontSize: 11, color: ct.text2, formatter: (p: any) => pct(p.value / total, lang) } }],
   }), [shown, ct, lang, t, total]);
   return (
     <ChartCard title={L("Ingresos por estado", "Revenue by state")} subtitle={L("Estado del cliente; etiqueta = participación dentro del filtro", "Customer state; label = share within the filter")}
       filters={[F.region, F.period]} source={SRC} empty={!rows.length}
-      table={{ columns: [t(L("Estado", "State")), t(L("Ingresos (R$)", "Revenue (R$)")), t(L("Pedidos", "Orders")), t(L("Ticket (R$)", "Ticket (R$)"))], rows: rows.map((s) => [s.id, num(s.revenue, lang), num(s.orders, lang), num(s.revenue / s.orders, lang, 2)]) }}
+      table={{ columns: [t(L("Estado", "State")), t(L(`Ingresos (${cs()})`, `Revenue (${cs()})`)), t(L("Pedidos", "Orders")), t(L(`Ticket (${cs()})`, `Ticket (${cs()})`))], rows: rows.map((s) => [s.id, mnum(s.revenue, lang), num(s.orders, lang), mnum(s.revenue / s.orders, lang, 2)]) }}
       explain={{
         measures: L("Ingresos y pedidos según el estado de residencia del cliente.", "Revenue and orders by the customer's state of residence."),
         observed: rows[0] ? { es: `${rows[0].id} aporta ${pct(rows[0].revenue / total, "es")} del ingreso de ${regionName({ ...c, lang: "es" })}; los 3 primeros estados suman ${pct(rows.slice(0, 3).reduce((s, x) => s + x.revenue, 0) / total, "es")}.`,
@@ -206,24 +207,24 @@ export function BasketHistogram({ c }: { c: RCtx }) {
     return out;
   }, [d, region, from, to, edges.length]);
   const total = sum(counts);
-  const labels = edges.map((e, k) => (k < edges.length - 1 ? `${e}–${edges[k + 1]}` : `${e}+`));
+  const labels = edges.map((e, k) => (k < edges.length - 1 ? `${edge(e, lang)}–${edge(edges[k + 1], lang)}` : `${edge(e, lang)}+`));
   let acc = 0, medBin = 0;
   for (let k = 0; k < counts.length; k++) { acc += counts[k]; if (acc >= total / 2) { medBin = k; break; } }
   const under100 = (counts[0] + counts[1] + counts[2] + counts[3]) / (total || 1);
   const option = useMemo<EOption>(() => ({
     ...base(ct), grid: { left: 8, right: 16, top: 16, bottom: 34, containLabel: true },
-    xAxis: catAxis(ct, labels, { name: t(L("Valor del pedido en productos (R$)", "Order product value (R$)")), nameLocation: "middle", nameGap: 52, axisLabel: { color: ct.text3, fontSize: 10.5, interval: 0, rotate: 30 } }),
+    xAxis: catAxis(ct, labels, { name: t(L(`Valor del pedido en productos (${cs()})`, `Order product value (${cs()})`)), nameLocation: "middle", nameGap: 52, axisLabel: { color: ct.text3, fontSize: 10.5, interval: 0, rotate: 30 } }),
     yAxis: valueAxis(ct, (v: number) => num(v, lang)),
-    tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } }, formatter: (ps: any[]) => { const k = ps[0].dataIndex; return tipHead(`R$ ${labels[k]}`) + tipRow(ct.series[0], t(L("Pedidos", "Orders")), num(counts[k], lang)) + tipNote(pct(counts[k] / total, lang) + " " + t(L("de los pedidos", "of orders"))); } },
+    tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } }, formatter: (ps: any[]) => { const k = ps[0].dataIndex; return tipHead(`${cs()} ${labels[k]}`) + tipRow(ct.series[0], t(L("Pedidos", "Orders")), num(counts[k], lang)) + tipNote(pct(counts[k] / total, lang) + " " + t(L("de los pedidos", "of orders"))); } },
     series: [{ type: "bar", barCategoryGap: "8%", data: counts.map((v, k) => ({ value: v, itemStyle: barStyle(k === medBin ? ct.series[0] : ct.neutral) })) }],
   }), [counts, labels, ct, lang, t, total, medBin]);
   return (
     <ChartCard title={L("Distribución del valor del pedido", "Order value distribution")} subtitle={L("Histograma; tramos de ancho variable, la barra azul contiene la mediana", "Histogram; variable-width bins, the blue bar holds the median")}
       filters={[F.region, F.period]} source={SRC} empty={total === 0}
-      table={{ columns: [t(L("Tramo (R$)", "Bin (R$)")), t(L("Pedidos", "Orders")), "%"], rows: labels.map((l, k) => [l, num(counts[k], lang), pct(counts[k] / total, lang)]) }}
+      table={{ columns: [t(L(`Tramo (${cs()})`, `Bin (${cs()})`)), t(L("Pedidos", "Orders")), "%"], rows: labels.map((l, k) => [l, num(counts[k], lang), pct(counts[k] / total, lang)]) }}
       explain={{
         measures: L("Suma del precio de los productos de cada pedido (sin flete), agrupada en tramos.", "Sum of product prices per order (excluding freight), grouped into bins."),
-        observed: { es: `${pct(under100, "es")} de los pedidos vale menos de R$ 100 en productos; la mediana cae en el tramo R$ ${labels[medBin]}.`, en: `${pct(under100, "en")} of orders are worth under R$ 100 in products; the median falls in the R$ ${labels[medBin]} bin.` },
+        observed: { es: `${pct(under100, "es")} de los pedidos vale menos de ${money(100, "es", false)} en productos; la mediana cae en el tramo ${cs()} ${labels[medBin]}.`, en: `${pct(under100, "en")} of orders are worth under ${money(100, "en", false)} in products; the median falls in the ${cs()} ${labels[medBin]} bin.` },
         implications: L("El negocio es de tickets bajos: el flete pesa proporcionalmente mucho en la decisión de compra.", "It is a low-ticket business: freight weighs heavily in the purchase decision."),
         decisions: L("Umbrales de envío gratis y paquetes para subir el ticket.", "Free-shipping thresholds and bundles to raise the ticket."),
         limits: L("Los tramos no son de igual ancho: comparar alturas solo entre tramos vecinos.", "Bins are not equal width: compare heights only between neighbouring bins."),
@@ -275,18 +276,18 @@ export function TopProducts({ c }: { c: RCtx }) {
   const option = useMemo<EOption>(() => ({
     ...base(ct), grid: { left: 8, right: 16, top: 8, bottom: 8, containLabel: true },
     yAxis: catAxis(ct, labels, { inverse: true, axisLabel: { color: ct.text2, fontSize: 11, width: 190, overflow: "truncate", fontFamily: "IBM Plex Mono, monospace" } }),
-    xAxis: valueAxis(ct, (v: number) => brlAxis(v, lang)),
-    tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } }, formatter: (ps: any[]) => { const r = rows[ps[0].dataIndex]; return tipHead(labels[ps[0].dataIndex]) + tipRow(ct.series[0], t(L("Ingresos", "Revenue")), brl(r.revenue, lang, false)) + tipRow(ct.neutral, t(L("Unidades", "Units")), num(r.units, lang)) + tipRow(ct.neutral, t(L("Pedidos", "Orders")), num(r.orders, lang)) + tipRow(ct.neutral, t(L("Precio medio", "Average price")), brl(r.avgPrice, lang, false)); } },
+    xAxis: valueAxis(ct, (v: number) => moneyAxis(v, lang)),
+    tooltip: { ...base(ct).tooltip, axisPointer: { type: "shadow", shadowStyle: { color: ct.grid, opacity: 0.5 } }, formatter: (ps: any[]) => { const r = rows[ps[0].dataIndex]; return tipHead(labels[ps[0].dataIndex]) + tipRow(ct.series[0], t(L("Ingresos", "Revenue")), money(r.revenue, lang, false)) + tipRow(ct.neutral, t(L("Unidades", "Units")), num(r.units, lang)) + tipRow(ct.neutral, t(L("Pedidos", "Orders")), num(r.orders, lang)) + tipRow(ct.neutral, t(L("Precio medio", "Average price")), money(r.avgPrice, lang, false)); } },
     series: [{ type: "bar", barMaxWidth: 16, data: rows.map((r) => ({ value: r.revenue, itemStyle: barStyle(ct.series[0], true) })) }],
   }), [rows, labels, ct, lang, t]);
   return (
     <ChartCard title={L("Productos con más ingresos", "Top products by revenue")} subtitle={L("ID abreviado del producto (Olist no publica nombres)", "Shortened product ID (Olist does not publish names)")}
       filters={[F.regionOnly]} source={SRC} empty={!rows.length}
-      table={{ columns: ["ID", t(L("Categoría", "Category")), t(L("Ingresos", "Revenue")), t(L("Unidades", "Units")), t(L("Pedidos", "Orders")), t(L("Precio medio", "Avg price"))], rows: rows.map((r) => [r.id, catName(c, r.category), num(r.revenue, lang), num(r.units, lang), num(r.orders, lang), num(r.avgPrice, lang, 2)]) }}
+      table={{ columns: ["ID", t(L("Categoría", "Category")), t(L("Ingresos", "Revenue")), t(L("Unidades", "Units")), t(L("Pedidos", "Orders")), t(L("Precio medio", "Avg price"))], rows: rows.map((r) => [r.id, catName(c, r.category), mnum(r.revenue, lang), num(r.units, lang), num(r.orders, lang), mnum(r.avgPrice, lang, 2)]) }}
       explain={{
         measures: L("Ingreso, unidades y pedidos por producto durante toda la ventana (ene 2017 – jul 2018).", "Revenue, units and orders per product over the full window (Jan 2017 – Jul 2018)."),
-        observed: rows[0] ? { es: `El producto líder (${rows[0].id}, ${catName({ ...c, lang: "es" }, rows[0].category)}) suma ${brl(rows[0].revenue, "es")} con ${num(rows[0].units, "es")} unidades a ${brl(rows[0].avgPrice, "es")} promedio.`,
-          en: `The leading product (${rows[0].id}, ${catName({ ...c, lang: "en" }, rows[0].category)}) totals ${brl(rows[0].revenue, "en")} from ${num(rows[0].units, "en")} units at ${brl(rows[0].avgPrice, "en")} on average.` } : L("Sin datos.", "No data."),
+        observed: rows[0] ? { es: `El producto líder (${rows[0].id}, ${catName({ ...c, lang: "es" }, rows[0].category)}) suma ${money(rows[0].revenue, "es")} con ${num(rows[0].units, "es")} unidades a ${money(rows[0].avgPrice, "es")} promedio.`,
+          en: `The leading product (${rows[0].id}, ${catName({ ...c, lang: "en" }, rows[0].category)}) totals ${money(rows[0].revenue, "en")} from ${num(rows[0].units, "en")} units at ${money(rows[0].avgPrice, "en")} on average.` } : L("Sin datos.", "No data."),
         implications: L("Los productos estrella justifican control de quiebres de stock.", "Star products justify stock-out monitoring."),
         decisions: L("Qué productos vigilar por disponibilidad y precio.", "Which products to monitor for availability and price."),
         limits: L("Responde solo al filtro de región. Olist anonimiza los productos: no hay nombres.", "Responds only to the region filter. Olist anonymises products: no names."),
