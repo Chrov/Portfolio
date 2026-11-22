@@ -25,7 +25,7 @@ export function CurrencyToggle({ fxKey }: { fxKey: FxKey }) {
       {opts.map((o) => (
         <button key={o.v} type="button" role="radio" aria-checked={value === o.v} onClick={() => setCur(o.v)}
           title={o.v === "native" ? t(L("Moneda original del dataset", "Dataset's original currency")) : t(L("Conversión con tipo de cambio oficial promedio del período", "Converted at the period's average official rate"))}
-          className={cn("h-7 rounded-[5px] px-1.5 font-mono text-[11.5px] font-semibold cursor-pointer sm:px-2", value === o.v ? "bg-ink text-surface" : "text-ink-3 hover:text-ink")}>
+          className={cn("press h-7 rounded-[5px] px-1.5 font-mono text-[11.5px] font-semibold cursor-pointer sm:px-2", value === o.v ? "bg-ink text-surface" : "text-ink-3 hover:text-ink")}>
           {o.label}
         </button>
       ))}

@@ -27,7 +27,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20261121" />
+  <script>var h=function(e){var v=e.viewTransition;if(v){[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){p&&p.catch(function(){})})}};addEventListener("pagereveal",h);addEventListener("pageswap",h);try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+  <link rel="stylesheet" href="styles.css?v=20261121.4" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -109,126 +110,116 @@
   <!-- Scroll progress -->
   <div class="progress" id="progress" aria-hidden="true"></div>
 
-  <!-- ===== Navigation ===== -->
+  <!-- ===== Navigation (floating glass pill) ===== -->
   <header class="nav" id="top">
-    <div class="container nav__inner">
+    <div class="nav__inner glass">
       <a href="#top" class="nav__logo" aria-label="Camilo Vergara Salas — Inicio">
         <span class="nav__logo-mark">CV</span>
-        <span>Camilo Vergara<span class="accent">.</span></span>
+        <span>Camilo Vergara</span>
       </a>
 
       <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
         <a href="#cases" data-i18n="nav.cases">Casos</a>
-        <a href="#products" data-i18n="nav.products">Ingeniería de Productos</a>
-        <a href="#skills" data-i18n="nav.skills">Stack Técnico</a>
         <a href="#experience" data-i18n="nav.experience">Trayectoria</a>
         <a href="#certs" data-i18n="nav.certs">Certificaciones</a>
-        <a href="#notes" data-i18n="nav.notes">Notas Técnicas</a>
         <a href="#about" data-i18n="nav.about">Sobre mí</a>
-        <a href="#contact" data-i18n="nav.contact">Contacto</a>
       </nav>
 
       <div class="nav__actions">
-        <div class="lang-toggle" role="group" aria-label="Selector de idioma">
-          <button id="btnEs" class="lang-btn active" type="button" onclick="setLang('es')">ES</button>
-          <button id="btnEn" class="lang-btn" type="button" onclick="setLang('en')">EN</button>
+        <div class="seg seg--sm lang-toggle" role="group" aria-label="Selector de idioma" data-seg>
+          <span class="seg__thumb" aria-hidden="true"></span>
+          <button id="btnEs" class="lang-btn active" type="button" onclick="setLang('es')" aria-pressed="true">ES</button>
+          <button id="btnEn" class="lang-btn" type="button" onclick="setLang('en')" aria-pressed="false">EN</button>
         </div>
         <button id="themeToggle" class="theme-btn" type="button" aria-label="Cambiar tema claro/oscuro">
-          <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         </button>
-        <a id="navCvBtn" class="nav__cta" href="assets/Camilo_Vergara_CV_ES.pdf" download data-i18n="nav.cta">Descargar CV</a>
-        <button class="nav__burger" id="burger" type="button" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <a id="navCvBtn" class="btn btn--ink btn--sm nav__cta" href="assets/Camilo_Vergara_CV_ES.pdf" download><span data-i18n="nav.cta">Descargar CV</span></a>
+        <button class="nav__burger" id="burger" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="navLinks">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- ===== Hero (editorial masthead) ===== -->
+  <!-- ===== Hero: one offer, one action, proof right below ===== -->
   <section class="hero" aria-label="Presentación profesional">
-    <div class="container">
-      <div class="masthead" aria-hidden="true">
-        <span data-i18n="hero.masthead">Portafolio de análisis · Edición 2026</span>
-        <span class="masthead__mid">Santiago, Chile</span>
-        <span>SQL · Python · Power BI · Tableau</span>
-      </div>
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__grid-bg" data-parallax="0.18"></div>
+      <svg class="hero__spark" data-parallax="0.24" viewBox="0 0 600 170" preserveAspectRatio="xMaxYMax meet">
+        <path pathLength="1" d="M0,150 C50,146 80,118 130,122 S210,152 262,118 S340,66 392,82 S488,52 540,30 S584,18 594,14"/>
+        <circle class="spark-halo" cx="594" cy="14" r="5"/>
+        <circle cx="594" cy="14" r="4.5"/>
+      </svg>
+    </div>
 
-      <div class="hero__grid">
-        <div class="hero__lead reveal">
-          <p class="kicker" data-i18n="hero.eyebrow">Analista de Datos · Business Intelligence</p>
-          <h1 class="hero__title">Camilo Vergara Salas</h1>
-          <p class="hero__deck" data-i18n="hero.tagline">Convierto datos operativos desordenados en decisiones que se pueden verificar.</p>
-          <p class="hero__summary" data-i18n="hero.summary">Más de 4 años con SQL, Python, Power BI y Tableau en SaaS B2B (Top Partners S.A., +70 empresas cliente) y consultoría freelance. Cada caso de este portafolio publica sus datos, su código y sus límites.</p>
-          <p class="hero__study" data-i18n="hero.study">Estudiando Analista de Datos (IPLACEX, 2027) e Ingeniería en Ciencia de Datos (IPG, 2028).</p>
+    <div class="container hero__inner">
+      <div class="hero__lead">
+        <p class="hero__id enter" style="--e:0"><span class="hero__name">Camilo Vergara Salas</span><span class="hero__sep" aria-hidden="true">·</span><span data-i18n="hero.eyebrow">Analista de Datos · Business Intelligence</span></p>
+        <h1 class="hero__title" data-i18n="hero.tagline">Convierto datos operativos desordenados en decisiones que se pueden verificar.</h1>
+        <p class="hero__summary enter" style="--e:3" data-i18n="hero.summary">Más de 4 años con SQL, Python, Power BI y Tableau en SaaS B2B (Top Partners S.A., +70 empresas cliente) y consultoría freelance. Cada caso de este portafolio publica sus datos, su código y sus límites.</p>
 
-          <div class="hero__cta">
-            <a class="btn btn--primary" href="#cases"><span data-i18n="hero.seeCases">Ver los 8 casos interactivos</span></a>
-            <a id="cvDownload" class="btn btn--ghost" href="assets/Camilo_Vergara_CV_ES.pdf" download><span data-i18n="hero.download">Descargar CV (ES)</span></a>
-            <a id="cvDownloadAlt" class="link-alt" href="assets/Camilo_Vergara_Resume_EN.pdf" download data-i18n="hero.downloadAlt">English Resume (PDF)</a>
-          </div>
-
-          <p class="byline">
-            <a href="https://www.linkedin.com/in/camilo-evs" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://github.com/Chrov" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://public.tableau.com/app/profile/camilo.vergara3198/vizzes" target="_blank" rel="noopener">Tableau Public</a>
-            <a href="mailto:camilovergarasalas.cvs@gmail.com">camilovergarasalas.cvs@gmail.com</a>
-          </p>
+        <div class="hero__cta enter" style="--e:4">
+          <a class="btn btn--accent btn--lg" href="#cases"><span data-i18n="hero.seeCases">Ver los 8 casos interactivos</span> <span class="arr" aria-hidden="true">→</span></a>
         </div>
 
-        <aside class="hero__side reveal">
-          <figure class="portrait" aria-label="Camilo Vergara Salas">
+        <p class="hero__links enter" style="--e:5">
+          <a id="cvDownloadAlt" href="assets/Camilo_Vergara_Resume_EN.pdf" download data-i18n="hero.downloadAlt">English Resume (PDF)</a>
+          <a href="https://www.linkedin.com/in/camilo-evs" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/Chrov" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://public.tableau.com/app/profile/camilo.vergara3198/vizzes" target="_blank" rel="noopener">Tableau Public</a>
+        </p>
+      </div>
+
+      <aside class="hero__side">
+        <div class="idcard glass enter" style="--e:2" data-parallax="-0.05" role="group" aria-label="Camilo Vergara Salas">
+          <div class="idcard__top">
             <div class="portrait__frame">
               <!-- Photo slot: save the picture as assets/img/profile.jpg and replace the span below with
-                   <img src="assets/img/profile.jpg" alt="Camilo Vergara Salas" width="240" height="240"> -->
+                   <img src="assets/img/profile.jpg" alt="Camilo Vergara Salas" width="168" height="168"> -->
               <span class="portrait__mono" aria-hidden="true">CV</span>
             </div>
-            <figcaption class="portrait__caption">
-              <span class="portrait__name">Camilo Vergara Salas</span>
-              <span class="portrait__role" data-i18n="hero.portraitRole">Analista de Datos · BI · Data Science</span>
-              <span class="portrait__status"><span class="portrait__dot" aria-hidden="true"></span><span data-i18n="hero.available">Disponible · Santiago, híbrido o remoto</span></span>
-              <span class="portrait__langs"><span data-i18n="hero.langs">Español nativo · Inglés B2 (autoevaluado)</span></span>
-            </figcaption>
-          </figure>
+            <div>
+              <span class="idcard__name">Camilo Vergara Salas</span>
+              <span class="idcard__role" data-i18n="hero.portraitRole">Analista de Datos · BI · Data Science</span>
+            </div>
+          </div>
+          <ul class="idcard__rows">
+            <li><span class="portrait__dot" aria-hidden="true"></span><span data-i18n="hero.available">Disponible · Santiago, híbrido o remoto</span></li>
+            <li data-i18n="hero.langs">Español nativo · Inglés B2 (autoevaluado)</li>
+            <li data-i18n="hero.study">Estudiando Analista de Datos (IPLACEX, 2027) e Ingeniería en Ciencia de Datos (IPG, 2028).</li>
+          </ul>
+          <a id="cvDownload" class="btn btn--neu" href="assets/Camilo_Vergara_CV_ES.pdf" download><span data-i18n="hero.download">Descargar CV (ES)</span> <span class="arr" aria-hidden="true">↓</span></a>
+        </div>
+        <span class="chip chip--a glass" data-parallax="-0.14" data-i18n="hero.chip1">8 casos con datos y código</span>
+        <span class="chip chip--b glass" data-parallax="0.08" data-i18n="hero.chip2">Montos en USD o CLP</span>
+      </aside>
+    </div>
 
-          <nav class="issue-index" aria-labelledby="issueIndexTitle">
-            <h2 id="issueIndexTitle" class="issue-index__title" data-i18n="hero.indexTitle">En esta edición · 8 casos interactivos</h2>
-            <ol class="issue-index__list">
-            <li><a href="apps/revenue-intelligence/"><span class="issue-index__n">01</span><span class="issue-index__t" data-i18n="idx.c1">Ingresos, clientes y pronóstico de un marketplace</span><span class="issue-index__f">−18% error</span></a></li>
-            <li><a href="apps/talentrisk/"><span class="issue-index__n">02</span><span class="issue-index__t" data-i18n="idx.c2">Rotación de personal con IA responsable</span><span class="issue-index__f">PR-AUC 0.62</span></a></li>
-            <li><a href="apps/replenishment-forecast/"><span class="issue-index__n">03</span><span class="issue-index__t" data-i18n="idx.c3">Pronóstico para un piloto de reposición</span><span class="issue-index__f">WMAPE 30.3%</span></a></li>
-            <li><a href="apps/campaign-drift/"><span class="issue-index__n">04</span><span class="issue-index__t" data-i18n="idx.c4">Cuándo un modelo bancario no debe salir a producción</span><span class="issue-index__f">AUC 0.458</span></a></li>
-            <li><a href="apps/waste-control/"><span class="issue-index__n">05</span><span class="issue-index__t" data-i18n="idx.c5">Merma y margen por lote en CLP</span><span class="issue-index__f">CLP 8.99M</span></a></li>
-            <li><a href="apps/route-reliability/"><span class="issue-index__n">06</span><span class="issue-index__t" data-i18n="idx.c6">Confiabilidad de rutas aéreas</span><span class="issue-index__f">n = 577,262</span></a></li>
-            <li><a href="apps/demand-baseline/"><span class="issue-index__n">07</span><span class="issue-index__t" data-i18n="idx.c7">Un pronóstico simple que un comercio puede operar</span><span class="issue-index__f">−19.4% error</span></a></li>
-            <li><a href="apps/copper-observatory/"><span class="issue-index__n">08</span><span class="issue-index__t" data-i18n="idx.c8">Cobre chileno: volumen frente a valor</span><span class="issue-index__f">+16.7% / +4.9%</span></a></li>
-            </ol>
-          </nav>
-        </aside>
-      </div>
-
-      <div class="figures" role="list">
-        <div class="figure reveal" role="listitem">
-          <span class="figure__num">4+</span>
-          <span class="figure__label" data-i18n="proof.p1Label">Años en datos y desarrollo</span>
-          <span class="figure__ctx" data-i18n="proof.p1Ctx">SQL, Python, BI y sistemas relacionales</span>
-        </div>
-        <div class="figure reveal" role="listitem">
-          <span class="figure__num">−40%</span>
-          <span class="figure__label" data-i18n="proof.p2Label">Tiempo de entrega de reportes</span>
-          <span class="figure__ctx" data-i18n="proof.p2Ctx">Reportes regulatorios · Top Partners S.A.</span>
-        </div>
-        <div class="figure reveal" role="listitem">
-          <span class="figure__num">90%+</span>
-          <span class="figure__label" data-i18n="proof.p3Label">Precisión en validación documental</span>
-          <span class="figure__ctx" data-i18n="proof.p3Ctx">Verificación automática · Top Partners S.A.</span>
-        </div>
-        <div class="figure reveal" role="listitem">
-          <span class="figure__num">70+</span>
-          <span class="figure__label" data-i18n="proof.p4Label">Empresas cliente en BI</span>
-          <span class="figure__ctx" data-i18n="proof.p4Ctx">Dashboards Power BI y Tableau · Top Partners S.A.</span>
-        </div>
-      </div>
+    <div class="container">
+      <ul class="proof" aria-label="Resultados verificables">
+        <li class="proof__tile proof__tile--ink reveal">
+          <span class="proof__num" data-count="40" data-prefix="−" data-suffix="%">−40%</span>
+          <span class="proof__label" data-i18n="proof.p2Label">Tiempo de entrega de reportes</span>
+          <span class="proof__ctx" data-i18n="proof.p2Ctx">Reportes regulatorios · Top Partners S.A.</span>
+        </li>
+        <li class="proof__tile reveal">
+          <span class="proof__num" data-count="70" data-suffix="+">70+</span>
+          <span class="proof__label" data-i18n="proof.p4Label">Empresas cliente en BI</span>
+          <span class="proof__ctx" data-i18n="proof.p4Ctx">Dashboards Power BI y Tableau · Top Partners S.A.</span>
+        </li>
+        <li class="proof__tile reveal">
+          <span class="proof__num" data-count="90" data-suffix="%+">90%+</span>
+          <span class="proof__label" data-i18n="proof.p3Label">Precisión en validación documental</span>
+          <span class="proof__ctx" data-i18n="proof.p3Ctx">Verificación automática · Top Partners S.A.</span>
+        </li>
+        <li class="proof__tile reveal">
+          <span class="proof__num" data-count="4" data-suffix="+">4+</span>
+          <span class="proof__label" data-i18n="proof.p1Label">Años en datos y desarrollo</span>
+          <span class="proof__ctx" data-i18n="proof.p1Ctx">SQL, Python, BI y sistemas relacionales</span>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -245,20 +236,21 @@
         </div>
 
         <div class="cases-toolbar reveal">
-          <div class="filter-group" role="group" aria-label="Filtrar casos">
+          <div class="seg filter-group rail" role="group" aria-label="Filtrar casos" data-seg>
+            <span class="seg__thumb" aria-hidden="true"></span>
             <button type="button" class="filter-btn active" data-filter="all" data-i18n="filter.all">Todos (8)</button>
             <button type="button" class="filter-btn" data-filter="bi" data-i18n="filter.bi">Analytics y BI (6)</button>
             <button type="button" class="filter-btn" data-filter="ds" data-i18n="filter.ds">Data Science y ML (5)</button>
             <button type="button" class="filter-btn" data-filter="real" data-i18n="filter.real">Datos reales (4)</button>
-            <button type="button" class="filter-btn" data-filter="synthetic" data-i18n="filter.synthetic">Sintéticos o ficticios (4)</button>
           </div>
-          <div class="view-toggle" role="group" aria-label="Cambiar vista">
+          <div class="seg view-toggle" role="group" aria-label="Cambiar vista" data-seg>
+            <span class="seg__thumb" aria-hidden="true"></span>
             <button type="button" id="viewCardsBtn" class="view-btn active" data-i18n="view.cards">Tarjetas</button>
             <button type="button" id="viewMatrixBtn" class="view-btn" data-i18n="view.matrix">Matriz comparativa</button>
           </div>
         </div>
 
-        <div id="matrixView" class="matrix-view" aria-label="Tabla comparativa de casos">
+        <div id="matrixView" class="matrix-view rail" aria-label="Tabla comparativa de casos">
           <table class="matrix-table">
             <thead>
               <tr>
@@ -340,9 +332,9 @@
         </div>
 
         <div id="casesList" class="cases-grid">
-          <article id="case-revenue-intelligence" class="case-card reveal" data-categories="bi ds real">
+          <article id="case-revenue-intelligence" class="case-card case-card--feature reveal" data-categories="bi ds real">
             <a class="case-card__shot" href="apps/revenue-intelligence/" tabindex="-1" aria-hidden="true">
-              <img src="assets/img/cases/revenue-intelligence.jpg?v=20261121" alt="" width="800" height="500" loading="lazy" decoding="async">
+              <img src="assets/img/cases/revenue-intelligence.jpg?v=20261121.4" alt="" width="800" height="500" loading="lazy" decoding="async">
               <span class="case-card__n mono">01</span>
             </a>
             <div class="case-card__body">
@@ -356,14 +348,14 @@
               <p class="case-card__dec"><strong data-i18n="cases.decision">Decisión:</strong> <span data-i18n="cases.c1.dec">Crecimiento por volumen con 3% de recompra: priorizar retención y planificar con rangos.</span></p>
               <p class="case-card__stack mono">SQL · DuckDB · pandas · scikit-learn · FastAPI · Next.js</p>
               <div class="case-card__actions">
-                <a class="btn btn--primary btn--sm" href="apps/revenue-intelligence/"><span data-i18n="cases.open">Abrir caso interactivo</span> →</a>
+                <a class="case-card__open" href="apps/revenue-intelligence/"><span data-i18n="cases.open">Abrir caso interactivo</span> <span class="arr" aria-hidden="true">→</span></a>
                 <div class="case-card__links"><a class="case-card__link" href="https://github.com/Chrov/Portfolio/tree/main/analytics/revenue" target="_blank" rel="noopener">GitHub</a></div>
               </div>
             </div>
           </article>
-          <article id="case-talentrisk" class="case-card reveal" data-categories="ds synthetic">
+          <article id="case-talentrisk" class="case-card case-card--tall reveal" data-categories="ds synthetic">
             <a class="case-card__shot" href="apps/talentrisk/" tabindex="-1" aria-hidden="true">
-              <img src="assets/img/cases/talentrisk.jpg?v=20261121" alt="" width="800" height="500" loading="lazy" decoding="async">
+              <img src="assets/img/cases/talentrisk.jpg?v=20261121.4" alt="" width="800" height="500" loading="lazy" decoding="async">
               <span class="case-card__n mono">02</span>
             </a>
             <div class="case-card__body">
@@ -377,14 +369,14 @@
               <p class="case-card__dec"><strong data-i18n="cases.decision">Decisión:</strong> <span data-i18n="cases.c2.dec">Usar el puntaje solo como apoyo a conversaciones de retención, nunca para decisiones individuales automáticas.</span></p>
               <p class="case-card__stack mono">pandas · scikit-learn · XGBoost · SHAP · FastAPI · Next.js</p>
               <div class="case-card__actions">
-                <a class="btn btn--primary btn--sm" href="apps/talentrisk/"><span data-i18n="cases.open">Abrir caso interactivo</span> →</a>
+                <a class="case-card__open" href="apps/talentrisk/"><span data-i18n="cases.open">Abrir caso interactivo</span> <span class="arr" aria-hidden="true">→</span></a>
                 <div class="case-card__links"><a class="case-card__link" href="https://github.com/Chrov/Portfolio/tree/main/analytics/talentrisk" target="_blank" rel="noopener">GitHub</a></div>
               </div>
             </div>
           </article>
-          <article id="case-replenishment-forecast" class="case-card reveal" data-categories="ds bi synthetic">
+          <article id="case-replenishment-forecast" class="case-card case-card--wide reveal" data-categories="ds bi synthetic">
             <a class="case-card__shot" href="apps/replenishment-forecast/" tabindex="-1" aria-hidden="true">
-              <img src="assets/img/cases/replenishment-forecast.jpg?v=20261121" alt="" width="800" height="500" loading="lazy" decoding="async">
+              <img src="assets/img/cases/replenishment-forecast.jpg?v=20261121.4" alt="" width="800" height="500" loading="lazy" decoding="async">
               <span class="case-card__n mono">03</span>
             </a>
             <div class="case-card__body">
@@ -398,14 +390,14 @@
               <p class="case-card__dec"><strong data-i18n="cases.decision">Decisión:</strong> <span data-i18n="cases.c3.dec">Operar LightGBM en piloto en sombra y separar la demanda intermitente antes de automatizar pedidos.</span></p>
               <p class="case-card__stack mono">SQL · dbt · BigQuery · LightGBM · Tableau</p>
               <div class="case-card__actions">
-                <a class="btn btn--primary btn--sm" href="apps/replenishment-forecast/"><span data-i18n="cases.open">Abrir caso interactivo</span> →</a>
+                <a class="case-card__open" href="apps/replenishment-forecast/"><span data-i18n="cases.open">Abrir caso interactivo</span> <span class="arr" aria-hidden="true">→</span></a>
                 <div class="case-card__links"><button type="button" class="case-card__link" onclick="openAuditModal('grocery-replenishment-policy')" data-i18n="cases.audit">Arquitectura y SQL</button> <a class="case-card__link" href="case-studies/grocery-replenishment-policy/index.html" data-i18n="cases.report">Informe y descargas</a> <a class="case-card__link" href="https://public.tableau.com/app/profile/camilo.vergara3198/viz/Replenishment_17889686809270/SyntheticreplenishmentReposicionsimulada" target="_blank" rel="noopener">Tableau Public</a> <a class="case-card__link" href="https://github.com/Chrov/grocery-replenishment-policy" target="_blank" rel="noopener">GitHub</a></div>
               </div>
             </div>
           </article>
-          <article id="case-campaign-drift" class="case-card reveal" data-categories="ds real">
+          <article id="case-campaign-drift" class="case-card case-card--wide reveal" data-categories="ds real">
             <a class="case-card__shot" href="apps/campaign-drift/" tabindex="-1" aria-hidden="true">
-              <img src="assets/img/cases/campaign-drift.jpg?v=20261121" alt="" width="800" height="500" loading="lazy" decoding="async">
+              <img src="assets/img/cases/campaign-drift.jpg?v=20261121.4" alt="" width="800" height="500" loading="lazy" decoding="async">
               <span class="case-card__n mono">04</span>
             </a>
             <div class="case-card__body">
@@ -419,14 +411,14 @@
               <p class="case-card__dec"><strong data-i18n="cases.decision">Decisión:</strong> <span data-i18n="cases.c4.dec">Bloquear el despliegue; monitorear la tasa base y reentrenar con validación temporal.</span></p>
               <p class="case-card__stack mono">SQL · Python · scikit-learn · Excel</p>
               <div class="case-card__actions">
-                <a class="btn btn--primary btn--sm" href="apps/campaign-drift/"><span data-i18n="cases.open">Abrir caso interactivo</span> →</a>
+                <a class="case-card__open" href="apps/campaign-drift/"><span data-i18n="cases.open">Abrir caso interactivo</span> <span class="arr" aria-hidden="true">→</span></a>
                 <div class="case-card__links"><button type="button" class="case-card__link" onclick="openAuditModal('bank-campaign')" data-i18n="cases.audit">Arquitectura y SQL</button> <a class="case-card__link" href="case-studies/bank-campaign/index.html" data-i18n="cases.report">Informe y descargas</a> <a class="case-card__link" href="https://github.com/Chrov/Portfolio/tree/main/case-studies/bank-campaign" target="_blank" rel="noopener">GitHub</a></div>
               </div>
             </div>
           </article>
           <article id="case-waste-control" class="case-card reveal" data-categories="bi synthetic">
             <a class="case-card__shot" href="apps/waste-control/" tabindex="-1" aria-hidden="true">
-              <img src="assets/img/cases/waste-control.jpg?v=20261121" alt="" width="800" height="500" loading="lazy" decoding="async">
+              <img src="assets/img/cases/waste-control.jpg?v=20261121.4" alt="" width="800" height="500" loading="lazy" decoding="async">
               <span class="case-card__n mono">05</span>
             </a>
             <div class="case-card__body">
@@ -440,14 +432,14 @@
               <p class="case-card__dec"><strong data-i18n="cases.decision">Decisión:</strong> <span data-i18n="cases.c5.dec">Piloto de control de merma en aceitunas antes de aprobar inversión en frío.</span></p>
               <p class="case-card__stack mono">SQL · DuckDB · Excel · Power BI</p>
               <div class="case-card__actions">
-                <a class="btn btn--primary btn--sm" href="apps/waste-control/"><span data-i18n="cases.open">Abrir caso interactivo</span> →</a>
+                <a class="case-card__open" href="apps/waste-control/"><span data-i18n="cases.open">Abrir caso interactivo</span> <span class="arr" aria-hidden="true">→</span></a>
                 <div class="case-card__links"><button type="button" class="case-card__link" onclick="openAuditModal('market-stall-analytics')" data-i18n="cases.audit">Arquitectura y SQL</button> <a class="case-card__link" href="case-studies/market-stall-analytics/index.html" data-i18n="cases.report">Informe y descargas</a> <a class="case-card__link" href="https://github.com/Chrov/market-stall-analytics" target="_blank" rel="noopener">GitHub</a></div>
               </div>
             </div>
           </article>
           <article id="case-route-reliability" class="case-card reveal" data-categories="bi real">
             <a class="case-card__shot" href="apps/route-reliability/" tabindex="-1" aria-hidden="true">
-              <img src="assets/img/cases/route-reliability.jpg?v=20261121" alt="" width="800" height="500" loading="lazy" decoding="async">
+              <img src="assets/img/cases/route-reliability.jpg?v=20261121.4" alt="" width="800" height="500" loading="lazy" decoding="async">
               <span class="case-card__n mono">06</span>
             </a>
             <div class="case-card__body">
@@ -461,14 +453,14 @@
               <p class="case-card__dec"><strong data-i18n="cases.decision">Decisión:</strong> <span data-i18n="cases.c6.dec">Investigar primero programación y contingencias en Atlanta–Orlando, sin cambiar capacidad con un mes.</span></p>
               <p class="case-card__stack mono">Python · SQL · Wilson CI · Power BI</p>
               <div class="case-card__actions">
-                <a class="btn btn--primary btn--sm" href="apps/route-reliability/"><span data-i18n="cases.open">Abrir caso interactivo</span> →</a>
+                <a class="case-card__open" href="apps/route-reliability/"><span data-i18n="cases.open">Abrir caso interactivo</span> <span class="arr" aria-hidden="true">→</span></a>
                 <div class="case-card__links"><button type="button" class="case-card__link" onclick="openAuditModal('airline-reliability')" data-i18n="cases.audit">Arquitectura y SQL</button> <a class="case-card__link" href="case-studies/airline-reliability/index.html" data-i18n="cases.report">Informe y descargas</a> <a class="case-card__link" href="https://github.com/Chrov/airline-reliability" target="_blank" rel="noopener">GitHub</a></div>
               </div>
             </div>
           </article>
           <article id="case-demand-baseline" class="case-card reveal" data-categories="ds bi synthetic">
             <a class="case-card__shot" href="apps/demand-baseline/" tabindex="-1" aria-hidden="true">
-              <img src="assets/img/cases/demand-baseline.jpg?v=20261121" alt="" width="800" height="500" loading="lazy" decoding="async">
+              <img src="assets/img/cases/demand-baseline.jpg?v=20261121.4" alt="" width="800" height="500" loading="lazy" decoding="async">
               <span class="case-card__n mono">07</span>
             </a>
             <div class="case-card__body">
@@ -482,14 +474,14 @@
               <p class="case-card__dec"><strong data-i18n="cases.decision">Decisión:</strong> <span data-i18n="cases.c7.dec">Adoptar la media de 8 semanas por día como línea base y validarla 4 semanas.</span></p>
               <p class="case-card__stack mono">SQL · Python · Excel · Tableau</p>
               <div class="case-card__actions">
-                <a class="btn btn--primary btn--sm" href="apps/demand-baseline/"><span data-i18n="cases.open">Abrir caso interactivo</span> →</a>
+                <a class="case-card__open" href="apps/demand-baseline/"><span data-i18n="cases.open">Abrir caso interactivo</span> <span class="arr" aria-hidden="true">→</span></a>
                 <div class="case-card__links"><button type="button" class="case-card__link" onclick="openAuditModal('feria-demand')" data-i18n="cases.audit">Arquitectura y SQL</button> <a class="case-card__link" href="case-studies/feria-demand/index.html" data-i18n="cases.report">Informe y descargas</a> <a class="case-card__link" href="https://github.com/Chrov/Portfolio/tree/main/case-studies/feria-demand" target="_blank" rel="noopener">GitHub</a></div>
               </div>
             </div>
           </article>
-          <article id="case-copper-observatory" class="case-card reveal" data-categories="bi real">
+          <article id="case-copper-observatory" class="case-card case-card--hz reveal" data-categories="bi real">
             <a class="case-card__shot" href="apps/copper-observatory/" tabindex="-1" aria-hidden="true">
-              <img src="assets/img/cases/copper-observatory.jpg?v=20261121" alt="" width="800" height="500" loading="lazy" decoding="async">
+              <img src="assets/img/cases/copper-observatory.jpg?v=20261121.4" alt="" width="800" height="500" loading="lazy" decoding="async">
               <span class="case-card__n mono">08</span>
             </a>
             <div class="case-card__body">
@@ -503,7 +495,7 @@
               <p class="case-card__dec"><strong data-i18n="cases.decision">Decisión:</strong> <span data-i18n="cases.c8.dec">Separar tonelaje físico y valor nominal; planificar ingresos con escenarios de precio.</span></p>
               <p class="case-card__stack mono">SQL · Python · Excel · Power BI</p>
               <div class="case-card__actions">
-                <a class="btn btn--primary btn--sm" href="apps/copper-observatory/"><span data-i18n="cases.open">Abrir caso interactivo</span> →</a>
+                <a class="case-card__open" href="apps/copper-observatory/"><span data-i18n="cases.open">Abrir caso interactivo</span> <span class="arr" aria-hidden="true">→</span></a>
                 <div class="case-card__links"><button type="button" class="case-card__link" onclick="openAuditModal('copper-observatory')" data-i18n="cases.audit">Arquitectura y SQL</button> <a class="case-card__link" href="case-studies/copper-observatory/index.html" data-i18n="cases.report">Informe y descargas</a> <a class="case-card__link" href="https://github.com/Chrov/Portfolio/tree/main/case-studies/copper-observatory" target="_blank" rel="noopener">GitHub</a></div>
               </div>
             </div>
@@ -513,12 +505,251 @@
       </div>
     </section>
 
-    <!-- ===== Product Engineering & Applied Systems (Airmed & DatBase) ===== -->
-    <section id="products" class="section section--alt">
+    <!-- ===== Experience & Education ===== -->
+    <section id="experience" class="section section--alt">
       <div class="container">
         <div class="section__header reveal">
           <div>
-            <p class="section__kicker" data-i18n="prod.kicker">02 · Ingeniería de Productos y Sistemas Propios</p>
+            <p class="section__kicker" data-i18n="exp.kicker">02 · Trayectoria Profesional y Académica</p>
+            <h2 class="section__title" data-i18n="exp.title">Experiencia comprobada en producción y especialización formal</h2>
+            <p class="section__lead" data-i18n="exp.lead">Más de cuatro años resolviendo problemas de datos, cumplimiento corporativo B2B y operaciones comerciales, respaldados por mis estudios actuales de Analista de Datos en IPLACEX (2026–2027) e Ingeniería en Ciencia de Datos en IPG (2026–2028).</p>
+          </div>
+        </div>
+
+        <div class="exp-edu-grid">
+          <!-- Left Column: Professional Experience -->
+          <div class="timeline">
+            <!-- Freelance Consulting & Independent Projects -->
+            <article class="timeline__card reveal">
+              <p class="timeline__meta" data-i18n="exp.job2.domain">Consultoría Independiente · Datos, BI, Automatización y Abastecimiento</p>
+              <div class="timeline__head">
+                <h3 data-i18n="exp.job2.role">Consultor Freelance de Datos, Business Intelligence y Desarrollo</h3>
+                <span class="timeline__period" data-i18n="exp.job2.period">Ene 2026 – Presente</span>
+              </div>
+              <p class="timeline__company" data-i18n="exp.job2.company">Práctica Independiente · Modernización Comercial, Abastecimiento y Analítica Aplicada</p>
+              <ul>
+                <li data-i18n="exp.job2.b1">Modernización integral de negocio comercial (Retail artesanal): lideré la transformación operativa y analítica definiendo desde cero el modelo de datos de margen diario, rotación de inventario, merma valorizada al costo y abastecimiento por proveedor.</li>
+                <li data-i18n="exp.job2.b2">Impacto medible en inventario y ventas: reduje los quiebres de stock a casi cero, impulsé las ventas entre 10% y 15% y disminuí costos de compra entre 15% y 20% integrando SQL, Excel avanzado, tableros en Power BI y Tableau, y captura diaria automatizada por WhatsApp (voz a datos).</li>
+                <li data-i18n="exp.job2.b3">Ingeniería de pronósticos y reposición: diseñé pipelines dimensionales con dbt (21 tests de calidad), modelos recursivos LightGBM y líneas base operativas de media móvil con validación walk-forward sin fuga temporal.</li>
+                <li data-i18n="exp.job2.b4">Auditoría de datos y reportería reproducible: desarrollé estudios de control de merma por cohortes en CLP, análisis de confiabilidad logística (577k+ vuelos BTS), reconciliación macroeconómica (COCHILCO) y auditoría cronológica de modelos predictivos.</li>
+              </ul>
+            </article>
+
+            <!-- Top Partners S.A. -->
+            <article class="timeline__card reveal">
+              <p class="timeline__meta" data-i18n="exp.job1.domain">Plataforma SaaS B2B · Cumplimiento Laboral yContinuidad Operacional</p>
+              <div class="timeline__head">
+                <h3 data-i18n="exp.job1.role">Analista de Datos / Analista Programador</h3>
+                <span class="timeline__period" data-i18n="exp.job1.period">Dic 2021 – Ene 2026</span>
+              </div>
+              <p class="timeline__company">Top Partners S.A. · SubContrataLey (+70 Empresas Cliente)</p>
+              <ul>
+                <li data-i18n="exp.job1.b1">Aceleré en un 40% la entrega de reportes regulatorios de cumplimiento laboral (Ley 20.123) diseñando, optimizando y automatizando pipelines ETL en SQL (procedimientos almacenados, triggers, CTEs y window functions) sobre PostgreSQL y MySQL.</li>
+                <li data-i18n="exp.job1.b2">Construí y mantuve dashboards interactivos en Power BI y Tableau sobre un modelo dimensional en esquema estrella con medidas DAX, utilizados a diario por más de 70 empresas mandantes y más de 100 usuarios activos.</li>
+                <li data-i18n="exp.job1.b3">Elevé sobre el 90% la precisión de la verificación automática de documentos implementando reglas de calidad y gobernanza de datos junto con rutinas de detección de anomalías en Python (Pandas, Seaborn) y soporte de continuidad operacional en PHP/JS.</li>
+                <li data-i18n="exp.job1.b4">Desarrollé la suite de People Analytics (RR.HH.): tableros de rotación, ausentismo, dotación, cohortes de permanencia y automatización de consolidación de nómina integrando datos de ERP con Power Query.</li>
+              </ul>
+            </article>
+          </div>
+
+          <!-- Right Column: Academic Progression -->
+          <aside class="academic-panel reveal" aria-label="Formación académica y certificaciones">
+            <h3 class="academic-panel__title" data-i18n="edu.panelTitle">Formación Académica y Certificaciones</h3>
+
+            <div class="degree-item">
+              <span class="degree-year" data-i18n="edu.d2Year">2026 – 2028 · En curso (Egreso 2028)</span>
+              <span class="degree-name" data-i18n="edu.d2Name">Ingeniería en Ciencia de Datos</span>
+              <span class="degree-inst" data-i18n="edu.d2Inst">Instituto Profesional IPG · Chile</span>
+              <p class="degree-desc" data-i18n="edu.d2Desc">Machine Learning, modelado estadístico e inferencial, arquitectura de datos en la nube (BigQuery / GCP), series de tiempo, optimización e inteligencia artificial aplicada.</p>
+            </div>
+
+            <div class="degree-item">
+              <span class="degree-year" data-i18n="edu.d1Year">2026 – 2027 · En curso (Egreso 2027)</span>
+              <span class="degree-name" data-i18n="edu.d1Name">Analista de Datos (Técnico de Nivel Superior)</span>
+              <span class="degree-inst" data-i18n="edu.d1Inst">Instituto Profesional IPLACEX · Chile</span>
+              <p class="degree-desc" data-i18n="edu.d1Desc">Modelado relacional y dimensional, consultas SQL avanzadas, diseño de indicadores de gestión (KPIs), visualización ejecutiva y gobernanza de datos.</p>
+            </div>
+
+            <div class="degree-item">
+              <span class="degree-year" data-i18n="edu.d3Year">2021 – 2023 · 3 años cursados</span>
+              <span class="degree-name" data-i18n="edu.d3Name">Analista de Sistemas</span>
+              <span class="degree-inst">Colegio Universitario IES · Córdoba, Argentina</span>
+              <p class="degree-desc" data-i18n="edu.d3Desc">Ingeniería de software, estructuras de datos, bases de datos relacionales, lógica algorítmica y levantamiento de requerimientos.</p>
+            </div>
+
+            <div class="degree-item">
+              <span class="degree-year" data-i18n="edu.certYear">Certificaciones Profesionales · 2021 – 2026</span>
+              <a class="degree-link" href="#certs" data-i18n="edu.certLink">Ver las 4 certificaciones y dónde se aplican →</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Certifications ===== -->
+    <section id="certs" class="section certs" aria-labelledby="certs-title">
+      <div class="container">
+        <div class="section__header reveal">
+          <div>
+            <p class="section__kicker" data-i18n="certs.kicker">03 · Certificaciones</p>
+            <h2 class="section__title" data-i18n="certs.title" id="certs-title">Certificaciones obtenidas y dónde se aplican</h2>
+            <p class="section__lead" data-i18n="certs.lead">Formación complementaria a los estudios formales en curso. Cada certificación indica en qué casos de este portafolio se ve aplicada.</p>
+          </div>
+        </div>
+        <div class="certs__grid rail">
+          <article class="cert-card reveal">
+            <div class="cert-card__top">
+              <span class="cert-card__logo cert-card__logo--google" aria-hidden="true">G</span>
+              <span class="cert-card__year mono">2026</span>
+            </div>
+            <h3 class="cert-card__title">Google Data Analytics Professional Certificate</h3>
+            <p class="cert-card__issuer">Google · Coursera</p>
+            <p class="cert-card__desc" data-i18n="certs.c1.desc">Ciclo completo de análisis: preguntar, preparar, procesar, analizar, compartir y actuar.</p>
+            <ul class="cert-card__tags"><li>SQL</li><li data-i18n="certs.c1.t2">Hojas de cálculo</li><li>Tableau</li><li data-i18n="certs.c1.t4">Limpieza de datos</li></ul>
+            <p class="cert-card__seen" data-i18n="certs.c1.seen">Se ve en: los 8 casos (limpieza, SQL y visualización).</p>
+          </article>
+          <article class="cert-card reveal">
+            <div class="cert-card__top">
+              <span class="cert-card__logo cert-card__logo--google" aria-hidden="true">G</span>
+              <span class="cert-card__year mono">2026</span>
+            </div>
+            <h3 class="cert-card__title">Google AI Fundamentals</h3>
+            <p class="cert-card__issuer">Google</p>
+            <p class="cert-card__desc" data-i18n="certs.c2.desc">Fundamentos de inteligencia artificial y su uso responsable en el trabajo.</p>
+            <ul class="cert-card__tags"><li data-i18n="certs.c2.t1">IA aplicada</li><li data-i18n="certs.c2.t2">Uso responsable</li></ul>
+            <p class="cert-card__seen" data-i18n="certs.c2.seen">Se ve en: TalentRisk AI (equidad, límites y uso educativo del modelo).</p>
+          </article>
+          <article class="cert-card reveal">
+            <div class="cert-card__top">
+              <span class="cert-card__logo cert-card__logo--coursera" aria-hidden="true">C</span>
+              
+            </div>
+            <h3 class="cert-card__title">Supply Chain Management &amp; Analytics</h3>
+            <p class="cert-card__issuer">Coursera</p>
+            <p class="cert-card__desc" data-i18n="certs.c3.desc">Gestión y analítica de la cadena de suministro.</p>
+            <ul class="cert-card__tags"><li data-i18n="certs.c3.t1">Inventario</li><li data-i18n="certs.c3.t2">Pronóstico de demanda</li><li data-i18n="certs.c3.t3">Abastecimiento</li></ul>
+            <p class="cert-card__seen" data-i18n="certs.c3.seen">Se ve en: reposición, merma y pronóstico de demanda (casos 03, 05 y 07).</p>
+          </article>
+          <article class="cert-card reveal">
+            <div class="cert-card__top">
+              <span class="cert-card__logo cert-card__logo--henry" aria-hidden="true">H</span>
+              <span class="cert-card__year mono">2021</span>
+            </div>
+            <h3 class="cert-card__title">Full Stack Web Developer Bootcamp</h3>
+            <p class="cert-card__issuer">Soy Henry</p>
+            <p class="cert-card__desc" data-i18n="certs.c4.desc">Desarrollo web full stack con bases de datos relacionales.</p>
+            <ul class="cert-card__tags"><li>JavaScript</li><li>React</li><li>Node.js</li><li>SQL</li></ul>
+            <p class="cert-card__seen" data-i18n="certs.c4.seen">Se ve en: las aplicaciones Next.js de este portafolio y DatBase.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Technical Skills Architecture (6 Domains) ===== -->
+    <section id="skills" class="section section--alt">
+      <div class="container">
+        <div class="section__header reveal">
+          <div>
+            <p class="section__kicker" data-i18n="skills.kicker">04 · Competencias Técnicas Respaldadas por Evidencia</p>
+            <h2 class="section__title" data-i18n="skills.title">Arquitectura de habilidades en 6 dominios</h2>
+            <p class="section__lead" data-i18n="skills.lead">Cada tecnología listada cuenta con respaldo directo en mi experiencia laboral, ingeniería de productos o casos de estudio documentados en este repositorio.</p>
+          </div>
+        </div>
+
+        <div class="skills__grid skills__grid--six">
+          <!-- 1. Data Analytics & BI -->
+          <div class="skillgroup reveal">
+            <span class="skillgroup__index" data-i18n="skills.idx1">01 · Data Analytics &amp; BI</span>
+            <h3 data-i18n="skills.g1">Inteligencia de Negocios</h3>
+            <ul class="skill-list">
+              <li><span>Power BI (DAX, Power Query)</span><span class="mono-level">Producción</span></li>
+              <li><span>Proyectos Semánticos (.pbip)</span><span class="mono-level">Auditado</span></li>
+              <li><span>Tableau Desktop &amp; Public</span><span class="mono-level">Publicado</span></li>
+              <li><span>Excel Avanzado (Pivot / PQ)</span><span class="mono-level">Uso diario</span></li>
+              <li><span>Diseño de KPIs, SLAs y OKRs</span><span class="mono-level">+70 empresas</span></li>
+              <li><span>Data Storytelling Ejecutivo</span><span class="mono-level">Bilingüe</span></li>
+            </ul>
+          </div>
+
+          <!-- 2. Data Science & Statistics -->
+          <div class="skillgroup reveal">
+            <span class="skillgroup__index" data-i18n="skills.idx2">02 · Data Science &amp; Estadística</span>
+            <h3 data-i18n="skills.g2">Análisis Cuantitativo</h3>
+            <ul class="skill-list">
+              <li><span>Python (Pandas, NumPy)</span><span class="mono-level">Pipelines / EDA</span></li>
+              <li><span>Series de Tiempo y Estacionalidad</span><span class="mono-level">Walk-Forward</span></li>
+              <li><span>Análisis de Cohortes y Retención</span><span class="mono-level">CLP / RR.HH.</span></li>
+              <li><span>Intervalos de Confianza (Wilson)</span><span class="mono-level">577k vuelos</span></li>
+              <li><span>Clasificación ABC / Pareto</span><span class="mono-level">Inventarios</span></li>
+              <li><span>Matplotlib &amp; Seaborn</span><span class="mono-level">Diagnóstico</span></li>
+            </ul>
+          </div>
+
+          <!-- 3. Machine Learning & AI -->
+          <div class="skillgroup reveal">
+            <span class="skillgroup__index" data-i18n="skills.idx3">03 · Machine Learning &amp; IA</span>
+            <h3 data-i18n="skills.g3">Modelado y Evaluación</h3>
+            <ul class="skill-list">
+              <li><span>LightGBM (Gradient Boosting)</span><span class="mono-level">Pronóstico</span></li>
+              <li><span>Scikit-learn (Clasificación/Reg)</span><span class="mono-level">41k registros</span></li>
+              <li><span>Prophet &amp; SARIMAX</span><span class="mono-level">Notebook</span></li>
+              <li><span>Calibración Probabilística (Brier)</span><span class="mono-level">Auditoría</span></li>
+              <li><span>Detección de Deriva (Concept Drift)</span><span class="mono-level">Cronológico</span></li>
+              <li><span>Automatización Voz a Datos (IA)</span><span class="mono-level">WhatsApp Bot</span></li>
+            </ul>
+          </div>
+
+          <!-- 4. Software Development -->
+          <div class="skillgroup reveal">
+            <span class="skillgroup__index" data-i18n="skills.idx4">04 · Desarrollo de Software</span>
+            <h3 data-i18n="skills.g4">Ingeniería de Aplicaciones</h3>
+            <ul class="skill-list">
+              <li><span>Python (Scripting &amp; Backend)</span><span class="mono-level">+4 años</span></li>
+              <li><span>JavaScript (ES6+ / DOM / Fetch)</span><span class="mono-level">Producción</span></li>
+              <li><span>PHP (Sistemas Transaccionales)</span><span class="mono-level">SaaS / DatBase</span></li>
+              <li><span>HTML5 Semántico &amp; CSS3</span><span class="mono-level">Responsive</span></li>
+              <li><span>Automatización de Procesos</span><span class="mono-level">-40% entrega (CV)</span></li>
+              <li><span>Integración de Datos y APIs</span><span class="mono-level">End-to-End</span></li>
+            </ul>
+          </div>
+
+          <!-- 5. Databases & Data Engineering -->
+          <div class="skillgroup reveal">
+            <span class="skillgroup__index" data-i18n="skills.idx5">05 · Bases de Datos &amp; Ingeniería</span>
+            <h3 data-i18n="skills.g5">Arquitectura y SQL</h3>
+            <ul class="skill-list">
+              <li><span>SQL Avanzado (CTEs, Window)</span><span class="mono-level">Producción</span></li>
+              <li><span>PostgreSQL &amp; MySQL</span><span class="mono-level">+4 años</span></li>
+              <li><span>Procedimientos Almacenados &amp; Triggers</span><span class="mono-level">Producción</span></li>
+              <li><span>Google BigQuery &amp; dbt Core</span><span class="mono-level">21 tests QA</span></li>
+              <li><span>Modelado Dimensional (Star Schema)</span><span class="mono-level">BI / DW</span></li>
+              <li><span>Gobernanza y Calidad de Datos</span><span class="mono-level">90%+ validación (CV)</span></li>
+            </ul>
+          </div>
+
+          <!-- 6. Tools & Infrastructure -->
+          <div class="skillgroup reveal">
+            <span class="skillgroup__index" data-i18n="skills.idx6">06 · Herramientas &amp; Flujo</span>
+            <h3 data-i18n="skills.g6">Entorno de Ingeniería</h3>
+            <ul class="skill-list">
+              <li><span>Git &amp; GitHub (Control Versiones)</span><span class="mono-level">Reproducible</span></li>
+              <li><span>Docker &amp; Contenedores</span><span class="mono-level">Entornos</span></li>
+              <li><span>DBeaver &amp; Administración SQL</span><span class="mono-level">Diario</span></li>
+              <li><span>Jupyter Notebooks &amp; VS Code</span><span class="mono-level">Experimentación</span></li>
+              <li><span>Metodologías Ágiles (Scrum)</span><span class="mono-level">Equipos B2B</span></li>
+              <li><span>Documentación Técnica Bilingüe</span><span class="mono-level">ES / EN (B2)</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Product Engineering & Applied Systems (Airmed & DatBase) ===== -->
+    <section id="products" class="section">
+      <div class="container">
+        <div class="section__header reveal">
+          <div>
+            <p class="section__kicker" data-i18n="prod.kicker">05 · Ingeniería de Productos y Sistemas Propios</p>
             <h2 class="section__title" data-i18n="prod.title">Construcción de plataformas donde el software y los datos convergen</h2>
             <p class="section__lead" data-i18n="prod.lead">Más allá del análisis aislado, diseño y construyo soluciones tecnológicas propias que integran bases de datos relacionales, lógica de aplicación, automatización de flujos y visualización ejecutiva.</p>
           </div>
@@ -620,257 +851,22 @@
       </div>
     </section>
 
-    <!-- ===== Technical Skills Architecture (6 Domains) ===== -->
-    <section id="skills" class="section">
-      <div class="container">
-        <div class="section__header reveal">
-          <div>
-            <p class="section__kicker" data-i18n="skills.kicker">03 · Competencias Técnicas Respaldadas por Evidencia</p>
-            <h2 class="section__title" data-i18n="skills.title">Arquitectura de habilidades en 6 dominios</h2>
-            <p class="section__lead" data-i18n="skills.lead">Cada tecnología listada cuenta con respaldo directo en mi experiencia laboral, ingeniería de productos o casos de estudio documentados en este repositorio.</p>
-          </div>
-        </div>
-
-        <div class="skills__grid skills__grid--six">
-          <!-- 1. Data Analytics & BI -->
-          <div class="skillgroup reveal">
-            <span class="skillgroup__index" data-i18n="skills.idx1">01 · Data Analytics &amp; BI</span>
-            <h3 data-i18n="skills.g1">Inteligencia de Negocios</h3>
-            <ul class="skill-list">
-              <li><span>Power BI (DAX, Power Query)</span><span class="mono-level">Producción</span></li>
-              <li><span>Proyectos Semánticos (.pbip)</span><span class="mono-level">Auditado</span></li>
-              <li><span>Tableau Desktop &amp; Public</span><span class="mono-level">Publicado</span></li>
-              <li><span>Excel Avanzado (Pivot / PQ)</span><span class="mono-level">Uso diario</span></li>
-              <li><span>Diseño de KPIs, SLAs y OKRs</span><span class="mono-level">+70 empresas</span></li>
-              <li><span>Data Storytelling Ejecutivo</span><span class="mono-level">Bilingüe</span></li>
-            </ul>
-          </div>
-
-          <!-- 2. Data Science & Statistics -->
-          <div class="skillgroup reveal">
-            <span class="skillgroup__index" data-i18n="skills.idx2">02 · Data Science &amp; Estadística</span>
-            <h3 data-i18n="skills.g2">Análisis Cuantitativo</h3>
-            <ul class="skill-list">
-              <li><span>Python (Pandas, NumPy)</span><span class="mono-level">Pipelines / EDA</span></li>
-              <li><span>Series de Tiempo y Estacionalidad</span><span class="mono-level">Walk-Forward</span></li>
-              <li><span>Análisis de Cohortes y Retención</span><span class="mono-level">CLP / RR.HH.</span></li>
-              <li><span>Intervalos de Confianza (Wilson)</span><span class="mono-level">577k vuelos</span></li>
-              <li><span>Clasificación ABC / Pareto</span><span class="mono-level">Inventarios</span></li>
-              <li><span>Matplotlib &amp; Seaborn</span><span class="mono-level">Diagnóstico</span></li>
-            </ul>
-          </div>
-
-          <!-- 3. Machine Learning & AI -->
-          <div class="skillgroup reveal">
-            <span class="skillgroup__index" data-i18n="skills.idx3">03 · Machine Learning &amp; IA</span>
-            <h3 data-i18n="skills.g3">Modelado y Evaluación</h3>
-            <ul class="skill-list">
-              <li><span>LightGBM (Gradient Boosting)</span><span class="mono-level">Pronóstico</span></li>
-              <li><span>Scikit-learn (Clasificación/Reg)</span><span class="mono-level">41k registros</span></li>
-              <li><span>Prophet &amp; SARIMAX</span><span class="mono-level">Notebook</span></li>
-              <li><span>Calibración Probabilística (Brier)</span><span class="mono-level">Auditoría</span></li>
-              <li><span>Detección de Deriva (Concept Drift)</span><span class="mono-level">Cronológico</span></li>
-              <li><span>Automatización Voz a Datos (IA)</span><span class="mono-level">WhatsApp Bot</span></li>
-            </ul>
-          </div>
-
-          <!-- 4. Software Development -->
-          <div class="skillgroup reveal">
-            <span class="skillgroup__index" data-i18n="skills.idx4">04 · Desarrollo de Software</span>
-            <h3 data-i18n="skills.g4">Ingeniería de Aplicaciones</h3>
-            <ul class="skill-list">
-              <li><span>Python (Scripting &amp; Backend)</span><span class="mono-level">+4 años</span></li>
-              <li><span>JavaScript (ES6+ / DOM / Fetch)</span><span class="mono-level">Producción</span></li>
-              <li><span>PHP (Sistemas Transaccionales)</span><span class="mono-level">SaaS / DatBase</span></li>
-              <li><span>HTML5 Semántico &amp; CSS3</span><span class="mono-level">Responsive</span></li>
-              <li><span>Automatización de Procesos</span><span class="mono-level">-40% entrega (CV)</span></li>
-              <li><span>Integración de Datos y APIs</span><span class="mono-level">End-to-End</span></li>
-            </ul>
-          </div>
-
-          <!-- 5. Databases & Data Engineering -->
-          <div class="skillgroup reveal">
-            <span class="skillgroup__index" data-i18n="skills.idx5">05 · Bases de Datos &amp; Ingeniería</span>
-            <h3 data-i18n="skills.g5">Arquitectura y SQL</h3>
-            <ul class="skill-list">
-              <li><span>SQL Avanzado (CTEs, Window)</span><span class="mono-level">Producción</span></li>
-              <li><span>PostgreSQL &amp; MySQL</span><span class="mono-level">+4 años</span></li>
-              <li><span>Procedimientos Almacenados &amp; Triggers</span><span class="mono-level">Producción</span></li>
-              <li><span>Google BigQuery &amp; dbt Core</span><span class="mono-level">21 tests QA</span></li>
-              <li><span>Modelado Dimensional (Star Schema)</span><span class="mono-level">BI / DW</span></li>
-              <li><span>Gobernanza y Calidad de Datos</span><span class="mono-level">90%+ validación (CV)</span></li>
-            </ul>
-          </div>
-
-          <!-- 6. Tools & Infrastructure -->
-          <div class="skillgroup reveal">
-            <span class="skillgroup__index" data-i18n="skills.idx6">06 · Herramientas &amp; Flujo</span>
-            <h3 data-i18n="skills.g6">Entorno de Ingeniería</h3>
-            <ul class="skill-list">
-              <li><span>Git &amp; GitHub (Control Versiones)</span><span class="mono-level">Reproducible</span></li>
-              <li><span>Docker &amp; Contenedores</span><span class="mono-level">Entornos</span></li>
-              <li><span>DBeaver &amp; Administración SQL</span><span class="mono-level">Diario</span></li>
-              <li><span>Jupyter Notebooks &amp; VS Code</span><span class="mono-level">Experimentación</span></li>
-              <li><span>Metodologías Ágiles (Scrum)</span><span class="mono-level">Equipos B2B</span></li>
-              <li><span>Documentación Técnica Bilingüe</span><span class="mono-level">ES / EN (B2)</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Experience & Education ===== -->
-    <section id="experience" class="section section--alt">
-      <div class="container">
-        <div class="section__header reveal">
-          <div>
-            <p class="section__kicker" data-i18n="exp.kicker">04 · Trayectoria Profesional y Académica</p>
-            <h2 class="section__title" data-i18n="exp.title">Experiencia comprobada en producción y especialización formal</h2>
-            <p class="section__lead" data-i18n="exp.lead">Más de cuatro años resolviendo problemas de datos, cumplimiento corporativo B2B y operaciones comerciales, respaldados por mis estudios actuales de Analista de Datos en IPLACEX (2026–2027) e Ingeniería en Ciencia de Datos en IPG (2026–2028).</p>
-          </div>
-        </div>
-
-        <div class="exp-edu-grid">
-          <!-- Left Column: Professional Experience -->
-          <div class="timeline">
-            <!-- Freelance Consulting & Independent Projects -->
-            <article class="timeline__card reveal">
-              <p class="timeline__meta" data-i18n="exp.job2.domain">Consultoría Independiente · Datos, BI, Automatización y Abastecimiento</p>
-              <div class="timeline__head">
-                <h3 data-i18n="exp.job2.role">Consultor Freelance de Datos, Business Intelligence y Desarrollo</h3>
-                <span class="timeline__period" data-i18n="exp.job2.period">Ene 2026 – Presente</span>
-              </div>
-              <p class="timeline__company" data-i18n="exp.job2.company">Práctica Independiente · Modernización Comercial, Abastecimiento y Analítica Aplicada</p>
-              <ul>
-                <li data-i18n="exp.job2.b1">Modernización integral de negocio comercial (Retail artesanal): lideré la transformación operativa y analítica definiendo desde cero el modelo de datos de margen diario, rotación de inventario, merma valorizada al costo y abastecimiento por proveedor.</li>
-                <li data-i18n="exp.job2.b2">Impacto medible en inventario y ventas: reduje los quiebres de stock a casi cero, impulsé las ventas entre 10% y 15% y disminuí costos de compra entre 15% y 20% integrando SQL, Excel avanzado, tableros en Power BI y Tableau, y captura diaria automatizada por WhatsApp (voz a datos).</li>
-                <li data-i18n="exp.job2.b3">Ingeniería de pronósticos y reposición: diseñé pipelines dimensionales con dbt (21 tests de calidad), modelos recursivos LightGBM y líneas base operativas de media móvil con validación walk-forward sin fuga temporal.</li>
-                <li data-i18n="exp.job2.b4">Auditoría de datos y reportería reproducible: desarrollé estudios de control de merma por cohortes en CLP, análisis de confiabilidad logística (577k+ vuelos BTS), reconciliación macroeconómica (COCHILCO) y auditoría cronológica de modelos predictivos.</li>
-              </ul>
-            </article>
-
-            <!-- Top Partners S.A. -->
-            <article class="timeline__card reveal">
-              <p class="timeline__meta" data-i18n="exp.job1.domain">Plataforma SaaS B2B · Cumplimiento Laboral yContinuidad Operacional</p>
-              <div class="timeline__head">
-                <h3 data-i18n="exp.job1.role">Analista de Datos / Analista Programador</h3>
-                <span class="timeline__period" data-i18n="exp.job1.period">Dic 2021 – Ene 2026</span>
-              </div>
-              <p class="timeline__company">Top Partners S.A. · SubContrataLey (+70 Empresas Cliente)</p>
-              <ul>
-                <li data-i18n="exp.job1.b1">Aceleré en un 40% la entrega de reportes regulatorios de cumplimiento laboral (Ley 20.123) diseñando, optimizando y automatizando pipelines ETL en SQL (procedimientos almacenados, triggers, CTEs y window functions) sobre PostgreSQL y MySQL.</li>
-                <li data-i18n="exp.job1.b2">Construí y mantuve dashboards interactivos en Power BI y Tableau sobre un modelo dimensional en esquema estrella con medidas DAX, utilizados a diario por más de 70 empresas mandantes y más de 100 usuarios activos.</li>
-                <li data-i18n="exp.job1.b3">Elevé sobre el 90% la precisión de la verificación automática de documentos implementando reglas de calidad y gobernanza de datos junto con rutinas de detección de anomalías en Python (Pandas, Seaborn) y soporte de continuidad operacional en PHP/JS.</li>
-                <li data-i18n="exp.job1.b4">Desarrollé la suite de People Analytics (RR.HH.): tableros de rotación, ausentismo, dotación, cohortes de permanencia y automatización de consolidación de nómina integrando datos de ERP con Power Query.</li>
-              </ul>
-            </article>
-          </div>
-
-          <!-- Right Column: Academic Progression -->
-          <aside class="academic-panel reveal" aria-label="Formación académica y certificaciones">
-            <h3 class="academic-panel__title" data-i18n="edu.panelTitle">Formación Académica y Certificaciones</h3>
-
-            <div class="degree-item">
-              <span class="degree-year" data-i18n="edu.d2Year">2026 – 2028 · En curso (Egreso 2028)</span>
-              <span class="degree-name" data-i18n="edu.d2Name">Ingeniería en Ciencia de Datos</span>
-              <span class="degree-inst" data-i18n="edu.d2Inst">Instituto Profesional IPG · Chile</span>
-              <p class="degree-desc" data-i18n="edu.d2Desc">Machine Learning, modelado estadístico e inferencial, arquitectura de datos en la nube (BigQuery / GCP), series de tiempo, optimización e inteligencia artificial aplicada.</p>
-            </div>
-
-            <div class="degree-item">
-              <span class="degree-year" data-i18n="edu.d1Year">2026 – 2027 · En curso (Egreso 2027)</span>
-              <span class="degree-name" data-i18n="edu.d1Name">Analista de Datos (Técnico de Nivel Superior)</span>
-              <span class="degree-inst" data-i18n="edu.d1Inst">Instituto Profesional IPLACEX · Chile</span>
-              <p class="degree-desc" data-i18n="edu.d1Desc">Modelado relacional y dimensional, consultas SQL avanzadas, diseño de indicadores de gestión (KPIs), visualización ejecutiva y gobernanza de datos.</p>
-            </div>
-
-            <div class="degree-item">
-              <span class="degree-year" data-i18n="edu.d3Year">2021 – 2023 · 3 años cursados</span>
-              <span class="degree-name" data-i18n="edu.d3Name">Analista de Sistemas</span>
-              <span class="degree-inst">Colegio Universitario IES · Córdoba, Argentina</span>
-              <p class="degree-desc" data-i18n="edu.d3Desc">Ingeniería de software, estructuras de datos, bases de datos relacionales, lógica algorítmica y levantamiento de requerimientos.</p>
-            </div>
-
-            <div class="degree-item">
-              <span class="degree-year" data-i18n="edu.certYear">Certificaciones Profesionales · 2021 – 2026</span>
-              <a class="degree-link" href="#certs" data-i18n="edu.certLink">Ver las 4 certificaciones y dónde se aplican →</a>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Certifications ===== -->
-    <section id="certs" class="section certs" aria-labelledby="certs-title">
-      <div class="container">
-        <div class="section__header reveal">
-          <div>
-            <p class="section__kicker" data-i18n="certs.kicker">05 · Certificaciones</p>
-            <h2 class="section__title" data-i18n="certs.title" id="certs-title">Certificaciones obtenidas y dónde se aplican</h2>
-            <p class="section__lead" data-i18n="certs.lead">Formación complementaria a los estudios formales en curso. Cada certificación indica en qué casos de este portafolio se ve aplicada.</p>
-          </div>
-        </div>
-        <div class="certs__grid">
-          <article class="cert-card reveal">
-            <div class="cert-card__top">
-              <span class="cert-card__logo cert-card__logo--google" aria-hidden="true">G</span>
-              <span class="cert-card__year mono">2026</span>
-            </div>
-            <h3 class="cert-card__title">Google Data Analytics Professional Certificate</h3>
-            <p class="cert-card__issuer">Google · Coursera</p>
-            <p class="cert-card__desc" data-i18n="certs.c1.desc">Ciclo completo de análisis: preguntar, preparar, procesar, analizar, compartir y actuar.</p>
-            <ul class="cert-card__tags"><li>SQL</li><li data-i18n="certs.c1.t2">Hojas de cálculo</li><li>Tableau</li><li data-i18n="certs.c1.t4">Limpieza de datos</li></ul>
-            <p class="cert-card__seen" data-i18n="certs.c1.seen">Se ve en: los 8 casos (limpieza, SQL y visualización).</p>
-          </article>
-          <article class="cert-card reveal">
-            <div class="cert-card__top">
-              <span class="cert-card__logo cert-card__logo--google" aria-hidden="true">G</span>
-              <span class="cert-card__year mono">2026</span>
-            </div>
-            <h3 class="cert-card__title">Google AI Fundamentals</h3>
-            <p class="cert-card__issuer">Google</p>
-            <p class="cert-card__desc" data-i18n="certs.c2.desc">Fundamentos de inteligencia artificial y su uso responsable en el trabajo.</p>
-            <ul class="cert-card__tags"><li data-i18n="certs.c2.t1">IA aplicada</li><li data-i18n="certs.c2.t2">Uso responsable</li></ul>
-            <p class="cert-card__seen" data-i18n="certs.c2.seen">Se ve en: TalentRisk AI (equidad, límites y uso educativo del modelo).</p>
-          </article>
-          <article class="cert-card reveal">
-            <div class="cert-card__top">
-              <span class="cert-card__logo cert-card__logo--coursera" aria-hidden="true">C</span>
-              
-            </div>
-            <h3 class="cert-card__title">Supply Chain Management &amp; Analytics</h3>
-            <p class="cert-card__issuer">Coursera</p>
-            <p class="cert-card__desc" data-i18n="certs.c3.desc">Gestión y analítica de la cadena de suministro.</p>
-            <ul class="cert-card__tags"><li data-i18n="certs.c3.t1">Inventario</li><li data-i18n="certs.c3.t2">Pronóstico de demanda</li><li data-i18n="certs.c3.t3">Abastecimiento</li></ul>
-            <p class="cert-card__seen" data-i18n="certs.c3.seen">Se ve en: reposición, merma y pronóstico de demanda (casos 03, 05 y 07).</p>
-          </article>
-          <article class="cert-card reveal">
-            <div class="cert-card__top">
-              <span class="cert-card__logo cert-card__logo--henry" aria-hidden="true">H</span>
-              <span class="cert-card__year mono">2021</span>
-            </div>
-            <h3 class="cert-card__title">Full Stack Web Developer Bootcamp</h3>
-            <p class="cert-card__issuer">Soy Henry</p>
-            <p class="cert-card__desc" data-i18n="certs.c4.desc">Desarrollo web full stack con bases de datos relacionales.</p>
-            <ul class="cert-card__tags"><li>JavaScript</li><li>React</li><li>Node.js</li><li>SQL</li></ul>
-            <p class="cert-card__seen" data-i18n="certs.c4.seen">Se ve en: las aplicaciones Next.js de este portafolio y DatBase.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <!-- ===== Technical Notes & Continuous Learning (Eugene Yan Inspired) ===== -->
-    <section id="notes" class="section">
+    <section id="notes" class="section section--alt">
       <div class="container">
         <div class="section__header reveal">
           <div>
-            <p class="section__kicker" data-i18n="notes.kicker">05 · Publicaciones, Decisiones Técnicas y Aprendizaje</p>
+            <p class="section__kicker" data-i18n="notes.kicker">06 · Publicaciones, Decisiones Técnicas y Aprendizaje</p>
             <h2 class="section__title" data-i18n="notes.title">Notas de ingeniería: metodologías, SQL y aprendizaje continuo</h2>
             <p class="section__lead" data-i18n="notes.lead">Síntesis de criterios técnicos aplicados en mis proyectos de Data Science, SQL y Business Intelligence, junto con mi bitácora de estudio en Estadística, Álgebra Lineal y Machine Learning.</p>
           </div>
+          <div class="rail-nav" data-rail="notesRail">
+            <button type="button" class="icon-btn" data-dir="-1" aria-label="Notas anteriores"><span aria-hidden="true">←</span></button>
+            <button type="button" class="icon-btn" data-dir="1" aria-label="Notas siguientes"><span aria-hidden="true">→</span></button>
+          </div>
         </div>
 
-        <div class="notes-grid">
+        <div class="notes-grid rail" id="notesRail">
           <!-- Note 1 -->
           <article class="note-card reveal">
             <div class="note-card__meta">
@@ -919,11 +915,11 @@
     </section>
 
     <!-- ===== About (Coherent Evolution + Expandable Full Narrative) ===== -->
-    <section id="about" class="section section--alt">
+    <section id="about" class="section">
       <div class="container">
         <div class="section__header reveal">
           <div>
-            <p class="section__kicker" data-i18n="about.kicker">06 · Sobre mí y Evolución Profesional</p>
+            <p class="section__kicker" data-i18n="about.kicker">07 · Sobre mí y Evolución Profesional</p>
             <h2 class="section__title" data-i18n="about.title">De la ingeniería de software y bases de datos a la Ciencia de Datos e IA Aplicada</h2>
           </div>
         </div>
@@ -970,40 +966,32 @@
       </div>
     </section>
 
-    <!-- ===== Contact ===== -->
-    <section id="contact" class="section section--contact">
-      <div class="container contact__inner reveal">
-        <p class="section__kicker" data-i18n="contact.kicker">07 · Contacto Directo</p>
-        <h2 class="section__title" data-i18n="contact.title">¿Conversamos sobre un rol o desafío en Data Analytics, BI o Data Science?</h2>
-        <p class="contact__text" data-i18n="contact.text">Estoy disponible para oportunidades profesionales (remoto, híbrido o presencial) y proyectos de consultoría donde se requiera conectar SQL, Python, Business Intelligence y modelos predictivos con impacto de negocio.</p>
-        <div class="contact__cta">
-          <a class="btn btn--primary" href="mailto:camilovergarasalas.cvs@gmail.com?subject=Contacto%20desde%20portafolio%20-%20Camilo%20Vergara">
-            <span>camilovergarasalas.cvs@gmail.com</span>
-          </a>
-          <a id="contactCvBtn" class="btn btn--ghost" href="assets/Camilo_Vergara_CV_ES.pdf" download>
-            <span data-i18n="hero.download">Descargar CV (ES)</span>
-          </a>
-          <a class="btn btn--ghost" href="assets/Camilo_Vergara_Resume_EN.pdf" download>
-            <span>Download Resume (EN)</span>
-          </a>
-          <a class="btn btn--ghost" href="https://www.linkedin.com/in/camilo-evs" target="_blank" rel="noopener">
-            <span>LinkedIn · /in/camilo-evs</span>
-          </a>
-          <a class="btn btn--ghost" href="https://github.com/Chrov" target="_blank" rel="noopener">
-            <span>GitHub · @Chrov</span>
-          </a>
-          <a class="btn btn--ghost btn--call" href="tel:+56997513084">
-            <span data-i18n="contact.call">Llamar: +56 9 9751 3084</span>
-          </a>
-        </div>
-        <div class="contact__meta">
-          <span>Santiago, Chile</span>
-          <span aria-hidden="true">·</span>
-          <span>+56 9 9751 3084</span>
-          <span aria-hidden="true">·</span>
-          <span>linkedin.com/in/camilo-evs</span>
-          <span aria-hidden="true">·</span>
-          <span>github.com/Chrov</span>
+    <!-- ===== Contact: the closing peak ===== -->
+    <section id="contact" class="section section--contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact__panel reveal">
+          <p class="section__kicker" data-i18n="contact.kicker">08 · Contacto Directo</p>
+          <h2 class="contact__title" id="contact-title" data-i18n="contact.title">¿Conversamos sobre un rol o desafío en Data Analytics, BI o Data Science?</h2>
+          <p class="contact__text" data-i18n="contact.text">Estoy disponible para oportunidades profesionales (remoto, híbrido o presencial) y proyectos de consultoría donde se requiera conectar SQL, Python, Business Intelligence y modelos predictivos con impacto de negocio.</p>
+          <div class="contact__cta">
+            <a class="btn btn--accent btn--xl" href="mailto:camilovergarasalas.cvs@gmail.com?subject=Contacto%20desde%20portafolio%20-%20Camilo%20Vergara"><span data-i18n="contact.write">Escribir un correo</span> <span class="arr" aria-hidden="true">→</span></a>
+            <button type="button" class="btn btn--glass btn--xl copy-btn" id="copyEmail" data-email="camilovergarasalas.cvs@gmail.com">
+              <span class="copy-btn__icon" aria-hidden="true">
+                <svg class="i-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg class="i-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span class="copy-btn__label" data-i18n="contact.copy" aria-live="polite">Copiar correo</span>
+            </button>
+          </div>
+          <p class="contact__email mono">camilovergarasalas.cvs@gmail.com</p>
+          <ul class="contact__links">
+            <li><a id="contactCvBtn" href="assets/Camilo_Vergara_CV_ES.pdf" download data-i18n="hero.download">Descargar CV (ES)</a></li>
+            <li><a id="contactCvAlt" href="assets/Camilo_Vergara_Resume_EN.pdf" download data-i18n="hero.downloadAlt">English Resume (PDF)</a></li>
+            <li><a href="https://www.linkedin.com/in/camilo-evs" target="_blank" rel="noopener">LinkedIn · /in/camilo-evs</a></li>
+            <li><a href="https://github.com/Chrov" target="_blank" rel="noopener">GitHub · @Chrov</a></li>
+            <li><a href="tel:+56997513084" data-i18n="contact.call">Llamar: +56 9 9751 3084</a></li>
+          </ul>
+          <p class="contact__meta">Santiago, Chile · +56 9 9751 3084</p>
         </div>
       </div>
     </section>
@@ -1011,10 +999,12 @@
 
   <footer class="footer">
     <div class="container footer__inner">
+      <span class="footer__thanks" data-i18n="footer.thanks">Gracias por llegar hasta aquí.</span>
       <span>© 2026 Camilo Vergara Salas</span>
       <span data-i18n="footer.built">Data Analytics · Business Intelligence · Data Science &amp; Ingeniería de Productos</span>
     </div>
   </footer>
+
 
   <!-- ===== Interactive Modal (SQL, Architecture & Technical Notes) ===== -->
   <div id="auditModalBackdrop" class="audit-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="auditModalTitle">
@@ -1024,13 +1014,13 @@
           <p id="auditModalMeta" class="section__kicker" style="margin-bottom: 4px;"></p>
           <h3 id="auditModalTitle" class="section__title" style="font-size: 1.38rem;"></h3>
         </div>
-        <button type="button" class="audit-modal__close" onclick="closeAuditModal()" aria-label="Cerrar ventana">✕</button>
+        <button type="button" class="audit-modal__close icon-btn" id="auditModalClose" onclick="closeAuditModal()" aria-label="Cerrar ventana">✕</button>
       </div>
       <div id="auditModalBody"></div>
     </div>
   </div>
 
-  <script src="case-content.js?v=20261121"></script>
-  <script src="script.js?v=20261121"></script>
+  <script src="case-content.js?v=20261121.4"></script>
+  <script src="script.js?v=20261121.4"></script>
 </body>
 </html>

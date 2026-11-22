@@ -54,7 +54,7 @@ export function AppShell({ app, tagline, nav, onPresent, filterBar, currency, ch
 
   return (
     <div className="min-h-screen">
-      <header className="relative z-30 border-b border-line bg-surface/90 backdrop-blur md:sticky md:top-0">
+      <header className="relative z-30 border-b border-line bg-surface/75 backdrop-blur-xl backdrop-saturate-150 md:sticky md:top-0">
         <div className="mx-auto flex h-14 max-w-[1440px] items-center gap-3 px-4">
           <a href={`${base.replace(/\/apps$/, "")}/#cases`} className="inline-flex items-center gap-2 text-[13px] text-ink-3 hover:text-ink" aria-label={t(L("Volver al portafolio", "Back to the portfolio"))}>
             <ArrowLeft className="h-4 w-4" /> <BrandMark /> <span className="hidden xl:inline">{t(L("Portafolio", "Portfolio"))}</span>

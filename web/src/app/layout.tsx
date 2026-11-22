@@ -19,8 +19,9 @@ export const metadata: Metadata = {
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 
-// Applies the saved theme before first paint (same localStorage key as the portfolio).
-const themeScript = `try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t;var l=localStorage.getItem("lang");if(l==="en"||l==="es")document.documentElement.lang=l}catch(e){}`;
+// Applies the saved theme before first paint (same localStorage key as the portfolio) and keeps
+// skipped cross-document view transitions from surfacing as unhandled promise rejections.
+const themeScript = `var h=function(e){var v=e.viewTransition;if(v){[v.ready,v.finished,v.updateCallbackDone].forEach(function(p){p&&p.catch(function(){})})}};addEventListener("pagereveal",h);addEventListener("pageswap",h);try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t;var l=localStorage.getItem("lang");if(l==="en"||l==="es")document.documentElement.lang=l}catch(e){}`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

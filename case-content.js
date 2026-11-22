@@ -154,7 +154,7 @@ window.PORTFOLIO_I18N = {
     "c6.k3": "Descalibración en hold-out temporal",
     "c6.cap": "Curva de captura por capacidad de llamadas y deriva entre cohortes",
 
-    "prod.kicker": "02 · Ingeniería de Productos y Sistemas Propios",
+    "prod.kicker": "05 · Ingeniería de Productos y Sistemas Propios",
     "prod.title": "Construcción de plataformas donde el software y los datos convergen",
     "prod.lead": "Más allá del análisis aislado, diseño y construyo soluciones tecnológicas propias que integran bases de datos relacionales, lógica de aplicación, automatización de flujos y visualización ejecutiva.",
     "prod.lblObjective": "Objetivo y Problema Abordado",
@@ -182,7 +182,7 @@ window.PORTFOLIO_I18N = {
     "prod.datbase.f3": "Módulos web en PHP/JavaScript para consulta operativa rápida y exportación estructurada hacia pipelines analíticos en Python y Excel.",
     "prod.datbase.learn": "Consolidó mi enfoque de construir productos desde la base de datos hacia arriba: desacoplar la captura transaccional (OLTP) de las vistas analíticas (OLAP) permite escalar reportes sin degradar la operación diaria.",
 
-    "skills.kicker": "03 · Competencias Técnicas Respaldadas por Evidencia",
+    "skills.kicker": "04 · Competencias Técnicas Respaldadas por Evidencia",
     "skills.title": "Arquitectura de habilidades en 6 dominios",
     "skills.lead": "Cada tecnología listada cuenta con respaldo directo en mi experiencia laboral, ingeniería de productos o casos de estudio documentados en este repositorio.",
     "skills.idx1": "01 · Data Analytics & BI",
@@ -198,7 +198,7 @@ window.PORTFOLIO_I18N = {
     "skills.g5": "Arquitectura y SQL",
     "skills.g6": "Entorno de Ingeniería",
 
-    "exp.kicker": "04 · Trayectoria Profesional y Académica",
+    "exp.kicker": "02 · Trayectoria Profesional y Académica",
     "exp.title": "Experiencia comprobada en producción y especialización formal",
     "exp.lead": "Más de cuatro años resolviendo problemas de datos, cumplimiento corporativo B2B y operaciones comerciales, respaldados por mis estudios actuales de Analista de Datos en IPLACEX (2026–2027) e Ingeniería en Ciencia de Datos en IPG (2026–2028).",
 
@@ -417,12 +417,18 @@ window.PORTFOLIO_I18N = {
     "certs.c3.seen": "Se ve en: reposición, merma y pronóstico de demanda (casos 03, 05 y 07).",
     "certs.c4.desc": "Desarrollo web full stack con bases de datos relacionales.",
     "certs.c4.seen": "Se ve en: las aplicaciones Next.js de este portafolio y DatBase.",
-    "certs.kicker": "05 · Certificaciones",
+    "certs.kicker": "03 · Certificaciones",
     "certs.title": "Certificaciones obtenidas y dónde se aplican",
     "certs.lead": "Formación complementaria a los estudios formales en curso. Cada certificación indica en qué casos de este portafolio se ve aplicada.",
     "edu.certLink": "Ver las 4 certificaciones y dónde se aplican →",
     "nav.cases": "Casos",
     "nav.certs": "Certificaciones",
+    "hero.chip1": "8 casos con datos y código",
+    "hero.chip2": "Montos en USD o CLP",
+    "contact.write": "Escribir un correo",
+    "contact.copy": "Copiar correo",
+    "contact.copied": "¡Copiado!",
+    "footer.thanks": "Gracias por llegar hasta aquí."
   },
   en: {
     "nav.skip": "Skip to main content",
@@ -579,7 +585,7 @@ window.PORTFOLIO_I18N = {
     "c6.k3": "Miscalibration on temporal hold-out",
     "c6.cap": "Capture curve by call capacity and inter-cohort drift",
 
-    "prod.kicker": "02 · Product Engineering & Proprietary Systems",
+    "prod.kicker": "05 · Product Engineering & Proprietary Systems",
     "prod.title": "Building platforms where software engineering and data converge",
     "prod.lead": "Beyond standalone analysis, I design and build technological products that integrate relational databases, application logic, automated workflows, and executive analytics.",
     "prod.lblObjective": "Product Objective & Problem Addressed",
@@ -607,7 +613,7 @@ window.PORTFOLIO_I18N = {
     "prod.datbase.f3": "Web modules in PHP/JavaScript for fast operational querying and structured export to Python and Excel pipelines.",
     "prod.datbase.learn": "Reinforced my database-first product engineering approach: decoupling transactional capture (OLTP) from analytical views (OLAP) scales reporting without degrading daily operations.",
 
-    "skills.kicker": "03 · Evidence-Backed Technical Competencies",
+    "skills.kicker": "04 · Evidence-Backed Technical Competencies",
     "skills.title": "Skills architecture across 6 domains",
     "skills.lead": "Every technology listed is directly backed by my production experience, product engineering work, or documented case studies in this repository.",
     "skills.idx1": "01 · Data Analytics & BI",
@@ -623,7 +629,7 @@ window.PORTFOLIO_I18N = {
     "skills.g5": "Architecture & SQL",
     "skills.g6": "Engineering Environment",
 
-    "exp.kicker": "04 · Professional & Academic Track Record",
+    "exp.kicker": "02 · Professional & Academic Track Record",
     "exp.title": "Proven production impact and formal specialization",
     "exp.lead": "Over four years solving data, B2B corporate compliance, and commercial operations problems, backed by my concurrent higher-education degrees in Data Analysis at IPLACEX (2026–2027) and Data Science Engineering at IPG (2026–2028).",
 
@@ -842,11 +848,17 @@ window.PORTFOLIO_I18N = {
     "certs.c3.seen": "Seen in: replenishment, waste and demand forecasting (cases 03, 05 and 07).",
     "certs.c4.desc": "Full-stack web development with relational databases.",
     "certs.c4.seen": "Seen in: this portfolio's Next.js applications and DatBase.",
-    "certs.kicker": "05 · Certifications",
+    "certs.kicker": "03 · Certifications",
     "certs.title": "Certifications earned and where they are applied",
     "certs.lead": "Training that complements the formal studies in progress. Each certification shows which cases in this portfolio apply it.",
     "edu.certLink": "See the 4 certifications and where they apply →",
     "nav.cases": "Cases",
     "nav.certs": "Certifications",
+    "hero.chip1": "8 cases with data and code",
+    "hero.chip2": "Amounts in USD or CLP",
+    "contact.write": "Send an email",
+    "contact.copy": "Copy email",
+    "contact.copied": "Copied!",
+    "footer.thanks": "Thanks for reading this far."
   }
 };

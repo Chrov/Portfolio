@@ -42,7 +42,7 @@ export default function Hub() {
   const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   return (
     <div className="min-h-screen">
-      <header className="border-b border-line bg-surface">
+      <header className="sticky top-0 z-30 border-b border-line bg-surface/75 backdrop-blur-xl backdrop-saturate-150">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4">
           <a href={`${base.replace(/\/apps$/, "")}/#cases`} className="inline-flex items-center gap-2 text-[13px] text-ink-3 hover:text-ink"><BrandMark /> {t(L("Portafolio de Camilo Vergara Salas", "Camilo Vergara Salas's portfolio"))}</a>
           <PrefToggles />
@@ -57,7 +57,7 @@ export default function Hub() {
         </p>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           {APPS.map((a, i) => (
-            <Card key={a.name} className="group flex flex-col p-6 transition-shadow hover:shadow-lg">
+            <Card key={a.name} className="lift group flex flex-col p-6 hover:shadow-lg">
               <div className="flex items-start gap-3">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent"><a.icon className="h-5 w-5" aria-hidden /></span>
                 <div className="min-w-0">
@@ -69,7 +69,7 @@ export default function Hub() {
               <p className="mt-3 text-[14px] leading-relaxed text-ink-2">{t(a.problem)}</p>
               <p className="mt-2 text-[13px] font-medium text-ink">{t(a.result)}</p>
               <p className="mt-3 font-mono text-[11.5px] text-ink-3">{a.stack}</p>
-              <a href={a.href} className="mt-5 inline-flex items-center gap-1.5 self-start rounded-md bg-ink px-4 py-2 text-sm font-medium text-surface hover:opacity-90">
+              <a href={a.href} className="press mt-5 inline-flex items-center gap-1.5 self-start rounded-md bg-ink px-4 py-2 text-sm font-medium text-surface hover:opacity-90">
                 {t(L("Abrir caso", "Open case"))} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </a>
             </Card>

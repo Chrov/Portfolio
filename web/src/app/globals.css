@@ -83,4 +83,37 @@ select { background-image: none; }
 }
 
 @keyframes fade-up { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-.animate-in { animation: fade-up 0.35s ease both; }
+.animate-in { animation: fade-up 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* ---- Motion (shared with the portfolio home) ----
+   Dashboards are used often, so motion here stays small: instant press feedback,
+   a sliding segmented thumb, one staggered entrance per page and a soft page transition. */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 220ms; }
+
+/* Squash on impact, spring back with a small overshoot (≤ 300 ms) */
+.press {
+  transition: transform 280ms var(--ease-spring), background-color 120ms linear, color 120ms linear,
+    opacity 120ms linear, box-shadow 200ms var(--ease-out);
+}
+.press:active { transform: scale(1.03, 0.92); transition-duration: 70ms; }
+
+/* Segmented thumb: follows the active option, overshooting slightly */
+.seg-thumb { transition: none; }
+.seg-thumb[data-ready] { transition: transform 260ms var(--ease-spring), width 260ms var(--ease-spring); }
+
+/* Staggered entrance of the page blocks */
+#main > * { animation: fade-up 280ms var(--ease-out) backwards; }
+#main > :nth-child(2) { animation-delay: 45ms; }
+#main > :nth-child(3) { animation-delay: 90ms; }
+#main > :nth-child(4) { animation-delay: 135ms; }
+#main > :nth-child(n + 5) { animation-delay: 180ms; }
+
+/* Hub cards: lift on hover, sink on press */
+.lift { transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out); }
+.lift:hover { transform: translateY(-3px); }
+.lift:active { transform: translateY(-1px) scale(0.99); transition-duration: 80ms; }
